@@ -14,6 +14,7 @@ export class EditorWorkspace {
   workspace: fabric.Rect | null;
   option: EditorWorkspaceOption;
   dragMode: boolean;
+  defaultZoom: number;
 
   constructor(
     canvas: fabric.Canvas,
@@ -25,11 +26,13 @@ export class EditorWorkspace {
     this.workspace = null;
     this.option = option;
     this.dragMode = false;
+    this.defaultZoom = 1;
 
     this.initBackground();
     this.initWorkspace();
     this.initResizeObserve();
     this.initDing();
+    // this.initZoom();
   }
 
   public initBackground() {
@@ -211,5 +214,31 @@ export class EditorWorkspace {
     });
     this.canvas.renderAll();
     this.canvas.requestRenderAll();
+  }
+
+  /**
+   * Improve
+   */
+  initZoom() {
+    this.setZoom(this.defaultZoom);
+  }
+
+  setZoom(scale: number) {
+    const { canvas } = this;
+    const center = canvas.getCenter();
+    canvas.zoomToPoint(new fabric.Point(center.left, center.top), scale);
+    canvas.renderAll();
+  }
+
+  zoomIn() {
+    const currentZoom = this.canvas.getZoom();
+    const newZoom = currentZoom + 0.1;
+    this.setZoom(newZoom);
+  }
+
+  zoomOut() {
+    const currentZoom = this.canvas.getZoom();
+    const newZoom = currentZoom - 0.1;
+    this.setZoom(newZoom);
   }
 }

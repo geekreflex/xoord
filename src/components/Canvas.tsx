@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 import { EditorWorkspace } from './EditorWorkspace';
 import { fabric } from 'fabric';
 import SetSize from './SetSize';
+import Zoom from './Zoom';
 
 export default function Canvas() {
   const [canvas, setCanvas] = useState<fabric.Canvas | null>(null);
@@ -21,6 +22,7 @@ export default function Canvas() {
       option
     );
     setWorkspace(editorWorkspace);
+    console.log(fabricCanvas.getZoom());
 
     /**
      * I removed this because it causes Uncaught TypeError:
@@ -73,21 +75,18 @@ export default function Canvas() {
           <button onClick={addCircle}>Add Circle</button>
         </div>
         {workspace && <SetSize editorWorkspace={workspace} />}
+        {workspace && <Zoom editorWorkspace={workspace} />}
       </div>
     </Wrap>
   );
 }
 
 const Wrap = styled.div`
-  border: 1px solid red;
   height: 85vh;
 
   #workspace {
-    border: 1px solid blue;
     height: 100%;
     background-color: #eee;
-    /* height: 100%;
-    width: 100%; */
   }
 
   .presets {
