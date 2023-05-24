@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Editor } from './editor';
 import { Tab } from './tab';
+import WorkspaceComp from './WorkspaceComp';
+import TabComp from './TabComp';
 
 export default function EditorComp() {
   const editor = useRef<Editor>(new Editor());
