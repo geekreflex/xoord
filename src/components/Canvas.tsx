@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { styled } from 'styled-components';
 import { EditorWorkspace } from './EditorWorkspace';
 import { fabric } from 'fabric';
@@ -22,9 +22,14 @@ export default function Canvas() {
      * although the error doesn't break the app
      */
 
-    // return () => {
-    //   canvas.dispose();
-    // };
+    /**
+     * I added it back because when removed, I can't
+     * click or select an element. This is top priority.
+     */
+
+    return () => {
+      canvas.dispose();
+    };
   }, []);
 
   const addCircle = () => {

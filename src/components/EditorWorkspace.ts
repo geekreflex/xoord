@@ -2,12 +2,18 @@ import { fabric } from 'fabric';
 import { throttle } from 'lodash-es';
 
 declare type EditorWorkspaceOption = { width: number; height: number };
+declare type ExtCanvas = fabric.Canvas & {
+  isDragging: boolean;
+  lastPosX: number;
+  lastPostY: number;
+};
 
 export class EditorWorkspace {
   canvas: fabric.Canvas;
   workspaceEl: HTMLElement;
   workspace: fabric.Rect | null;
   option: EditorWorkspaceOption;
+  dragMode: boolean;
 
   constructor(
     canvas: fabric.Canvas,
@@ -18,6 +24,7 @@ export class EditorWorkspace {
     this.workspaceEl = workspaceEl;
     this.workspace = null;
     this.option = option;
+    this.dragMode = false;
 
     this.initBackground();
     this.initWorkspace();
@@ -113,5 +120,32 @@ export class EditorWorkspace {
   private auto() {
     const scale = this.getScale();
     this.setZoomAuto(scale - 0.08);
+  }
+
+  initDing() {
+    const This = this;
+    this.canvas.on('mouse:down', function (this: ExtCanvas, opt) {
+      const evt = opt.e;
+      if (evt.altKey || This.dragMode) {
+        This.canvas.defaultCursor = 'grabbing';
+        This.canvas.discardActiveObject();
+        This.setDing();
+        this.selection = false;
+        this.isDragging = true;
+        this.lastPosX = evt.clientX;
+        this.lastPostY = evt.clientY;
+        this.requestRenderAll();
+      }
+    });
+  }
+
+  setDing() {
+    this.canvas.selection = false;
+    this.canvas.defaultCursor = 'grab';
+    this.canvas.getObjects().forEach((obj) => {
+      obj.selectable = false;
+    });
+    this.canvas.renderAll();
+    this.canvas.requestRenderAll();
   }
 }
