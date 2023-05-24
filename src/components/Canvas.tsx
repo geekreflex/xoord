@@ -1,39 +1,63 @@
-import { fabric } from 'fabric';
 import { useEffect, useRef } from 'react';
 import { styled } from 'styled-components';
+import { EditorWorkspace } from './EditorWorkspace';
+import { fabric } from 'fabric';
 
 export default function Canvas() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  let _canvas: fabric.Canvas;
 
   useEffect(() => {
-    const canvas = canvasRef.current;
+    const canvas = new fabric.Canvas('canvas');
+    const workspaceEl = document.getElementById('workspace');
+    const option = { width: 300, height: 200 };
 
-    if (canvas) {
-      const fabricCanvas = new fabric.Canvas(canvasRef.current);
-      fabricCanvas.setWidth(800);
-      fabricCanvas.setHeight(800);
+    _canvas = canvas;
 
-      let rect = new fabric.Rect({
-        top: 100,
-        left: 100,
-        width: 60,
-        height: 70,
-        fill: 'red',
-      });
+    const editorWorkspace = new EditorWorkspace(canvas, workspaceEl!, option);
 
-      fabricCanvas.add(rect);
-    }
+    console.log(editorWorkspace);
+
+    /**
+     * I removed this because it causes Uncaught TypeError:
+     * although the error doesn't break the app
+     */
+
+    // return () => {
+    //   canvas.dispose();
+    // };
   }, []);
 
+  const addCircle = () => {
+    const circle = new fabric.Circle({
+      radius: 50,
+      fill: 'red',
+      left: 100,
+      top: 100,
+    });
+    _canvas.add(circle);
+  };
+
   return (
-    <CanvasWrap>
-      <canvas ref={canvasRef}></canvas>
-    </CanvasWrap>
+    <Wrap>
+      <div id="workspace">
+        <canvas id="canvas" />
+      </div>
+      <div>
+        <button onClick={addCircle}>Add Circle</button>
+      </div>
+    </Wrap>
   );
 }
 
-const CanvasWrap = styled.div`
-  canvas {
-    border: 2px solid #555;
+const Wrap = styled.div`
+  border: 1px solid red;
+  height: 70vh;
+
+  #workspace {
+    border: 1px solid blue;
+    height: 100%;
+    background-color: #eee;
+    /* height: 100%;
+    width: 100%; */
   }
 `;
