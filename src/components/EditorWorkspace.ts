@@ -29,6 +29,7 @@ export class EditorWorkspace {
     this.initBackground();
     this.initWorkspace();
     this.initResizeObserve();
+    this.initDing();
   }
 
   public initBackground() {
@@ -122,6 +123,16 @@ export class EditorWorkspace {
     this.setZoomAuto(scale - 0.08);
   }
 
+  startDing() {
+    this.dragMode = true;
+    this.canvas.defaultCursor = 'grab';
+  }
+
+  endDing() {
+    this.dragMode = false;
+    this.canvas.defaultCursor = 'default';
+  }
+
   initDing() {
     const This = this;
     this.canvas.on('mouse:down', function (this: ExtCanvas, opt) {
@@ -136,6 +147,47 @@ export class EditorWorkspace {
         this.lastPostY = evt.clientY;
         this.requestRenderAll();
       }
+    });
+
+    this.canvas.on('mouse:move', function (this: ExtCanvas, opt) {
+      if (this.isDragging) {
+        This.canvas.discardActiveObject();
+        This.canvas.defaultCursor = 'grabbing';
+        const { e } = opt;
+        if (!this.viewportTransform) return;
+        const vpt = this.viewportTransform;
+        vpt[4] += e.clientX - this.lastPosX;
+        vpt[5] += e.clientY - this.lastPostY;
+        this.lastPosX = e.clientX;
+        this.lastPostY = e.clientY;
+        this.requestRenderAll();
+      }
+    });
+
+    this.canvas.on('mouse:up', function (this: ExtCanvas) {
+      if (!this.viewportTransform) return;
+      this.setViewportTransform(this.viewportTransform);
+      this.isDragging = false;
+      this.selection = true;
+      this.getObjects().forEach((obj) => {
+        if (obj.id !== 'workspace' && obj.hasControls) {
+          obj.selectable = true;
+        }
+      });
+      this.requestRenderAll();
+      This.canvas.defaultCursor = 'default';
+    });
+
+    this.canvas.on('mouse:wheel', function (this: fabric.Canvas, opt) {
+      const delta = opt.e.deltaY;
+      let zoom = this.getZoom();
+      zoom *= 0.99 ** delta;
+      if (zoom > 20) zoom = 20;
+      if (zoom < 0.01) zoom = 0.01;
+      const center = this.getCenter();
+      this.zoomToPoint(new fabric.Point(center.left, center.top), zoom);
+      opt.e.preventDefault();
+      opt.e.stopPropagation();
     });
   }
 

@@ -5,17 +5,17 @@ import { fabric } from 'fabric';
 
 export default function Canvas() {
   let _canvas: fabric.Canvas;
+  let _workspace: EditorWorkspace;
 
   useEffect(() => {
     const canvas = new fabric.Canvas('canvas');
+    _canvas = canvas;
+
     const workspaceEl = document.getElementById('workspace');
     const option = { width: 300, height: 200 };
 
-    _canvas = canvas;
-
     const editorWorkspace = new EditorWorkspace(canvas, workspaceEl!, option);
-
-    console.log(editorWorkspace);
+    _workspace = editorWorkspace;
 
     /**
      * I removed this because it causes Uncaught TypeError:
@@ -42,12 +42,22 @@ export default function Canvas() {
     _canvas.add(circle);
   };
 
+  const startDing = () => {
+    _workspace.startDing();
+  };
+
+  const endDing = () => {
+    _workspace.endDing();
+  };
+
   return (
     <Wrap>
       <div id="workspace">
         <canvas id="canvas" />
       </div>
       <div>
+        <button onClick={startDing}>Add Circle</button>
+        <button onClick={endDing}>Add Circle</button>
         <button onClick={addCircle}>Add Circle</button>
       </div>
     </Wrap>
@@ -56,7 +66,7 @@ export default function Canvas() {
 
 const Wrap = styled.div`
   border: 1px solid red;
-  height: 70vh;
+  height: 95vh;
 
   #workspace {
     border: 1px solid blue;
