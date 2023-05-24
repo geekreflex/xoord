@@ -1,21 +1,26 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import { EditorWorkspace } from './EditorWorkspace';
 import { fabric } from 'fabric';
+import SetSize from './SetSize';
 
 export default function Canvas() {
-  let _canvas: fabric.Canvas;
-  let _workspace: EditorWorkspace;
+  const [canvas, setCanvas] = useState<fabric.Canvas | null>(null);
+  const [workspace, setWorkspace] = useState<EditorWorkspace | null>(null);
 
   useEffect(() => {
-    const canvas = new fabric.Canvas('canvas');
-    _canvas = canvas;
+    const fabricCanvas = new fabric.Canvas('canvas');
+    setCanvas(fabricCanvas);
 
     const workspaceEl = document.getElementById('workspace');
     const option = { width: 300, height: 200 };
 
-    const editorWorkspace = new EditorWorkspace(canvas, workspaceEl!, option);
-    _workspace = editorWorkspace;
+    const editorWorkspace = new EditorWorkspace(
+      fabricCanvas,
+      workspaceEl!,
+      option
+    );
+    setWorkspace(editorWorkspace);
 
     /**
      * I removed this because it causes Uncaught TypeError:
@@ -28,26 +33,32 @@ export default function Canvas() {
      */
 
     return () => {
-      canvas.dispose();
+      fabricCanvas.dispose();
     };
   }, []);
 
   const addCircle = () => {
-    const circle = new fabric.Circle({
-      radius: 50,
-      fill: 'red',
-      left: 100,
-      top: 100,
-    });
-    _canvas.add(circle);
+    if (canvas) {
+      const circle = new fabric.Circle({
+        radius: 50,
+        fill: 'red',
+        left: 100,
+        top: 100,
+      });
+      canvas.add(circle);
+    }
   };
 
   const startDing = () => {
-    _workspace.startDing();
+    if (workspace) {
+      workspace.startDing();
+    }
   };
 
   const endDing = () => {
-    _workspace.endDing();
+    if (workspace) {
+      workspace?.endDing();
+    }
   };
 
   return (
@@ -55,10 +66,13 @@ export default function Canvas() {
       <div id="workspace">
         <canvas id="canvas" />
       </div>
-      <div>
-        <button onClick={startDing}>Add Circle</button>
-        <button onClick={endDing}>Add Circle</button>
-        <button onClick={addCircle}>Add Circle</button>
+      <div className="presets">
+        <div>
+          <button onClick={startDing}>Start Ding</button>
+          <button onClick={endDing}>End Ding</button>
+          <button onClick={addCircle}>Add Circle</button>
+        </div>
+        {workspace && <SetSize editorWorkspace={workspace} />}
       </div>
     </Wrap>
   );
@@ -66,7 +80,7 @@ export default function Canvas() {
 
 const Wrap = styled.div`
   border: 1px solid red;
-  height: 95vh;
+  height: 85vh;
 
   #workspace {
     border: 1px solid blue;
@@ -74,5 +88,12 @@ const Wrap = styled.div`
     background-color: #eee;
     /* height: 100%;
     width: 100%; */
+  }
+
+  .presets {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 `;

@@ -87,6 +87,18 @@ export class EditorWorkspace {
     resizeObserver.observe(this.workspaceEl);
   }
 
+  setSize(width: number, height: number) {
+    this.initBackground();
+    this.option.width = width;
+    this.option.height = height;
+    this.workspace = this.canvas
+      .getObjects()
+      .find((item) => item.id === 'workspace') as fabric.Rect;
+    this.workspace.set('width', width);
+    this.workspace.set('height', height);
+    this.auto();
+  }
+
   setZoomAuto(scale: number, cb?: (left?: number, top?: number) => void) {
     const { workspaceEl } = this;
     const width = workspaceEl.offsetWidth;
