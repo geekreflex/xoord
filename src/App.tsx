@@ -1,13 +1,11 @@
-import Canvas from '@/components/Canvas';
-import { EditorProvider } from './context/Editor';
-import Tool from './components/Tool';
+import Stage from './components/Stage';
+import { EditorProvider } from './context/EditorContext';
 
 export default function App() {
   return (
     <>
       <EditorProvider>
-        <Tool />
-        <Canvas />
+        <Stage />
       </EditorProvider>
     </>
   );

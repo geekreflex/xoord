@@ -1,8 +1,7 @@
-import { Editor, Tools } from '../core';
+import { Tools } from '../core';
 
-export default function Rectangle({ editor }: { editor: Editor }) {
+export default function Rectangle({ tools }: { tools: Tools }) {
   const onAddRect = () => {
-    const tools = new Tools(editor);
     tools.addRectangle();
   };
   return <button onClick={onAddRect}>Rectangle</button>;

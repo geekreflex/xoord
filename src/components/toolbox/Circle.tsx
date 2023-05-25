@@ -1,9 +1,7 @@
 import { Tools } from '../core';
-import { Editor } from '../core/Editor';
 
-export default function Circle({ editor }: { editor: Editor }) {
+export default function Circle({ tools }: { tools: Tools }) {
   const onAddCircle = () => {
-    const tools = new Tools(editor);
     tools.addCirlce();
   };
 

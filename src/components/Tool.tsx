@@ -1,15 +1,15 @@
-import { useEditor } from '@/context/Editor';
+import { useEditor } from '@/context/EditorContext';
 import { Circle, Rectangle } from './toolbox';
 
 export default function Tool() {
-  const { editor } = useEditor();
+  const { tools } = useEditor();
 
   return (
     <div>
-      {editor && (
+      {tools && (
         <div>
-          <Circle editor={editor} />
-          <Rectangle editor={editor} />
+          <Circle tools={tools} />
+          <Rectangle tools={tools} />
         </div>
       )}
     </div>

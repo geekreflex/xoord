@@ -1,6 +1,7 @@
 import { generateUniqueId } from '@/utils/unique';
 import { Editor } from './Editor';
 import { fabric } from 'fabric';
+import { CIRCLE, RECTANGLE } from './lib/defaultShapes';
 
 export class Tools {
   private editor: Editor;
@@ -11,8 +12,7 @@ export class Tools {
 
   public addCirlce() {
     const cirlce = new fabric.Circle({
-      radius: 50,
-      fill: 'red',
+      ...CIRCLE,
       id: this.id(),
       name: 'circle',
     });
@@ -21,10 +21,9 @@ export class Tools {
 
   public addRectangle() {
     const rectangle = new fabric.Rect({
-      fill: 'red',
-      width: 100,
-      height: 100,
+      ...RECTANGLE,
       id: this.id(),
+      name: 'rect',
     });
     this.editor.canvas.add(rectangle);
   }

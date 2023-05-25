@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { styled } from 'styled-components';
 import { Editor } from '@/components/core/Editor';
 import { fabric } from 'fabric';
-import { useEditor } from '@/context/Editor';
+import { useEditor } from '@/context/EditorContext';
 
 export default function Canvas() {
   const { setEditor } = useEditor();
@@ -13,21 +13,12 @@ export default function Canvas() {
     const workspaceEl = document.getElementById('workspace');
     const option = { width: 300, height: 200 };
 
-    const workspace = new Editor(fabricCanvas, workspaceEl!, option);
-    setEditor(workspace);
-
-    /**
-     * I removed this because it causes Uncaught TypeError:
-     * although the error doesn't break the app
-     */
-
-    /**
-     * I added it back because when removed, I can't
-     * click or select an element. This is top priority.
-     */
+    const editor = new Editor(fabricCanvas, workspaceEl!, option);
+    setEditor(editor);
 
     return () => {
-      fabricCanvas.dispose();
+      editor.dispose();
+      setEditor(null);
     };
   }, []);
 
@@ -41,9 +32,11 @@ export default function Canvas() {
 }
 
 const Wrap = styled.div`
-  height: 85vh;
+  height: 100%;
+  height: 100%;
 
   #workspace {
+    height: 100%;
     height: 100%;
     background-color: #eee;
   }

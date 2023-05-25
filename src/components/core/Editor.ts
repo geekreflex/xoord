@@ -15,6 +15,7 @@ export class Editor {
   option: EditorOption;
   dragMode: boolean;
   defaultZoom: number;
+  private resizeObserver: ResizeObserver | null;
 
   constructor(
     canvas: fabric.Canvas,
@@ -27,6 +28,7 @@ export class Editor {
     this.option = option;
     this.dragMode = false;
     this.defaultZoom = 1;
+    this.resizeObserver = null;
 
     this.initBackground();
     this.initWorkspace();
@@ -81,12 +83,23 @@ export class Editor {
   }
 
   initResizeObserve() {
-    const resizeObserver = new ResizeObserver(
+    this.resizeObserver = new ResizeObserver(
       throttle(() => {
         this.auto();
       }, 50)
     );
-    resizeObserver.observe(this.workspaceEl);
+    this.resizeObserver.observe(this.workspaceEl);
+  }
+
+  public dispose() {
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+      this.resizeObserver = null;
+    }
+
+    if (this.canvas) {
+      this.canvas.dispose();
+    }
   }
 
   setSize(width: number, height: number) {
@@ -192,17 +205,17 @@ export class Editor {
       This.canvas.defaultCursor = 'default';
     });
 
-    this.canvas.on('mouse:wheel', function (this: fabric.Canvas, opt) {
-      const delta = opt.e.deltaY;
-      let zoom = this.getZoom();
-      zoom *= 0.99 ** delta;
-      if (zoom > 20) zoom = 20;
-      if (zoom < 0.01) zoom = 0.01;
-      const center = this.getCenter();
-      this.zoomToPoint(new fabric.Point(center.left, center.top), zoom);
-      opt.e.preventDefault();
-      opt.e.stopPropagation();
-    });
+    // this.canvas.on('mouse:wheel', function (this: fabric.Canvas, opt) {
+    //   const delta = opt.e.deltaY;
+    //   let zoom = this.getZoom();
+    //   zoom *= 0.99 ** delta;
+    //   if (zoom > 20) zoom = 20;
+    //   if (zoom < 0.01) zoom = 0.01;
+    //   const center = this.getCenter();
+    //   this.zoomToPoint(new fabric.Point(center.left, center.top), zoom);
+    //   opt.e.preventDefault();
+    //   opt.e.stopPropagation();
+    // });
   }
 
   setDing() {
