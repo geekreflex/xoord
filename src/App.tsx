@@ -1,12 +1,14 @@
 import Canvas from '@/components/Canvas';
-import Editor from './components/core/Editor';
-import Main from './components/core/Main';
+import { EditorProvider } from './context/Editor';
+import Tool from './components/Tool';
 
 export default function App() {
   return (
     <>
-      {/* <Canvas /> */}
-      <Main />
+      <EditorProvider>
+        <Tool />
+        <Canvas />
+      </EditorProvider>
     </>
   );
 }

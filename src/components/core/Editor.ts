@@ -1,27 +1,25 @@
 import { fabric } from 'fabric';
 import { throttle } from 'lodash-es';
 
-declare type EditorWorkspaceOption = { width: number; height: number };
+declare type EditorOption = { width: number; height: number };
 declare type ExtCanvas = fabric.Canvas & {
   isDragging: boolean;
   lastPosX: number;
   lastPostY: number;
 };
 
-export class EditorWorkspace {
-  editorId: string;
+export class Editor {
   canvas: fabric.Canvas;
   workspaceEl: HTMLElement;
   workspace: fabric.Rect | null;
-  option: EditorWorkspaceOption;
+  option: EditorOption;
   dragMode: boolean;
   defaultZoom: number;
 
   constructor(
     canvas: fabric.Canvas,
     workspaceEl: HTMLElement,
-    editorId: string,
-    option: EditorWorkspaceOption
+    option: EditorOption
   ) {
     this.canvas = canvas;
     this.workspaceEl = workspaceEl;
@@ -29,13 +27,11 @@ export class EditorWorkspace {
     this.option = option;
     this.dragMode = false;
     this.defaultZoom = 1;
-    this.editorId = editorId;
 
     this.initBackground();
     this.initWorkspace();
     this.initResizeObserve();
     this.initDing();
-    // this.initZoom();
   }
 
   public initBackground() {
@@ -217,31 +213,5 @@ export class EditorWorkspace {
     });
     this.canvas.renderAll();
     this.canvas.requestRenderAll();
-  }
-
-  /**
-   * Improve
-   */
-  initZoom() {
-    this.setZoom(this.defaultZoom);
-  }
-
-  setZoom(scale: number) {
-    const { canvas } = this;
-    const center = canvas.getCenter();
-    canvas.zoomToPoint(new fabric.Point(center.left, center.top), scale);
-    canvas.renderAll();
-  }
-
-  zoomIn() {
-    const currentZoom = this.canvas.getZoom();
-    const newZoom = currentZoom + 0.1;
-    this.setZoom(newZoom);
-  }
-
-  zoomOut() {
-    const currentZoom = this.canvas.getZoom();
-    const newZoom = currentZoom - 0.1;
-    this.setZoom(newZoom);
   }
 }
