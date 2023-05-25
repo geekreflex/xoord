@@ -16,6 +16,8 @@ export default function Canvas() {
     const workspaceEl = document.getElementById('workspace');
     const option = { width: 300, height: 200 };
 
+    console.log(fabricCanvas);
+
     const editorWorkspace = new EditorWorkspace(
       fabricCanvas,
       workspaceEl!,
