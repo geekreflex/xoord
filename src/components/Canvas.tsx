@@ -8,7 +8,11 @@ export default function Canvas() {
   const { setEditor } = useEditor();
 
   useEffect(() => {
-    const fabricCanvas = new fabric.Canvas('canvas');
+    const fabricCanvas = new fabric.Canvas('canvas', {
+      fireRightClick: true,
+      stopContextMenu: true,
+      controlsAboveOverlay: true,
+    });
 
     const workspaceEl = document.getElementById('workspace');
     const option = { width: 300, height: 200 };

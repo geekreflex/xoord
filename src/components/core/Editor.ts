@@ -36,7 +36,7 @@ export class Editor {
     this.initDing();
   }
 
-  public initBackground() {
+  private initBackground() {
     this.canvas.setBackgroundColor(
       '#888',
       this.canvas.renderAll.bind(this.canvas)
@@ -46,7 +46,7 @@ export class Editor {
     this.canvas.setHeight(this.workspaceEl.offsetHeight);
   }
 
-  public initWorkspace() {
+  private initWorkspace() {
     const { width, height } = this.option;
     const workspace = new fabric.Rect({
       fill: '#ffffff',
@@ -64,7 +64,7 @@ export class Editor {
     this.auto();
   }
 
-  setCenterFromObject(obj: fabric.Rect) {
+  private setCenterFromObject(obj: fabric.Rect) {
     const { canvas } = this;
     const objCenter = obj.getCenterPoint();
     const viewportTransform = canvas.viewportTransform;
@@ -82,7 +82,7 @@ export class Editor {
     canvas.renderAll();
   }
 
-  initResizeObserve() {
+  private initResizeObserve() {
     this.resizeObserver = new ResizeObserver(
       throttle(() => {
         this.auto();
@@ -91,18 +91,7 @@ export class Editor {
     this.resizeObserver.observe(this.workspaceEl);
   }
 
-  public dispose() {
-    if (this.resizeObserver) {
-      this.resizeObserver.disconnect();
-      this.resizeObserver = null;
-    }
-
-    if (this.canvas) {
-      this.canvas.dispose();
-    }
-  }
-
-  setSize(width: number, height: number) {
+  public setSize(width: number, height: number) {
     this.initBackground();
     this.option.width = width;
     this.option.height = height;
@@ -114,7 +103,10 @@ export class Editor {
     this.auto();
   }
 
-  setZoomAuto(scale: number, cb?: (left?: number, top?: number) => void) {
+  public setZoomAuto(
+    scale: number,
+    cb?: (left?: number, top?: number) => void
+  ) {
     const { workspaceEl } = this;
     const width = workspaceEl.offsetWidth;
     const height = workspaceEl.offsetHeight;
@@ -226,5 +218,18 @@ export class Editor {
     });
     this.canvas.renderAll();
     this.canvas.requestRenderAll();
+  }
+
+  public styleSelectionHandles({}) {}
+
+  public dispose() {
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+      this.resizeObserver = null;
+    }
+
+    if (this.canvas) {
+      this.canvas.dispose();
+    }
   }
 }
