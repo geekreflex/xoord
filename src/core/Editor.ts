@@ -267,8 +267,6 @@ export class Editor {
     this.canvas.requestRenderAll();
   }
 
-  public styleSelectionHandles({}) {}
-
   public dispose() {
     if (this.resizeObserver) {
       this.resizeObserver.disconnect();

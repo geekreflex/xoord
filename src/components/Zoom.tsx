@@ -106,9 +106,10 @@ const ZoomInOut = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
+    font-size: 20px;
     cursor: pointer;
     background-color: transparent;
+    color: #222;
   }
 `;
 const ZoomLevels = styled.div`
