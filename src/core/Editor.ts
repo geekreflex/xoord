@@ -225,19 +225,35 @@ export class Editor {
     });
 
     /**
-     * Zoom in or out with mouse wheel
+     * Zoom in or out with mouse wheel with ctrl
+     * Move canvas around with mouse wheel
+     * This can be separated into two different
+     * events
      *
      */
+
     this.canvas.on('mouse:wheel', function (this: fabric.Canvas, opt) {
-      const delta = opt.e.deltaY;
-      let zoom = this.getZoom();
-      zoom *= 0.99 ** delta;
-      if (zoom > 20) zoom = 20;
-      if (zoom < 0.01) zoom = 0.01;
-      const center = this.getCenter();
-      this.zoomToPoint(new fabric.Point(center.left, center.top), zoom);
-      opt.e.preventDefault();
-      opt.e.stopPropagation();
+      // Check if Ctrl or Cmd key is held down
+      const isControlKeyHeld = opt.e.ctrlKey || opt.e.metaKey;
+
+      if (isControlKeyHeld) {
+        const delta = opt.e.deltaY;
+        let zoom = this.getZoom();
+        zoom *= 0.99 ** delta;
+        if (zoom > 20) zoom = 20;
+        if (zoom < 0.01) zoom = 0.01;
+        const center = this.getCenter();
+        this.zoomToPoint(new fabric.Point(center.left, center.top), zoom);
+        opt.e.preventDefault();
+        opt.e.stopPropagation();
+      } else {
+        const deltaX = -opt.e.deltaX * 0.08;
+        const deltaY = -opt.e.deltaY * 0.08;
+        const viewportTranform = this.viewportTransform!.slice();
+        viewportTranform[4] += deltaX;
+        viewportTranform[5] += deltaY;
+        this.setViewportTransform(viewportTranform);
+      }
     });
   }
 

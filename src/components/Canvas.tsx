@@ -43,5 +43,6 @@ const Wrap = styled.div`
     height: 100%;
     height: 100%;
     background-color: #eee;
+    overflow: auto;
   }
 `;
