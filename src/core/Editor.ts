@@ -1,6 +1,7 @@
 import { fabric } from 'fabric';
 import { throttle } from 'lodash-es';
 import { AlignGuidelines } from './guideline/AligningGuidlines';
+import { Controls } from './Controls';
 
 declare type EditorOption = { width: number; height: number };
 declare type ExtCanvas = fabric.Canvas & {
@@ -36,6 +37,7 @@ export class Editor {
     this.initResizeObserve();
     this.initDing();
     this.initAligningGuidlines();
+    Controls(this.canvas);
   }
 
   private initBackground() {
