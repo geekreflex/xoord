@@ -1,6 +1,12 @@
 import { Theme, darkTheme, lightTheme } from '@/themes/theme';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
-import { createContext, useContext, useEffect, useState } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 interface ThemeContextProps {
   theme: Theme;
@@ -25,12 +31,20 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     prefersDarkMode ? 'dark' : 'light'
   );
 
-  const toggleTheme = () => {
+  useEffect(() => {
+    persistThemeMode(currentMode);
+  }, [currentMode]);
+
+  const persistThemeMode = useCallback((mode: 'light' | 'dark') => {
+    localStorage.setItem('mode', JSON.stringify(mode));
+  }, []);
+
+  const toggleTheme = useCallback(() => {
     setCurrentTheme((prevTheme) =>
       prevTheme === lightTheme ? darkTheme : lightTheme
     );
     setCurrentMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
-  };
+  }, []);
 
   useEffect(() => {
     const mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)');

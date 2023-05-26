@@ -3,11 +3,13 @@ import { Shapes } from './toolbox';
 import { useTheme } from '@/context/ThemeContext';
 
 export default function Tool() {
-  const { toggleTheme } = useTheme();
+  const { toggleTheme, mode } = useTheme();
   return (
     <SidebarWrap>
       <Shapes />
-      <button onClick={toggleTheme}> Toggle Theme</button>
+      <button onClick={toggleTheme}>
+        Toggle {mode === 'dark' ? 'Light' : 'Dark'}
+      </button>
     </SidebarWrap>
   );
 }
