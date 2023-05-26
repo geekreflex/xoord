@@ -1,4 +1,4 @@
-import { Tools } from '../core';
+import { Tools } from '../../core';
 
 export default function Circle({ tools }: { tools: Tools }) {
   const onAddCircle = () => {

@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useState } from 'react';
-import { Editor, Tools } from '@/components/core';
+import { Editor, Tools } from '@/core';
 
 type EditorContextType = {
   editor: Editor | null;

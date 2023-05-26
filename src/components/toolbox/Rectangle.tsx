@@ -1,4 +1,4 @@
-import { Tools } from '../core';
+import { Tools } from '../../core';
 
 export default function Rectangle({ tools }: { tools: Tools }) {
   const onAddRect = () => {
