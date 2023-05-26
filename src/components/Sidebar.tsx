@@ -1,9 +1,14 @@
+import { styled } from 'styled-components';
 import { Shapes } from './toolbox';
 
 export default function Tool() {
   return (
-    <div>
+    <SidebarWrap>
       <Shapes />
-    </div>
+    </SidebarWrap>
   );
 }
+
+const SidebarWrap = styled.div`
+  background-color: #fff;
+`;
