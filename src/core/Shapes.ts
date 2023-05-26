@@ -3,7 +3,7 @@ import { Editor } from './Editor';
 import { fabric } from 'fabric';
 import { CIRCLE, RECTANGLE } from './lib/defaultShapes';
 
-export class Tools {
+export class Shapes {
   private editor: Editor;
 
   constructor(editor: Editor) {

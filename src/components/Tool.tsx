@@ -1,15 +1,15 @@
 import { useEditor } from '@/context/EditorContext';
-import { Circle, Rectangle } from './toolbox';
+import { Circle, Rectangle } from './toolbox/shapes';
 
 export default function Tool() {
-  const { tools } = useEditor();
+  const { shapes } = useEditor();
 
   return (
     <div>
-      {tools && (
+      {shapes && (
         <div>
-          <Circle tools={tools} />
-          <Rectangle tools={tools} />
+          <Circle shapes={shapes} />
+          <Rectangle shapes={shapes} />
         </div>
       )}
     </div>

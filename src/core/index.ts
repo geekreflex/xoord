@@ -1,4 +1,4 @@
 import { Editor } from './Editor';
-import { Tools } from './Tools';
+import { Shapes } from './Shapes';
 
-export { Editor, Tools };
+export { Editor, Shapes };

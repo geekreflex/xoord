@@ -158,14 +158,22 @@ export class Editor {
 
   private auto() {
     const scale = this.getScale();
+    // I want to maintain the size of the canvas
+    // I don't want to to auto zoom-in when resizing.
     this.setZoomAuto(Math.min(scale - 0.08, 1));
   }
 
+  /**
+   * Toggle on for move workspace
+   */
   startDing() {
     this.dragMode = true;
     this.canvas.defaultCursor = 'grab';
   }
 
+  /**
+   * Toggle off for move workspace
+   */
   endDing() {
     this.dragMode = false;
     this.canvas.defaultCursor = 'default';
@@ -216,17 +224,21 @@ export class Editor {
       This.canvas.defaultCursor = 'default';
     });
 
-    // this.canvas.on('mouse:wheel', function (this: fabric.Canvas, opt) {
-    //   const delta = opt.e.deltaY;
-    //   let zoom = this.getZoom();
-    //   zoom *= 0.99 ** delta;
-    //   if (zoom > 20) zoom = 20;
-    //   if (zoom < 0.01) zoom = 0.01;
-    //   const center = this.getCenter();
-    //   this.zoomToPoint(new fabric.Point(center.left, center.top), zoom);
-    //   opt.e.preventDefault();
-    //   opt.e.stopPropagation();
-    // });
+    /**
+     * Zoom in or out with mouse wheel
+     *
+     */
+    this.canvas.on('mouse:wheel', function (this: fabric.Canvas, opt) {
+      const delta = opt.e.deltaY;
+      let zoom = this.getZoom();
+      zoom *= 0.99 ** delta;
+      if (zoom > 20) zoom = 20;
+      if (zoom < 0.01) zoom = 0.01;
+      const center = this.getCenter();
+      this.zoomToPoint(new fabric.Point(center.left, center.top), zoom);
+      opt.e.preventDefault();
+      opt.e.stopPropagation();
+    });
   }
 
   setDing() {
