@@ -33,18 +33,11 @@ const LeftStage = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0 20px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 998;
-  height: 100vh;
+  background-color: #fff;
 
   .inner {
     height: 500px;
-    background-color: #fff;
-    padding: 30px 10px;
     border-radius: 20px;
-    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
   }
 `;
 const Scene = styled.div`
