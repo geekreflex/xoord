@@ -8,15 +8,20 @@ import {
   useState,
 } from 'react';
 
+enum ThemeMode {
+  LIGHT = 'light',
+  DARK = 'dark',
+}
+
 interface ThemeContextProps {
   theme: Theme;
-  mode: 'light' | 'dark';
+  mode: ThemeMode;
   toggleTheme: () => void;
 }
 
 export const ThemeContext = createContext<ThemeContextProps>({
   theme: lightTheme,
-  mode: 'light',
+  mode: ThemeMode.LIGHT,
   toggleTheme: () => {},
 });
 
@@ -24,39 +29,39 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const prefersDarkMode =
     window.matchMedia &&
     window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const [currentTheme, setCurrentTheme] = useState(
-    prefersDarkMode ? darkTheme : lightTheme
-  );
-  const [currentMode, setCurrentMode] = useState<'light' | 'dark'>(
-    prefersDarkMode ? 'dark' : 'light'
+
+  const [currentThemeMode, setCurrentThemeMode] = useState<ThemeMode>(
+    loadThemeModePreference() ||
+      (prefersDarkMode ? ThemeMode.DARK : ThemeMode.LIGHT)
   );
 
-  useEffect(() => {
-    persistThemeMode(currentMode);
-  }, [currentMode]);
+  const currentTheme = getCurrentTheme(currentThemeMode);
 
-  const persistThemeMode = useCallback((mode: 'light' | 'dark') => {
-    localStorage.setItem('mode', JSON.stringify(mode));
-  }, []);
+  function getCurrentTheme(themeMode: ThemeMode): Theme {
+    return themeMode === ThemeMode.LIGHT ? lightTheme : darkTheme;
+  }
 
   const toggleTheme = useCallback(() => {
-    setCurrentTheme((prevTheme) =>
-      prevTheme === lightTheme ? darkTheme : lightTheme
+    setCurrentThemeMode((prevMode) =>
+      prevMode === ThemeMode.LIGHT ? ThemeMode.DARK : ThemeMode.LIGHT
     );
-    setCurrentMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
   }, []);
 
+  function loadThemeModePreference(): ThemeMode | null {
+    const storedThemeMode = localStorage.getItem('themeMode');
+    return storedThemeMode === ThemeMode.LIGHT ||
+      storedThemeMode === ThemeMode.DARK
+      ? (storedThemeMode as ThemeMode)
+      : null;
+  }
+
   useEffect(() => {
-    const mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleDarkModeChange = (event: MediaQueryListEvent) => {
-      setCurrentTheme(event.matches ? darkTheme : lightTheme);
-      setCurrentMode(event.matches ? 'dark' : 'light');
-    };
-    mediaQueryList.addEventListener('change', handleDarkModeChange);
-    return () => {
-      mediaQueryList.removeEventListener('change', handleDarkModeChange);
-    };
-  }, []);
+    saveThemeModePreference(currentThemeMode);
+  }, [currentThemeMode]);
+
+  function saveThemeModePreference(themeMode: ThemeMode) {
+    localStorage.setItem('themeMode', themeMode);
+  }
 
   const styledTheme: Theme = {
     ...currentTheme,
@@ -64,7 +69,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <ThemeContext.Provider
-      value={{ theme: currentTheme, mode: currentMode, toggleTheme }}
+      value={{ theme: currentTheme, mode: currentThemeMode, toggleTheme }}
     >
       <StyledThemeProvider theme={styledTheme}>{children}</StyledThemeProvider>
     </ThemeContext.Provider>

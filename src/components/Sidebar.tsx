@@ -16,4 +16,5 @@ export default function Tool() {
 
 const SidebarWrap = styled.div`
   background-color: ${(props) => props.theme.primaryColor};
+  width: 100px;
 `;

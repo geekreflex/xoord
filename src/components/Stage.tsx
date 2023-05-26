@@ -20,7 +20,7 @@ export default function Stage() {
 }
 
 const StageWrap = styled.div`
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -28,10 +28,11 @@ const StageWrap = styled.div`
 `;
 
 const Main = styled.div`
-  flex: 1;
   display: flex;
+  width: 100%;
+  height: calc(100% - 50px);
 `;
 
 const Scene = styled.div`
-  flex: 1;
+  width: calc(100% - 100px);
 `;

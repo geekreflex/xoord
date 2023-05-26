@@ -9,7 +9,8 @@
 body,
 html {
   height: 100%;
-  overflow: hidden;
+  width: 100%;
+  /* overflow: hidden; */
 }
 
 body {
