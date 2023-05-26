@@ -1,5 +1,6 @@
 import { fabric } from 'fabric';
 import { throttle } from 'lodash-es';
+import { AlignGuidelines } from './guideline/AligningGuidlines';
 
 declare type EditorOption = { width: number; height: number };
 declare type ExtCanvas = fabric.Canvas & {
@@ -34,6 +35,7 @@ export class Editor {
     this.initWorkspace();
     this.initResizeObserve();
     this.initDing();
+    this.initAligningGuidlines();
   }
 
   private initBackground() {
@@ -62,6 +64,11 @@ export class Editor {
 
     this.workspace = workspace;
     this.auto();
+  }
+
+  private initAligningGuidlines() {
+    const guideline = new AlignGuidelines({ canvas: this.canvas });
+    guideline.init();
   }
 
   private setCenterFromObject(obj: fabric.Rect) {

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { styled } from 'styled-components';
-import { Editor } from '@/components/core/Editor';
+import { Editor } from '@/components/core';
 import { fabric } from 'fabric';
 import { useEditor } from '@/context/EditorContext';
 
