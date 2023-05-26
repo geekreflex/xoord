@@ -135,13 +135,13 @@ export class Editor {
   zoomIn() {
     const zoomFactor = 1.1; // Adjust the zoom factor as needed
     const zoom = this.canvas.getZoom() * zoomFactor;
-    this.setZoomAuto(zoom);
+    this.setZoomAuto(Math.min(zoom, 5));
   }
 
   zoomOut() {
     const zoomFactor = 0.9; // Adjust the zoom factor as needed
     const zoom = this.canvas.getZoom() * zoomFactor;
-    this.setZoomAuto(zoom);
+    this.setZoomAuto(Math.max(zoom, 0.1));
   }
 
   getScale() {

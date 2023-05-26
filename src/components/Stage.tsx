@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import Canvas from './Canvas';
-import Tool from './Tool';
+import Sidebar from './Sidebar';
 import Zoom from './Zoom';
 
 export default function Stage() {
@@ -8,7 +8,7 @@ export default function Stage() {
     <StageWrap>
       <LeftStage>
         <div className="inner">
-          <Tool />
+          <Sidebar />
         </div>
       </LeftStage>
       <Scene>

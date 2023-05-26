@@ -1,4 +1,5 @@
 import { useEditor } from '@/context/EditorContext';
+import { ZoomInIcon, ZoomOutIcon } from '@/icons';
 import { toPercent } from '@/utils/percent';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
@@ -21,11 +22,13 @@ export default function Zoom() {
   const handleZoomIn = () => {
     if (editor) {
       editor.zoomIn();
+      setCurrentZoom(editor.canvas.getZoom());
     }
   };
   const handleZoomOut = () => {
     if (editor) {
       editor.zoomOut();
+      setCurrentZoom(editor.canvas.getZoom());
     }
   };
 
@@ -36,28 +39,36 @@ export default function Zoom() {
     }
   };
 
+  const handleToggle = () => {
+    setVisible(!visible);
+  };
+
   return (
     <ZoomWrap>
       <ZoomInOut>
         <button className="zoom-btn zoomin-btn" onClick={handleZoomOut}>
-          -
+          <ZoomOutIcon />
         </button>
-        <div className="zoom-view">{`${toPercent(currentZoom)}%`}</div>
+        <div className="zoom-view" onClick={handleToggle}>{`${toPercent(
+          currentZoom
+        )}%`}</div>
         <button className="zoom-btn zoomout-btn" onClick={handleZoomIn}>
-          +
+          <ZoomInIcon />
         </button>
       </ZoomInOut>
-      <ZoomLevels>
-        {zoomLevels.map((level) => (
-          <div
-            className="level"
-            onClick={() => handleZoomLevel(level)}
-            key={level}
-          >
-            {`${toPercent(level)}%`}
-          </div>
-        ))}
-      </ZoomLevels>
+      {visible && (
+        <ZoomLevels>
+          {zoomLevels.map((level) => (
+            <div
+              className="level"
+              onClick={() => handleZoomLevel(level)}
+              key={level}
+            >
+              {`${toPercent(level)}%`}
+            </div>
+          ))}
+        </ZoomLevels>
+      )}
     </ZoomWrap>
   );
 }
@@ -66,33 +77,15 @@ const ZoomWrap = styled.div`
   position: fixed;
   bottom: 30px;
   right: 50px;
-
-  /* For Webkit based browsers (Chrome, Safari, Opera) */
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  /* ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  } */
-
-  ::-webkit-scrollbar-thumb {
-    background: #bbb;
-    border-radius: 6px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
 `;
 
 const ZoomInOut = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 5px;
 
   .zoom-view {
     border: 1px solid #888;
-    width: 60px;
+    width: 50px;
     height: 30px;
     display: flex;
     justify-content: center;
@@ -100,12 +93,22 @@ const ZoomInOut = styled.div`
     border-radius: 4px;
     background-color: #e6e3e3;
     font-size: 14px;
+    cursor: pointer;
+    &:hover {
+      background-color: #bbb;
+    }
   }
 
   .zoom-btn {
     width: 30px;
     border: none;
     outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: transparent;
   }
 `;
 const ZoomLevels = styled.div`
