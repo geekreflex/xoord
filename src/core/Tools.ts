@@ -10,6 +10,9 @@ export class Tools {
     this.editor = editor;
   }
 
+  /**
+   * Add Circle
+   */
   public addCirlce() {
     const cirlce = new fabric.Circle({
       ...CIRCLE,
@@ -19,6 +22,9 @@ export class Tools {
     this.editor.canvas.add(cirlce);
   }
 
+  /**
+   * Add Rectangle
+   */
   public addRectangle() {
     const rectangle = new fabric.Rect({
       ...RECTANGLE,

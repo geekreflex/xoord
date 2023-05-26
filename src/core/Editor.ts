@@ -132,6 +132,18 @@ export class Editor {
     if (cb) cb(this.workspace.left, this.workspace.top);
   }
 
+  zoomIn() {
+    const zoomFactor = 1.1; // Adjust the zoom factor as needed
+    const zoom = this.canvas.getZoom() * zoomFactor;
+    this.setZoomAuto(zoom);
+  }
+
+  zoomOut() {
+    const zoomFactor = 0.9; // Adjust the zoom factor as needed
+    const zoom = this.canvas.getZoom() * zoomFactor;
+    this.setZoomAuto(zoom);
+  }
+
   getScale() {
     const viewPortWidth = this.workspaceEl.offsetWidth;
     const viewPortHeight = this.workspaceEl.offsetHeight;
@@ -146,7 +158,7 @@ export class Editor {
 
   private auto() {
     const scale = this.getScale();
-    this.setZoomAuto(scale - 0.08);
+    this.setZoomAuto(Math.min(scale - 0.08, 1));
   }
 
   startDing() {

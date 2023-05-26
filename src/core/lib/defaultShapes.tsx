@@ -2,7 +2,7 @@ export const STROKE = '#000000';
 export const FILL = 'rgba(255,255,255, 0.0)';
 
 export const CIRCLE = {
-  radius: 20,
+  radius: 100,
   left: 100,
   top: 100,
   fill: FILL,
@@ -14,7 +14,7 @@ export const RECTANGLE = {
   top: 100,
   fill: FILL,
   stroke: STROKE,
-  width: 40,
-  height: 40,
+  width: 200,
+  height: 200,
   angle: 0,
 };
