@@ -4,6 +4,7 @@ export interface Theme {
     secondaryColor: string;
     sceneBg: string;
     textColor: string;
+    borderColor: string;
   };
 }
 
@@ -13,6 +14,7 @@ export const lightTheme: Theme = {
     secondaryColor: '#bbb',
     sceneBg: '#f5f4f3',
     textColor: '#111111',
+    borderColor: '#dedede',
   },
 };
 
@@ -22,5 +24,6 @@ export const darkTheme: Theme = {
     secondaryColor: '#1e1e1e',
     sceneBg: '#1e1e1e',
     textColor: '#f5f5f5',
+    borderColor: '',
   },
 };

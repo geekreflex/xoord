@@ -12,6 +12,8 @@ export default function Shapes() {
         <Rectangle shapes={shapes} />
       </ShapesWrap>
     );
+
+  return null;
 }
 
 const ShapesWrap = styled.div`

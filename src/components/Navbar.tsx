@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 export default function Navbar() {
   return (
     <NavbarWrap>
-      <div>Hello from navbar</div>
+      <div></div>
     </NavbarWrap>
   );
 }
@@ -14,4 +14,5 @@ const NavbarWrap = styled.div`
   background-color: ${(props) => props.theme.colors.primaryColor};
   position: relative;
   z-index: 999;
+  border-bottom: 1px solid ${(props) => props.theme.colors.borderColor};
 `;
