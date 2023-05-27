@@ -1,3 +1,4 @@
 import Shapes from './Shapes';
+import Zoom from './Zoom';
 
-export { Shapes };
+export { Shapes, Zoom };

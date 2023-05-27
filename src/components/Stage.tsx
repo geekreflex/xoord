@@ -1,8 +1,8 @@
 import { styled } from 'styled-components';
 import Canvas from './Canvas';
 import Sidebar from './Sidebar';
-import Zoom from './Zoom';
 import Navbar from './Navbar';
+import Float from './Float';
 
 export default function Stage() {
   return (
@@ -13,7 +13,7 @@ export default function Stage() {
         <Scene>
           <Canvas />
         </Scene>
-        <Zoom />
+        <Float />
       </Main>
     </StageWrap>
   );
@@ -25,6 +25,7 @@ const StageWrap = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #eee;
+  overflow: hidden;
 `;
 
 const Main = styled.div`

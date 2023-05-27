@@ -9,11 +9,11 @@ const items = [
   { name: 'Backgrounds', icon: <BgIcon /> },
 ];
 
-export default function Tool() {
+export default function Sidebar() {
   return (
     <SidebarWrap>
       {items.map((item) => (
-        <Item>
+        <Item key={item.name}>
           <span className="item-icon">{item.icon}</span>
           <p>{item.name}</p>
         </Item>

@@ -15,7 +15,7 @@ export default function Canvas() {
     });
 
     const workspaceEl = document.getElementById('workspace');
-    const option = { width: 2560, height: 3000 };
+    const option = { width: 1200, height: 1200 };
 
     const editor = new Editor(fabricCanvas, workspaceEl!, option);
     setEditor(editor);
@@ -41,7 +41,7 @@ const Wrap = styled.div`
 
   #workspace {
     height: 100%;
-    height: 100%;
+    width: 100%;
     background-color: ${(props) => props.theme.colors.sceneBg};
     overflow: auto;
   }
