@@ -42,7 +42,7 @@ const Wrap = styled.div`
   #workspace {
     height: 100%;
     height: 100%;
-    background-color: #eee;
+    background-color: ${(props) => props.theme.colors.sceneBg};
     overflow: auto;
   }
 `;

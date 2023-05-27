@@ -1,11 +1,3 @@
-/*
- * @Author: 秦少卫
- * @Date: 2023-01-09 22:49:02
- * @LastEditors: 秦少卫
- * @LastEditTime: 2023-02-08 00:20:26
- * @Description: 控制条样式
- */
-
 import { fabric } from 'fabric';
 import verticalImg from '@/assets/editor/middlecontrol.svg';
 import horizontalImg from '@/assets/editor/middlecontrolhoz.svg';
@@ -29,7 +21,6 @@ function drawImg(
   ctx.restore();
 }
 
-// 中间横杠
 function intervalControl() {
   const verticalImgIcon = document.createElement('img');
   verticalImgIcon.src = verticalImg;
