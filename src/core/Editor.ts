@@ -35,7 +35,7 @@ export class Editor {
     this.initBackground();
     this.initWorkspace();
     this.initResizeObserve();
-    this.initDing();
+    this.initPan();
     this.initAligningGuidlines();
     this.initControls();
   }
@@ -138,6 +138,48 @@ export class Editor {
     if (cb) cb(this.workspace.left, this.workspace.top);
   }
 
+  public zoomToFit(offset: number = 100) {
+    if (!this.workspace) return;
+
+    // Get the dimensions of the workspace rectangle
+    const workspaceWidth = this.workspace.width!;
+    const workspaceHeight = this.workspace.height!;
+
+    // Calculate the available space within the canvas
+    const canvasWidth = this.canvas.getWidth();
+    const canvasHeight = this.canvas.getHeight();
+
+    // Calculate the scaling factor to fit the workspace within the available space
+    const scaleFactor = Math.min(
+      (canvasWidth - offset * 2) / workspaceWidth,
+      (canvasHeight - offset * 2) / workspaceHeight
+    );
+
+    // Apply the zoom and translation to the canvas
+    this.setZoomAuto(scaleFactor);
+  }
+
+  zoomToFill(offset: number = 100) {
+    if (!this.workspace) return;
+
+    // Get the dimensions of the workspace rectangle
+    const workspaceWidth = this.workspace.width!;
+    const workspaceHeight = this.workspace.height;
+
+    // Calculate the available space within the canvas
+    const canvasWidth = this.canvas.getWidth();
+    const canvasHeight = this.canvas.getHeight();
+
+    // Calculate the scaling factor to fill the canvas with the workspace
+    const scaleFactor = Math.max(
+      (canvasWidth - offset * 2) / workspaceWidth,
+      (canvasHeight - offset * 2) / workspaceHeight!
+    );
+
+    // Apply the zoom and translation to the canvas
+    this.setZoomAuto(scaleFactor);
+  }
+
   zoomIn() {
     const zoomFactor = 1.1; // Adjust the zoom factor as needed
     const zoom = this.canvas.getZoom() * zoomFactor;
@@ -150,7 +192,7 @@ export class Editor {
     this.setZoomAuto(Math.max(zoom, 0.1));
   }
 
-  getScale() {
+  public getScale() {
     const viewPortWidth = this.workspaceEl.offsetWidth;
     const viewPortHeight = this.workspaceEl.offsetHeight;
     if (
@@ -163,16 +205,13 @@ export class Editor {
   }
 
   private auto() {
-    const scale = this.getScale();
-    // I want to maintain the size of the canvas
-    // I don't want to to auto zoom-in when resizing.
-    this.setZoomAuto(Math.min(scale - 0.08, 1));
+    this.zoomToFit();
   }
 
   /**
    * Toggle on for move workspace
    */
-  startDing() {
+  startPan() {
     this.dragMode = true;
     this.canvas.defaultCursor = 'grab';
   }
@@ -180,19 +219,19 @@ export class Editor {
   /**
    * Toggle off for move workspace
    */
-  endDing() {
+  endPan() {
     this.dragMode = false;
     this.canvas.defaultCursor = 'default';
   }
 
-  initDing() {
+  initPan() {
     const This = this;
     this.canvas.on('mouse:down', function (this: ExtCanvas, opt) {
       const evt = opt.e;
       if (evt.altKey || This.dragMode) {
         This.canvas.defaultCursor = 'grabbing';
         This.canvas.discardActiveObject();
-        This.setDing();
+        This.setPan();
         this.selection = false;
         this.isDragging = true;
         this.lastPosX = evt.clientX;
@@ -231,19 +270,47 @@ export class Editor {
     });
 
     this.canvas.on('mouse:wheel', function (this: fabric.Canvas, opt) {
-      const delta = opt.e.deltaY;
-      let zoom = this.getZoom();
-      zoom *= 0.999 ** delta;
-      if (zoom > 20) zoom = 20;
-      if (zoom < 0.01) zoom = 0.01;
-      const center = this.getCenter();
-      this.zoomToPoint(new fabric.Point(center.left, center.top), zoom);
-      opt.e.preventDefault();
-      opt.e.stopPropagation();
+      // Check if Ctrl or Cmd key is held down
+      const isControlKeyHeld = opt.e.ctrlKey || opt.e.metaKey;
+
+      if (isControlKeyHeld) {
+        // If Ctrl/Cmd key is held, perform zooming
+
+        const delta = opt.e.deltaY;
+        let zoom = this.getZoom();
+        zoom *= 0.999 ** delta;
+
+        // Set minimum and maximum zoom values
+        const minZoom = 0.01;
+        const maxZoom = 20;
+        zoom = Math.max(minZoom, Math.min(maxZoom, zoom));
+
+        /**
+         * Zoom to center
+         */
+        // const center = this.getCenter();
+        // this.zoomToPoint(new fabric.Point(center.left, center.top), zoom);
+
+        this.zoomToPoint({ x: opt.e.offsetX, y: opt.e.offsetY }, zoom);
+
+        opt.e.preventDefault();
+        opt.e.stopPropagation();
+      } else {
+        // If Ctrl/Cmd key is not held, perform panning
+
+        const deltaX = -opt.e.deltaX * 0.08;
+        const deltaY = -opt.e.deltaY * 0.08;
+
+        const viewportTranform = this.viewportTransform!.slice();
+        viewportTranform[4] += deltaX;
+        viewportTranform[5] += deltaY;
+
+        this.setViewportTransform(viewportTranform);
+      }
     });
   }
 
-  setDing() {
+  setPan() {
     this.canvas.selection = false;
     this.canvas.defaultCursor = 'grab';
     this.canvas.getObjects().forEach((obj) => {

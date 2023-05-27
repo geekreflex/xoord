@@ -39,6 +39,12 @@ export default function Zoom() {
     }
   };
 
+  const handleZoomToFill = () => {
+    if (editor) {
+      editor.zoomToFill();
+    }
+  };
+
   const handleToggle = () => {
     setVisible(!visible);
   };
@@ -55,6 +61,7 @@ export default function Zoom() {
         <button className="zoom-btn zoomout-btn" onClick={handleZoomIn}>
           <ZoomInIcon />
         </button>
+        <button onClick={handleZoomToFill}>Zoom to Fit</button>
       </ZoomInOut>
       {visible && (
         <ZoomLevels>
