@@ -14,12 +14,13 @@ export class Shapes {
    * Add Circle
    */
   public addCirlce() {
-    const cirlce = new fabric.Circle({
+    const circle = new fabric.Circle({
       ...CIRCLE,
       id: this.id(),
       name: 'circle',
     });
-    this.editor.canvas.add(cirlce);
+    this.editor.canvas.add(circle);
+    this.editor.canvas.setActiveObject(circle);
   }
 
   /**

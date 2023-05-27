@@ -1,15 +1,14 @@
 import Stage from './components/Stage';
-import { EditorProvider } from './context/EditorContext';
-import { ThemeProvider } from './context/ThemeContext';
+import Providers from './context';
+import GlobalCSS from './styles/global';
 
 export default function App() {
   return (
     <>
-      <ThemeProvider>
-        <EditorProvider>
-          <Stage />
-        </EditorProvider>
-      </ThemeProvider>
+      <Providers>
+        <GlobalCSS />
+        <Stage />
+      </Providers>
     </>
   );
 }

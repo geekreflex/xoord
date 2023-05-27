@@ -38,7 +38,6 @@ export class Editor {
     this.initDing();
     this.initAligningGuidlines();
     this.initControls();
-    // Controls(this.canvas);
   }
 
   private initBackground() {
@@ -231,36 +230,16 @@ export class Editor {
       This.canvas.defaultCursor = 'default';
     });
 
-    /**
-     * Zoom in or out with mouse wheel with ctrl
-     * Move canvas around with mouse wheel
-     * This can be separated into two different
-     * events
-     *
-     */
-
     this.canvas.on('mouse:wheel', function (this: fabric.Canvas, opt) {
-      // Check if Ctrl or Cmd key is held down
-      const isControlKeyHeld = opt.e.ctrlKey || opt.e.metaKey;
-
-      if (isControlKeyHeld) {
-        const delta = opt.e.deltaY;
-        let zoom = this.getZoom();
-        zoom *= 0.99 ** delta;
-        if (zoom > 20) zoom = 20;
-        if (zoom < 0.01) zoom = 0.01;
-        const center = this.getCenter();
-        this.zoomToPoint(new fabric.Point(center.left, center.top), zoom);
-        opt.e.preventDefault();
-        opt.e.stopPropagation();
-      } else {
-        const deltaX = -opt.e.deltaX * 0.08;
-        const deltaY = -opt.e.deltaY * 0.08;
-        const viewportTranform = this.viewportTransform!.slice();
-        viewportTranform[4] += deltaX;
-        viewportTranform[5] += deltaY;
-        this.setViewportTransform(viewportTranform);
-      }
+      const delta = opt.e.deltaY;
+      let zoom = this.getZoom();
+      zoom *= 0.999 ** delta;
+      if (zoom > 20) zoom = 20;
+      if (zoom < 0.01) zoom = 0.01;
+      const center = this.getCenter();
+      this.zoomToPoint(new fabric.Point(center.left, center.top), zoom);
+      opt.e.preventDefault();
+      opt.e.stopPropagation();
     });
   }
 
