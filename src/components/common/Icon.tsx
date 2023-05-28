@@ -1,5 +1,7 @@
 import {
   BgIcon,
+  Close2Icon,
+  CloseIcon,
   Grid1Icon,
   Grid3Icon,
   ImageIcon,
@@ -20,6 +22,8 @@ const iconComponents: { [key: string]: React.ComponentType } = {
   textIcon: TextIcon,
   grid3Icon: Grid3Icon,
   shapesIcon: ShapesIcon,
+  closeIcon: CloseIcon,
+  close2Icon: Close2Icon,
 };
 
 export default function Icon({
@@ -85,14 +89,15 @@ const IconWrap = styled.button<{
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 100%;
+  width: ${(props) => (props.t ? '100%' : 'auto')};
   height: ${(props) => (props.t ? '70px' : '')};
   gap: 7px;
   cursor: pointer;
   padding: ${(props) => (props.hover == 'true' ? '5px' : '')};
   border-radius: 5px;
   &:hover {
-    background-color: ${(props) => (props.hover == 'true' ? '#eee' : '')};
+    background-color: ${(props) =>
+      props.hover == 'true' ? props.theme.colors.hoverColor1 : ''};
   }
 
   span#icon {

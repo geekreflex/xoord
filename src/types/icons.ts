@@ -16,4 +16,6 @@ export type IconName =
   | 'grid3Icon'
   | 'textIcon'
   | 'shapesIcon'
-  | 'imageIcon';
+  | 'imageIcon'
+  | 'closeIcon'
+  | 'close2Icon';

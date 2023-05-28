@@ -7,6 +7,8 @@ import Grid3Icon from './Grid3Icon';
 import Element4Icon from './Element4Icon';
 import BgIcon from './BgIcon';
 import Grid1Icon from './Grid1Icon';
+import CloseIcon from './CloseIcon';
+import Close2Icon from './Close2Icon';
 
 export {
   ZoomInIcon,
@@ -18,4 +20,6 @@ export {
   Element4Icon,
   BgIcon,
   Grid1Icon,
+  CloseIcon,
+  Close2Icon,
 };

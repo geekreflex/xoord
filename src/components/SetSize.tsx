@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { EditorWorkspace } from './EditorWorkspace';
+import { Editor } from '@/core/Editor';
 
 export default function SetSize({
   editorWorkspace,
 }: {
-  editorWorkspace: EditorWorkspace;
+  editorWorkspace: Editor;
 }) {
   const [width, setWidth] = useState<number>(editorWorkspace.option.width);
   const [height, setHeight] = useState<number>(editorWorkspace.option.height);
