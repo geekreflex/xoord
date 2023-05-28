@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import Icon from '../common/Icon';
 import { useEditor } from '@/context/EditorContext';
 import { useEffect, useState } from 'react';
+import Popup from '../common/Popup';
 
 export default function Gridline() {
   const [visible, setVisible] = useState(false);
@@ -39,19 +40,21 @@ export default function Gridline() {
     <GridWrap>
       <Icon name="grid1Icon" click={onShowGrid} />
       {visible && (
-        <GridPop>
-          <div>
-            <input
-              type="checkbox"
-              checked={isChecked}
-              onChange={onGridToggle}
-            />
-          </div>
-          <div>
-            <input value={xSize} onChange={(e) => setXSize(e.target.value)} />
-            <input value={ySize} onChange={(e) => setYSize(e.target.value)} />
-          </div>
-        </GridPop>
+        <Popup title="Guide Lines" close={onShowGrid}>
+          <GridPop>
+            <div>
+              <input
+                type="checkbox"
+                checked={isChecked}
+                onChange={onGridToggle}
+              />
+            </div>
+            <div className="input-wrap">
+              <input value={xSize} onChange={(e) => setXSize(e.target.value)} />
+              <input value={ySize} onChange={(e) => setYSize(e.target.value)} />
+            </div>
+          </GridPop>
+        </Popup>
       )}
     </GridWrap>
   );
@@ -64,12 +67,19 @@ const GridWrap = styled.div`
 `;
 
 const GridPop = styled.div`
-  position: absolute;
-  bottom: 50px;
-  width: 300px;
-  background-color: ${(props) => props.theme.colors.primaryColor};
-  padding: 20px;
-  border-radius: ${(props) => props.theme.radius.medium};
-  box-shadow: ${(props) => props.theme.shadow.shadow1};
-  border: 1px solid ${(props) => props.theme.colors.borderColor};
+  width: 250px;
+  .input-wrap {
+    display: flex;
+    gap: 20px;
+    flex-wrap: nowrap;
+
+    input {
+      padding: 10px 20px;
+      width: 50%;
+      border-radius: 10px;
+      border: 1px solid ${(props) => props.theme.colors.borderColor};
+      outline: none;
+      font-weight: 600;
+    }
+  }
 `;
