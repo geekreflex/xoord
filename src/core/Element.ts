@@ -1,7 +1,7 @@
 import { generateUniqueId } from '@/utils/unique';
 import { Editor } from './Editor';
 import { fabric } from 'fabric';
-import { CIRCLE, RECTANGLE } from './lib/defaultShapes';
+import { CIRCLE, RECTANGLE, SQUARE, TRIANGLE } from './lib/defaultShapes';
 
 export class Element {
   private editor: Editor;
@@ -19,8 +19,7 @@ export class Element {
       id: this.id(),
       name: 'circle',
     });
-    this.editor.canvas.add(circle);
-    this.editor.canvas.setActiveObject(circle);
+    this.addObject(circle);
   }
 
   /**
@@ -32,7 +31,35 @@ export class Element {
       id: this.id(),
       name: 'rect',
     });
-    this.editor.canvas.add(rectangle);
+    this.addObject(rectangle);
+  }
+
+  /**
+   *
+   * @returns
+   */
+  public addSquare() {
+    const square = new fabric.Rect({
+      ...SQUARE,
+      id: this.id(),
+      name: 'rect',
+    });
+    this.addObject(square);
+  }
+
+  public addTriangle() {
+    const triangle = new fabric.Triangle({
+      ...TRIANGLE,
+      id: this.id(),
+      name: 'triangle',
+    });
+    this.addObject(triangle);
+  }
+
+  private addObject(obj: fabric.Object) {
+    this.editor.canvas.centerObject(obj).add(obj).calcOffset();
+    this.editor.canvas.setActiveObject(obj).calcOffset();
+    this.editor.canvas.renderAll();
   }
 
   private id() {

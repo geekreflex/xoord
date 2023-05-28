@@ -1,30 +1,33 @@
 export const STROKE = '#000000';
 export const FILL = 'rgba(255,255,255, 0.0)';
+export const WIDTH = 200;
+export const HEIGHT = 200;
 
 export const CIRCLE = {
   radius: 100,
-  left: 100,
-  top: 100,
   fill: FILL,
   stroke: STROKE,
 };
 
 export const RECTANGLE = {
-  left: 100,
-  top: 100,
   fill: FILL,
   stroke: STROKE,
   width: 300,
-  height: 200,
+  height: HEIGHT,
   angle: 0,
 };
 
 export const SQUARE = {
-  left: 100,
-  top: 100,
   fill: FILL,
   stroke: STROKE,
-  width: 300,
-  height: 200,
+  width: WIDTH,
+  height: HEIGHT,
   angle: 0,
+};
+
+export const TRIANGLE = {
+  fill: FILL,
+  stroke: STROKE,
+  width: WIDTH,
+  height: HEIGHT,
 };
