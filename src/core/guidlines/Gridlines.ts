@@ -1,13 +1,18 @@
 import { fabric } from 'fabric';
+import { Editor } from '..';
 
 export class GridLine {
-  private canvas: fabric.Canvas;
+  private editor: Editor;
   private gridSize: number;
   private gridColor: string;
   private lines: fabric.Object[] = [];
 
-  constructor(canvas: fabric.Canvas, gridSize: number, gridColor: string) {
-    this.canvas = canvas;
+  constructor(
+    editor: Editor,
+    gridSize: number = 4,
+    gridColor: string = '#000000'
+  ) {
+    this.editor = editor;
     this.gridSize = gridSize;
     this.gridColor = gridColor;
   }
@@ -29,8 +34,8 @@ export class GridLine {
   }
 
   private drawGridLines() {
-    const workspaceWidth = this.canvas.getWidth();
-    const workspaceHeight = this.canvas.getHeight();
+    const workspaceWidth = this.editor.workspace?.getScaledWidth()!;
+    const workspaceHeight = this.editor.workspace?.getScaledHeight()!;
     const cellWidth = workspaceWidth / (this.gridSize + 1);
     const cellHeight = workspaceHeight / (this.gridSize + 1);
 
@@ -40,10 +45,11 @@ export class GridLine {
         stroke: this.gridColor,
         strokeWidth: 1,
         selectable: false,
+        evented: false,
         strokeDashArray: [5, 5],
       });
       this.lines.push(verticalLine);
-      this.canvas.add(verticalLine);
+      this.editor.canvas.add(verticalLine);
     }
 
     for (let y = 1; y <= this.gridSize; y++) {
@@ -52,15 +58,21 @@ export class GridLine {
         stroke: this.gridColor,
         strokeWidth: 1,
         selectable: false,
+        evented: false,
         strokeDashArray: [5, 5],
       });
       this.lines.push(horizontalLine);
-      this.canvas.add(horizontalLine);
+      this.editor.canvas.add(horizontalLine);
     }
   }
 
   private clearGridLines() {
-    this.lines.forEach((line) => this.canvas.remove(line));
+    // this.lines.forEach((line) => this.editor.canvas.remove(line));
+    // this.lines = [];
+    this.lines.forEach((line) => {
+      line.off('selected');
+      this.editor.canvas.remove(line);
+    });
     this.lines = [];
   }
 }

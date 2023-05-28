@@ -7,11 +7,13 @@ import {
 } from 'react';
 import { Editor, Element } from '@/core';
 import { fabric } from 'fabric';
+import { GridLine } from '@/core/guidlines';
 
 type EditorContextType = {
   activeObject: fabric.Object | undefined;
   selectedObjects: fabric.Object[] | undefined;
   editor: Editor | null;
+  gridLine: GridLine | null;
   elementTool: Element | null;
   setEditor: (editor: Editor | null) => void;
 };
@@ -20,12 +22,14 @@ const EditorContext = createContext<EditorContextType>({
   activeObject: undefined,
   selectedObjects: undefined,
   editor: null,
+  gridLine: null,
   elementTool: null,
   setEditor: () => {},
 });
 
 export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
   const [editor, _setEditor] = useState<Editor | null>(null);
+  const [gridLine, setGridLine] = useState<GridLine | null>(null);
   const [elementTool, setElementTool] = useState<Element | null>(null);
   const [activeObject, setActiveObject] = useState<fabric.Object | undefined>(
     undefined
@@ -37,8 +41,8 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
   const onSetEditor = useCallback((editor: Editor | null) => {
     _setEditor(editor);
     if (editor) {
-      const element = new Element(editor);
-      setElementTool(element);
+      setElementTool(new Element(editor));
+      setGridLine(new GridLine(editor));
     }
   }, []);
 
@@ -63,6 +67,7 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
     activeObject,
     selectedObjects,
     editor,
+    gridLine,
     elementTool,
     setEditor: onSetEditor,
   };

@@ -69,7 +69,6 @@ export class Editor {
   }
 
   private initAligningGuidlines() {
-    new GridLine(this.canvas, 3, 'red');
     const guideline = new AlignGuidelines({ canvas: this.canvas });
     guideline.init();
   }
