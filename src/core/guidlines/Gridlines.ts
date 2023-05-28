@@ -3,21 +3,26 @@ import { Editor } from '..';
 
 export class GridLine {
   private editor: Editor;
-  private gridSize: number;
+  private gridXSize: number;
+  private gridYSize: number;
   private gridColor: string;
   private lines: fabric.Object[] = [];
+  private isGridVisible: boolean = false;
 
   constructor(
     editor: Editor,
-    gridSize: number = 4,
+    gridXSize: number = 4,
+    gridYSize: number = 4,
     gridColor: string = '#000000'
   ) {
     this.editor = editor;
-    this.gridSize = gridSize;
+    this.gridXSize = gridXSize;
+    this.gridYSize = gridYSize;
     this.gridColor = gridColor;
   }
 
   public toggleGrid(showGrid: boolean) {
+    this.isGridVisible = showGrid;
     if (showGrid) {
       this.drawGridLines();
     } else {
@@ -25,8 +30,9 @@ export class GridLine {
     }
   }
 
-  public setGridSize(gridSize: number) {
-    this.gridSize = gridSize;
+  public setGridSize(gridXSize: number, gridYSize: number) {
+    this.gridXSize = gridXSize;
+    this.gridYSize = gridYSize;
     if (this.lines.length > 0) {
       this.clearGridLines();
       this.drawGridLines();
@@ -36,10 +42,10 @@ export class GridLine {
   private drawGridLines() {
     const workspaceWidth = this.editor.workspace?.getScaledWidth()!;
     const workspaceHeight = this.editor.workspace?.getScaledHeight()!;
-    const cellWidth = workspaceWidth / (this.gridSize + 1);
-    const cellHeight = workspaceHeight / (this.gridSize + 1);
+    const cellWidth = workspaceWidth / (this.gridXSize + 1);
+    const cellHeight = workspaceHeight / (this.gridYSize + 1);
 
-    for (let x = 1; x <= this.gridSize; x++) {
+    for (let x = 1; x <= this.gridXSize; x++) {
       const xPos = cellWidth * x;
       const verticalLine = new fabric.Line([xPos, 0, xPos, workspaceHeight], {
         stroke: this.gridColor,
@@ -52,7 +58,7 @@ export class GridLine {
       this.editor.canvas.add(verticalLine);
     }
 
-    for (let y = 1; y <= this.gridSize; y++) {
+    for (let y = 1; y <= this.gridYSize; y++) {
       const yPos = cellHeight * y;
       const horizontalLine = new fabric.Line([0, yPos, workspaceWidth, yPos], {
         stroke: this.gridColor,
@@ -74,5 +80,9 @@ export class GridLine {
       this.editor.canvas.remove(line);
     });
     this.lines = [];
+  }
+
+  public isVisible(): boolean {
+    return this.isGridVisible;
   }
 }
