@@ -1,4 +1,13 @@
-import { Grid1Icon, ZoomInIcon, ZoomOutIcon } from '@/icons';
+import {
+  BgIcon,
+  Grid1Icon,
+  Grid3Icon,
+  ImageIcon,
+  ShapesIcon,
+  TextIcon,
+  ZoomInIcon,
+  ZoomOutIcon,
+} from '@/icons';
 import { IIcon } from '@/types/icons';
 import { styled } from 'styled-components';
 
@@ -6,23 +15,92 @@ const iconComponents: { [key: string]: React.ComponentType } = {
   grid1Icon: Grid1Icon,
   zoomInIcon: ZoomInIcon,
   zoomOutIcon: ZoomOutIcon,
+  imageIcon: ImageIcon,
+  bgIcon: BgIcon,
+  textIcon: TextIcon,
+  grid3Icon: Grid3Icon,
+  shapesIcon: ShapesIcon,
 };
 
-export default function Icon({ size = 'small', name, color }: IIcon) {
+export default function Icon({
+  size = 'small',
+  name,
+  color,
+  disabled,
+  hover = true,
+  title = null,
+  click,
+}: IIcon) {
   const IconComponent = iconComponents[name];
+  const renderSize = () => {
+    switch (size) {
+      case 'small':
+        return '20px';
+      case 'medium':
+        return '20px';
+      case 'big':
+        return '24px';
+      default:
+        return '20px';
+    }
+  };
 
   if (!IconComponent) {
     console.warn(`Icon "${name}" not found.`);
     return null;
   }
   return (
-    <IconWrap size={size} color={color}>
-      <IconComponent />
+    <IconWrap
+      size={renderSize()}
+      color={color}
+      disabled={disabled}
+      hover={hover.toString()}
+      t={title}
+      onClick={click}
+    >
+      <span id="icon">
+        <IconComponent />
+      </span>
+      {title && <span id="title">{title}</span>}
     </IconWrap>
   );
 }
 
-const IconWrap = styled.div<{ size?: string; color?: string }>`
+const IconWrap = styled.button<{
+  size?: string;
+  color?: string;
+  disabled?: boolean;
+  hover?: string;
+  t: string | null;
+}>`
   display: flex;
-  border: 1px solid red;
+  font-size: ${(props) => props.size};
+  color: ${(props) => props.color};
+  opacity: ${(props) => (props.disabled ? 0.2 : 1)};
+  pointer-events: ${(props) => (props.disabled ? 'none' : 'auto')};
+  background-color: transparent;
+  outline: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: ${(props) => (props.t ? '70px' : '')};
+  gap: 7px;
+  cursor: pointer;
+  padding: ${(props) => (props.hover == 'true' ? '5px' : '')};
+  border-radius: 5px;
+  &:hover {
+    background-color: ${(props) => (props.hover == 'true' ? '#eee' : '')};
+  }
+
+  span#icon {
+    display: flex;
+  }
+
+  span#title {
+    font-size: 11px;
+    font-weight: 600;
+  }
 `;

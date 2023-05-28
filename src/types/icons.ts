@@ -2,6 +2,18 @@ export interface IIcon {
   size?: 'small' | 'medium' | 'big';
   name: IconName;
   color?: string;
+  disabled?: boolean;
+  hover?: boolean;
+  title?: string | null;
+  click?: () => void;
 }
 
-type IconName = 'grid1Icon' | 'zoomInIcon' | 'zoomOutIcon';
+export type IconName =
+  | 'grid1Icon'
+  | 'zoomInIcon'
+  | 'zoomOutIcon'
+  | 'bgIcon'
+  | 'grid3Icon'
+  | 'textIcon'
+  | 'shapesIcon'
+  | 'imageIcon';

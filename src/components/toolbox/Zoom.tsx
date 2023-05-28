@@ -43,13 +43,17 @@ export default function Zoom() {
   return (
     <ZoomWrap>
       <ZoomInOut>
-        <button className="zoom-btn zoomin-btn" onClick={handleZoomOut}>
-          <Icon name="zoomOutIcon" />
-        </button>
+        <Icon
+          name="zoomOutIcon"
+          disabled={currentZoom === 0.1}
+          click={handleZoomOut}
+        />
         <p>{toPercent(currentZoom)}%</p>
-        <button className="zoom-btn zoomout-btn" onClick={handleZoomIn}>
-          <Icon name="zoomInIcon" />
-        </button>
+        <Icon
+          name="zoomInIcon"
+          disabled={currentZoom === 5}
+          click={handleZoomIn}
+        />
       </ZoomInOut>
     </ZoomWrap>
   );
@@ -63,20 +67,7 @@ const ZoomInOut = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
-  button {
-    border: none;
-    outline: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: transparent;
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 10px;
-    &:hover {
-      background-color: #f5f5f5;
-    }
-  }
+
   p {
     border: 1px solid ${(props) => props.theme.colors.borderColor};
     font-size: 14px;
@@ -86,5 +77,6 @@ const ZoomInOut = styled.div`
     align-items: center;
     line-height: 1;
     border-radius: 5px;
+    cursor: default;
   }
 `;
