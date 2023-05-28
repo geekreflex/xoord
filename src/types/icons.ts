@@ -18,4 +18,6 @@ export type IconName =
   | 'shapesIcon'
   | 'imageIcon'
   | 'closeIcon'
-  | 'close2Icon';
+  | 'close2Icon'
+  | 'lockIcon'
+  | 'unlockIcon';

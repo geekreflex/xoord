@@ -5,8 +5,10 @@ import {
   Grid1Icon,
   Grid3Icon,
   ImageIcon,
+  LockIcon,
   ShapesIcon,
   TextIcon,
+  UnlockIcon,
   ZoomInIcon,
   ZoomOutIcon,
 } from '@/icons';
@@ -24,6 +26,8 @@ const iconComponents: { [key: string]: React.ComponentType } = {
   shapesIcon: ShapesIcon,
   closeIcon: CloseIcon,
   close2Icon: Close2Icon,
+  lockIcon: LockIcon,
+  unlockIcon: UnlockIcon,
 };
 
 export default function Icon({
@@ -39,7 +43,7 @@ export default function Icon({
   const renderSize = () => {
     switch (size) {
       case 'small':
-        return '20px';
+        return '17px';
       case 'medium':
         return '20px';
       case 'big':

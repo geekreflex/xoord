@@ -9,6 +9,8 @@ import BgIcon from './BgIcon';
 import Grid1Icon from './Grid1Icon';
 import CloseIcon from './CloseIcon';
 import Close2Icon from './Close2Icon';
+import LockIcon from './LockIcon';
+import UnlockIcon from './UnlockIcon';
 
 export {
   ZoomInIcon,
@@ -22,4 +24,6 @@ export {
   Grid1Icon,
   CloseIcon,
   Close2Icon,
+  LockIcon,
+  UnlockIcon,
 };
