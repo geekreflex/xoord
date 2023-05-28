@@ -1,13 +1,24 @@
-import { createContext, useCallback, useContext, useState } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { Editor, Element } from '@/core';
+import { fabric } from 'fabric';
 
 type EditorContextType = {
+  activeObject: fabric.Object | undefined;
+  selectedObjects: fabric.Object[] | undefined;
   editor: Editor | null;
   elementTool: Element | null;
   setEditor: (editor: Editor | null) => void;
 };
 
 const EditorContext = createContext<EditorContextType>({
+  activeObject: undefined,
+  selectedObjects: undefined,
   editor: null,
   elementTool: null,
   setEditor: () => {},
@@ -16,6 +27,12 @@ const EditorContext = createContext<EditorContextType>({
 export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
   const [editor, _setEditor] = useState<Editor | null>(null);
   const [elementTool, setElementTool] = useState<Element | null>(null);
+  const [activeObject, setActiveObject] = useState<fabric.Object | undefined>(
+    undefined
+  );
+  const [selectedObjects, setSelectedObjects] = useState<
+    fabric.Object[] | undefined
+  >(undefined);
 
   const onSetEditor = useCallback((editor: Editor | null) => {
     _setEditor(editor);
@@ -25,7 +42,26 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, []);
 
+  useEffect(() => {
+    if (editor) {
+      editor.canvas.on('selection:created', (e) => {
+        const { selected } = e;
+        setSelectedObjects(selected);
+        setActiveObject(
+          selected && selected.length > 0 ? selected[0] : undefined
+        );
+      });
+
+      editor.canvas.on('selection:cleared', () => {
+        setSelectedObjects(undefined);
+        setActiveObject(undefined);
+      });
+    }
+  }, [editor]);
+
   const contextValues = {
+    activeObject,
+    selectedObjects,
     editor,
     elementTool,
     setEditor: onSetEditor,

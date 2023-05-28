@@ -6,6 +6,8 @@ type AppContextType = {
   propertyPanel: string | null;
   openToolPanel: (tool: ToolType) => void;
   closeToolPanel: () => void;
+  openPropertyPanel: (property: string) => void;
+  closePropertyPanel: () => void;
 };
 
 const AppContext = createContext<AppContextType>({
@@ -13,6 +15,8 @@ const AppContext = createContext<AppContextType>({
   propertyPanel: null,
   openToolPanel: () => {},
   closeToolPanel: () => {},
+  openPropertyPanel: () => {},
+  closePropertyPanel: () => {},
 });
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {

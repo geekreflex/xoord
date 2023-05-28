@@ -3,8 +3,11 @@ import Canvas from './Canvas';
 import Sidebar from './Sidebar';
 import Navbar from './Navbar';
 import Float from './Float';
+import PropertiesPanel from './panels/properties/PropertiesPanel';
+import { useApp } from '@/context/AppContext';
 
 export default function Stage() {
+  const { propertyPanel } = useApp();
   return (
     <StageWrap>
       <Navbar />
@@ -14,6 +17,7 @@ export default function Stage() {
           <Canvas />
         </Scene>
         <Float />
+        {propertyPanel && <PropertiesPanel />}
       </Main>
     </StageWrap>
   );
@@ -31,10 +35,11 @@ const StageWrap = styled.div`
 const Main = styled.div`
   display: flex;
   width: 100%;
+  height: calc(100% - 50px);
   flex: 1;
 `;
 
 const Scene = styled.div`
   flex: 1;
-  max-width: 100%;
+  width: calc(100% - 80px);
 `;

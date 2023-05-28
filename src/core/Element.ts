@@ -5,9 +5,11 @@ import { CIRCLE, RECTANGLE, SQUARE, TRIANGLE } from './lib/defaultShapes';
 
 export class Element {
   private editor: Editor;
+  public selectedObj: fabric.Object | undefined;
 
   constructor(editor: Editor) {
     this.editor = editor;
+    this.selectedObj = undefined;
   }
 
   /**
@@ -57,8 +59,9 @@ export class Element {
   }
 
   private addObject(obj: fabric.Object) {
-    this.editor.canvas.centerObject(obj).add(obj).calcOffset();
-    this.editor.canvas.setActiveObject(obj).calcOffset();
+    this.editor.canvas.add(obj);
+    this.editor.canvas.centerObject(obj);
+    this.editor.canvas.setActiveObject(obj);
     this.editor.canvas.renderAll();
   }
 
