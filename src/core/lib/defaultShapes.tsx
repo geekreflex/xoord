@@ -14,7 +14,17 @@ export const RECTANGLE = {
   top: 100,
   fill: FILL,
   stroke: STROKE,
-  width: 200,
+  width: 300,
+  height: 200,
+  angle: 0,
+};
+
+export const SQUARE = {
+  left: 100,
+  top: 100,
+  fill: FILL,
+  stroke: STROKE,
+  width: 300,
   height: 200,
   angle: 0,
 };
