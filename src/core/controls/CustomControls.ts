@@ -57,7 +57,7 @@ export class CustomControls {
       ctx: CanvasRenderingContext2D,
       left: number,
       top: number,
-      styleOverride: any,
+      _styleOverride: any,
       fabricObject: fabric.Object
     ) => {
       this.drawImage(
@@ -75,7 +75,7 @@ export class CustomControls {
       ctx: CanvasRenderingContext2D,
       left: number,
       top: number,
-      styleOverride: any,
+      _styleOverride: any,
       fabricObject: fabric.Object
     ) => {
       this.drawImage(
@@ -138,7 +138,7 @@ export class CustomControls {
       ctx: CanvasRenderingContext2D,
       left: number,
       top: number,
-      styleOverride: any,
+      _styleOverride: any,
       fabricObject: fabric.Object
     ) => {
       this.drawImage(ctx, left, top, img, 25, 25, fabricObject.angle);
@@ -185,7 +185,7 @@ export class CustomControls {
       ctx: CanvasRenderingContext2D,
       left: number,
       top: number,
-      styleOverride: any,
+      _styleOverride: any,
       fabricObject: fabric.Object
     ) => {
       this.drawImage(ctx, left, top, img, 40, 40, fabricObject.angle);

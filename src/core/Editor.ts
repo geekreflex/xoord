@@ -1,6 +1,6 @@
 import { fabric } from 'fabric';
 import { throttle } from 'lodash-es';
-import { AlignGuidelines } from './guideline/AligningGuidlines';
+import { AlignGuidelines, GridLine } from './guidlines';
 import { CustomControls } from './controls';
 
 declare type EditorOption = { width: number; height: number };
@@ -69,6 +69,7 @@ export class Editor {
   }
 
   private initAligningGuidlines() {
+    new GridLine(this.canvas, 3, 'red');
     const guideline = new AlignGuidelines({ canvas: this.canvas });
     guideline.init();
   }
