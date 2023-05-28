@@ -21,7 +21,7 @@ const items: IItems[] = [
 ];
 
 export default function Sidebar() {
-  const { openToolPanel } = useApp();
+  const { toolPanel, openToolPanel } = useApp();
 
   const handleItemPanelOpen = (name: string) => {
     openToolPanel(name as ToolType);
@@ -41,7 +41,7 @@ export default function Sidebar() {
           />
         ))}
       </div>
-      <ToolsPanel />
+      {toolPanel && <ToolsPanel />}
     </SidebarWrap>
   );
 }
