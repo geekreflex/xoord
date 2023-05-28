@@ -6,6 +6,7 @@ import TextIcon from './TextIcon';
 import Grid3Icon from './Grid3Icon';
 import Element4Icon from './Element4Icon';
 import BgIcon from './BgIcon';
+import Grid1Icon from './Grid1Icon';
 
 export {
   ZoomInIcon,
@@ -16,4 +17,5 @@ export {
   Grid3Icon,
   Element4Icon,
   BgIcon,
+  Grid1Icon,
 };

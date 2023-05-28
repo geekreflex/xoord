@@ -1,9 +1,10 @@
 import { styled } from 'styled-components';
-import Zoom from './toolbox/Zoom';
+import { Zoom, Gridline } from './toolbox';
 
 export default function Float() {
   return (
     <FloatWrap>
+      <Gridline />
       <Zoom />
     </FloatWrap>
   );
