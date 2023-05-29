@@ -60,7 +60,6 @@ export class Element {
 
   private addObject(obj: fabric.Object) {
     this.editor.canvas.add(obj);
-    this.editor.canvas.centerObject(obj);
     this.editor.canvas.setActiveObject(obj);
     this.editor.canvas.renderAll();
   }

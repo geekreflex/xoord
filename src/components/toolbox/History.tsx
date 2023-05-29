@@ -7,8 +7,6 @@ export default function History() {
   const workspaceObj = () => {
     const workspace = editor?.canvas.getObjects()[0];
 
-    console.log(workspace);
-
     if (workspace) {
       workspace.hoverCursor = 'default';
       workspace.set('selectable', false);

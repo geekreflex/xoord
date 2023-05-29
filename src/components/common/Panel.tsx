@@ -39,13 +39,18 @@ interface PW {
 
 const PanelWrap = styled.div<PW>`
   position: fixed;
-  width: 250px;
+  width: 300px;
   top: 50;
   left: ${(props) => `${props.pos === 'left' ? props.ml : 'auto'}px`};
   right: ${(props) => `${props.pos === 'right' ? 0 : 'auto'}`};
   height: calc(100vh - 50px);
   background-color: ${(props) => props.theme.colors.primaryColor};
-  border-right: 1px solid ${(props) => props.theme.colors.borderColor};
+  border-right: 1px solid
+    ${(props) =>
+      props.pos === 'left' ? props.theme.colors.borderColor : 'transparent'};
+  border-left: 1px solid
+    ${(props) =>
+      props.pos === 'right' ? props.theme.colors.borderColor : 'trnasparent'};
   padding: 10px 5px;
   z-index: 9998;
   display: ${(props) => (props.visible === 'true' ? 'flex' : 'none')};
