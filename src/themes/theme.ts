@@ -22,7 +22,7 @@ export const lightTheme: Theme = {
     sceneBg: '#f5f4f3',
     textColor: '#111111',
     borderColor: '#dedede',
-    hoverColor1: '#f5f5f5',
+    hoverColor1: '#e5e5e5',
   },
   shadow: {
     shadow1: 'rgba(0, 0, 0, 0.05) 0px 1px 2px 0px',

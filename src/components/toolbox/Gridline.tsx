@@ -1,11 +1,13 @@
 import { styled } from 'styled-components';
 import Icon from '../common/Icon';
 import { useEditorContext } from '@/context/EditorContext';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Popup from '../common/Popup';
+import useClickOutside from '@/hooks/useClickOutside';
 
 export default function Gridline() {
   const { gridLine } = useEditorContext();
+  const ref = useRef<HTMLDivElement>(null);
 
   const [visible, setVisible] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
@@ -28,7 +30,7 @@ export default function Gridline() {
     }
   }, [xSize, ySize]);
 
-  const onShowGrid = () => {
+  const onShowGridPopup = () => {
     setVisible(!visible);
   };
 
@@ -60,11 +62,13 @@ export default function Gridline() {
     setYSize(value);
   };
 
+  useClickOutside(ref, () => setVisible(false));
+
   return (
-    <GridWrap>
-      <Icon name="grid1Icon" click={onShowGrid} />
+    <GridWrap ref={ref}>
+      <Icon name="grid1Icon" click={onShowGridPopup} />
       {visible && (
-        <Popup title="Guide Lines" close={onShowGrid}>
+        <Popup title="Guide Lines" close={onShowGridPopup}>
           <GridPop>
             <div>
               <input
