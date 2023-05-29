@@ -1,10 +1,10 @@
 import Panel from '@/components/common/Panel';
-import { useApp } from '@/context/AppContext';
+import { useAppContext } from '@/context/AppContext';
 import { styled } from 'styled-components';
 import ElementsTool from './ElementsTool';
 
 export default function ToolsPanel() {
-  const { toolPanel, closeToolPanel } = useApp();
+  const { toolPanel, closeToolPanel } = useAppContext();
 
   const handleClose = () => {
     closeToolPanel();
@@ -20,12 +20,10 @@ export default function ToolsPanel() {
   };
 
   return (
-    <Panel ml={80} close={handleClose} title={toolPanel!}>
+    <Panel visible={!!toolPanel} ml={80} close={handleClose} title={toolPanel!}>
       <ToolsPanelWrap>{renderTool()}</ToolsPanelWrap>
     </Panel>
   );
 }
 
-const ToolsPanelWrap = styled.div`
-  background-color: ${(props) => props.theme.color};
-`;
+const ToolsPanelWrap = styled.div``;

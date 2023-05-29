@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { styled } from 'styled-components';
 import { Editor } from '@/core';
 import { fabric } from 'fabric';
-import { useEditor } from '@/context/EditorContext';
+import { useEditorContext } from '@/context/EditorContext';
 
 export default function Canvas() {
-  const { setEditor } = useEditor();
+  const { setEditor } = useEditorContext();
 
   useEffect(() => {
     const fabricCanvas = new fabric.Canvas('canvas', {

@@ -1,14 +1,15 @@
 import { styled } from 'styled-components';
 import Icon from '../common/Icon';
-import { useEditor } from '@/context/EditorContext';
+import { useEditorContext } from '@/context/EditorContext';
 import { useEffect, useState } from 'react';
 import Popup from '../common/Popup';
 
 export default function Gridline() {
+  const { gridLine } = useEditorContext();
+
   const [visible, setVisible] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
-  const { gridLine } = useEditor();
   const [xSize, setXSize] = useState<string>('4');
   const [ySize, setYSize] = useState<string>('4');
 

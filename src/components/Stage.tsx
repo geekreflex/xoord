@@ -4,10 +4,11 @@ import Sidebar from './Sidebar';
 import Navbar from './Navbar';
 import Float from './Float';
 import PropertiesPanel from './panels/properties/PropertiesPanel';
-import { useApp } from '@/context/AppContext';
+import { useAppContext } from '@/context/AppContext';
+import ToolsPanel from './panels/tools/ToolsPanel';
 
 export default function Stage() {
-  const { propertyPanel } = useApp();
+  const { toolPanel } = useAppContext();
   return (
     <StageWrap>
       <Navbar />
@@ -17,7 +18,8 @@ export default function Stage() {
           <Canvas />
         </Scene>
         <Float />
-        {propertyPanel && <PropertiesPanel />}
+        <PropertiesPanel />
+        {toolPanel && <ToolsPanel />}
       </Main>
     </StageWrap>
   );

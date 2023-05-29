@@ -7,6 +7,7 @@ interface PanelProps {
   close: () => void;
   pos?: 'left' | 'right';
   title?: string;
+  visible?: boolean;
 }
 
 export default function Panel({
@@ -15,9 +16,10 @@ export default function Panel({
   ml = 0,
   close,
   title = 'Untitled',
+  visible,
 }: PanelProps) {
   return (
-    <PanelWrap ml={ml} pos={pos}>
+    <PanelWrap ml={ml} pos={pos} visible={visible}>
       <PanelTop>
         <div className="title-close">
           <h3>{title}</h3>
@@ -32,20 +34,21 @@ export default function Panel({
 interface PW {
   ml: number;
   pos: string;
+  visible: boolean | undefined;
 }
 
 const PanelWrap = styled.div<PW>`
   position: fixed;
   width: 250px;
-  top: 50px;
+  top: 50;
   left: ${(props) => `${props.pos === 'left' ? props.ml : 'auto'}px`};
   right: ${(props) => `${props.pos === 'right' ? 0 : 'auto'}`};
-  height: calc(100% - 50px);
+  height: calc(100vh - 50px);
   background-color: ${(props) => props.theme.colors.primaryColor};
   border-right: 1px solid ${(props) => props.theme.colors.borderColor};
   padding: 10px 5px;
   z-index: 9998;
-  display: flex;
+  display: ${(props) => (props.visible ? 'flex' : 'none')};
   flex-direction: column;
 `;
 

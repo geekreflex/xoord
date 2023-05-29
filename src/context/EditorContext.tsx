@@ -79,4 +79,4 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export const useEditor = () => useContext(EditorContext);
+export const useEditorContext = () => useContext(EditorContext);

@@ -1,4 +1,4 @@
-import { useEditor } from '@/context/EditorContext';
+import { useEditorContext } from '@/context/EditorContext';
 import { toPercent } from '@/utils/percent';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
@@ -10,7 +10,7 @@ export default function Zoom() {
   const zoomLevels = [
     0.2, 0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 3.0, 4.0, 5.0,
   ];
-  const { editor } = useEditor();
+  const { editor } = useEditorContext();
 
   const setZoom = () => {
     const canvas = editor?.canvas;

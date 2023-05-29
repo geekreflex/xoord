@@ -20,11 +20,11 @@ export class CustomControls {
       transparentCorners: false,
       borderColor: '#51B9F9',
       cornerColor: '#FFF',
-      borderScaleFactor: 2.5,
+      borderScaleFactor: 1,
       cornerStyle: 'circle',
       cornerStrokeColor: '#0E98FC',
       borderOpacityWhenMoving: 1,
-      padding: 10,
+      // padding: 10,
       rotatingPointOffset: 40,
     });
   }

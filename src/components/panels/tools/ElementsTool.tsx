@@ -1,7 +1,7 @@
-import { useEditor } from '@/context/EditorContext';
+import { useEditorContext } from '@/context/EditorContext';
 
 export default function ElementsTool() {
-  const { elementTool } = useEditor();
+  const { elementTool } = useEditorContext();
 
   const onAddCircle = () => {
     elementTool?.addCirlce();
