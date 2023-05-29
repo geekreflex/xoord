@@ -2062,7 +2062,14 @@ events@^3.3.0:
   resolved "https://registry.yarnpkg.com/events/-/events-3.3.0.tgz#31a95ad0a924e2d2c419a813aeb2c4e878ea7400"
   integrity sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==
 
-fabric@^5.3.0:
+fabric-history@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/fabric-history/-/fabric-history-1.7.0.tgz#e04ec127bfe3df8d924347d10ed4e8139c6c6c8c"
+  integrity sha512-amVtBpzUnhDPF/PQ1Lo2SdQmRLCbz/4VDBxkwvJy39UQ11tFsuofEJYwF6XHuZKmSw7MAUHdJwmaAy+HrhXwEQ==
+  dependencies:
+    fabric "^5.2.4"
+
+fabric@^5.2.4, fabric@^5.3.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/fabric/-/fabric-5.3.0.tgz#199297b6409e3a6279c16c1166da2b2a9e3e8b9b"
   integrity sha512-AVayKuzWoXM5cTn7iD3yNWBlfEa8r1tHaOe2g8NsZrmWKAHjryTxT/j6f9ncRfOWOF0I1Ci1AId3y78cC+GExQ==
