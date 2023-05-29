@@ -25,7 +25,11 @@ export default function PropertiesPanel() {
   }, []);
 
   return (
-    <Panel visible={!!propertyPanel} close={onClosePropertyPanel} pos="right">
+    <Panel
+      visible={propertyPanel ? true : false}
+      close={onClosePropertyPanel}
+      pos="right"
+    >
       <div>Property panel</div>
     </Panel>
   );

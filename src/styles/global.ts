@@ -6,9 +6,9 @@ body {
 }
 
 button {
-  color: inherit;
+  /* color: inherit;
   background-color: ${(props) => props.theme.colors.secondaryColor};
   border: none;
-  outline: none;
+  outline: none; */
 }
 `;

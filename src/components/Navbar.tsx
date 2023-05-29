@@ -1,9 +1,20 @@
+import { useEditorContext } from '@/context/EditorContext';
 import { styled } from 'styled-components';
 
 export default function Navbar() {
+  const { controller } = useEditorContext();
   return (
     <NavbarWrap>
-      <div></div>
+      <div>
+        <button
+          onClick={() => {
+            controller?.undo();
+            console.log('click');
+          }}
+        >
+          Undo
+        </button>
+      </div>
     </NavbarWrap>
   );
 }
