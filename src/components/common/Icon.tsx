@@ -2,6 +2,7 @@ import {
   BgIcon,
   Close2Icon,
   CloseIcon,
+  CopyIcon,
   Grid1Icon,
   Grid3Icon,
   ImageIcon,
@@ -34,6 +35,7 @@ const iconComponents: { [key: string]: React.ComponentType } = {
   undoIcon: UndoIcon,
   redoIcon: RedoIcon,
   trashIcon: TrashIcon,
+  copyIcon: CopyIcon,
 };
 
 export default function Icon({

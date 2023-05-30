@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import History from './toolbox/History';
+import DupDelLock from './toolbox/DupDelLock';
 
 export default function Navbar() {
   return (
@@ -8,7 +9,7 @@ export default function Navbar() {
       <div>
         <History />
       </div>
-      <div>Right</div>
+      <DupDelLock />
     </NavbarWrap>
   );
 }

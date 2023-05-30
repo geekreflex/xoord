@@ -23,4 +23,5 @@ export type IconName =
   | 'unlockIcon'
   | 'undoIcon'
   | 'redoIcon'
-  | 'trashIcon';
+  | 'trashIcon'
+  | 'copyIcon';
