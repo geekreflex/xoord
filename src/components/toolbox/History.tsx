@@ -1,5 +1,6 @@
 import { useEditorContext } from '@/context/EditorContext';
 import 'fabric-history';
+import { styled } from 'styled-components';
 
 export default function History() {
   const { editor } = useEditorContext();
@@ -29,9 +30,13 @@ export default function History() {
   };
 
   return (
-    <div>
+    <HistroyWrap>
       <button onClick={handleUndo}>Undo</button>
       <button onClick={handleRedo}>Redo</button>
-    </div>
+    </HistroyWrap>
   );
 }
+
+const HistroyWrap = styled.div`
+  display: flex;
+`;
