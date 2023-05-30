@@ -1,36 +1,17 @@
 import Panel from '@/components/common/Drawer';
-import { useAppContext } from '@/context/AppContext';
 import { useEditorContext } from '@/context/EditorContext';
-import { useEffect } from 'react';
 
 export default function PropertiesPanel() {
-  const { closePropertyPanel, openPropertyPanel, propertyPanel } =
-    useAppContext();
-  const { editor } = useEditorContext();
+  const { editor, selectedObjects } = useEditorContext();
 
   const onClosePropertyPanel = () => {
-    closePropertyPanel();
-    editor?.canvas.discardActiveObject().renderAll();
+    console.log(close);
   };
 
-  useEffect(() => {
-    if (editor) {
-      editor.canvas.on('selection:created', () => {
-        openPropertyPanel('elements');
-      });
-      editor.canvas.on('selection:cleared', () => {
-        closePropertyPanel();
-      });
-    }
-  }, []);
-
   return (
-    <Panel
-      visible={propertyPanel ? true : false}
-      close={onClosePropertyPanel}
-      pos="right"
-    >
+    <Panel visible={!!selectedObjects} close={onClosePropertyPanel} pos="right">
       <div>Property panel</div>
+      {selectedObjects?.length}
     </Panel>
   );
 }
