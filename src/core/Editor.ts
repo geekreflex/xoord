@@ -1,6 +1,6 @@
 import { fabric } from 'fabric';
 import { throttle } from 'lodash-es';
-import { AlignGuidelines, GridLine } from './guidlines';
+import { AlignGuidelines } from './guidlines';
 import { CustomControls } from './controls';
 
 declare type EditorOption = { width: number; height: number };
