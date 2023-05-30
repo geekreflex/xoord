@@ -16,6 +16,9 @@ export default function History() {
   };
 
   const handleUndo = () => {
+    if (editor?.canvas.historyUndo.length! <= 1) {
+      return;
+    }
     editor?.canvas.undo();
     workspaceObj();
   };
