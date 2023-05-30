@@ -32,8 +32,8 @@ export default function History() {
 
   return (
     <HistroyWrap>
-      <Icon name="undoIcon" click={handleUndo} size="medium" />
-      <Icon name="redoIcon" click={handleRedo} size="medium" />
+      <Icon name="undoIcon" click={handleUndo} size="big" />
+      <Icon name="redoIcon" click={handleRedo} size="big" />
     </HistroyWrap>
   );
 }

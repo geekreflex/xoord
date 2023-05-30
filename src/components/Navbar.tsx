@@ -18,4 +18,6 @@ const NavbarWrap = styled.div`
   position: relative;
   z-index: 999;
   border-bottom: 1px solid ${(props) => props.theme.colors.borderColor};
+  display: flex;
+  align-items: center;
 `;
