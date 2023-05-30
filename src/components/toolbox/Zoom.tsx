@@ -37,8 +37,13 @@ export default function Zoom() {
   };
 
   const handleFitFill = (type: string) => {
-    if (type === 'fill') return editor?.zoomToFill();
-    if (type === 'fit') return editor?.zoomToFit();
+    if (type === 'fill') {
+      editor?.zoomToFill();
+    }
+    if (type === 'fit') {
+      editor?.zoomToFit();
+    }
+    setZoom();
   };
 
   useEffect(() => {
