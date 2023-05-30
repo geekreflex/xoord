@@ -39,7 +39,7 @@ const iconComponents: { [key: string]: React.ComponentType } = {
 };
 
 export default function Icon({
-  size = 'small',
+  size = 'medium',
   name,
   color,
   disabled,
