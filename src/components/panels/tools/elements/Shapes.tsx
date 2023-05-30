@@ -7,6 +7,8 @@ export default function Shapes({ tool }: { tool: Element }) {
     { name: 'Triangle', func: () => tool.addTriangle() },
     { name: 'Rectangle', func: () => tool.addRectangle() },
     { name: 'Square', func: () => tool.addSquare() },
+    { name: 'Star', func: () => tool.addSquare() },
+    { name: 'Polygon', func: () => tool.addSquare() },
   ];
   return (
     <ShapesWrap>
