@@ -9,6 +9,7 @@ import {
   RedoIcon,
   ShapesIcon,
   TextIcon,
+  TrashIcon,
   UndoIcon,
   UnlockIcon,
   ZoomInIcon,
@@ -32,6 +33,7 @@ const iconComponents: { [key: string]: React.ComponentType } = {
   unlockIcon: UnlockIcon,
   undoIcon: UndoIcon,
   redoIcon: RedoIcon,
+  trashIcon: TrashIcon,
 };
 
 export default function Icon({

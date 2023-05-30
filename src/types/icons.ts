@@ -22,4 +22,5 @@ export type IconName =
   | 'lockIcon'
   | 'unlockIcon'
   | 'undoIcon'
-  | 'redoIcon';
+  | 'redoIcon'
+  | 'trashIcon';
