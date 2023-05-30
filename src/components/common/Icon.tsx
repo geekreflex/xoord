@@ -6,6 +6,7 @@ import {
   Grid3Icon,
   ImageIcon,
   LockIcon,
+  RedoIcon,
   ShapesIcon,
   TextIcon,
   UndoIcon,
@@ -30,6 +31,7 @@ const iconComponents: { [key: string]: React.ComponentType } = {
   lockIcon: LockIcon,
   unlockIcon: UnlockIcon,
   undoIcon: UndoIcon,
+  redoIcon: RedoIcon,
 };
 
 export default function Icon({

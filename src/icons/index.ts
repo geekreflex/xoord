@@ -12,6 +12,7 @@ import Close2Icon from './Close2Icon';
 import LockIcon from './LockIcon';
 import UnlockIcon from './UnlockIcon';
 import UndoIcon from './UndoIcon';
+import RedoIcon from './RedoIcon';
 
 export {
   ZoomInIcon,
@@ -28,4 +29,5 @@ export {
   LockIcon,
   UnlockIcon,
   UndoIcon,
+  RedoIcon,
 };
