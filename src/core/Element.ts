@@ -1,7 +1,14 @@
 import { generateUniqueId } from '@/utils/unique';
 import { Editor } from './Editor';
 import { fabric } from 'fabric';
-import { CIRCLE, RECTANGLE, SQUARE, TRIANGLE } from './lib/defaultShapes';
+import {
+  CIRCLE,
+  POLYGON,
+  RECTANGLE,
+  SQUARE,
+  TRIANGLE,
+} from './lib/defaultShapes';
+import { regularPolygonPoints } from './lib/polygonPoints';
 
 export class Element {
   private editor: Editor;
@@ -56,6 +63,17 @@ export class Element {
       name: 'triangle',
     });
     this.addObject(triangle);
+  }
+
+  public addPolygon() {
+    const polygonPoints = regularPolygonPoints(5, 100);
+    const polygon = new fabric.Polygon(polygonPoints, {
+      ...POLYGON,
+      id: this.id(),
+      name: 'regpoly',
+      objectCaching: false,
+    });
+    this.addObject(polygon);
   }
 
   private addObject(obj: fabric.Object) {

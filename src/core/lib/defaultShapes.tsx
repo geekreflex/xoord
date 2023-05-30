@@ -31,3 +31,10 @@ export const TRIANGLE = {
   width: WIDTH,
   height: HEIGHT,
 };
+
+export const POLYGON = {
+  fill: FILL,
+  stroke: STROKE,
+  width: WIDTH,
+  height: HEIGHT,
+};
