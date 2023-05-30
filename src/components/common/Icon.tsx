@@ -8,6 +8,7 @@ import {
   LockIcon,
   ShapesIcon,
   TextIcon,
+  UndoIcon,
   UnlockIcon,
   ZoomInIcon,
   ZoomOutIcon,
@@ -28,6 +29,7 @@ const iconComponents: { [key: string]: React.ComponentType } = {
   close2Icon: Close2Icon,
   lockIcon: LockIcon,
   unlockIcon: UnlockIcon,
+  undoIcon: UndoIcon,
 };
 
 export default function Icon({

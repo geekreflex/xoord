@@ -20,4 +20,5 @@ export type IconName =
   | 'closeIcon'
   | 'close2Icon'
   | 'lockIcon'
-  | 'unlockIcon';
+  | 'unlockIcon'
+  | 'UndoIcon';
