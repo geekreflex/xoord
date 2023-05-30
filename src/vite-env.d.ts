@@ -6,6 +6,10 @@ declare global {
       contextTop: CanvasRenderingContext2D;
       undo: (callback?: () => void) => void;
       redo: (callback?: () => void) => void;
+      canRedo: () => boolean;
+      canUndo: () => boolean;
+      historyUndo: [];
+      historyRedo: [];
       clearHistory: () => void;
     }
     interface IObjectOptions {
