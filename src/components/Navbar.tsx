@@ -4,9 +4,11 @@ import History from './toolbox/History';
 export default function Navbar() {
   return (
     <NavbarWrap>
+      <div>Logo</div>
       <div>
         <History />
       </div>
+      <div>Right</div>
     </NavbarWrap>
   );
 }
@@ -20,4 +22,6 @@ const NavbarWrap = styled.div`
   border-bottom: 1px solid ${(props) => props.theme.colors.borderColor};
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
 `;
