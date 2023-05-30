@@ -1,15 +1,17 @@
 import { useEditorContext } from '@/context/EditorContext';
 import { toPercent } from '@/utils/percent';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 import Icon from '../common/Icon';
+import Popup from '../common/Popup';
+import useClickOutside from '@/hooks/useClickOutside';
 
 export default function Zoom() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
   const [currentZoom, setCurrentZoom] = useState<number>(0);
   // @ts-ignore
-  const zoomLevels = [
-    0.2, 0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 3.0, 4.0, 5.0,
-  ];
+  const zoomLevels = [0.1, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 4.0];
   const { editor } = useEditorContext();
 
   const setZoom = () => {
@@ -29,6 +31,16 @@ export default function Zoom() {
     setZoom();
   };
 
+  const handleSetZoom = (level: number) => {
+    editor?.setZoomAuto(level);
+    setZoom();
+  };
+
+  const handleFitFill = (type: string) => {
+    if (type === 'fill') return editor?.zoomToFill();
+    if (type === 'fit') return editor?.zoomToFit();
+  };
+
   useEffect(() => {
     const canvas = editor?.canvas;
 
@@ -40,21 +52,42 @@ export default function Zoom() {
     }
   }, [editor]);
 
+  const onShowZoomLevels = () => {
+    setVisible(!visible);
+  };
+
+  useClickOutside(ref, () => setVisible(false));
+
   return (
-    <ZoomWrap>
+    <ZoomWrap ref={ref}>
       <ZoomInOut>
         <Icon
           name="zoomOutIcon"
           disabled={currentZoom === 0.1}
           click={handleZoomOut}
         />
-        <p>{toPercent(currentZoom)}%</p>
+        <p onClick={onShowZoomLevels}>{toPercent(currentZoom)}%</p>
         <Icon
           name="zoomInIcon"
           disabled={currentZoom === 5}
           click={handleZoomIn}
         />
       </ZoomInOut>
+      {visible && (
+        <Popup head={false} pad={false}>
+          <ZoomLevels>
+            <div className="defined-levels">
+              <span onClick={() => handleFitFill('fit')}>Zoom to Fit</span>
+              <span onClick={() => handleFitFill('fill')}>Zoom to Fill</span>
+            </div>
+            {zoomLevels.map((level) => (
+              <span key={level} onClick={() => handleSetZoom(level)}>
+                {toPercent(level)}%
+              </span>
+            ))}
+          </ZoomLevels>
+        </Popup>
+      )}
     </ZoomWrap>
   );
 }
@@ -62,6 +95,8 @@ export default function Zoom() {
 const ZoomWrap = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
+  transition: all 300ms linear;
 `;
 const ZoomInOut = styled.div`
   display: flex;
@@ -77,6 +112,29 @@ const ZoomInOut = styled.div`
     align-items: center;
     line-height: 1;
     border-radius: 5px;
-    cursor: default;
+    cursor: pointer;
+  }
+`;
+
+const ZoomLevels = styled.div`
+  display: flex;
+  flex-direction: column;
+  bottom: 60px;
+  padding: 8px 0;
+  width: 180px;
+
+  .defined-levels {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid ${(props) => props.theme.colors.borderColor};
+  }
+
+  span {
+    font-size: 14px;
+    padding: 8px 15px;
+    cursor: pointer;
+    &:hover {
+      background-color: ${(props) => props.theme.colors.hoverColor2};
+    }
   }
 `;

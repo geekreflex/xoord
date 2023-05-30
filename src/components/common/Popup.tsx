@@ -5,32 +5,43 @@ export default function Popup({
   children,
   title,
   close,
+  head = true,
+  pad = true,
 }: {
   children: React.ReactNode;
-  title: string;
+  title?: string;
   close?: () => void;
+  head?: boolean;
+  pad?: boolean;
 }) {
   return (
-    <PopupWrap>
-      <div className="title-close">
-        <h3>{title || 'Untitled'}</h3>
-        <Icon name="close2Icon" click={close} />
-      </div>
+    <PopupWrap pad={pad.toString()}>
+      {head && (
+        <div className="title-close">
+          <h3>{title || 'Untitled'}</h3>
+          <Icon name="close2Icon" click={close} />
+        </div>
+      )}
       <div className="main">{children}</div>
     </PopupWrap>
   );
 }
 
-const PopupWrap = styled.div`
+interface PW {
+  pad: string;
+}
+
+const PopupWrap = styled.div<PW>`
   position: absolute;
   bottom: 50px;
   min-width: 100px;
   max-width: 600px;
   background-color: ${(props) => props.theme.colors.primaryColor};
-  padding: 20px;
+  padding: ${(props) => (props.pad === 'true' ? '20px' : '8px 0')};
   border-radius: ${(props) => props.theme.radius.medium};
   box-shadow: ${(props) => props.theme.shadow.shadow1};
   border: 1px solid ${(props) => props.theme.colors.borderColor};
+  z-index: 99998;
 
   .title-close {
     display: flex;

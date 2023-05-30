@@ -6,6 +6,7 @@ export interface Theme {
     textColor: string;
     borderColor: string;
     hoverColor1: string;
+    hoverColor2: string;
   };
   shadow: {
     shadow1: string;
@@ -23,6 +24,7 @@ export const lightTheme: Theme = {
     textColor: '#111111',
     borderColor: '#dedede',
     hoverColor1: '#e5e5e5',
+    hoverColor2: '#f5f5f5',
   },
   shadow: {
     shadow1: 'rgba(0, 0, 0, 0.05) 0px 1px 2px 0px',
@@ -40,6 +42,7 @@ export const darkTheme: Theme = {
     textColor: '#f5f5f5',
     borderColor: '',
     hoverColor1: '',
+    hoverColor2: '',
   },
   shadow: {
     shadow1: 'rgba(0, 0, 0, 0.05) 0px 1px 2px 0px',
