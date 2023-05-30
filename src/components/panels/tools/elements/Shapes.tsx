@@ -7,7 +7,7 @@ export default function Shapes({ tool }: { tool: Element }) {
     { name: 'Triangle', func: () => tool.addTriangle() },
     { name: 'Rectangle', func: () => tool.addRectangle() },
     { name: 'Square', func: () => tool.addSquare() },
-    { name: 'Star', func: () => tool.addSquare() },
+    { name: 'Star', func: () => tool.addStar() },
     { name: 'Polygon', func: () => tool.addPolygon() },
   ];
   return (

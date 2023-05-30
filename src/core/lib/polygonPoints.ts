@@ -48,8 +48,9 @@ export function starPolygonPoints(
     points.push({ x, y });
     angle += sweep;
 
-    x = cy + Math.cos(angle) * innnerRadius;
+    x = cx + Math.cos(angle) * innnerRadius;
     y = cy + Math.sin(angle) * innnerRadius;
+    points.push({ x, y });
     angle += sweep;
   }
 

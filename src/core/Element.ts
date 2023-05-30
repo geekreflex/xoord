@@ -8,7 +8,7 @@ import {
   SQUARE,
   TRIANGLE,
 } from './lib/defaultShapes';
-import { regularPolygonPoints } from './lib/polygonPoints';
+import { regularPolygonPoints, starPolygonPoints } from './lib/polygonPoints';
 
 export class Element {
   private editor: Editor;
@@ -74,6 +74,17 @@ export class Element {
       objectCaching: false,
     });
     this.addObject(polygon);
+  }
+
+  public addStar() {
+    const starPoints = starPolygonPoints(5, 50, 100);
+    const star = new fabric.Polygon(starPoints, {
+      ...POLYGON,
+      id: this.id(),
+      name: 'star',
+      objectCaching: false,
+    });
+    this.addObject(star);
   }
 
   private addObject(obj: fabric.Object) {
