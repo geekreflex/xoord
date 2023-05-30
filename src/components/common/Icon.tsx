@@ -91,7 +91,7 @@ const IconWrap = styled.button<{
 }>`
   display: flex;
   font-size: ${(props) => props.size};
-  color: ${(props) => props.color};
+  color: ${(props) => props.color || props.theme.colors.textColor};
   opacity: ${(props) => (props.disabled ? 0.2 : 1)};
   pointer-events: ${(props) => (props.disabled ? 'none' : 'auto')};
   background-color: transparent;
