@@ -5,22 +5,24 @@
  * @returns [points]
  */
 
-export function regularPolygonPoints(
+export const regularPolygonPoints = (
   sideCount: number,
   radius: number
-): { x: number; y: number }[] {
-  const sweep = (Math.PI * 2) / sideCount;
-  const cx = radius;
-  const cy = radius;
-  const points = [];
+): { x: number; y: number }[] => {
+  const vertices = [];
+  const interiorAngle = (2 * Math.PI) / sideCount;
+  const rotationAdjustment = -Math.PI / 2;
 
   for (let i = 0; i < sideCount; i++) {
-    const x = cx + radius * Math.cos(i * sweep);
-    const y = cy + radius * Math.sin(i * sweep);
-    points.push({ x, y });
+    const angle = i * interiorAngle + rotationAdjustment;
+    const x = Math.cos(angle) * radius;
+    const y = Math.sin(angle) * radius;
+
+    vertices.push({ x, y });
   }
-  return points;
-}
+
+  return vertices;
+};
 
 /**
  *
@@ -35,21 +37,16 @@ export function starPolygonPoints(
   outerRadius: number,
   innnerRadius: number
 ): { x: number; y: number }[] {
-  // const rot = (Math.PI / 2) * 3;
   const cx = outerRadius;
   const cy = outerRadius;
-  const sweep = Math.PI / spikeCount;
-  const points = [];
-  let angle = 0;
+  const sweep = (2 * Math.PI) / (spikeCount * 2);
+  const points: { x: number; y: number }[] = [];
+  let angle = -Math.PI / 2 + sweep; // Initial rotation adjustment
 
-  for (let i = 0; i < spikeCount; i++) {
-    let x = cx + Math.cos(angle) * outerRadius;
-    let y = cy + Math.sin(angle) * outerRadius;
-    points.push({ x, y });
-    angle += sweep;
-
-    x = cx + Math.cos(angle) * innnerRadius;
-    y = cy + Math.sin(angle) * innnerRadius;
+  for (let i = 0; i < spikeCount * 2; i++) {
+    const radius = i % 2 === 0 ? outerRadius : innnerRadius;
+    const x = cx + Math.cos(angle) * radius;
+    const y = cy + Math.sin(angle) * radius;
     points.push({ x, y });
     angle += sweep;
   }

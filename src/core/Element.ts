@@ -73,6 +73,7 @@ export class Element {
       name: 'regpoly',
       objectCaching: false,
     });
+
     this.addObject(polygon);
   }
 
@@ -88,8 +89,9 @@ export class Element {
   }
 
   private addObject(obj: fabric.Object) {
-    this.editor.canvas.add(obj);
-    this.editor.canvas.setActiveObject(obj);
+    this.editor.canvas.centerObject(obj).add(obj);
+    this.editor.canvas.setActiveObject(obj).calcOffset();
+
     this.editor.canvas.renderAll();
   }
 
