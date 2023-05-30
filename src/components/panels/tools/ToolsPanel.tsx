@@ -1,4 +1,4 @@
-import Panel from '@/components/common/Panel';
+import Drawer from '@/components/common/Drawer';
 import { useAppContext } from '@/context/AppContext';
 import { styled } from 'styled-components';
 import ElementsTool from './ElementsTool';
@@ -20,9 +20,14 @@ export default function ToolsPanel() {
   };
 
   return (
-    <Panel visible={!!toolPanel} ml={80} close={handleClose} title={toolPanel!}>
+    <Drawer
+      visible={!!toolPanel}
+      ml={80}
+      close={handleClose}
+      title={toolPanel!}
+    >
       <ToolsPanelWrap>{renderTool()}</ToolsPanelWrap>
-    </Panel>
+    </Drawer>
   );
 }
 

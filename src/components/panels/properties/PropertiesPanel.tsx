@@ -1,4 +1,4 @@
-import Panel from '@/components/common/Panel';
+import Panel from '@/components/common/Drawer';
 import { useAppContext } from '@/context/AppContext';
 import { useEditorContext } from '@/context/EditorContext';
 import { useEffect } from 'react';

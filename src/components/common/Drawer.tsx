@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import Icon from './Icon';
 
-interface PanelProps {
+interface DrawerProps {
   children: React.ReactNode;
   ml?: number;
   close: () => void;
@@ -10,16 +10,16 @@ interface PanelProps {
   visible: boolean;
 }
 
-export default function Panel({
+export default function Drawer({
   children,
   pos = 'left',
   ml = 0,
   close,
   title = 'Untitled',
   visible,
-}: PanelProps) {
+}: DrawerProps) {
   return (
-    <PanelWrap ml={ml} pos={pos} visible={visible.toString()}>
+    <DrawerWrap ml={ml} pos={pos} visible={visible.toString()}>
       <PanelTop>
         <div className="title-close">
           <h3>{title}</h3>
@@ -27,17 +27,17 @@ export default function Panel({
         </div>
       </PanelTop>
       <PanelMain>{children}</PanelMain>
-    </PanelWrap>
+    </DrawerWrap>
   );
 }
 
-interface PW {
+interface DW {
   ml: number;
   pos: string;
   visible: string;
 }
 
-const PanelWrap = styled.div<PW>`
+const DrawerWrap = styled.div<DW>`
   position: fixed;
   width: 300px;
   top: 50;
