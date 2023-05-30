@@ -5,7 +5,6 @@ export class Controller {
 
   constructor(editor: Editor) {
     this.editor = editor;
-    this.initExtendHistory();
   }
 
   public skewX() {}
@@ -18,14 +17,5 @@ export class Controller {
       this.editor.canvas.getActiveObject();
     });
     this.editor.canvas.discardActiveObject().renderAll();
-  }
-
-  private initExtendHistory() {
-    fabric.Canvas.prototype.canUndo = function () {
-      return this.historyUndo.length > 0;
-    };
-    fabric.Canvas.prototype.canRedo = function () {
-      return this.historyRedo.length > 0;
-    };
   }
 }

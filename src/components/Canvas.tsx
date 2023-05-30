@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { styled } from 'styled-components';
 import { Editor } from '@/core';
 import { fabric } from 'fabric';
+import 'fabric-history';
+
 import { useEditorContext } from '@/context/EditorContext';
 
 export default function Canvas() {

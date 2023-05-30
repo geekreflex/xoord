@@ -1,10 +1,34 @@
 import { useEditorContext } from '@/context/EditorContext';
-import 'fabric-history';
 import { styled } from 'styled-components';
 import Icon from '../common/Icon';
+import { useEffect, useState } from 'react';
 
 export default function History() {
   const { editor } = useEditorContext();
+  const [canUndo, setCanUndo] = useState<boolean>(false);
+  const [canRedo, setCanRedo] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (editor) {
+      editor.canvas.on('object:added', runCan);
+      editor.canvas.on('object:modified', runCan);
+      editor.canvas.on('object:removed', runCan);
+    }
+  }, [editor]);
+
+  const runCan = () => {
+    const undoVal = editor?.canvas.historyUndo;
+    const redoVal = editor?.canvas.historyRedo;
+    if (undoVal) {
+      const toll = undoVal.length > 1;
+      setCanUndo(toll);
+    }
+
+    if (redoVal) {
+      const toll = redoVal.length > 0;
+      setCanRedo(toll);
+    }
+  };
 
   const workspaceObj = () => {
     const workspace = editor?.canvas.getObjects()[0];
@@ -18,9 +42,6 @@ export default function History() {
   };
 
   const handleUndo = () => {
-    if (editor?.canvas.historyUndo.length! <= 1) {
-      return;
-    }
     editor?.canvas.undo();
     workspaceObj();
   };
@@ -32,8 +53,8 @@ export default function History() {
 
   return (
     <HistroyWrap>
-      <Icon name="undoIcon" click={handleUndo} size="big" />
-      <Icon name="redoIcon" click={handleRedo} size="big" />
+      <Icon name="undoIcon" click={handleUndo} disabled={!canUndo} size="big" />
+      <Icon name="redoIcon" click={handleRedo} disabled={!canRedo} size="big" />
     </HistroyWrap>
   );
 }
