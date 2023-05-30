@@ -25,6 +25,7 @@ export default function Shapes({ tool }: { tool: Element }) {
 const ShapesWrap = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 30px;
   h3 {
     font-size: 16px;
     margin-bottom: 20px;

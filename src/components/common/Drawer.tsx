@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import Icon from './Icon';
+import { capitalizeWord } from '@/utils/string';
 
 interface DrawerProps {
   children: React.ReactNode;
@@ -20,13 +21,13 @@ export default function Drawer({
 }: DrawerProps) {
   return (
     <DrawerWrap ml={ml} pos={pos} visible={visible.toString()}>
-      <PanelTop>
+      <DrawerTop>
         <div className="title-close">
-          <h3>{title}</h3>
+          <h3>{capitalizeWord(title)}</h3>
           <Icon name="close2Icon" click={close} hover={true} />
         </div>
-      </PanelTop>
-      <PanelMain>{children}</PanelMain>
+      </DrawerTop>
+      <DrawerMain>{children}</DrawerMain>
     </DrawerWrap>
   );
 }
@@ -57,7 +58,7 @@ const DrawerWrap = styled.div<DW>`
   flex-direction: column;
 `;
 
-const PanelTop = styled.div`
+const DrawerTop = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -75,7 +76,7 @@ const PanelTop = styled.div`
   }
 `;
 
-const PanelMain = styled.div`
+const DrawerMain = styled.div`
   flex: 1;
   overflow-y: auto;
 `;
