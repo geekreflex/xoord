@@ -3,4 +3,6 @@ export enum ObjectTypes {
   Triangle = 'triangle',
   Rectangle = 'react',
   Polygon = 'polygon',
+  Selection = 'selection',
+  Unknwon = 'unknown',
 }

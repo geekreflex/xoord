@@ -20,18 +20,23 @@ export default function PropertiesPanel() {
   const renderTitle = () => {
     if (
       selectedType === ObjectTypes.Circle ||
-      selectedType === ObjectTypes.Rectangle
+      selectedType === ObjectTypes.Rectangle ||
+      selectedType === ObjectTypes.Triangle ||
+      selectedType === ObjectTypes.Polygon
     ) {
-      return 'Elements';
+      return 'Edit Element';
     }
   };
 
   const RenderPanel = () => {
     switch (selectedType) {
-      case ObjectTypes.Circle ||
-        ObjectTypes.Polygon ||
-        ObjectTypes.Rectangle ||
-        ObjectTypes.Triangle:
+      case ObjectTypes.Circle:
+        return <ElementProperties />;
+      case ObjectTypes.Polygon:
+        return <ElementProperties />;
+      case ObjectTypes.Rectangle:
+        return <ElementProperties />;
+      case ObjectTypes.Triangle:
         return <ElementProperties />;
       default:
         return '';

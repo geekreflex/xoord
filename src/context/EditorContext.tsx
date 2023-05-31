@@ -9,10 +9,11 @@ import { Editor, Element } from '@/core';
 import { fabric } from 'fabric';
 import { GridLine } from '@/core/guidlines';
 import { Controller } from '@/core/Controller';
+import { ObjectTypes } from '@/types/editor';
 
 type EditorContextType = {
   selectedObjects: fabric.Object[] | undefined;
-  selectedType: string | undefined;
+  selectedType: ObjectTypes | undefined;
   editor: Editor | null;
   gridLine: GridLine | null;
   elementTool: Element | null;
@@ -40,7 +41,7 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
   const [selectedObjects, setSelectedObjects] = useState<
     fabric.Object[] | undefined
   >(undefined);
-  const [selectedType, setSelectedType] = useState<string | undefined>(
+  const [selectedType, setSelectedType] = useState<ObjectTypes | undefined>(
     undefined
   );
 
@@ -69,13 +70,13 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
         if (!selected) return;
 
         if (selected?.length > 1) {
-          setSelectedType('Selection');
+          setSelectedType(ObjectTypes.Selection);
         } else if (selected.length === 1) {
           const firstSelectedObject = selected[0];
-          const objectType = firstSelectedObject.type;
+          const objectType = firstSelectedObject.type as ObjectTypes;
           setSelectedType(objectType);
         } else {
-          setSelectedType('Unknown');
+          setSelectedType(ObjectTypes.Unknwon);
         }
 
         setSelectedObjects(selected);
