@@ -3,13 +3,14 @@ import { styled } from 'styled-components';
 interface ToggleProps {
   checked: boolean;
   onChange: () => void;
+  id: string;
 }
 
-export default function ToggleSwitch({ checked, onChange }: ToggleProps) {
+export default function ToggleSwitch({ checked, onChange, id }: ToggleProps) {
   return (
     <ToggleWrap>
       <label className="switch">
-        <input type="checkbox" checked={checked} onChange={onChange} />
+        <input type="checkbox" checked={checked} onChange={onChange} id={id} />
         <span className="slider" />
       </label>
     </ToggleWrap>
@@ -20,8 +21,8 @@ const ToggleWrap = styled.div`
   .switch {
     position: relative;
     display: flex;
-    width: 35px;
-    height: 17px;
+    width: 28px;
+    height: 15px;
     border-radius: 20px;
     overflow: hidden;
 
@@ -43,8 +44,8 @@ const ToggleWrap = styled.div`
       &:before {
         position: absolute;
         content: '';
-        height: 13px;
-        width: 13px;
+        height: 11px;
+        width: 12px;
         left: 3px;
         bottom: 2px;
         background-color: white;
@@ -55,9 +56,9 @@ const ToggleWrap = styled.div`
   }
 
   input:checked + .slider {
-    background-color: #2196f3;
+    background-color: #111;
   }
   input:checked + .slider:before {
-    transform: translateX(17px);
+    transform: translateX(10px);
   }
 `;

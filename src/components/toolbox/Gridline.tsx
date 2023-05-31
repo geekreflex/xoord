@@ -72,7 +72,11 @@ export default function Gridline() {
       {visible && (
         <Popup title="Guide Lines" close={onShowGridPopup}>
           <GridPop>
-            <ToggleSwitch checked={isChecked} onChange={onGridToggle} />
+            <ToggleSwitch
+              checked={isChecked}
+              onChange={onGridToggle}
+              id="gridline"
+            />
             <div className="input-wrap">
               <Input value={xSize} onChange={onXSizeChange} sin="X" />
               <span className="grid-lock">

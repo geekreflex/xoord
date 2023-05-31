@@ -1,7 +1,6 @@
 import Panel from '@/components/common/Drawer';
 import { useEditorContext } from '@/context/EditorContext';
 import { ObjectTypes } from '@/types/editor';
-import { useEffect } from 'react';
 import ElementProperties from './ElementProperties';
 
 export default function PropertiesPanel() {
@@ -11,11 +10,6 @@ export default function PropertiesPanel() {
   const onClosePropertyPanel = () => {
     clearSelectedObjects();
   };
-
-  useEffect(() => {
-    console.log(selectedObjects?.length);
-    console.log(selectedObjects);
-  }, [selectedObjects]);
 
   const renderTitle = () => {
     if (

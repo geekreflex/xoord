@@ -1,7 +1,7 @@
 export enum ObjectTypes {
   Circle = 'circle',
   Triangle = 'triangle',
-  Rectangle = 'react',
+  Rectangle = 'rect',
   Polygon = 'polygon',
   Selection = 'selection',
   Unknwon = 'unknown',

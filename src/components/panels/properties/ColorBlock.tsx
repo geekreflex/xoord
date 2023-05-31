@@ -1,22 +1,47 @@
 import ToggleSwitch from '@/components/common/ToggleSwitch';
-import { ObjectTypes } from '@/types/editor';
+import { useEditorContext } from '@/context/EditorContext';
+import { fabric } from 'fabric';
+import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
-export default function ColorBlock({
-  color,
-  type,
-}: {
-  color: any;
-  type: ObjectTypes;
-}) {
+export function FillColorBlock({ shape }: { shape: fabric.Object }) {
+  const [checked, setChecked] = useState<boolean>(!!shape.fill);
+  const { editor } = useEditorContext();
+
   const handleRemoveColor = () => {
-    console.log('removed color');
+    const oldColor = shape.fill;
+    shape.set('fill', checked ? undefined : oldColor);
+    setChecked(!checked);
+    editor?.canvas.renderAll();
   };
 
   return (
-    <BlockWrap title={type}>
-      <div className="block" style={{ backgroundColor: color }}></div>
-      <ToggleSwitch checked={!!color} onChange={handleRemoveColor} />
+    <BlockWrap>
+      <div
+        className="block"
+        style={{ backgroundColor: shape.fill?.toString() }}
+      ></div>
+      <ToggleSwitch checked={checked} onChange={handleRemoveColor} id="fill" />
+    </BlockWrap>
+  );
+}
+
+export function StrokeColorBlock({ shape }: { shape: fabric.Object }) {
+  const { editor } = useEditorContext();
+
+  const handleRemoveColor = () => {
+    shape.set('stroke', undefined);
+    editor?.canvas.renderAll();
+  };
+
+  return (
+    <BlockWrap>
+      <div className="block" style={{ backgroundColor: shape.stroke }}></div>
+      <ToggleSwitch
+        checked={!!shape.stroke}
+        onChange={handleRemoveColor}
+        id="stroke"
+      />
     </BlockWrap>
   );
 }

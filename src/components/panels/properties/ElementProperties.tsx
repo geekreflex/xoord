@@ -1,6 +1,6 @@
 import { ObjectTypes } from '@/types/editor';
 import { styled } from 'styled-components';
-import ColorBlock from './ColorBlock';
+import { FillColorBlock, StrokeColorBlock } from './ColorBlock';
 
 export default function ElementProperties({
   object,
@@ -13,8 +13,8 @@ export default function ElementProperties({
   return (
     <Wrap>
       <div className="color-block-wrap">
-        <ColorBlock color={obj?.fill} type={type} />
-        <ColorBlock color={obj?.stroke} type={type} />
+        {obj && <FillColorBlock shape={obj} />}
+        {obj && <StrokeColorBlock shape={obj} />}
       </div>
     </Wrap>
   );
