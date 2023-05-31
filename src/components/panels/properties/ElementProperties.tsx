@@ -13,8 +13,8 @@ export default function ElementProperties({
   return (
     <Wrap>
       <div className="color-block-wrap">
-        <ColorBlock color={obj?.fill} />
-        <ColorBlock color={obj?.stroke} />
+        <ColorBlock color={obj?.fill} type={type} />
+        <ColorBlock color={obj?.stroke} type={type} />
       </div>
     </Wrap>
   );
