@@ -1,44 +1,6 @@
-import {
-  AlignLeftIcon,
-  BgIcon,
-  Close2Icon,
-  CloseIcon,
-  CopyIcon,
-  Grid1Icon,
-  Grid3Icon,
-  ImageIcon,
-  LockIcon,
-  RedoIcon,
-  ShapesIcon,
-  TextIcon,
-  TrashIcon,
-  UndoIcon,
-  UnlockIcon,
-  ZoomInIcon,
-  ZoomOutIcon,
-} from '@/icons';
 import { IIcon } from '@/types/icons';
 import { styled } from 'styled-components';
-
-const iconComponents: { [key: string]: React.ComponentType } = {
-  grid1Icon: Grid1Icon,
-  zoomInIcon: ZoomInIcon,
-  zoomOutIcon: ZoomOutIcon,
-  imageIcon: ImageIcon,
-  bgIcon: BgIcon,
-  textIcon: TextIcon,
-  grid3Icon: Grid3Icon,
-  shapesIcon: ShapesIcon,
-  closeIcon: CloseIcon,
-  close2Icon: Close2Icon,
-  lockIcon: LockIcon,
-  unlockIcon: UnlockIcon,
-  undoIcon: UndoIcon,
-  redoIcon: RedoIcon,
-  trashIcon: TrashIcon,
-  copyIcon: CopyIcon,
-  alignLeft: AlignLeftIcon,
-};
+import { iconComponents } from '../helper/iconComponent';
 
 export default function Icon({
   size = 'medium',
