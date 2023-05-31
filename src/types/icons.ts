@@ -27,4 +27,5 @@ export type IconName =
   | 'copyIcon'
   | 'alignLeftIcon'
   | 'alignBottomIcon'
-  | 'alignTopIcon';
+  | 'alignTopIcon'
+  | 'alignRightIcon';
