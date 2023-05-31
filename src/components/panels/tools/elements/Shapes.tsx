@@ -43,7 +43,7 @@ const ShapesWrap = styled.div`
 
     .item {
       background-color: #e8e8e8;
-      height: 100px;
+      height: 80px;
       padding: 20px;
       font-size: 11px;
       font-weight: 600;

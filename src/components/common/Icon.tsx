@@ -1,4 +1,5 @@
 import {
+  AlignLeftIcon,
   BgIcon,
   Close2Icon,
   CloseIcon,
@@ -36,6 +37,7 @@ const iconComponents: { [key: string]: React.ComponentType } = {
   redoIcon: RedoIcon,
   trashIcon: TrashIcon,
   copyIcon: CopyIcon,
+  alignLeft: AlignLeftIcon,
 };
 
 export default function Icon({

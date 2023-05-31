@@ -24,4 +24,5 @@ export type IconName =
   | 'undoIcon'
   | 'redoIcon'
   | 'trashIcon'
-  | 'copyIcon';
+  | 'copyIcon'
+  | 'alignLeftIcon';
