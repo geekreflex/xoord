@@ -4,8 +4,12 @@ import { ObjectTypes } from '@/types/editor';
 import ElementProperties from './ElementProperties';
 
 export default function PropertiesPanel() {
-  const { selectedType, selectedObjects, clearSelectedObjects } =
-    useEditorContext();
+  const {
+    selectedType,
+    selectedObjects,
+    selectedObject,
+    clearSelectedObjects,
+  } = useEditorContext();
 
   const onClosePropertyPanel = () => {
     clearSelectedObjects();
@@ -28,9 +32,7 @@ export default function PropertiesPanel() {
       case ObjectTypes.Polygon:
       case ObjectTypes.Rectangle:
       case ObjectTypes.Triangle:
-        return (
-          <ElementProperties type={selectedType} object={selectedObjects} />
-        );
+        return <ElementProperties />;
       default:
         return '';
     }
@@ -38,7 +40,7 @@ export default function PropertiesPanel() {
 
   return (
     <Panel
-      visible={!!selectedObjects}
+      visible={!!selectedObjects || !!selectedObject}
       close={onClosePropertyPanel}
       pos="right"
       title={renderTitle()}

@@ -1,18 +1,11 @@
-import { ObjectTypes } from '@/types/editor';
 import { styled } from 'styled-components';
 import { FillColorBlock } from './ColorBlock';
 
-export default function ElementProperties({
-  object,
-}: {
-  object: fabric.Object[] | undefined;
-  type: ObjectTypes;
-}) {
-  const obj = object && object[0]!;
+export default function ElementProperties() {
   return (
     <Wrap>
       <div className="color-block-wrap">
-        {obj && <FillColorBlock shape={obj} />}
+        <FillColorBlock />
       </div>
     </Wrap>
   );

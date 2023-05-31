@@ -1,31 +1,49 @@
 import ToggleSwitch from '@/components/common/ToggleSwitch';
 import { useEditorContext } from '@/context/EditorContext';
-import { fabric } from 'fabric';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
-export function FillColorBlock({ shape }: { shape: fabric.Object }) {
-  const { editor } = useEditorContext();
+export function FillColorBlock() {
+  const { editor, selectedObject } = useEditorContext();
+  const [hasFill, setHasFill] = useState<boolean>(false);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (selectedObject) {
+      const activeObject = selectedObject;
+      setHasFill(activeObject ? !!activeObject.fill : false);
+    }
+  }, [selectedObject]);
 
   const handleToggleFill = () => {
-    editor?.canvas.renderAll();
+    if (selectedObject) {
+      if (selectedObject.fill) {
+        selectedObject.previousFill = selectedObject.fill as string;
+        selectedObject.set('fill', undefined);
+      } else {
+        const fill = selectedObject.previousFill || '#000000';
+        selectedObject.set('fill', fill);
+      }
+      editor?.canvas.requestRenderAll();
+      setHasFill(!!selectedObject.fill);
+    }
   };
+
+  if (!selectedObject) {
+    return null;
+  }
 
   return (
     <BlockWrap>
-      {!undefined}
       <div className="block-wrap">
         <div
           className="block"
           style={{
-            backgroundColor: shape.fill?.toString(),
+            backgroundColor: selectedObject.fill as string,
           }}
         ></div>
         <p>Fill</p>
       </div>
-      <ToggleSwitch checked={true} onChange={handleToggleFill} id="fill" />
+      <ToggleSwitch checked={hasFill} onChange={handleToggleFill} id="fill" />
     </BlockWrap>
   );
 }
