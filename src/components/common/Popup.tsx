@@ -14,7 +14,7 @@ export default function Popup({
   close?: () => void;
   head?: boolean;
   pad?: boolean;
-  pos: string;
+  pos?: string;
 }) {
   return (
     <PopupWrap pos={pos} pad={pad.toString()}>

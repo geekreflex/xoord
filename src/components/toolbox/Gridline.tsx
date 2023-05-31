@@ -4,6 +4,7 @@ import { useEditorContext } from '@/context/EditorContext';
 import { useEffect, useRef, useState } from 'react';
 import Popup from '../common/Popup';
 import useClickOutside from '@/hooks/useClickOutside';
+import ToggleSwitch from '../common/ToggleSwitch';
 
 export default function Gridline() {
   const { gridLine } = useEditorContext();
@@ -70,13 +71,14 @@ export default function Gridline() {
       {visible && (
         <Popup title="Guide Lines" close={onShowGridPopup}>
           <GridPop>
-            <div>
+            <ToggleSwitch checked={isChecked} onChange={onGridToggle} />
+            {/* <div>
               <input
                 type="checkbox"
                 checked={isChecked}
                 onChange={onGridToggle}
               />
-            </div>
+            </div> */}
             <div className="input-wrap">
               <input
                 value={xSize}
