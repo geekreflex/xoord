@@ -11,6 +11,7 @@ declare global {
       historyUndo: [];
       historyRedo: [];
       clearHistory: () => void;
+      _historyEvents: any;
     }
     interface IObjectOptions {
       id?: string | undefined;

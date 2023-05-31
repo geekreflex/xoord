@@ -17,7 +17,6 @@ export default function ToggleSwitch({ checked, onChange }: ToggleProps) {
 }
 
 const ToggleWrap = styled.div`
-  margin-bottom: 10px;
   .switch {
     position: relative;
     display: flex;

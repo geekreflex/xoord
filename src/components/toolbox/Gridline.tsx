@@ -72,13 +72,6 @@ export default function Gridline() {
         <Popup title="Guide Lines" close={onShowGridPopup}>
           <GridPop>
             <ToggleSwitch checked={isChecked} onChange={onGridToggle} />
-            {/* <div>
-              <input
-                type="checkbox"
-                checked={isChecked}
-                onChange={onGridToggle}
-              />
-            </div> */}
             <div className="input-wrap">
               <input
                 value={xSize}
@@ -111,6 +104,9 @@ const GridWrap = styled.div`
 
 const GridPop = styled.div`
   width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   .input-wrap {
     display: flex;
     gap: 5px;
