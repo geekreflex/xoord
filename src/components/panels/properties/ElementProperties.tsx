@@ -1,5 +1,6 @@
 import { ObjectTypes } from '@/types/editor';
 import { styled } from 'styled-components';
+import ColorBlock from './ColorBlock';
 
 export default function ElementProperties({
   object,
@@ -11,25 +12,18 @@ export default function ElementProperties({
   const obj = object && object[0]!;
   return (
     <Wrap>
-      <span>{type}</span>
-      <div
-        style={{
-          width: '50px',
-          height: '50px',
-          backgroundColor: `${obj?.fill}`,
-          border: '1px solid #888',
-        }}
-      ></div>
-      <div
-        style={{
-          width: '50px',
-          height: '50px',
-          backgroundColor: `${obj?.stroke}`,
-          border: '1px solid #888',
-        }}
-      ></div>
+      <div className="color-block-wrap">
+        <ColorBlock color={obj?.fill} />
+        <ColorBlock color={obj?.stroke} />
+      </div>
     </Wrap>
   );
 }
 
-const Wrap = styled.div``;
+const Wrap = styled.div`
+  .color-block-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+`;
