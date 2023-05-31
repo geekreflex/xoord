@@ -1,5 +1,5 @@
 export const STROKE = '#000000';
-export const FILL = 'rgba(255,255,255, 0.0)';
+export const FILL = '#e8e8e8';
 export const WIDTH = 200;
 export const HEIGHT = 200;
 

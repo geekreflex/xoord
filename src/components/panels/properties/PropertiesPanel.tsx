@@ -31,13 +31,12 @@ export default function PropertiesPanel() {
   const RenderPanel = () => {
     switch (selectedType) {
       case ObjectTypes.Circle:
-        return <ElementProperties />;
       case ObjectTypes.Polygon:
-        return <ElementProperties />;
       case ObjectTypes.Rectangle:
-        return <ElementProperties />;
       case ObjectTypes.Triangle:
-        return <ElementProperties />;
+        return (
+          <ElementProperties type={selectedType} object={selectedObjects} />
+        );
       default:
         return '';
     }
@@ -50,9 +49,6 @@ export default function PropertiesPanel() {
       pos="right"
       title={renderTitle()}
     >
-      <div>Property panel</div>
-      <div>{selectedType}</div>
-      {selectedObjects?.length}
       {RenderPanel()}
     </Panel>
   );
