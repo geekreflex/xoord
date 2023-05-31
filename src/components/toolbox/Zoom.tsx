@@ -66,12 +66,12 @@ export default function Zoom() {
   return (
     <ZoomWrap ref={ref}>
       <ZoomInOut>
+        <p onClick={onShowZoomLevels}>{toPercent(currentZoom)}%</p>
         <Icon
           name="zoomOutIcon"
           disabled={currentZoom === 0.1}
           click={handleZoomOut}
         />
-        <p onClick={onShowZoomLevels}>{toPercent(currentZoom)}%</p>
         <Icon
           name="zoomInIcon"
           disabled={currentZoom === 5}
@@ -79,7 +79,7 @@ export default function Zoom() {
         />
       </ZoomInOut>
       {visible && (
-        <Popup head={false} pad={false}>
+        <Popup head={false} pad={false} pos="top">
           <ZoomLevels>
             <div className="defined-levels">
               <span onClick={() => handleFitFill('fit')}>Zoom to Fit</span>
@@ -112,19 +112,20 @@ const ZoomInOut = styled.div`
     border: 1px solid ${(props) => props.theme.colors.borderColor};
     font-size: 14px;
     font-weight: 400;
-    padding: 10px 15px;
+    padding: 8px 15px;
     display: flex;
     align-items: center;
     line-height: 1;
     border-radius: 5px;
     cursor: pointer;
+    background-color: ${(props) => props.theme.colors.secondaryColor};
+    user-select: none;
   }
 `;
 
 const ZoomLevels = styled.div`
   display: flex;
   flex-direction: column;
-  bottom: 60px;
   padding: 8px 0;
   width: 180px;
 

@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import ElementProperties from './ElementProperties';
 
 export default function PropertiesPanel() {
-  const { editor, selectedType, selectedObjects, clearSelectedObjects } =
+  const { selectedType, selectedObjects, clearSelectedObjects } =
     useEditorContext();
 
   const onClosePropertyPanel = () => {

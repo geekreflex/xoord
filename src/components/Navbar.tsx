@@ -1,13 +1,15 @@
 import { styled } from 'styled-components';
 import History from './toolbox/History';
 import DupDelLock from './toolbox/DupDelLock';
+import { Zoom } from './toolbox';
 
 export default function Navbar() {
   return (
     <NavbarWrap>
       <div>Logo</div>
-      <div>
+      <div className="navbar-wrap-items">
         <History />
+        <Zoom />
       </div>
       <DupDelLock />
     </NavbarWrap>
@@ -15,7 +17,7 @@ export default function Navbar() {
 }
 
 const NavbarWrap = styled.div`
-  height: 50px;
+  height: 60px;
   width: 100%;
   background-color: ${(props) => props.theme.colors.primaryColor};
   position: relative;
@@ -25,4 +27,9 @@ const NavbarWrap = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
+
+  .navbar-wrap-items {
+    display: flex;
+    gap: 20px;
+  }
 `;

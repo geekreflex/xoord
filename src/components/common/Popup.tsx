@@ -7,15 +7,17 @@ export default function Popup({
   close,
   head = true,
   pad = true,
+  pos = 'bottom',
 }: {
   children: React.ReactNode;
   title?: string;
   close?: () => void;
   head?: boolean;
   pad?: boolean;
+  pos: string;
 }) {
   return (
-    <PopupWrap pad={pad.toString()}>
+    <PopupWrap pos={pos} pad={pad.toString()}>
       {head && (
         <div className="title-close">
           <h3>{title || 'Untitled'}</h3>
@@ -29,11 +31,13 @@ export default function Popup({
 
 interface PW {
   pad: string;
+  pos: string;
 }
 
 const PopupWrap = styled.div<PW>`
   position: absolute;
-  bottom: 50px;
+  bottom: ${(props) => props.pos === 'bottom' && '50px'};
+  top: ${(props) => props.pos === 'top' && '50px'};
   min-width: 100px;
   max-width: 600px;
   background-color: ${(props) => props.theme.colors.primaryColor};

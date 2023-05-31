@@ -35,7 +35,7 @@ const StageWrap = styled.div`
 const Main = styled.div`
   display: flex;
   width: 100%;
-  height: calc(100% - 50px);
+  height: calc(100% - 60px);
   flex: 1;
 `;
 
