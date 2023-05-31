@@ -15,9 +15,12 @@ export default function Shapes({ tool }: { tool: Element }) {
       <h3>Basic Shapes</h3>
       <div className="list-items">
         {shapeList.map((shape) => (
-          <div key={shape.name} className="item" onClick={shape.func}>
-            {shape.name}
-          </div>
+          <div
+            title={shape.name}
+            key={shape.name}
+            className="item"
+            onClick={shape.func}
+          ></div>
         ))}
       </div>
     </ShapesWrap>
@@ -50,6 +53,7 @@ const ShapesWrap = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
+      border: 1px solid ${(props) => props.theme.colors.borderColor2};
       &:hover {
         background-color: #b6b6b6;
       }
