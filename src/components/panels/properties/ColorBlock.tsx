@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
 export function FillColorBlock() {
-  const { editor, selectedObject } = useEditorContext();
+  const { editor, selectedObjects } = useEditorContext();
+  const selectedObject = selectedObjects?.[0];
   const [hasFill, setHasFill] = useState<boolean>(false);
 
   useEffect(() => {

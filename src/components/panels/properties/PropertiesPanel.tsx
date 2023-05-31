@@ -4,12 +4,8 @@ import { ObjectTypes } from '@/types/editor';
 import ElementProperties from './ElementProperties';
 
 export default function PropertiesPanel() {
-  const {
-    selectedType,
-    selectedObjects,
-    selectedObject,
-    clearSelectedObjects,
-  } = useEditorContext();
+  const { selectedType, selectedObjects, clearSelectedObjects } =
+    useEditorContext();
 
   const onClosePropertyPanel = () => {
     clearSelectedObjects();
@@ -40,7 +36,7 @@ export default function PropertiesPanel() {
 
   return (
     <Panel
-      visible={!!selectedObjects || !!selectedObject}
+      visible={!!selectedObjects}
       close={onClosePropertyPanel}
       pos="right"
       title={renderTitle()}

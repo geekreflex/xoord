@@ -4,5 +4,5 @@ export enum ObjectTypes {
   Rectangle = 'rect',
   Polygon = 'polygon',
   Selection = 'selection',
-  Unknwon = 'unknown',
+  Unknown = 'unknown',
 }

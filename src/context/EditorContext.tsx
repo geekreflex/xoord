@@ -12,7 +12,6 @@ import { Controller } from '@/core/Controller';
 import { ObjectTypes } from '@/types/editor';
 
 type EditorContextType = {
-  selectedObject: fabric.Object | undefined;
   selectedObjects: fabric.Object[] | undefined;
   selectedType: ObjectTypes | undefined;
   editor: Editor | null;
@@ -24,7 +23,6 @@ type EditorContextType = {
 };
 
 const EditorContext = createContext<EditorContextType>({
-  selectedObject: undefined,
   selectedObjects: undefined,
   selectedType: undefined,
   editor: null,
@@ -43,9 +41,6 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
   const [selectedObjects, setSelectedObjects] = useState<
     fabric.Object[] | undefined
   >(undefined);
-  const [selectedObject, setSelectedObject] = useState<
-    fabric.Object | undefined
-  >(undefined);
   const [selectedType, setSelectedType] = useState<ObjectTypes | undefined>(
     undefined
   );
@@ -61,7 +56,6 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
 
   const clearSelectedObjects = () => {
     setSelectedObjects(undefined);
-    setSelectedObject(undefined);
     editor?.canvas.discardActiveObject();
     editor?.canvas.renderAll();
   };
@@ -75,24 +69,24 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
 
         if (!selected) return;
 
-        if (selected?.length > 1) {
-          setSelectedType(ObjectTypes.Selection);
+        if (selected.length > 0) {
           setSelectedObjects(selected);
-        } else if (selected.length === 1) {
-          const firstSelectedObject = selected[0];
-          const objectType = firstSelectedObject.type as ObjectTypes;
-          setSelectedObject(firstSelectedObject);
-          setSelectedType(objectType);
+          setSelectedType(
+            selected.length > 1
+              ? ObjectTypes.Selection
+              : (selected[0].type as ObjectTypes)
+          );
         } else {
-          setSelectedType(ObjectTypes.Unknwon);
+          setSelectedObjects(undefined);
+          setSelectedType(ObjectTypes.Unknown);
         }
       };
 
       canvas.on('selection:created', handleSelection);
       canvas.on('selection:updated', handleSelection);
       canvas.on('selection:cleared', () => {
-        setSelectedObject(undefined);
         setSelectedObjects(undefined);
+        setSelectedType(undefined);
       });
 
       return () => {
@@ -105,7 +99,6 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
 
   const contextValues = {
     selectedObjects,
-    selectedObject,
     selectedType,
     editor,
     gridLine,
