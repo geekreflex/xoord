@@ -20,6 +20,7 @@ import AlignBottomIcon from './AlignBottomIcon';
 import AlignTopIcon from './AlignTopIcon';
 import AlignRightIcon from './AlignRightIcon';
 import AlignHorizontalIcon from './AlignHorizontalIcon';
+import AlignVerticalIcon from './AlignVerticalIcon';
 
 export {
   ZoomInIcon,
@@ -44,4 +45,5 @@ export {
   AlignTopIcon,
   AlignRightIcon,
   AlignHorizontalIcon,
+  AlignVerticalIcon,
 };

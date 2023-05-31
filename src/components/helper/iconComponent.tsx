@@ -4,6 +4,7 @@ import {
   AlignLeftIcon,
   AlignRightIcon,
   AlignTopIcon,
+  AlignVerticalIcon,
   BgIcon,
   Close2Icon,
   CloseIcon,
@@ -44,4 +45,5 @@ export const iconComponents: { [key: string]: React.ComponentType } = {
   alignTopIcon: AlignTopIcon,
   alignRightIcon: AlignRightIcon,
   alignHorizontalIcon: AlignHorizontalIcon,
+  alignVericalIcon: AlignVerticalIcon,
 };
