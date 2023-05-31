@@ -28,4 +28,5 @@ export type IconName =
   | 'alignLeftIcon'
   | 'alignBottomIcon'
   | 'alignTopIcon'
-  | 'alignRightIcon';
+  | 'alignRightIcon'
+  | 'alignHorizontalIcon';
