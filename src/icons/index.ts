@@ -16,6 +16,8 @@ import RedoIcon from './RedoIcon';
 import TrashIcon from './TrashIcon';
 import CopyIcon from './CopyIcon';
 import AlignLeftIcon from './AlignLeftIcon';
+import AlignBottomIcon from './AlignBottomIcon';
+import AlignTopIcon from './AlignTopIcon';
 
 export {
   ZoomInIcon,
@@ -36,4 +38,6 @@ export {
   TrashIcon,
   CopyIcon,
   AlignLeftIcon,
+  AlignBottomIcon,
+  AlignTopIcon,
 };

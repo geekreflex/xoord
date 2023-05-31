@@ -1,5 +1,7 @@
 import {
+  AlignBottomIcon,
   AlignLeftIcon,
+  AlignTopIcon,
   BgIcon,
   Close2Icon,
   CloseIcon,
@@ -17,7 +19,6 @@ import {
   ZoomInIcon,
   ZoomOutIcon,
 } from '@/icons';
-import AlignBottomIcon from '@/icons/AlignBottomIcon';
 
 export const iconComponents: { [key: string]: React.ComponentType } = {
   grid1Icon: Grid1Icon,
@@ -38,4 +39,5 @@ export const iconComponents: { [key: string]: React.ComponentType } = {
   copyIcon: CopyIcon,
   alignLeftIcon: AlignLeftIcon,
   alignBottomIcon: AlignBottomIcon,
+  alignTopIcon: AlignTopIcon,
 };

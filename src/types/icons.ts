@@ -26,4 +26,5 @@ export type IconName =
   | 'trashIcon'
   | 'copyIcon'
   | 'alignLeftIcon'
-  | 'alignBottomIcon';
+  | 'alignBottomIcon'
+  | 'alignTopIcon';

@@ -1,4 +1,4 @@
-export default function AlignLeftIcon() {
+export default function AlignTopIcon() {
   return (
     <svg
       width="1em"
@@ -8,21 +8,21 @@ export default function AlignLeftIcon() {
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M5.1 19.25H16.9C18.4 19.25 19 18.61 19 17.02V15.98C19 14.39 18.4 13.75 16.9 13.75H5.1"
+        d="M19.26 5.1001V16.9001C19.26 18.4001 18.62 19.0001 17.03 19.0001H15.99C14.4 19.0001 13.76 18.4001 13.76 16.9001V5.1001"
         stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
-        d="M5.1 5.25H11.9C13.4 5.25 14 5.89 14 7.48V8.52C14 10.11 13.4 10.75 11.9 10.75H5.1"
+        d="M5.26 5.1001V11.9001C5.26 13.4001 5.9 14.0001 7.49 14.0001H8.53C10.12 14.0001 10.76 13.4001 10.76 11.9001V5.1001"
         stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
-        d="M5 1.98999V21.99"
+        d="M2 5H22"
         stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
