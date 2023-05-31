@@ -21,13 +21,15 @@ export default function Drawer({
 }: DrawerProps) {
   return (
     <DrawerWrap ml={ml} pos={pos} visible={visible.toString()}>
-      <DrawerTop>
-        <div className="title-close">
-          <h3>{capitalizeWord(title)}</h3>
-          <Icon name="close2Icon" click={close} hover={true} />
-        </div>
-      </DrawerTop>
-      <DrawerMain>{children}</DrawerMain>
+      <DrawerInner>
+        <DrawerTop>
+          <div className="title-close">
+            <h3>{capitalizeWord(title)}</h3>
+            <Icon name="close2Icon" click={close} hover={true} />
+          </div>
+        </DrawerTop>
+        <DrawerMain>{children}</DrawerMain>
+      </DrawerInner>
     </DrawerWrap>
   );
 }
@@ -52,10 +54,13 @@ const DrawerWrap = styled.div<DW>`
   border-left: 1px solid
     ${(props) =>
       props.pos === 'right' ? props.theme.colors.borderColor : 'trnasparent'};
-  padding: 10px 5px;
   z-index: 9998;
   display: ${(props) => (props.visible === 'true' ? 'flex' : 'none')};
   flex-direction: column;
+`;
+
+const DrawerInner = styled.div`
+  padding: 10px 15px;
 `;
 
 const DrawerTop = styled.div`
