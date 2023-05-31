@@ -20,6 +20,14 @@ export default function ElementProperties({
           border: '1px solid #888',
         }}
       ></div>
+      <div
+        style={{
+          width: '50px',
+          height: '50px',
+          backgroundColor: `${obj?.stroke}`,
+          border: '1px solid #888',
+        }}
+      ></div>
     </Wrap>
   );
 }

@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import Popup from '../common/Popup';
 import useClickOutside from '@/hooks/useClickOutside';
 import ToggleSwitch from '../common/ToggleSwitch';
+import { Input } from '../common/Input';
 
 export default function Gridline() {
   const { gridLine } = useEditorContext();
@@ -73,10 +74,7 @@ export default function Gridline() {
           <GridPop>
             <ToggleSwitch checked={isChecked} onChange={onGridToggle} />
             <div className="input-wrap">
-              <input
-                value={xSize}
-                onChange={(e) => onXSizeChange(e.target.value)}
-              />
+              <Input value={xSize} onChange={onXSizeChange} sin="X" />
               <span className="grid-lock">
                 <Icon
                   click={onToggleLock}
@@ -84,10 +82,8 @@ export default function Gridline() {
                   name={isLocked ? 'lockIcon' : 'unlockIcon'}
                 />
               </span>
-              <input
-                value={ySize}
-                onChange={(e) => onYSizeChange(e.target.value)}
-              />
+
+              <Input value={ySize} onChange={onYSizeChange} sin="Y" />
             </div>
           </GridPop>
         </Popup>
@@ -112,15 +108,6 @@ const GridPop = styled.div`
     gap: 5px;
     flex-wrap: nowrap;
     align-items: center;
-
-    input {
-      padding: 10px 20px;
-      width: 50%;
-      border-radius: 10px;
-      border: 1px solid ${(props) => props.theme.colors.borderColor};
-      outline: none;
-      font-weight: 600;
-    }
   }
 
   .grid-lock {
