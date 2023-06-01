@@ -30,4 +30,5 @@ export type IconName =
   | 'alignTopIcon'
   | 'alignRightIcon'
   | 'alignHorizontalIcon'
-  | 'alignVerticalIcon';
+  | 'alignVerticalIcon'
+  | 'brushIcon';
