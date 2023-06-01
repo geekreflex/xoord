@@ -3,53 +3,57 @@ import { useEditorContext } from '@/context/EditorContext';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
-export function FillColorBlock() {
+export default function Stroke() {
   const { editor, selectedObjects } = useEditorContext();
   const selectedObject = selectedObjects?.[0];
-  const [hasFill, setHasFill] = useState<boolean>(false);
+  const [hasStroke, setHasStroke] = useState<boolean>(false);
+  const [previousStroke, setPreviousStroke] = useState<string | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     if (selectedObject) {
-      const activeObject = selectedObject;
-      setHasFill(activeObject ? !!activeObject.fill : false);
+      setHasStroke(selectedObject.stroke ? true : false);
+      setPreviousStroke(selectedObject.stroke as string);
     }
   }, [selectedObject]);
 
-  const handleToggleFill = () => {
+  const handleToggleStroke = () => {
     if (selectedObject) {
-      if (selectedObject.fill) {
-        selectedObject.previousFill = selectedObject.fill as string;
-        selectedObject.set('fill', undefined);
+      if (selectedObject.stroke) {
+        setPreviousStroke(selectedObject.stroke as string);
+        selectedObject.set('stroke', undefined);
       } else {
-        const fill = selectedObject.previousFill || '#000000';
-        selectedObject.set('fill', fill);
+        const stroke = previousStroke || '#000000';
+        selectedObject.set('stroke', stroke);
       }
       editor?.canvas.requestRenderAll();
-      setHasFill(!!selectedObject.fill);
+      setHasStroke(!!selectedObject.stroke);
     }
   };
 
-  if (!selectedObject) {
-    return null;
-  }
-
   return (
-    <BlockWrap>
+    <StrokeWrap>
       <div className="block-wrap">
         <div
           className="block"
           style={{
-            backgroundColor: selectedObject.fill as string,
+            backgroundColor:
+              selectedObject && (selectedObject.stroke as string),
           }}
         ></div>
-        <p>Fill</p>
+        <p>Stroke</p>
       </div>
-      <ToggleSwitch checked={hasFill} onChange={handleToggleFill} id="fill" />
-    </BlockWrap>
+      <ToggleSwitch
+        checked={hasStroke}
+        onChange={handleToggleStroke}
+        id="fill"
+      />
+    </StrokeWrap>
   );
 }
 
-const BlockWrap = styled.div`
+const StrokeWrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;

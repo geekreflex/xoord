@@ -1,11 +1,13 @@
 import { styled } from 'styled-components';
-import { FillColorBlock } from './ColorBlock';
+import Fill from './Fill';
+import Stroke from './Stroke';
 
 export default function ElementProperties() {
   return (
     <Wrap>
       <div className="color-block-wrap">
-        <FillColorBlock />
+        <Fill />
+        <Stroke />
       </div>
     </Wrap>
   );
