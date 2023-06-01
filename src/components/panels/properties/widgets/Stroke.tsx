@@ -3,6 +3,7 @@ import { useEditorContext } from '@/context/EditorContext';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import GroupCard from '../shared/GroupCard';
+import RangeSlider from '@/components/common/RangeSlide';
 
 export default function Stroke() {
   const { editor, selectedObjects } = useEditorContext();
@@ -49,6 +50,7 @@ export default function Stroke() {
           id="fill"
         />
       </StrokeWrap>
+      <RangeSlider />
     </GroupCard>
   );
 }

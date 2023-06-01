@@ -13,9 +13,12 @@ export default function ElementProperties() {
 }
 
 const Wrap = styled.div`
+  display: flex;
+  height: 100%;
   .color-block-wrap {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    flex: 1;
   }
 `;

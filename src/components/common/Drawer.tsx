@@ -61,6 +61,9 @@ const DrawerWrap = styled.div<DW>`
 
 const DrawerInner = styled.div`
   padding: 10px 15px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 `;
 
 const DrawerTop = styled.div`

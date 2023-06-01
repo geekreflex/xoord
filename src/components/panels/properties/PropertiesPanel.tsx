@@ -1,7 +1,8 @@
-import Panel from '@/components/common/Drawer';
+import Drawer from '@/components/common/Drawer';
 import { useEditorContext } from '@/context/EditorContext';
 import { ObjectTypes } from '@/types/editor';
 import ElementProperties from './ElementProperties';
+import { styled } from 'styled-components';
 
 export default function PropertiesPanel() {
   const { selectedType, selectedObjects, clearSelectedObjects } =
@@ -35,13 +36,19 @@ export default function PropertiesPanel() {
   };
 
   return (
-    <Panel
+    <Drawer
       visible={!!selectedObjects}
       close={onClosePropertyPanel}
       pos="right"
       title={renderTitle()}
     >
-      {RenderPanel()}
-    </Panel>
+      <Wrap>{RenderPanel()}</Wrap>
+    </Drawer>
   );
 }
+
+const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+`;
