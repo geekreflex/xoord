@@ -18,9 +18,9 @@ export default function PropertiesPanel() {
     icon: IconName;
   }
   const tabList: TabProps[] = [
-    { name: 'Fill & Stroke', alias: 'fill-stroke', icon: 'grid3Icon' },
-    { name: 'Align & Position', alias: 'position', icon: 'grid3Icon' },
-    { name: 'Shadows & Filters', alias: 'filter', icon: 'grid3Icon' },
+    { name: 'Fill & Stroke', alias: 'fill-stroke', icon: 'brush2Icon' },
+    { name: 'Align & Position', alias: 'position', icon: 'positionIcon' },
+    { name: 'Shadows & Filters', alias: 'filter', icon: 'shadowIcon' },
   ];
 
   const onClosePropertyPanel = () => {

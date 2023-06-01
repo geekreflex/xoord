@@ -23,6 +23,8 @@ import AlignHorizontalIcon from './AlignHorizontalIcon';
 import AlignVerticalIcon from './AlignVerticalIcon';
 import BrushIcon from './BrushIcon';
 import Brush2Icon from './Brush2Icon';
+import PositionIcon from './PositionIcon';
+import ShadowIcon from './ShadowIcon';
 
 export {
   ZoomInIcon,
@@ -50,4 +52,6 @@ export {
   AlignVerticalIcon,
   BrushIcon,
   Brush2Icon,
+  PositionIcon,
+  ShadowIcon,
 };

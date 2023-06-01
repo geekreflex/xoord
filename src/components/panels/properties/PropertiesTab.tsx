@@ -31,7 +31,7 @@ export default function PropertieTab({
             className={`tab ${tab.alias === activeTab ? 'active' : ''}`}
             onClick={() => handleTabSwitch(tab.alias)}
           >
-            <Icon name={tab.icon} hover={false} />
+            <Icon name={tab.icon} hover={false} size="big" />
           </div>
         ))}
       </div>

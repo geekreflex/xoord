@@ -15,7 +15,9 @@ import {
   Grid3Icon,
   ImageIcon,
   LockIcon,
+  PositionIcon,
   RedoIcon,
+  ShadowIcon,
   ShapesIcon,
   TextIcon,
   TrashIcon,
@@ -50,4 +52,6 @@ export const iconComponents: { [key: string]: React.ComponentType } = {
   alignVerticalIcon: AlignVerticalIcon,
   brushIcon: BrushIcon,
   brush2Icon: Brush2Icon,
+  positionIcon: PositionIcon,
+  shadowIcon: ShadowIcon,
 };

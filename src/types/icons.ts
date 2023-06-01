@@ -32,4 +32,6 @@ export type IconName =
   | 'alignHorizontalIcon'
   | 'alignVerticalIcon'
   | 'brushIcon'
-  | 'brush2Icon';
+  | 'brush2Icon'
+  | 'positionIcon'
+  | 'shadowIcon';
