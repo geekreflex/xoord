@@ -9,6 +9,7 @@ interface DrawerProps {
   pos?: 'left' | 'right';
   title?: string;
   visible: boolean;
+  pad?: number;
 }
 
 export default function Drawer({
@@ -18,6 +19,7 @@ export default function Drawer({
   close,
   title = 'Untitled',
   visible,
+  pad = 10,
 }: DrawerProps) {
   return (
     <DrawerWrap ml={ml} pos={pos} visible={visible.toString()}>
@@ -28,7 +30,7 @@ export default function Drawer({
             <Icon name="close2Icon" click={close} hover={true} />
           </div>
         </DrawerTop>
-        <DrawerMain>{children}</DrawerMain>
+        <DrawerMain pad={pad}>{children}</DrawerMain>
       </DrawerInner>
     </DrawerWrap>
   );
@@ -60,8 +62,7 @@ const DrawerWrap = styled.div<DW>`
   flex-direction: column;
 `;
 
-const DrawerInner = styled.div`
-  padding: 10px 15px;
+const DrawerInner = styled.div<{ pad?: number }>`
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -71,7 +72,7 @@ const DrawerTop = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 20px;
+  padding: 10px 10px;
 
   .title-close {
     display: flex;
@@ -85,7 +86,8 @@ const DrawerTop = styled.div`
   }
 `;
 
-const DrawerMain = styled.div`
+const DrawerMain = styled.div<{ pad?: number }>`
   flex: 1;
   overflow-y: auto;
+  padding: ${(props) => `10px ${props.pad}px`};
 `;

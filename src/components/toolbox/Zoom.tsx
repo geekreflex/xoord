@@ -66,12 +66,12 @@ export default function Zoom() {
   return (
     <ZoomWrap ref={ref}>
       <ZoomInOut>
-        <p onClick={onShowZoomLevels}>{toPercent(currentZoom)}%</p>
         <Icon
           name="zoomOutIcon"
           disabled={currentZoom === 0.1}
           click={handleZoomOut}
         />
+        <p onClick={onShowZoomLevels}>{toPercent(currentZoom)}%</p>
         <Icon
           name="zoomInIcon"
           disabled={currentZoom === 5}
