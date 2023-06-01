@@ -3,12 +3,13 @@ import { useEditorContext } from '@/context/EditorContext';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import GroupCard from '../shared/GroupCard';
-import RangeSlider from '@/components/common/RangeSlide';
+import RangeSlider from '@/components/common/RangeSlider';
 
 export default function Stroke() {
   const { editor, selectedObjects } = useEditorContext();
   const selectedObject = selectedObjects?.[0];
   const [hasStroke, setHasStroke] = useState<boolean>(false);
+  const [strokeWidth, setStrokeWidth] = useState<number | undefined>(1);
   const [previousStroke, setPreviousStroke] = useState<string | undefined>(
     undefined
   );
@@ -17,6 +18,7 @@ export default function Stroke() {
     if (selectedObject) {
       setHasStroke(selectedObject.stroke ? true : false);
       setPreviousStroke(selectedObject.stroke as string);
+      setStrokeWidth(selectedObject.strokeWidth || undefined);
     }
   }, [selectedObject]);
 
@@ -32,6 +34,13 @@ export default function Stroke() {
       editor?.canvas.requestRenderAll();
       setHasStroke(!!selectedObject.stroke);
     }
+  };
+
+  const handleStrokeWidth = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newStrokeWidth = Number(e?.target.value);
+    setStrokeWidth(newStrokeWidth);
+    selectedObject?.set('strokeWidth', newStrokeWidth);
+    editor?.canvas.renderAll();
   };
 
   return (
@@ -50,7 +59,13 @@ export default function Stroke() {
           id="fill"
         />
       </StrokeWrap>
-      <RangeSlider />
+      {hasStroke && (
+        <RangeSlider
+          onChange={handleStrokeWidth}
+          value={strokeWidth?.toString() ?? '0'}
+        />
+      )}
+      {strokeWidth}
     </GroupCard>
   );
 }

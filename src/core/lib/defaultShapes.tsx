@@ -1,40 +1,44 @@
 export const STROKE = '#000000';
 export const FILL = '#e8e8e8';
-export const WIDTH = 200;
-export const HEIGHT = 200;
+export const WIDTH = 300;
+export const HEIGHT = 300;
+export const STROKE_WIDTH = 10;
+export const STROKE_UNIFORM = true;
 
-export const CIRCLE = {
-  radius: 100,
+const defaultProps = {
   fill: FILL,
   stroke: STROKE,
+  strokeWidth: STROKE_WIDTH,
+  strokeUniform: STROKE_UNIFORM,
+};
+
+const defaultSize = {
+  width: WIDTH,
+  height: HEIGHT,
+};
+
+export const CIRCLE = {
+  ...defaultProps,
+  radius: 300,
 };
 
 export const RECTANGLE = {
-  fill: FILL,
-  stroke: STROKE,
-  width: 300,
-  height: HEIGHT,
-  angle: 0,
+  ...defaultProps,
+  ...defaultSize,
+  width: defaultSize.width + 100,
 };
 
 export const SQUARE = {
-  fill: FILL,
-  stroke: STROKE,
-  width: WIDTH,
-  height: HEIGHT,
-  angle: 0,
+  ...defaultProps,
+  ...defaultSize,
 };
 
 export const TRIANGLE = {
-  fill: FILL,
-  stroke: STROKE,
-  width: WIDTH,
-  height: HEIGHT,
+  ...defaultProps,
+  ...defaultSize,
 };
 
 export const POLYGON = {
-  fill: FILL,
-  stroke: STROKE,
-  width: WIDTH,
-  height: HEIGHT,
+  ...defaultProps,
+  ...defaultSize,
 };
