@@ -54,5 +54,8 @@ const SidebarWrap = styled.div`
   z-index: 9998;
 
   .sidebar-items {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
   }
 `;
