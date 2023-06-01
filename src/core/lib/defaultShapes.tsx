@@ -10,6 +10,7 @@ const defaultProps = {
   stroke: STROKE,
   strokeWidth: STROKE_WIDTH,
   strokeUniform: STROKE_UNIFORM,
+  angle: 0,
 };
 
 const defaultSize = {
@@ -19,7 +20,7 @@ const defaultSize = {
 
 export const CIRCLE = {
   ...defaultProps,
-  radius: 300,
+  radius: WIDTH / 2,
 };
 
 export const RECTANGLE = {

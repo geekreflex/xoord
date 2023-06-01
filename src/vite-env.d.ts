@@ -16,5 +16,9 @@ declare global {
     interface IObjectOptions {
       id?: string | undefined;
     }
+
+    interface Object {
+      customData: any;
+    }
   }
 }

@@ -42,6 +42,7 @@ export default function Alignment() {
         <div className="align-items">
           {aligns.slice(0, 3).map((align) => (
             <Icon
+              key={align.alias}
               name={align.icon}
               size="big"
               click={() => handleAlign(align.alias)}
@@ -50,7 +51,12 @@ export default function Alignment() {
         </div>
         <div className="align-items">
           {aligns.slice(3, 6).map((align) => (
-            <Icon name={align.icon} size="big" />
+            <Icon
+              key={align.alias}
+              name={align.icon}
+              size="big"
+              click={() => handleAlign(align.alias)}
+            />
           ))}
         </div>
       </div>
