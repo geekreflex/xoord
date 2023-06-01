@@ -34,4 +34,5 @@ export type IconName =
   | 'brushIcon'
   | 'brush2Icon'
   | 'positionIcon'
-  | 'shadowIcon';
+  | 'shadowIcon'
+  | 'layerIcon';

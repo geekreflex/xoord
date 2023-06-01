@@ -14,6 +14,7 @@ import {
   Grid1Icon,
   Grid3Icon,
   ImageIcon,
+  LayerIcon,
   LockIcon,
   PositionIcon,
   RedoIcon,
@@ -54,4 +55,5 @@ export const iconComponents: { [key: string]: React.ComponentType } = {
   brush2Icon: Brush2Icon,
   positionIcon: PositionIcon,
   shadowIcon: ShadowIcon,
+  layerIcon: LayerIcon,
 };
