@@ -11,22 +11,22 @@ interface AlignTypes {
 }
 
 const aligns: AlignTypes[] = [
-  { name: 'Align Left', icon: 'alignLeftIcon', func: '', alias: 'left' },
+  { name: 'Top', icon: 'alignTopIcon', func: '', alias: 'top' },
+  { name: 'Left', icon: 'alignLeftIcon', func: '', alias: 'left' },
   {
-    name: 'Align Vertical',
-    icon: 'alignVerticalIcon',
-    func: '',
-    alias: 'vertical',
-  },
-  { name: 'Align Right', icon: 'alignRightIcon', func: '', alias: 'right' },
-  { name: 'Align Top', icon: 'alignTopIcon', func: '', alias: 'top' },
-  {
-    name: 'Align Horizontal',
+    name: 'Middle',
     icon: 'alignHorizontalIcon',
     func: '',
     alias: 'horizontal',
   },
-  { name: 'Align Bottom', icon: 'alignBottomIcon', func: '', alias: 'bottom' },
+  {
+    name: 'Center',
+    icon: 'alignVerticalIcon',
+    func: '',
+    alias: 'vertical',
+  },
+  { name: 'Bottom', icon: 'alignBottomIcon', func: '', alias: 'bottom' },
+  { name: 'Right', icon: 'alignRightIcon', func: '', alias: 'right' },
 ];
 
 export default function Alignment() {
@@ -40,23 +40,15 @@ export default function Alignment() {
     <AlignmentWrap>
       <div className="main">
         <div className="align-items">
-          {aligns.slice(0, 3).map((align) => (
-            <Icon
+          {aligns.map((align) => (
+            <div
+              className="item"
               key={align.alias}
-              name={align.icon}
-              size="big"
-              click={() => handleAlign(align.alias)}
-            />
-          ))}
-        </div>
-        <div className="align-items">
-          {aligns.slice(3, 6).map((align) => (
-            <Icon
-              key={align.alias}
-              name={align.icon}
-              size="big"
-              click={() => handleAlign(align.alias)}
-            />
+              onClick={() => handleAlign(align.alias)}
+            >
+              <Icon hover={false} name={align.icon} size="big" />
+              <p>{align.name}</p>
+            </div>
           ))}
         </div>
       </div>
@@ -74,5 +66,25 @@ const AlignmentWrap = styled.div`
   .align-items {
     display: flex;
     justify-content: space-around;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+
+    .item {
+      display: flex;
+      align-items: center;
+      padding: 8px 10px;
+      gap: 10px;
+      border-radius: ${(props) => props.theme.radius.small};
+      cursor: pointer;
+      &:hover {
+        background-color: ${(props) => props.theme.colors.hoverColor1};
+      }
+
+      p {
+        font-size: 12px;
+        font-weight: 600;
+      }
+    }
   }
 `;
