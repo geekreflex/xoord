@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { Fill, Stroke } from './widgets';
+import { Fill, Alignment, Stroke } from './widgets';
 
 export default function ElementProperties() {
   return (
@@ -7,6 +7,7 @@ export default function ElementProperties() {
       <div className="color-block-wrap">
         <Fill />
         <Stroke />
+        <Alignment />
       </div>
     </Wrap>
   );

@@ -2,7 +2,6 @@ import ToggleSwitch from '@/components/common/ToggleSwitch';
 import { useEditorContext } from '@/context/EditorContext';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
-import GroupCard from '../shared/GroupCard';
 import RangeSlider from '@/components/common/RangeSlider';
 
 export default function Stroke() {
@@ -44,8 +43,8 @@ export default function Stroke() {
   };
 
   return (
-    <GroupCard title="Stroke">
-      <StrokeWrap>
+    <StrokeWrap>
+      <div>
         <div
           className="block"
           style={{
@@ -58,7 +57,8 @@ export default function Stroke() {
           onChange={handleToggleStroke}
           id="fill"
         />
-      </StrokeWrap>
+      </div>
+
       {hasStroke && (
         <RangeSlider
           onChange={handleStrokeWidth}
@@ -66,15 +66,11 @@ export default function Stroke() {
         />
       )}
       {strokeWidth}
-    </GroupCard>
+    </StrokeWrap>
   );
 }
 
 const StrokeWrap = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
   .block {
     width: 50px;
     height: 50px;

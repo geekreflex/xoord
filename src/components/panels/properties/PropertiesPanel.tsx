@@ -3,6 +3,7 @@ import { useEditorContext } from '@/context/EditorContext';
 import { ObjectTypes } from '@/types/editor';
 import ElementProperties from './ElementProperties';
 import { styled } from 'styled-components';
+import Selection from './Selection';
 
 export default function PropertiesPanel() {
   const { selectedType, selectedObjects, clearSelectedObjects } =
@@ -20,6 +21,8 @@ export default function PropertiesPanel() {
       selectedType === ObjectTypes.Polygon
     ) {
       return 'Edit Element';
+    } else if (selectedType === ObjectTypes.Selection) {
+      return 'Edit Selection';
     }
   };
 
@@ -30,6 +33,8 @@ export default function PropertiesPanel() {
       case ObjectTypes.Rectangle:
       case ObjectTypes.Triangle:
         return <ElementProperties />;
+      case ObjectTypes.Selection:
+        return <Selection />;
       default:
         return '';
     }

@@ -46,6 +46,6 @@ export const iconComponents: { [key: string]: React.ComponentType } = {
   alignTopIcon: AlignTopIcon,
   alignRightIcon: AlignRightIcon,
   alignHorizontalIcon: AlignHorizontalIcon,
-  alignVericalIcon: AlignVerticalIcon,
+  alignVerticalIcon: AlignVerticalIcon,
   brushIcon: BrushIcon,
 };
