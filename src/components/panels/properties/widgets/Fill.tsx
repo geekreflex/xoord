@@ -2,6 +2,7 @@ import ToggleSwitch from '@/components/common/ToggleSwitch';
 import { useEditorContext } from '@/context/EditorContext';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
+import GroupCard from '../shared/GroupCard';
 
 export default function Fill() {
   const { editor, selectedObjects } = useEditorContext();
@@ -33,34 +34,24 @@ export default function Fill() {
   };
 
   return (
-    <BlockWrap>
-      <div className="block-wrap">
+    <GroupCard title="Fill">
+      <FillWrap>
         <div
           className="block"
           style={{
             backgroundColor: selectedObject && (selectedObject.fill as string),
           }}
         ></div>
-        <p>Fill</p>
-      </div>
-      <ToggleSwitch checked={hasFill} onChange={handleToggleFill} id="fill" />
-    </BlockWrap>
+        <ToggleSwitch checked={hasFill} onChange={handleToggleFill} id="fill" />
+      </FillWrap>
+    </GroupCard>
   );
 }
 
-const BlockWrap = styled.div`
+const FillWrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  .block-wrap {
-    display: flex;
-    align-items: center;
-    p {
-      margin-left: 10px;
-      font-size: 14px;
-    }
-  }
 
   .block {
     width: 50px;

@@ -2,6 +2,7 @@ import ToggleSwitch from '@/components/common/ToggleSwitch';
 import { useEditorContext } from '@/context/EditorContext';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
+import GroupCard from '../shared/GroupCard';
 
 export default function Stroke() {
   const { editor, selectedObjects } = useEditorContext();
@@ -33,8 +34,8 @@ export default function Stroke() {
   };
 
   return (
-    <StrokeWrap>
-      <div className="block-wrap">
+    <GroupCard title="Stroke">
+      <StrokeWrap>
         <div
           className="block"
           style={{
@@ -42,14 +43,13 @@ export default function Stroke() {
               selectedObject && (selectedObject.stroke as string),
           }}
         ></div>
-        <p>Stroke</p>
-      </div>
-      <ToggleSwitch
-        checked={hasStroke}
-        onChange={handleToggleStroke}
-        id="fill"
-      />
-    </StrokeWrap>
+        <ToggleSwitch
+          checked={hasStroke}
+          onChange={handleToggleStroke}
+          id="fill"
+        />
+      </StrokeWrap>
+    </GroupCard>
   );
 }
 
@@ -57,15 +57,6 @@ const StrokeWrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  .block-wrap {
-    display: flex;
-    align-items: center;
-    p {
-      margin-left: 10px;
-      font-size: 14px;
-    }
-  }
 
   .block {
     width: 50px;

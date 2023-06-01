@@ -1,6 +1,5 @@
 import { styled } from 'styled-components';
-import Fill from './Fill';
-import Stroke from './Stroke';
+import { Fill, Stroke } from './widgets';
 
 export default function ElementProperties() {
   return (
