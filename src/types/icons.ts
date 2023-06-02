@@ -35,4 +35,5 @@ export type IconName =
   | 'brush2Icon'
   | 'positionIcon'
   | 'shadowIcon'
-  | 'layerIcon';
+  | 'layerIcon'
+  | 'arrowSwapXIcon';

@@ -26,6 +26,7 @@ import Brush2Icon from './Brush2Icon';
 import PositionIcon from './PositionIcon';
 import ShadowIcon from './ShadowIcon';
 import LayerIcon from './LayerIcon';
+import ArrowSwapXIcon from './ArrowSwapXIcon';
 
 export {
   ZoomInIcon,
@@ -56,4 +57,5 @@ export {
   PositionIcon,
   ShadowIcon,
   LayerIcon,
+  ArrowSwapXIcon,
 };
