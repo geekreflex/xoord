@@ -42,6 +42,15 @@ export default function Stroke() {
     editor?.canvas.renderAll();
   };
 
+  const handleStroke = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (selectedObject) {
+      const stroke = e.target.value;
+      selectedObject?.set('stroke', stroke);
+      setPreviousStroke(stroke);
+    }
+    editor?.canvas.renderAll();
+  };
+
   return (
     <StrokeWrap>
       <div>
@@ -58,6 +67,12 @@ export default function Stroke() {
           id="fill"
         />
       </div>
+
+      <input
+        type="color"
+        value={selectedObject?.stroke as string}
+        onChange={handleStroke}
+      />
 
       {hasStroke && (
         <RangeSlider
