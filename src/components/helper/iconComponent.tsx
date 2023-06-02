@@ -6,6 +6,7 @@ import {
   AlignTopIcon,
   AlignVerticalIcon,
   ArrowSwapXIcon,
+  ArrowSwapYIcon,
   BgIcon,
   Brush2Icon,
   BrushIcon,
@@ -58,4 +59,5 @@ export const iconComponents: { [key: string]: React.ComponentType } = {
   shadowIcon: ShadowIcon,
   layerIcon: LayerIcon,
   arrowSwapXIcon: ArrowSwapXIcon,
+  arrowSwapYIcon: ArrowSwapYIcon,
 };
