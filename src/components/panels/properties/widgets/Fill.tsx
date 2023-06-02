@@ -32,6 +32,15 @@ export default function Fill() {
     }
   };
 
+  const handleFill = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (selectedObject) {
+      const fill = e.target.value;
+      selectedObject?.set('fill', fill);
+      setPreviousFill(fill);
+    }
+    editor?.canvas.renderAll();
+  };
+
   return (
     <FillWrap>
       <div
@@ -40,6 +49,11 @@ export default function Fill() {
           backgroundColor: selectedObject && (selectedObject.fill as string),
         }}
       ></div>
+      <input
+        type="color"
+        value={selectedObject?.fill as string}
+        onChange={handleFill}
+      />
       <ToggleSwitch checked={hasFill} onChange={handleToggleFill} id="fill" />
     </FillWrap>
   );
