@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
 interface InputProps {
@@ -7,12 +8,23 @@ interface InputProps {
 }
 
 export function Input({ value, onChange, sin }: InputProps) {
+  const [inputValue, setInputValue] = useState(value);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(e.target.value);
+    setInputValue(e.target.value);
   };
+
+  const handleBlur = () => {
+    onChange(inputValue);
+  };
+
+  useEffect(() => {
+    setInputValue(value);
+  }, [value]);
+
   return (
     <InputWrap>
-      <input value={value} onChange={handleChange} />
+      <input value={inputValue} onChange={handleChange} onBlur={handleBlur} />
       <span>{sin}</span>
     </InputWrap>
   );

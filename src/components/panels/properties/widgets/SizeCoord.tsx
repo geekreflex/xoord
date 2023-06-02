@@ -2,16 +2,19 @@ import Icon from '@/components/common/Icon';
 import { Input } from '@/components/common/Input';
 import { useEditorContext } from '@/context/EditorContext';
 import { DividerX, Title } from '@/styles/global';
+import { fabric } from 'fabric';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
 export default function SizeCoord() {
-  const { selectedObjects, editor } = useEditorContext();
-  const [width, setWidth] = useState<string>('0');
-  const [height, setHeight] = useState<string>('0');
-  const [angle, setAngle] = useState<string>('0');
-  const [x, setX] = useState<string>('0');
-  const [y, setY] = useState<string>('0');
+  const { selectedObjects, selectedType, editor } = useEditorContext();
+  const [dimensions, setDimensions] = useState({
+    width: '0',
+    height: '0',
+    angle: '0',
+    x: '0',
+    y: '0',
+  });
 
   useEffect(() => {
     const canvas = editor?.canvas;
@@ -21,100 +24,74 @@ export default function SizeCoord() {
       canvas.on('object:moving', handleMoving);
       canvas.on('object:rotating', handleRotating);
     }
+
+    return () => {
+      if (canvas) {
+        canvas.off('object:scaling', handleSizing);
+        canvas.off('object:moving', handleMoving);
+        canvas.off('object:rotating', handleRotating);
+      }
+    };
   }, [editor]);
 
   const handleSizing = (e: fabric.IEvent) => {
     const target = e.target as fabric.Object;
-    const newWidth = target.width! * target.scaleX!;
-    const newHeight = target.height! * target.scaleY!;
-    setWidth(newWidth.toFixed(2).toString());
-    setHeight(newHeight.toFixed(2).toString());
+    const { width, height } = target;
+    const { scaleX, scaleY } = target;
+
+    if (selectedType) {
+      console.log(selectedType);
+    }
+
+    setDimensions((prevDimensions) => ({
+      ...prevDimensions,
+      width: (width! * scaleX!).toFixed(2).toString(),
+      height: (height! * scaleY!).toFixed(2).toString(),
+    }));
   };
 
   const handleMoving = (e: fabric.IEvent) => {
     const target = e.target as fabric.Object;
-    const newX = target.left! * target.scaleX!;
-    const newY = target.top! * target.scaleY!;
-    setX(newX.toFixed(2).toString());
-    setY(newY.toFixed(2).toString());
+    const { left, top } = target;
+    const { scaleX, scaleY } = target;
+    setDimensions((prevDimensions) => ({
+      ...prevDimensions,
+      x: (left! * scaleX!).toFixed(2).toString(),
+      y: (top! * scaleY!).toFixed(2).toString(),
+    }));
   };
 
   const handleRotating = (e: fabric.IEvent) => {
     const target = e.target as fabric.Object;
-    const newAngle = target.angle!;
-    setAngle(newAngle.toFixed(2).toString());
+    const { angle } = target;
+    setDimensions((prevDimensions) => ({
+      ...prevDimensions,
+      angle: angle!.toFixed(2).toString(),
+    }));
   };
 
   useEffect(() => {
     if (selectedObjects) {
-      const x = selectedObjects[0].left!;
-      const y = selectedObjects[0].top!;
-
-      const w = selectedObjects[0].width!;
-      const h = selectedObjects[0].height!;
-
-      const a = selectedObjects[0].angle!;
-
-      setX(x.toFixed(2).toString());
-      setY(y.toFixed(2).toString());
-
-      setWidth(w.toFixed(2).toString());
-      setHeight(h.toFixed(2).toString());
-
-      setAngle(a.toFixed(2).toString());
+      const { left, top, width, height, angle } = selectedObjects[0];
+      setDimensions({
+        x: left!.toFixed(2).toString(),
+        y: top!.toFixed(2).toString(),
+        width: width!.toFixed(2).toString(),
+        height: height!.toFixed(2).toString(),
+        angle: angle!.toFixed(2).toString(),
+      });
     }
   }, [selectedObjects]);
 
-  const handleWidth = (width: string) => {
-    setWidth(width);
+  const handleDimensionChange = (key: string, value: string) => {
+    setDimensions((prevDimensions) => ({
+      ...prevDimensions,
+      [key]: value,
+    }));
     if (selectedObjects) {
       const obj = selectedObjects[0];
       obj.set({
-        width: parseFloat(width),
-      });
-    }
-    editor?.canvas.renderAll();
-  };
-
-  const handleHeight = (height: string) => {
-    setHeight(height);
-    if (selectedObjects) {
-      const obj = selectedObjects[0];
-      obj.set({
-        height: parseFloat(height),
-      });
-    }
-    editor?.canvas.renderAll();
-  };
-
-  const handleX = (x: string) => {
-    setX(x);
-    if (selectedObjects) {
-      const obj = selectedObjects[0];
-      obj.set({
-        left: parseFloat(x),
-      });
-    }
-    editor?.canvas.renderAll();
-  };
-
-  const handleY = (y: string) => {
-    setY(y);
-    if (selectedObjects) {
-      const obj = selectedObjects[0];
-      obj.set({
-        top: parseFloat(y),
-      });
-    }
-    editor?.canvas.renderAll();
-  };
-
-  const handleAngle = (angle: string) => {
-    setAngle(angle);
-    if (selectedObjects) {
-      const obj = selectedObjects[0];
-      obj.set({
-        angle: parseFloat(angle),
+        [key]: parseFloat(value),
       });
     }
     editor?.canvas.renderAll();
@@ -126,16 +103,36 @@ export default function SizeCoord() {
       <DividerX />
       <div className="main">
         <div className="size wrap-group">
-          <Input value={width} onChange={handleWidth} sin={'W'} />
-          <Input value={height} onChange={handleHeight} sin={'H'} />
+          <Input
+            value={dimensions.width}
+            onChange={(value) => handleDimensionChange('width', value)}
+            sin="W"
+          />
+          <Input
+            value={dimensions.height}
+            onChange={(value) => handleDimensionChange('height', value)}
+            sin="H"
+          />
           <div className="lock btn-numb">
             <Icon name="unlockIcon" hover={false} size="small" />
           </div>
         </div>
         <div className="coord wrap-group">
-          <Input value={x} onChange={handleX} sin={'X'} />
-          <Input value={y} onChange={handleY} sin={'Y'} />
-          <Input value={angle} onChange={handleAngle} sin={'R'} />
+          <Input
+            value={dimensions.x}
+            onChange={(value) => handleDimensionChange('x', value)}
+            sin="X"
+          />
+          <Input
+            value={dimensions.y}
+            onChange={(value) => handleDimensionChange('y', value)}
+            sin="Y"
+          />
+          <Input
+            value={dimensions.angle}
+            onChange={(value) => handleDimensionChange('angle', value)}
+            sin="R"
+          />
         </div>
       </div>
     </SizeCoordWrap>
