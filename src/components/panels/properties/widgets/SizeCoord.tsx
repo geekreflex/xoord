@@ -2,12 +2,11 @@ import Icon from '@/components/common/Icon';
 import { Input } from '@/components/common/Input';
 import { useEditorContext } from '@/context/EditorContext';
 import { DividerX, Title } from '@/styles/global';
-import { fabric } from 'fabric';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
 export default function SizeCoord() {
-  const { selectedObjects, selectedType, editor } = useEditorContext();
+  const { selectedObjects, editor } = useEditorContext();
   const [dimensions, setDimensions] = useState({
     width: '0',
     height: '0',
@@ -16,73 +15,6 @@ export default function SizeCoord() {
     y: '0',
   });
 
-  useEffect(() => {
-    const canvas = editor?.canvas;
-
-    if (canvas) {
-      canvas.on('object:scaling', handleSizing);
-      canvas.on('object:moving', handleMoving);
-      canvas.on('object:rotating', handleRotating);
-    }
-
-    return () => {
-      if (canvas) {
-        canvas.off('object:scaling', handleSizing);
-        canvas.off('object:moving', handleMoving);
-        canvas.off('object:rotating', handleRotating);
-      }
-    };
-  }, [editor]);
-
-  const handleSizing = (e: fabric.IEvent) => {
-    const target = e.target as fabric.Object;
-    const { width, height } = target;
-    const { scaleX, scaleY } = target;
-
-    if (selectedType) {
-      console.log(selectedType);
-    }
-
-    setDimensions((prevDimensions) => ({
-      ...prevDimensions,
-      width: (width! * scaleX!).toFixed(2).toString(),
-      height: (height! * scaleY!).toFixed(2).toString(),
-    }));
-  };
-
-  const handleMoving = (e: fabric.IEvent) => {
-    const target = e.target as fabric.Object;
-    const { left, top } = target;
-    const { scaleX, scaleY } = target;
-    setDimensions((prevDimensions) => ({
-      ...prevDimensions,
-      x: (left! * scaleX!).toFixed(2).toString(),
-      y: (top! * scaleY!).toFixed(2).toString(),
-    }));
-  };
-
-  const handleRotating = (e: fabric.IEvent) => {
-    const target = e.target as fabric.Object;
-    const { angle } = target;
-    setDimensions((prevDimensions) => ({
-      ...prevDimensions,
-      angle: angle!.toFixed(2).toString(),
-    }));
-  };
-
-  useEffect(() => {
-    if (selectedObjects) {
-      const { left, top, width, height, angle } = selectedObjects[0];
-      setDimensions({
-        x: left!.toFixed(2).toString(),
-        y: top!.toFixed(2).toString(),
-        width: width!.toFixed(2).toString(),
-        height: height!.toFixed(2).toString(),
-        angle: angle!.toFixed(2).toString(),
-      });
-    }
-  }, [selectedObjects]);
-
   const handleDimensionChange = (key: string, value: string) => {
     setDimensions((prevDimensions) => ({
       ...prevDimensions,
@@ -90,12 +22,62 @@ export default function SizeCoord() {
     }));
     if (selectedObjects) {
       const obj = selectedObjects[0];
-      obj.set({
-        [key]: parseFloat(value),
-      });
+
+      if (key === 'width') {
+        obj.set({
+          [key]: parseFloat(value),
+          scaleX: 1,
+        });
+      } else if (key === 'height') {
+        obj.set({
+          [key]: parseFloat(value),
+          scaleY: 1,
+        });
+      } else {
+        obj.set({
+          [key]: parseFloat(value),
+        });
+      }
     }
     editor?.canvas.renderAll();
   };
+
+  const onObjectScaling = (e: fabric.IEvent) => {
+    console.log('here');
+    const target = e.target;
+    const { width, height, angle, left, top, scaleX, scaleY } = target!;
+    setDimensions({
+      width: `${(width! * scaleX!).toFixed(2)}`,
+      height: `${(height! * scaleY!).toFixed(2)}`,
+      angle: angle!.toFixed(2).toString(),
+      x: left!.toFixed(2).toString(),
+      y: top!.toFixed(2).toString(),
+    });
+  };
+
+  useEffect(() => {
+    if (editor && selectedObjects) {
+      const activeObject = selectedObjects[0];
+      if (activeObject) {
+        const { width, height, angle, left, top, scaleX, scaleY } =
+          activeObject;
+        setDimensions({
+          width: `${(width! * scaleX!).toFixed(2)}`,
+          height: `${(height! * scaleY!).toFixed(2)}`,
+          angle: angle!.toFixed(2).toString(),
+          x: left!.toFixed(2).toString(),
+          y: top!.toFixed(2).toString(),
+        });
+      }
+    }
+  }, [editor, selectedObjects]);
+
+  useEffect(() => {
+    if (editor) {
+      editor.canvas.on('object:scaling', onObjectScaling);
+      editor.canvas.on('object:moving', onObjectScaling);
+    }
+  }, []);
 
   return (
     <SizeCoordWrap>
