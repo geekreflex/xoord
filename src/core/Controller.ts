@@ -164,14 +164,8 @@ export class Controller {
     this.editor.canvas.on('object:scaling', (e: fabric.IEvent) => {
       const target = e.target;
       if (target) {
-        const { width, height, scaleX, scaleY } = target;
-
-        const newWidth = width! * target.scaleX!;
-        const newHeight = height! * target.scaleY!;
         target?.set({
           strokeUniform: true,
-          // width: newWidth,
-          // height: newHeight,
           objectCaching: false,
         });
       }
