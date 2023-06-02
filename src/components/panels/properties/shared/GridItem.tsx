@@ -1,4 +1,5 @@
 import Icon from '@/components/common/Icon';
+import { DividerX, Title } from '@/styles/global';
 import { IPos } from '@/types/app';
 import { styled } from 'styled-components';
 
@@ -10,8 +11,8 @@ interface GroupCardProps {
 export default function GridItem({ title, items }: GroupCardProps) {
   return (
     <GridItemWrap>
-      <h4>{title || 'Untitled'}</h4>
-      <Divider />
+      <Title>{title || 'Untitled'}</Title>
+      <DividerX />
       <GridItemMain>
         {items.map((item) => (
           <div className="item" key={item.alias} onClick={item.func}>
@@ -24,20 +25,7 @@ export default function GridItem({ title, items }: GroupCardProps) {
   );
 }
 
-const GridItemWrap = styled.div`
-  h4 {
-    font-size: 14px;
-    line-height: 1;
-    display: flex;
-  }
-`;
-
-const Divider = styled.div`
-  height: 1px;
-  width: 100%;
-  background-color: ${(props) => props.theme.colors.borderColor};
-  margin: 10px 0;
-`;
+const GridItemWrap = styled.div``;
 
 const GridItemMain = styled.div`
   display: flex;

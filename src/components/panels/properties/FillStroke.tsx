@@ -1,7 +1,13 @@
+import { styled } from 'styled-components';
+import { Fill, Stroke } from './widgets';
+
 export default function FillStroke() {
   return (
-    <div>
-      <h3>Fill Stroke</h3>
-    </div>
+    <FillStrokeWrap>
+      <Fill />
+      <Stroke />
+    </FillStrokeWrap>
   );
 }
+
+const FillStrokeWrap = styled.div``;

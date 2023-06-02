@@ -18,3 +18,16 @@ export const Divider = styled.div`
   margin: 6px 0;
   position: relative;
 `;
+
+export const Title = styled.h4`
+  font-size: 14px;
+  line-height: 1;
+  display: flex;
+`;
+
+export const DividerX = styled.div`
+  height: 1px;
+  width: 100%;
+  background-color: ${(props) => props.theme.colors.borderColor};
+  margin: 10px 0;
+`;

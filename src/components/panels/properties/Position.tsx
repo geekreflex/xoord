@@ -1,11 +1,11 @@
-import { Alignment } from './widgets';
-import Flip from './widgets/Flip';
+import { Alignment, Flip, SizeCoord } from './widgets';
 import { styled } from 'styled-components';
 
 export default function Position() {
   return (
     <PositionWrap>
       <Alignment />
+      <SizeCoord />
       <Flip />
     </PositionWrap>
   );
