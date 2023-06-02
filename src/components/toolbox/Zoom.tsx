@@ -5,35 +5,40 @@ import { styled } from 'styled-components';
 import Icon from '../common/Icon';
 import Popup from '../common/Popup';
 import useClickOutside from '@/hooks/useClickOutside';
+import { useAppDispatch, useAppSelector } from '@/app/hooks';
+import { setCurrentZoom } from '@/features/editorSlice';
 
 export default function Zoom() {
+  const dispatch = useAppDispatch();
+  const { currentZoom } = useAppSelector((state) => state.editor);
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
-  const [currentZoom, setCurrentZoom] = useState<number>(0);
+  // const [currentZoom, setCurrentZoom] = useState<number>(0);
   // @ts-ignore
   const zoomLevels = [0.1, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 4.0];
   const { editor } = useEditorContext();
 
-  const setZoom = () => {
+  const updateCurrentZoom = () => {
     const canvas = editor?.canvas;
     if (canvas) {
       const zoom = canvas.getZoom();
-      setCurrentZoom(zoom);
+      dispatch(setCurrentZoom(zoom));
     }
   };
 
   const handleZoomIn = () => {
     editor?.zoomIn();
-    setZoom();
+    updateCurrentZoom();
   };
+
   const handleZoomOut = () => {
     editor?.zoomOut();
-    setZoom();
+    updateCurrentZoom();
   };
 
   const handleSetZoom = (level: number) => {
     editor?.setZoomAuto(level);
-    setZoom();
+    updateCurrentZoom();
   };
 
   const handleFitFill = (type: string) => {
@@ -43,7 +48,7 @@ export default function Zoom() {
     if (type === 'fit') {
       editor?.zoomToFit();
     }
-    setZoom();
+    updateCurrentZoom();
   };
 
   useEffect(() => {
@@ -51,9 +56,9 @@ export default function Zoom() {
 
     if (canvas) {
       canvas.on('mouse:wheel', () => {
-        setCurrentZoom(canvas.getZoom());
+        dispatch(setCurrentZoom(canvas.getZoom()));
       });
-      setCurrentZoom(canvas.getZoom());
+      dispatch(setCurrentZoom(canvas.getZoom()));
     }
   }, [editor]);
 
@@ -109,10 +114,10 @@ const ZoomInOut = styled.div`
   gap: 5px;
 
   p {
-    border: 1px solid ${(props) => props.theme.colors.borderColor};
+    border: 1px solid ${(props) => props.theme.colors.borderColor2};
     font-size: 14px;
     font-weight: 400;
-    padding: 8px 15px;
+    padding: 8px 20px;
     display: flex;
     align-items: center;
     line-height: 1;

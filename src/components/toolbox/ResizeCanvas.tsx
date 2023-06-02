@@ -5,8 +5,11 @@ import { useEffect, useRef, useState } from 'react';
 import { useEditorContext } from '@/context/EditorContext';
 import { Input } from '../common/Input';
 import useClickOutside from '@/hooks/useClickOutside';
+import { useAppDispatch } from '@/app/hooks';
+import { setCurrentZoom } from '@/features/editorSlice';
 
 export default function ResizeCanvas() {
+  const dispatch = useAppDispatch();
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const { editor } = useEditorContext();
@@ -17,6 +20,7 @@ export default function ResizeCanvas() {
     if (editor) {
       editor.setSize(Number(value), height);
     }
+    updateZoom();
     setWidth(Number(value));
   };
 
@@ -24,6 +28,7 @@ export default function ResizeCanvas() {
     if (editor) {
       editor.setSize(width, Number(value));
     }
+    updateZoom();
     setHeight(Number(value));
   };
 
@@ -33,6 +38,12 @@ export default function ResizeCanvas() {
       setHeight(editor.workspace?.height || 0);
     }
   }, [editor]);
+
+  const updateZoom = () => {
+    setTimeout(() => {
+      dispatch(setCurrentZoom(editor?.canvas.getZoom()));
+    }, 50);
+  };
 
   const onShowResize = () => {
     setVisible(!visible);
