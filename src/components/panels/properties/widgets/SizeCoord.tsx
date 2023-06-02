@@ -65,15 +65,60 @@ export default function SizeCoord() {
     }
   }, [selectedObjects]);
 
-  // useEffect(() => {
-  //   if (selectedObjects) {
-  //     const obj = selectedObjects[0];
-  //     obj.set({
-  //       width: Number(width),
-  //       height: Number(height),
-  //     });
-  //   }
-  // }, [width, height, angle, x, y]);
+  const handleWidth = (width: string) => {
+    setWidth(width);
+    if (selectedObjects) {
+      const obj = selectedObjects[0];
+      obj.set({
+        width: parseFloat(width),
+      });
+    }
+    editor?.canvas.renderAll();
+  };
+
+  const handleHeight = (height: string) => {
+    setHeight(height);
+    if (selectedObjects) {
+      const obj = selectedObjects[0];
+      obj.set({
+        height: parseFloat(height),
+      });
+    }
+    editor?.canvas.renderAll();
+  };
+
+  const handleX = (x: string) => {
+    setX(x);
+    if (selectedObjects) {
+      const obj = selectedObjects[0];
+      obj.set({
+        left: parseFloat(x),
+      });
+    }
+    editor?.canvas.renderAll();
+  };
+
+  const handleY = (y: string) => {
+    setY(y);
+    if (selectedObjects) {
+      const obj = selectedObjects[0];
+      obj.set({
+        top: parseFloat(y),
+      });
+    }
+    editor?.canvas.renderAll();
+  };
+
+  const handleAngle = (angle: string) => {
+    setAngle(angle);
+    if (selectedObjects) {
+      const obj = selectedObjects[0];
+      obj.set({
+        angle: parseFloat(angle),
+      });
+    }
+    editor?.canvas.renderAll();
+  };
 
   return (
     <SizeCoordWrap>
@@ -81,24 +126,16 @@ export default function SizeCoord() {
       <DividerX />
       <div className="main">
         <div className="size wrap-group">
-          <Input
-            value={width}
-            onChange={(e) => setWidth(e.target.value)}
-            sin={'W'}
-          />
-          <Input
-            value={height}
-            onChange={(e) => setHeight(e.target.height)}
-            sin={'H'}
-          />
+          <Input value={width} onChange={handleWidth} sin={'W'} />
+          <Input value={height} onChange={handleHeight} sin={'H'} />
           <div className="lock btn-numb">
             <Icon name="unlockIcon" hover={false} size="small" />
           </div>
         </div>
         <div className="coord wrap-group">
-          <Input value={x} onChange={() => {}} sin={'X'} />
-          <Input value={y} onChange={() => {}} sin={'Y'} />
-          <Input value={angle} onChange={() => {}} sin={'R'} />
+          <Input value={x} onChange={handleX} sin={'X'} />
+          <Input value={y} onChange={handleY} sin={'Y'} />
+          <Input value={angle} onChange={handleAngle} sin={'R'} />
         </div>
       </div>
     </SizeCoordWrap>

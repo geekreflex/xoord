@@ -2,14 +2,17 @@ import { styled } from 'styled-components';
 
 interface InputProps {
   value: string;
-  onChange: (e: any) => void;
+  onChange: (value: string) => void;
   sin: string;
 }
 
 export function Input({ value, onChange, sin }: InputProps) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(e.target.value);
+  };
   return (
     <InputWrap>
-      <input value={value} onChange={(e) => onChange(e.target.value)} />
+      <input value={value} onChange={handleChange} />
       <span>{sin}</span>
     </InputWrap>
   );
