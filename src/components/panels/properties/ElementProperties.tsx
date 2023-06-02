@@ -1,13 +1,13 @@
 import { styled } from 'styled-components';
-import { Fill, Alignment, Stroke } from './widgets';
+import FillStroke from './FillStroke';
+import Position from './Position';
 
-export default function ElementProperties() {
+export default function ElementProperties({ tab }: { tab: string }) {
   return (
     <Wrap>
       <div className="color-block-wrap">
-        <Fill />
-        <Stroke />
-        <Alignment />
+        {tab === 'fill-stroke' && <FillStroke />}
+        {tab === 'position' && <Position />}
       </div>
     </Wrap>
   );

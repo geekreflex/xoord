@@ -46,7 +46,7 @@ export default function PropertiesPanel() {
       case ObjectTypes.Polygon:
       case ObjectTypes.Rectangle:
       case ObjectTypes.Triangle:
-        return <ElementProperties />;
+        return <ElementProperties tab={activeTab} />;
       case ObjectTypes.Selection:
         return <Selection />;
       default:

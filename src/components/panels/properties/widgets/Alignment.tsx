@@ -1,33 +1,7 @@
-import Icon from '@/components/common/Icon';
 import { useEditorContext } from '@/context/EditorContext';
-import { IconName } from '@/types/icons';
+import { IPos } from '@/types/app';
 import { styled } from 'styled-components';
-
-interface AlignTypes {
-  name: string;
-  icon: IconName;
-  func: string;
-  alias: string;
-}
-
-const aligns: AlignTypes[] = [
-  { name: 'Top', icon: 'alignTopIcon', func: '', alias: 'top' },
-  { name: 'Left', icon: 'alignLeftIcon', func: '', alias: 'left' },
-  {
-    name: 'Middle',
-    icon: 'alignHorizontalIcon',
-    func: '',
-    alias: 'horizontal',
-  },
-  {
-    name: 'Center',
-    icon: 'alignVerticalIcon',
-    func: '',
-    alias: 'vertical',
-  },
-  { name: 'Bottom', icon: 'alignBottomIcon', func: '', alias: 'bottom' },
-  { name: 'Right', icon: 'alignRightIcon', func: '', alias: 'right' },
-];
+import GridItem from '../shared/GridItem';
 
 export default function Alignment() {
   const { controller } = useEditorContext();
@@ -36,21 +10,49 @@ export default function Alignment() {
     controller?.align(val);
   };
 
+  const aligns: IPos[] = [
+    {
+      name: 'Top',
+      icon: 'alignTopIcon',
+      func: () => handleAlign('top'),
+      alias: 'top',
+    },
+    {
+      name: 'Left',
+      icon: 'alignLeftIcon',
+      func: () => handleAlign('tleftop'),
+      alias: 'left',
+    },
+    {
+      name: 'Middle',
+      icon: 'alignHorizontalIcon',
+      func: () => handleAlign('middle'),
+      alias: 'horizontal',
+    },
+    {
+      name: 'Center',
+      icon: 'alignVerticalIcon',
+      func: () => handleAlign('center'),
+      alias: 'vertical',
+    },
+    {
+      name: 'Bottom',
+      icon: 'alignBottomIcon',
+      func: () => handleAlign('bottom'),
+      alias: 'bottom',
+    },
+    {
+      name: 'Right',
+      icon: 'alignRightIcon',
+      func: () => handleAlign('right'),
+      alias: 'right',
+    },
+  ];
+
   return (
     <AlignmentWrap>
       <div className="main">
-        <div className="align-items">
-          {aligns.map((align) => (
-            <div
-              className="item"
-              key={align.alias}
-              onClick={() => handleAlign(align.alias)}
-            >
-              <Icon hover={false} name={align.icon} size="big" />
-              <p>{align.name}</p>
-            </div>
-          ))}
-        </div>
+        <GridItem items={aligns} title="Alignment" />
       </div>
     </AlignmentWrap>
   );
