@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import History from './toolbox/History';
 import DupDelLock from './toolbox/DupDelLock';
 import { Zoom } from './toolbox';
+import Flip from './toolbox/Flip';
 
 export default function Navbar() {
   return (
@@ -11,6 +12,7 @@ export default function Navbar() {
         <History />
         <Zoom />
       </div>
+      <Flip />
       <DupDelLock />
     </NavbarWrap>
   );

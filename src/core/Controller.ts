@@ -10,6 +10,25 @@ export class Controller {
   public skewX() {}
   public skewY() {}
 
+  public flipX() {
+    const activeObject = this.editor.canvas.getActiveObject();
+    console.log(activeObject);
+    if (activeObject && activeObject.flipX) {
+      activeObject.set('flipX', false);
+    } else {
+      activeObject?.set('flipX', true);
+    }
+    this.editor.canvas.renderAll();
+  }
+
+  public flipY() {
+    const activeObject = this.editor.canvas.getActiveObject();
+    if (activeObject) {
+      activeObject.toggle('flipY');
+    }
+    this.editor.canvas.renderAll();
+  }
+
   public align(position: string) {
     const activeObject = this.editor.canvas.getActiveObject();
 

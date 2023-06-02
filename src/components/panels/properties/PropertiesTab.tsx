@@ -28,6 +28,7 @@ export default function PropertieTab({
       <div className="tab-list">
         {tabList.map((tab) => (
           <div
+            key={tab.alias}
             className={`tab ${tab.alias === activeTab ? 'active' : ''}`}
             onClick={() => handleTabSwitch(tab.alias)}
           >

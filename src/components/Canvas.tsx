@@ -22,11 +22,6 @@ export default function Canvas() {
     const editor = new Editor(fabricCanvas, workspaceEl!, option);
     setEditor(editor);
 
-    // fabric.Object.prototype.set({
-    //   originX: 'center',
-    //   originY: 'center',
-    // });
-
     return () => {
       editor.dispose();
       setEditor(null);
