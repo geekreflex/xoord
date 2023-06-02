@@ -68,7 +68,7 @@ export default function Gridline() {
 
   return (
     <GridWrap ref={ref}>
-      <Icon name="grid1Icon" size="medium" click={onShowGridPopup} />
+      <Icon name="grid1Icon" size="big" click={onShowGridPopup} />
       {visible && (
         <Popup title="Guide Lines" close={onShowGridPopup}>
           <GridPop>

@@ -1,10 +1,14 @@
 import { styled } from 'styled-components';
 import { Gridline } from './toolbox';
+import Background from './toolbox/Background';
+import Layers from './toolbox/Layers';
 
 export default function Float() {
   return (
     <FloatWrap>
       <Gridline />
+      <Background />
+      <Layers />
     </FloatWrap>
   );
 }
