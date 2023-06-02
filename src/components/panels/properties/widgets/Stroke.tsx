@@ -78,6 +78,7 @@ export default function Stroke() {
         <RangeSlider
           onChange={handleStrokeWidth}
           value={strokeWidth?.toString() ?? '0'}
+          min="0"
         />
       )}
       {strokeWidth}

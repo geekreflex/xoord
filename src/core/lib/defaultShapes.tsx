@@ -3,7 +3,7 @@ export const FILL = '#e8e8e8';
 export const WIDTH = 300;
 export const HEIGHT = 300;
 export const STROKE_WIDTH = 10;
-export const STROKE_UNIFORM = true;
+export const STROKE_UNIFORM = false;
 
 const defaultProps = {
   fill: FILL,
