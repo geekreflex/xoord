@@ -68,6 +68,17 @@ export class Editor {
     this.auto();
   }
 
+  public setWorkspaceBg(bgColor: string) {
+    this.canvas.getObjects().forEach((obj) => {
+      if (obj.id === 'workspace') {
+        obj.set({
+          fill: bgColor,
+        });
+      }
+    });
+    this.canvas.renderAll();
+  }
+
   private initAligningGuidlines() {
     const guideline = new AlignGuidelines({ canvas: this.canvas });
     guideline.init();

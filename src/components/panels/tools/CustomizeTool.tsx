@@ -1,7 +1,9 @@
+import { useEditorContext } from '@/context/EditorContext';
 import { BtnPrimary } from '@/styles/global';
 import { styled } from 'styled-components';
 
 export default function CustomizeTool() {
+  const { editor } = useEditorContext();
   const colors = [
     { color: '#18bd48' },
     { color: '#553da9' },
@@ -12,6 +14,12 @@ export default function CustomizeTool() {
     { color: '#542a5d' },
     { color: '#cf7205' },
   ];
+
+  const handleBgChange = (color: string) => {
+    if (editor) {
+      editor.setWorkspaceBg(color);
+    }
+  };
 
   return (
     <CustomizeWrap>
@@ -28,6 +36,7 @@ export default function CustomizeTool() {
         <div className="bg-color-preset">
           {colors.map((color) => (
             <div
+              onClick={() => handleBgChange(color.color)}
               className="block"
               style={{
                 backgroundColor: color.color,
