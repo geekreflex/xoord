@@ -988,7 +988,7 @@
   resolved "https://registry.yarnpkg.com/@babel/regjsgen/-/regjsgen-0.8.0.tgz#f0ba69b075e1f05fb2825b7fad991e7adbb18310"
   integrity sha512-x/rqGMdzj+fWZvCOYForTghzbtqPDZ5gPwaoNGHdgDfF2QA/XZbCBp4Moo5scrkAMPhB7z26XM/AaHuIJdgauA==
 
-"@babel/runtime@^7.12.1", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.10.1", "@babel/runtime@^7.12.1", "@babel/runtime@^7.18.0", "@babel/runtime@^7.18.3", "@babel/runtime@^7.9.2":
   version "7.22.3"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.22.3.tgz#0a7fce51d43adbf0f7b517a71f4c3aaca92ebcbb"
   integrity sha512-XsDuspWKLUsxwCp6r7EhsExHtYfbe5oAGQ19kqngTdCPUoPQzOPdUbD/pB9PJiwb2ptYKQDjSJT3R6dC+EPqfQ==
@@ -1296,6 +1296,13 @@
   dependencies:
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
+
+"@rc-component/mini-decimal@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@rc-component/mini-decimal/-/mini-decimal-1.0.1.tgz#e5dbc20a6a5b0e234d279bc71ce730ab865d3910"
+  integrity sha512-9N8nRk0oKj1qJzANKl+n9eNSMUGsZtjwNuDCiZ/KA+dt1fE3zq5x2XxclRcAbOIXnZcJ53ozP2Pa60gyELXagA==
+  dependencies:
+    "@babel/runtime" "^7.18.0"
 
 "@reduxjs/toolkit@^1.9.5":
   version "1.9.5"
@@ -1745,6 +1752,11 @@ chownr@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-2.0.0.tgz#15bfbe53d2eab4cf70f18a8cd68ebe5b3cb1dece"
   integrity sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==
+
+classnames@^2.2.5:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.2.tgz#351d813bf0137fcc6a76a16b88208d2560a0d924"
+  integrity sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==
 
 color-convert@^1.9.0:
   version "1.9.3"
@@ -2912,6 +2924,24 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
+rc-input-number@^7.4.2:
+  version "7.4.2"
+  resolved "https://registry.yarnpkg.com/rc-input-number/-/rc-input-number-7.4.2.tgz#7c52d26b986461aa16e486d469dc0476d97c6ea3"
+  integrity sha512-yGturTw7WGP+M1GbJ+UTAO7L4buxeW6oilhL9Sq3DezsRS8/9qec4UiXUbeoiX9bzvRXH11JvgskBtxSp4YSNg==
+  dependencies:
+    "@babel/runtime" "^7.10.1"
+    "@rc-component/mini-decimal" "^1.0.1"
+    classnames "^2.2.5"
+    rc-util "^5.28.0"
+
+rc-util@^5.28.0:
+  version "5.33.0"
+  resolved "https://registry.yarnpkg.com/rc-util/-/rc-util-5.33.0.tgz#8e673700e467b24c722014f2fe2f2f77aa6c2c07"
+  integrity sha512-mq2NkEAnHklq4fgU/JqjiE0PS8+8u33gEWw2bDUNDPck3OroPpSgw/8oEyuFrvPgaZEmt9BgQdh59JfQt2cU+w==
+  dependencies:
+    "@babel/runtime" "^7.18.3"
+    react-is "^16.12.0"
+
 react-color@^2.19.3:
   version "2.19.3"
   resolved "https://registry.yarnpkg.com/react-color/-/react-color-2.19.3.tgz#ec6c6b4568312a3c6a18420ab0472e146aa5683d"
@@ -2933,7 +2963,7 @@ react-dom@^18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
-react-is@^16.13.1, react-is@^16.7.0:
+react-is@^16.12.0, react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
