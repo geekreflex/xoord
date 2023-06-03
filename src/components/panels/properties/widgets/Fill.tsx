@@ -1,7 +1,9 @@
 import ToggleSwitch from '@/components/common/ToggleSwitch';
 import { useEditorContext } from '@/context/EditorContext';
+import { DividerX, Title } from '@/styles/global';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
+import ColorBlock from '../shared/ColorBlock';
 
 export default function Fill() {
   const { editor, selectedObjects } = useEditorContext();
@@ -43,30 +45,30 @@ export default function Fill() {
 
   return (
     <FillWrap>
-      <div
-        className="block"
-        style={{
-          backgroundColor: selectedObject && (selectedObject.fill as string),
-        }}
-      ></div>
-      <input
-        type="color"
-        value={selectedObject?.fill as string}
-        onChange={handleFill}
-      />
-      <ToggleSwitch checked={hasFill} onChange={handleToggleFill} id="fill" />
+      <Title>Fill</Title>
+      <DividerX />
+      <div className="fill-block-wrap">
+        <ColorBlock
+          color={selectedObject && (selectedObject.fill as string)}
+          onChange={handleFill}
+        />
+        <ToggleSwitch checked={hasFill} onChange={handleToggleFill} id="fill" />
+      </div>
     </FillWrap>
   );
 }
 
 const FillWrap = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  .fill-block-wrap {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
   .block {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 5px;
     border: 1px solid ${(props) => props.theme.colors.borderColor2};
   }

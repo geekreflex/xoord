@@ -10,4 +10,8 @@ export default function FillStroke() {
   );
 }
 
-const FillStrokeWrap = styled.div``;
+const FillStrokeWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;

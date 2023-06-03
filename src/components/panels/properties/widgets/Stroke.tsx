@@ -3,6 +3,8 @@ import { useEditorContext } from '@/context/EditorContext';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import RangeSlider from '@/components/common/RangeSlider';
+import { DividerX, Title } from '@/styles/global';
+import ColorBlock from '../shared/ColorBlock';
 
 export default function Stroke() {
   const { editor, selectedObjects } = useEditorContext();
@@ -53,26 +55,19 @@ export default function Stroke() {
 
   return (
     <StrokeWrap>
-      <div>
-        <div
-          className="block"
-          style={{
-            backgroundColor:
-              selectedObject && (selectedObject.stroke as string),
-          }}
-        ></div>
+      <Title>Stroke</Title>
+      <DividerX />
+      <div className="fill-block-wrap">
+        <ColorBlock
+          color={selectedObject && (selectedObject.stroke as string)}
+          onChange={handleStroke}
+        />
         <ToggleSwitch
           checked={hasStroke}
           onChange={handleToggleStroke}
           id="fill"
         />
       </div>
-
-      <input
-        type="color"
-        value={selectedObject?.stroke as string}
-        onChange={handleStroke}
-      />
 
       {hasStroke && (
         <RangeSlider
@@ -87,9 +82,15 @@ export default function Stroke() {
 }
 
 const StrokeWrap = styled.div`
+  .fill-block-wrap {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   .block {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 5px;
     border: 1px solid ${(props) => props.theme.colors.borderColor2};
   }
