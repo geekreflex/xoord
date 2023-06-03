@@ -4,15 +4,36 @@ import CustomInput from '../common/input/CustomInput';
 import { useState } from 'react';
 
 export default function ChooseCanvasSize() {
-  const [width, setWidth] = useState('');
-  const [height, setHeight] = useState('');
+  const [width, setWidth] = useState('100');
+  const [height, setHeight] = useState('200');
+
+  const handleWidth = (val: string) => {
+    setWidth(val);
+  };
+
+  const handleHeight = (val: string) => {
+    setHeight(val);
+  };
+
   return (
     <Modal title="Choose Template Size">
       <CCSizeWrap>
         <div className="canvas-size-wrap">
           <div className="canvas-size">
-            <CustomInput min={32} max={10000} label="" />
-            <CustomInput min={32} max={10000} />
+            <CustomInput
+              min={32}
+              max={10000}
+              label="Width"
+              value={width}
+              onChange={handleWidth}
+            />
+            <CustomInput
+              min={32}
+              max={10000}
+              label="Height"
+              value={height}
+              onChange={handleHeight}
+            />
           </div>
         </div>
       </CCSizeWrap>
@@ -24,6 +45,7 @@ const CCSizeWrap = styled.div`
   .canvas-size-wrap {
     padding: 20px;
     background-color: ${(props) => props.theme.colors.secondaryColor};
+    border-radius: ${(props) => props.theme.radius.medium};
     .canvas-size {
       display: flex;
       gap: 20px;

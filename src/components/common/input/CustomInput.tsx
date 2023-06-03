@@ -6,34 +6,45 @@ interface CustomInputProps {
   min?: number;
   max?: number;
   label?: string;
+  value: string;
+  onChange: (newValue: string) => void;
 }
 
 export default function CustomInput({
   min = 1,
   max = 100,
   label,
+  value,
+  onChange,
 }: CustomInputProps) {
-  const [value, setValue] = useState<string>('');
+  const [inputValue, setInputValue] = useState<string>(value);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const sanitizedValue = e.target.value.replace(/[^0-9-]/g, '');
-    setValue(sanitizedValue);
+    setInputValue(sanitizedValue);
+    if (onChange) {
+      onChange(sanitizedValue);
+    }
   };
 
   const handleIncrement = () => {
-    setValue((prevValue) => {
-      const parsedValue = parseInt(prevValue, 10) || 10;
-      const incrementedValue = parsedValue + 1;
-      return String(Math.min(max, incrementedValue));
-    });
+    const parsedValue = parseInt(value, 10) || min;
+    const incrementedValue = Number(parsedValue) + 1;
+    const newValue = Math.min(max, incrementedValue).toString();
+    setInputValue(newValue);
+    if (onChange) {
+      onChange(newValue);
+    }
   };
 
   const handleDecrement = () => {
-    setValue((prevValue) => {
-      const parsedValue = parseInt(prevValue, 10) || 10;
-      const decrementedValue = parsedValue - 1;
-      return String(Math.max(min, decrementedValue));
-    });
+    const parsedValue = parseInt(value, 10) || min;
+    const decrementedValue = parsedValue - 1;
+    const newValue = Math.max(min, decrementedValue).toString();
+    setInputValue(newValue);
+    if (onChange) {
+      onChange(newValue);
+    }
   };
 
   return (
@@ -41,7 +52,13 @@ export default function CustomInput({
       {label && <label>{label}</label>}
       <div className="input-inner">
         <div className="input-main">
-          <input type="number" value={value} onChange={handleChange} />
+          <input
+            type="number"
+            value={inputValue}
+            min={min}
+            max={max}
+            onChange={handleChange}
+          />
           <div>px</div>
         </div>
         <div className="input-btns">
@@ -65,6 +82,11 @@ const InputNumWrap = styled.div`
   input[type='number']::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+
+  label {
+    margin-bottom: 10px;
+    font-size: 14px;
   }
 
   .input-inner {
