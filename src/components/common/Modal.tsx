@@ -1,4 +1,3 @@
-import { DividerX } from '@/styles/global';
 import { styled } from 'styled-components';
 
 interface ModalProps {
@@ -16,7 +15,6 @@ export default function Modal({ children, title }: ModalProps) {
             <div className="modal-header">
               <h2>{title}</h2>
             </div>
-            <DividerX />
           </>
         )}
         <div className="modal-main">{children}</div>
@@ -46,16 +44,17 @@ const ModalInner = styled.div`
   background-color: ${(props) => props.theme.colors.primaryColor};
   border-radius: ${(props) => props.theme.radius.medium};
   min-width: 300px;
-  padding: 20px 0;
 
   .modal-header {
-    padding: 10px 20px;
+    border-bottom: 1px solid ${(props) => props.theme.colors.borderColor};
+    padding: 20px;
     h2 {
+      font-size: 20px;
       line-height: 1;
     }
   }
 
   .modal-main {
-    padding: 0 20px;
+    padding: 20px;
   }
 `;

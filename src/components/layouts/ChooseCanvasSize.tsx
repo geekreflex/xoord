@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import Modal from '../common/Modal';
-import CustomInput from '../common/input/CustomInput';
+import CustomInput from '../common/CustomInput';
 import { useState } from 'react';
 
 export default function ChooseCanvasSize() {
@@ -42,10 +42,12 @@ export default function ChooseCanvasSize() {
 }
 
 const CCSizeWrap = styled.div`
+  width: 450px;
   .canvas-size-wrap {
     padding: 20px;
     background-color: ${(props) => props.theme.colors.secondaryColor};
     border-radius: ${(props) => props.theme.radius.medium};
+    border: 1px solid ${(props) => props.theme.colors.borderColor};
     .canvas-size {
       display: flex;
       gap: 20px;

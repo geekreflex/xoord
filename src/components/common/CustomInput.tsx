@@ -75,9 +75,9 @@ export default function CustomInput({
 }
 
 const InputNumWrap = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
-
   input[type='number']::-webkit-inner-spin-button,
   input[type='number']::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -85,7 +85,7 @@ const InputNumWrap = styled.div`
   }
 
   label {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-size: 14px;
   }
 
@@ -106,6 +106,7 @@ const InputNumWrap = styled.div`
       outline: none;
       font-weight: 600;
       padding-left: 10px;
+      flex: 1;
     }
     div {
       display: flex;
