@@ -3,12 +3,13 @@ import { styled } from 'styled-components';
 interface ModalProps {
   children: React.ReactNode;
   title?: string;
+  close: () => void;
 }
 
-export default function Modal({ children, title }: ModalProps) {
+export default function Modal({ children, title, close }: ModalProps) {
   return (
     <ModalWrap>
-      <Overlay />
+      <Overlay onClick={close} />
       <ModalInner>
         {title && (
           <>

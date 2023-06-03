@@ -5,6 +5,7 @@ import ColorBlock from '../properties/shared/ColorBlock';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { setWorkspace } from '@/features/editorSlice';
+import { toggleChooseTempleteModal } from '@/features/appSlice';
 
 export default function CustomizeTool() {
   const dispatch = useAppDispatch();
@@ -41,11 +42,15 @@ export default function CustomizeTool() {
     handleBgChange(color);
   };
 
+  const handleShowModal = () => {
+    dispatch(toggleChooseTempleteModal(true));
+  };
+
   return (
     <CustomizeWrap>
       <div className="cust-top">
         <BtnPrimary>
-          <button>Resize Template</button>
+          <button onClick={handleShowModal}>Resize Template</button>
         </BtnPrimary>
         <p>
           1024 <span>&times;</span> 768px

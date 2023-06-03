@@ -2,8 +2,11 @@ import { styled } from 'styled-components';
 import Modal from '../common/Modal';
 import CustomInput from '../common/CustomInput';
 import { useState } from 'react';
+import { useAppDispatch } from '@/app/hooks';
+import { toggleChooseTempleteModal } from '@/features/appSlice';
 
 export default function ChooseCanvasSize() {
+  const dispatch = useAppDispatch();
   const [width, setWidth] = useState('100');
   const [height, setHeight] = useState('200');
 
@@ -15,8 +18,12 @@ export default function ChooseCanvasSize() {
     setHeight(val);
   };
 
+  const closeModal = () => {
+    dispatch(toggleChooseTempleteModal(false));
+  };
+
   return (
-    <Modal title="Choose Template Size">
+    <Modal title="Choose Template Size" close={closeModal}>
       <CCSizeWrap>
         <div className="canvas-size-wrap">
           <div className="canvas-size">
