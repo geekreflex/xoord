@@ -5,6 +5,7 @@ interface RangeSliderProps {
   min?: string;
   max?: string;
   value: string;
+  label?: string;
 }
 
 export default function RangeSlider({
@@ -12,9 +13,11 @@ export default function RangeSlider({
   min = '1',
   max = '100',
   value,
+  label,
 }: RangeSliderProps) {
   return (
     <RangeWrap>
+      {label && <label>{label}</label>}
       <input
         type="range"
         min={min}
@@ -23,12 +26,16 @@ export default function RangeSlider({
         id="range"
         onChange={onChange}
       />
+      <span className="input-sec">
+        <input value={value} onChange={onChange} />
+      </span>
     </RangeWrap>
   );
 }
 
 const RangeWrap = styled.div`
-  input {
+  position: relative;
+  input[type='range'] {
     appearance: none;
     width: 100%;
     height: 3px;
@@ -42,12 +49,40 @@ const RangeWrap = styled.div`
     }
     &::-webkit-slider-thumb {
       appearance: none;
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       background-color: #ffffff;
-      border: 1px solid ${(props) => props.theme.colors.borderColor2};
+      border: 2px solid ${(props) => props.theme.colors.borderColor2};
       cursor: pointer;
+      transition: all 300ms;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  label {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  span.input-sec {
+    position: absolute;
+    right: 0;
+    bottom: 20px;
+    width: 60px;
+    border: 1px solid ${(props) => props.theme.colors.borderColor2};
+    border-radius: ${(props) => props.theme.radius.medium};
+    overflow: hidden;
+
+    input {
+      width: 100%;
+      font-weight: 600;
+      border: none;
+      outline: none;
+      flex: 1;
+      padding: 10px;
     }
   }
 `;

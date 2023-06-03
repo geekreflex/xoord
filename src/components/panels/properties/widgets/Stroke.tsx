@@ -74,9 +74,9 @@ export default function Stroke() {
           onChange={handleStrokeWidth}
           value={strokeWidth?.toString() ?? '0'}
           min="0"
+          label="Thickness"
         />
       )}
-      {strokeWidth}
     </StrokeWrap>
   );
 }
@@ -87,6 +87,7 @@ const StrokeWrap = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 20px;
   }
   .block {
     width: 40px;

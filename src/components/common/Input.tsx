@@ -4,10 +4,11 @@ import { styled } from 'styled-components';
 interface InputProps {
   value: string;
   onChange: (value: string) => void;
-  sin: string;
+  sin?: string;
+  size?: string;
 }
 
-export function Input({ value, onChange, sin }: InputProps) {
+export function Input({ value, onChange, sin, size }: InputProps) {
   const [inputValue, setInputValue] = useState(value);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +33,7 @@ export function Input({ value, onChange, sin }: InputProps) {
 
 const InputWrap = styled.div`
   border: 1px solid ${(props) => props.theme.colors.borderColor};
-  border-radius: 10px;
+  border-radius: ${(props) => props.theme.radius.medium};
   position: relative;
   display: flex;
   height: 40px;
@@ -40,7 +41,6 @@ const InputWrap = styled.div`
   padding: 0 10px;
 
   input {
-    outline: none;
     font-weight: 600;
     border: none;
     outline: none;
