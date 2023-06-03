@@ -31,3 +31,18 @@ export const DividerX = styled.div`
   background-color: ${(props) => props.theme.colors.borderColor};
   margin: 10px 0;
 `;
+
+export const BtnPrimary = styled.div`
+  display: flex;
+  button {
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 40px;
+    border-radius: ${(props) => props.theme.radius.small};
+    font-weight: 600;
+    background-color: #1521cc;
+    color: #fff;
+    cursor: pointer;
+  }
+`;

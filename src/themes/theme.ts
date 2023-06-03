@@ -21,7 +21,7 @@ export interface Theme {
 export const lightTheme: Theme = {
   colors: {
     primaryColor: '#ffffff',
-    secondaryColor: '#e8e8e8',
+    secondaryColor: '#fafafa',
     sceneBg: '#f5f4f3',
     textColor: '#111111',
     borderColor: '#dedede',

@@ -39,11 +39,11 @@ const ShapesWrap = styled.div`
   .list-items {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 10px;
+    gap: 6px;
 
     .item {
       background-color: #e8e8e8;
-      height: 65px;
+      height: 55px;
       padding: 20px;
       font-size: 11px;
       font-weight: 600;
