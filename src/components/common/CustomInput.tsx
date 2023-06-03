@@ -1,5 +1,5 @@
 import { ArrowDownIcon, ArrowUpIcon } from '@/icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
 interface CustomInputProps {
@@ -7,6 +7,7 @@ interface CustomInputProps {
   max?: number;
   label?: string;
   value: string;
+  ext?: string;
   onChange: (newValue: string) => void;
 }
 
@@ -15,9 +16,16 @@ export default function CustomInput({
   max = 100,
   label,
   value,
+  ext,
   onChange,
 }: CustomInputProps) {
   const [inputValue, setInputValue] = useState<string>(value);
+
+  useEffect(() => {
+    if (ext) {
+      setInputValue(ext);
+    }
+  }, [ext]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const sanitizedValue = e.target.value.replace(/[^0-9-]/g, '');

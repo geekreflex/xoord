@@ -5,19 +5,26 @@ import { useState } from 'react';
 import { useAppDispatch } from '@/app/hooks';
 import { toggleReszieTempleteModal } from '@/features/appSlice';
 import ToggleSwitch from '../common/ToggleSwitch';
+import { BtnPrimary } from '@/styles/global';
 
 export default function ResizeTemplate() {
   const dispatch = useAppDispatch();
+  const [aspect, setAspect] = useState(false);
   const [width, setWidth] = useState('100');
   const [height, setHeight] = useState('200');
-  const [aspect, setAspect] = useState(false);
 
   const handleWidth = (val: string) => {
     setWidth(val);
+    if (aspect) {
+      handleHeight(val);
+    }
   };
 
   const handleHeight = (val: string) => {
     setHeight(val);
+    if (aspect) {
+      handleWidth(val);
+    }
   };
 
   const closeModal = () => {
@@ -51,6 +58,11 @@ export default function ResizeTemplate() {
               onChange={() => setAspect(!aspect)}
             />
           </div>
+        </div>
+        <div>
+          <BtnPrimary>
+            <button>Resize</button>
+          </BtnPrimary>
         </div>
       </CCSizeWrap>
     </Modal>
