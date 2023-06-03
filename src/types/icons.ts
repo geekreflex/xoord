@@ -37,4 +37,6 @@ export type IconName =
   | 'shadowIcon'
   | 'layerIcon'
   | 'arrowSwapXIcon'
-  | 'arrowSwapYIcon';
+  | 'arrowSwapYIcon'
+  | 'arrowUpIcon'
+  | 'arrowDownIcon';

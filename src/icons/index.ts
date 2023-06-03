@@ -28,6 +28,8 @@ import ShadowIcon from './ShadowIcon';
 import LayerIcon from './LayerIcon';
 import ArrowSwapXIcon from './ArrowSwapXIcon';
 import ArrowSwapYIcon from './ArrowSwapYIcon';
+import ArrowUpIcon from './ArrowUpIcon';
+import ArrowDownIcon from './ArrowDownIcon';
 
 export {
   ZoomInIcon,
@@ -60,4 +62,6 @@ export {
   LayerIcon,
   ArrowSwapXIcon,
   ArrowSwapYIcon,
+  ArrowUpIcon,
+  ArrowDownIcon,
 };
