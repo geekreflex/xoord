@@ -6,10 +6,7 @@ export default function ElementsTool() {
   const { elementTool } = useEditorContext();
 
   return (
-    <ElementsWrap>
-      {elementTool && <Shapes tool={elementTool} />}
-      <div>I'm wating to be implemented</div>
-    </ElementsWrap>
+    <ElementsWrap>{elementTool && <Shapes tool={elementTool} />}</ElementsWrap>
   );
 }
 

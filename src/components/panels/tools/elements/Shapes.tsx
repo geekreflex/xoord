@@ -38,12 +38,12 @@ const ShapesWrap = styled.div`
 
   .list-items {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 10px;
 
     .item {
       background-color: #e8e8e8;
-      height: 80px;
+      height: 65px;
       padding: 20px;
       font-size: 11px;
       font-weight: 600;

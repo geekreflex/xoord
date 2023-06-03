@@ -4,6 +4,7 @@ import { DividerX, Title } from '@/styles/global';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import ColorBlock from '../shared/ColorBlock';
+import ColorPalette from '../shared/ColorPalette';
 
 export default function Fill() {
   const { editor, selectedObjects } = useEditorContext();
@@ -52,6 +53,7 @@ export default function Fill() {
           color={selectedObject && (selectedObject.fill as string)}
           onChange={handleFill}
         />
+        {/* <ColorPalette /> */}
         <ToggleSwitch checked={hasFill} onChange={handleToggleFill} id="fill" />
       </div>
     </FillWrap>

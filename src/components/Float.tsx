@@ -1,13 +1,11 @@
 import { styled } from 'styled-components';
 import { Gridline } from './toolbox';
-import ResizeCanvas from './toolbox/ResizeCanvas';
 import Layers from './toolbox/Layers';
 
 export default function Float() {
   return (
     <FloatWrap>
       <Gridline />
-      <ResizeCanvas />
       <Layers />
     </FloatWrap>
   );

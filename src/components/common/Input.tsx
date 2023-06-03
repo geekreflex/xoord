@@ -8,7 +8,7 @@ interface InputProps {
   size?: string;
 }
 
-export function Input({ value, onChange, sin, size }: InputProps) {
+export function Input({ value, onChange, sin }: InputProps) {
   const [inputValue, setInputValue] = useState(value);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

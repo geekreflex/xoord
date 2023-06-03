@@ -16,8 +16,8 @@ const items: IItems[] = [
   { name: 'Images', icon: 'imageIcon' },
   { name: 'Text', icon: 'textIcon' },
   { name: 'Templates', icon: 'grid3Icon' },
-  { name: 'Backgrounds', icon: 'bgIcon' },
   { name: 'Draw', icon: 'brushIcon' },
+  { name: 'Customize', icon: 'bgIcon' },
 ];
 
 export default function Sidebar() {
