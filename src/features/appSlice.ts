@@ -1,22 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 interface AppState {
-  chooseTemplateModal: boolean;
+  resizeTemplateModal: boolean;
 }
 
 const initialState: AppState = {
-  chooseTemplateModal: false,
+  resizeTemplateModal: false,
 };
 
 export const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    toggleChooseTempleteModal: (state, action) => {
-      state.chooseTemplateModal = action.payload;
+    toggleReszieTempleteModal: (state, action) => {
+      state.resizeTemplateModal = action.payload;
     },
   },
 });
 
-export const { toggleChooseTempleteModal } = appSlice.actions;
+export const { toggleReszieTempleteModal } = appSlice.actions;
 export default appSlice.reducer;

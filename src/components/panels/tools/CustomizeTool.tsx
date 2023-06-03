@@ -5,7 +5,7 @@ import ColorBlock from '../properties/shared/ColorBlock';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { setWorkspace } from '@/features/editorSlice';
-import { toggleChooseTempleteModal } from '@/features/appSlice';
+import { toggleReszieTempleteModal } from '@/features/appSlice';
 
 export default function CustomizeTool() {
   const dispatch = useAppDispatch();
@@ -43,7 +43,7 @@ export default function CustomizeTool() {
   };
 
   const handleShowModal = () => {
-    dispatch(toggleChooseTempleteModal(true));
+    dispatch(toggleReszieTempleteModal(true));
   };
 
   return (

@@ -5,11 +5,11 @@ import Navbar from './Navbar';
 import Float from './Float';
 import PropertiesPanel from './panels/properties/PropertiesPanel';
 import ToolsPanel from './panels/tools/ToolsPanel';
-import ChooseCanvasSize from './layouts/ChooseCanvasSize';
 import { useAppSelector } from '@/app/hooks';
+import ResizeTemplate from './layouts/ResizeTemplate';
 
 export default function Stage() {
-  const { chooseTemplateModal } = useAppSelector((state) => state.app);
+  const { resizeTemplateModal } = useAppSelector((state) => state.app);
   return (
     <>
       <StageWrap>
@@ -24,7 +24,7 @@ export default function Stage() {
           <ToolsPanel />
         </Main>
       </StageWrap>
-      {chooseTemplateModal && <ChooseCanvasSize />}
+      {resizeTemplateModal && <ResizeTemplate />}
     </>
   );
 }

@@ -1,23 +1,45 @@
+import { useId } from 'react';
 import { styled } from 'styled-components';
 
 interface ToggleProps {
   checked: boolean;
   onChange: () => void;
-  id: string;
+  label?: string;
 }
 
-export default function ToggleSwitch({ checked, onChange, id }: ToggleProps) {
+export default function ToggleSwitch({
+  checked,
+  onChange,
+  label,
+}: ToggleProps) {
   return (
     <ToggleWrap>
-      <label className="switch">
-        <input type="checkbox" checked={checked} onChange={onChange} id={id} />
-        <span className="slider" />
+      <label>
+        <div className="switch">
+          <input
+            type="checkbox"
+            checked={checked}
+            onChange={onChange}
+            id={useId()}
+          />
+          <span className="slider" />
+        </div>
+        {label && <span className="toggle-label">{label}</span>}
       </label>
     </ToggleWrap>
   );
 }
 
 const ToggleWrap = styled.div`
+  label {
+    display: flex;
+    align-items: center;
+
+    .toggle-label {
+      margin-left: 20px;
+      font-size: 14px;
+    }
+  }
   .switch {
     position: relative;
     display: flex;

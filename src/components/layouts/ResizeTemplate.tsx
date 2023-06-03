@@ -3,12 +3,14 @@ import Modal from '../common/Modal';
 import CustomInput from '../common/CustomInput';
 import { useState } from 'react';
 import { useAppDispatch } from '@/app/hooks';
-import { toggleChooseTempleteModal } from '@/features/appSlice';
+import { toggleReszieTempleteModal } from '@/features/appSlice';
+import ToggleSwitch from '../common/ToggleSwitch';
 
-export default function ChooseCanvasSize() {
+export default function ResizeTemplate() {
   const dispatch = useAppDispatch();
   const [width, setWidth] = useState('100');
   const [height, setHeight] = useState('200');
+  const [aspect, setAspect] = useState(false);
 
   const handleWidth = (val: string) => {
     setWidth(val);
@@ -19,11 +21,11 @@ export default function ChooseCanvasSize() {
   };
 
   const closeModal = () => {
-    dispatch(toggleChooseTempleteModal(false));
+    dispatch(toggleReszieTempleteModal(false));
   };
 
   return (
-    <Modal title="Choose Template Size" close={closeModal}>
+    <Modal title="Resize Template" close={closeModal}>
       <CCSizeWrap>
         <div className="canvas-size-wrap">
           <div className="canvas-size">
@@ -42,6 +44,13 @@ export default function ChooseCanvasSize() {
               onChange={handleHeight}
             />
           </div>
+          <div>
+            <ToggleSwitch
+              checked={aspect}
+              label="Lock Aspect Ratio"
+              onChange={() => setAspect(!aspect)}
+            />
+          </div>
         </div>
       </CCSizeWrap>
     </Modal>
@@ -58,6 +67,7 @@ const CCSizeWrap = styled.div`
     .canvas-size {
       display: flex;
       gap: 20px;
+      margin-bottom: 20px;
     }
   }
 `;
