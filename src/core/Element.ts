@@ -37,6 +37,7 @@ export class Element {
   public addRectangle() {
     const rectangle = new fabric.Rect({
       ...RECTANGLE,
+      ...this.size(),
       id: this.id(),
       name: 'rect',
     });
@@ -88,10 +89,21 @@ export class Element {
     this.addObject(star);
   }
 
-  private addObject(obj: fabric.Object) {
-    this.editor.canvas.centerObject(obj).add(obj);
-    this.editor.canvas.setActiveObject(obj).calcOffset();
+  private size() {
+    const workspaceWidth = this.editor.workspace?.width;
+    const workspaceHeight = this.editor.workspace?.height;
+    const relativeWidth = workspaceWidth! * (50 / 100);
+    const relativeHeight = workspaceHeight! * (25 / 100);
 
+    return {
+      width: relativeWidth,
+      height: relativeHeight,
+    };
+  }
+
+  private addObject(obj: fabric.Object) {
+    this.editor.canvas.add(obj);
+    this.editor.canvas.setActiveObject(obj);
     this.editor.canvas.renderAll();
   }
 
