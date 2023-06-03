@@ -34,4 +34,6 @@ export default function ToolsPanel() {
   );
 }
 
-const ToolsPanelWrap = styled.div``;
+const ToolsPanelWrap = styled.div`
+  width: 250px;
+`;

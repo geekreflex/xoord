@@ -32,9 +32,14 @@ export default function ColorBlock({ color, onChange }: CBType) {
 const CBWrap = styled.div`
   display: flex;
 
+  div {
+    flex: 1;
+  }
+
   input {
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
+    position: absolute;
   }
 `;

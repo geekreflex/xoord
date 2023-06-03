@@ -44,7 +44,7 @@ interface DW {
 
 const DrawerWrap = styled.div<DW>`
   position: fixed;
-  min-width: 270px;
+  min-width: 200px;
   max-width: 400px;
   top: 50;
   left: ${(props) => `${props.pos === 'left' ? props.ml : 'auto'}px`};

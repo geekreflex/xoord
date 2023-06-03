@@ -1,8 +1,11 @@
 import { useEditorContext } from '@/context/EditorContext';
 import { BtnPrimary } from '@/styles/global';
 import { styled } from 'styled-components';
+import ColorBlock from '../properties/shared/ColorBlock';
+import { useEffect, useState } from 'react';
 
 export default function CustomizeTool() {
+  const [color, setColor] = useState('');
   const { editor } = useEditorContext();
   const colors = [
     { color: '#18bd48' },
@@ -10,15 +13,28 @@ export default function CustomizeTool() {
     { color: '#dc7780' },
     { color: '#93bee6' },
     { color: '#aab290' },
+    { color: '#e8e8e8' },
     { color: '#7ac2b0' },
     { color: '#542a5d' },
     { color: '#cf7205' },
   ];
 
+  useEffect(() => {
+    if (editor && editor.workspace) {
+      setColor(editor.workspace.fill as string);
+    }
+  }, [editor]);
+
   const handleBgChange = (color: string) => {
     if (editor) {
       editor.setWorkspaceBg(color);
     }
+  };
+
+  const handleColor = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const color = e.target.value;
+    setColor(color);
+    handleBgChange(color);
   };
 
   return (
@@ -34,6 +50,7 @@ export default function CustomizeTool() {
       <div className="preset">
         <p>Background Color</p>
         <div className="bg-color-preset">
+          <ColorBlock color={color} onChange={handleColor} />
           {colors.map((color) => (
             <div
               onClick={() => handleBgChange(color.color)}
