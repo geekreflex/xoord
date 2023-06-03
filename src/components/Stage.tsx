@@ -5,21 +5,25 @@ import Navbar from './Navbar';
 import Float from './Float';
 import PropertiesPanel from './panels/properties/PropertiesPanel';
 import ToolsPanel from './panels/tools/ToolsPanel';
+import ChooseCanvasSize from './layouts/ChooseCanvasSize';
 
 export default function Stage() {
   return (
-    <StageWrap>
-      <Navbar />
-      <Main>
-        <Sidebar />
-        <Scene>
-          <Canvas />
-        </Scene>
-        <Float />
-        <PropertiesPanel />
-        <ToolsPanel />
-      </Main>
-    </StageWrap>
+    <>
+      <StageWrap>
+        <Navbar />
+        <Main>
+          <Sidebar />
+          <Scene>
+            <Canvas />
+          </Scene>
+          <Float />
+          <PropertiesPanel />
+          <ToolsPanel />
+        </Main>
+      </StageWrap>
+      <ChooseCanvasSize />
+    </>
   );
 }
 
