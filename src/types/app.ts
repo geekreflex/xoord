@@ -4,7 +4,7 @@ export type ToolType =
   | 'text'
   | 'elements'
   | 'templates'
-  | 'backgrounds'
+  | 'customize'
   | 'images';
 
 export interface IPos {

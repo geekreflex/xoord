@@ -2,6 +2,7 @@ import Drawer from '@/components/common/Drawer';
 import { useAppContext } from '@/context/AppContext';
 import { styled } from 'styled-components';
 import ElementsTool from './ElementsTool';
+import CustomizeTool from './CustomizeTool';
 
 export default function ToolsPanel() {
   const { toolPanel, closeToolPanel } = useAppContext();
@@ -14,6 +15,8 @@ export default function ToolsPanel() {
     switch (toolPanel) {
       case 'elements':
         return <ElementsTool />;
+      case 'customize':
+        return <CustomizeTool />;
       default:
         return null;
     }
