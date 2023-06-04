@@ -60,8 +60,9 @@ export default function CustomizeTool() {
         <p>Background Color</p>
         <div className="bg-color-preset">
           <ColorBlock color={workspace.fill} onChange={handleColor} />
-          {colors.map((color) => (
+          {colors.map((color, index) => (
             <div
+              key={index}
               onClick={() => handleBgChange(color.color)}
               className="block"
               style={{
