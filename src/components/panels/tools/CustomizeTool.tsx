@@ -53,7 +53,7 @@ export default function CustomizeTool() {
           <button onClick={handleShowModal}>Resize Template</button>
         </BtnPrimary>
         <p>
-          1024 <span>&times;</span> 768px
+          {workspace.width} <span>&times;</span> {workspace.height}px
         </p>
       </div>
       <div className="preset">
