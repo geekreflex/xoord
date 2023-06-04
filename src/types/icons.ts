@@ -39,4 +39,5 @@ export type IconName =
   | 'arrowSwapXIcon'
   | 'arrowSwapYIcon'
   | 'arrowUpIcon'
-  | 'arrowDownIcon';
+  | 'arrowDownIcon'
+  | 'settingsIcon';
