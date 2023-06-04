@@ -1,12 +1,6 @@
-interface SizeProps {
-  name: string;
-  width: number;
-  height: number;
-  unit: string;
-  categrory: string;
-}
+import { SizeProps } from '@/types/template';
 
-export const SizePresets: SizeProps[] = [
+export const sizePresets: SizeProps[] = [
   {
     name: 'Presentation (4:3)',
     width: 1024,

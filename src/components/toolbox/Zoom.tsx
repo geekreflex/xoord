@@ -18,7 +18,9 @@ export default function Zoom() {
   const { editor } = useEditorContext();
 
   useEffect(() => {
-    dispatch(setCurrentZoom(editor?.canvas.getZoom()));
+    if (editor) {
+      dispatch(setCurrentZoom(editor?.canvas.getZoom()));
+    }
   }, [workspace, editor]);
 
   const updateCurrentZoom = () => {

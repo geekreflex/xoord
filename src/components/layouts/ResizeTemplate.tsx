@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import Modal from '../common/Modal';
 import CustomInput from '../common/CustomInput';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { toggleReszieTempleteModal } from '@/features/appSlice';
 import ToggleSwitch from '../common/ToggleSwitch';
@@ -9,6 +9,10 @@ import { BtnPrimary, BtnSecondary } from '@/styles/global';
 import { ArrowDownIcon } from '@/icons';
 import { useEditorContext } from '@/context/EditorContext';
 import { setWorkspace } from '@/features/editorSlice';
+import { sizePresets } from '@/data/templates/size';
+import useClickOutside from '@/hooks/useClickOutside';
+import { SizeProps } from '@/types/template';
+import { useDispatch } from 'react-redux';
 
 export default function ResizeTemplate() {
   const dispatch = useAppDispatch();
@@ -86,21 +90,57 @@ export default function ResizeTemplate() {
 }
 
 function Dropdown() {
-  const [selectedTemplate, setSelectedTemplate] = useState('');
+  const dispatch = useDispatch();
+  const [visible, setVisible] = useState(false);
+  const [selectedTemplate, setSelectedTemplate] = useState<SizeProps | null>(
+    sizePresets[0]
+  );
+  const ref = useRef<HTMLDivElement>(null);
+
+  const toggleDropdown = () => {
+    setVisible(!visible);
+  };
+
+  const handleItemClick = (item: SizeProps) => {
+    setSelectedTemplate(item);
+    setVisible(false);
+    dispatch(setWorkspace({ width: item.width, height: item.height }));
+  };
+
+  useClickOutside(ref, () => setVisible(false));
 
   return (
-    <DropWrap>
+    <DropWrap ref={ref}>
       <p className="dropdown-title">Template Size Presets</p>
-      <button className="dropdown-btn">
+      <button className="dropdown-btn" onClick={toggleDropdown}>
         <div className="dropdown-btn-text">
-          <p>Letter</p>
-          <p>8.5&times;11''</p>
+          <p>{selectedTemplate?.name}</p>
+          <p>
+            {selectedTemplate?.width}&times;{selectedTemplate?.height}px
+          </p>
         </div>
         <span className="dropdown-btn-icon">
           <ArrowDownIcon />
         </span>
       </button>
-      <div></div>
+      {visible && (
+        <DropItem>
+          <div className="drop-item-wrap">
+            {sizePresets.map((item) => (
+              <div
+                className={`drop-item ${
+                  selectedTemplate && selectedTemplate.name === item.name
+                    ? 'selected-item'
+                    : ''
+                }`}
+                onClick={() => handleItemClick(item)}
+              >
+                {item.name}
+              </div>
+            ))}
+          </div>
+        </DropItem>
+      )}
     </DropWrap>
   );
 }
@@ -108,7 +148,7 @@ function Dropdown() {
 const CCSizeWrap = styled.div`
   width: 450px;
   display: flex;
-  gap: 10px;
+  gap: 20px;
   flex-direction: column;
   .canvas-size-wrap {
     padding: 20px;
@@ -135,6 +175,7 @@ const CCSizeWrap = styled.div`
 const DropWrap = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
 
   .dropdown-title {
     font-size: 14px;
@@ -147,7 +188,7 @@ const DropWrap = styled.div`
     align-items: center;
     border: none;
     outline: none;
-    height: 35px;
+    height: 38px;
     padding: 0 8px;
     border-radius: ${(props) => props.theme.radius.small};
     border: 1px solid ${(props) => props.theme.colors.borderColor};
@@ -160,6 +201,7 @@ const DropWrap = styled.div`
     display: flex;
     flex: 1;
     justify-content: space-between;
+    font-size: 14px;
   }
 
   .dropdown-btn-icon {
@@ -169,5 +211,41 @@ const DropWrap = styled.div`
     path {
       stroke-width: 4px;
     }
+  }
+`;
+
+const DropItem = styled.div`
+  position: absolute;
+  width: 100%;
+  background-color: ${(props) => props.theme.colors.primaryColor};
+  border: 1px solid ${(props) => props.theme.colors.borderColor};
+  border-radius: ${(props) => props.theme.radius.small};
+  box-shadow: ${(props) => props.theme.shadow.shadow1};
+  padding: 5px;
+  top: 65px;
+  height: 180px;
+  z-index: 999;
+  overflow-y: auto;
+
+  .drop-item-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .drop-item {
+    font-size: 14px;
+    border: 1px solid ${(props) => props.theme.colors.borderColor}50;
+    padding: 5px;
+    border-radius: ${(props) => props.theme.radius.small};
+    cursor: pointer;
+    &:hover {
+      border: 1px solid ${(props) => props.theme.colors.borderColor};
+      background-color: ${(props) => props.theme.colors.secondaryColor};
+    }
+  }
+
+  .selected-item {
+    border: 1px solid lightblue;
   }
 `;
