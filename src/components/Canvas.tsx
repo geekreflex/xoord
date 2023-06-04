@@ -5,11 +5,12 @@ import { fabric } from 'fabric';
 import 'fabric-history';
 
 import { useEditorContext } from '@/context/EditorContext';
-import { useDispatch } from 'react-redux';
 import { setWorkspace } from '@/features/editorSlice';
+import { useAppDispatch, useAppSelector } from '@/app/hooks';
 
 export default function Canvas() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  const { templateSize } = useAppSelector((state) => state.editor);
   const { setEditor } = useEditorContext();
 
   useEffect(() => {
@@ -21,6 +22,11 @@ export default function Canvas() {
 
     const workspaceEl = document.getElementById('workspace');
     const option = { width: 1200, height: 1200 };
+
+    if (templateSize) {
+      (option.width = templateSize.width),
+        (option.height = templateSize.height);
+    }
 
     const editor = new Editor(fabricCanvas, workspaceEl!, option);
     setEditor(editor);

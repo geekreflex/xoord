@@ -8,24 +8,25 @@ import ToggleSwitch from '../common/ToggleSwitch';
 import { BtnPrimary, BtnSecondary } from '@/styles/global';
 import { ArrowDownIcon } from '@/icons';
 import { useEditorContext } from '@/context/EditorContext';
-import { setWorkspace } from '@/features/editorSlice';
+import { setSelectedTemplateSize, setWorkspace } from '@/features/editorSlice';
 import { templateSizePresets } from '@/data/templates/size';
 import useClickOutside from '@/hooks/useClickOutside';
 import { TemplateSizeProps } from '@/types/editor';
-import { useDispatch } from 'react-redux';
 
 export default function ResizeTemplate() {
   const dispatch = useAppDispatch();
   const { editor } = useEditorContext();
-  const { workspace } = useAppSelector((state) => state.editor);
+  const { templateSize } = useAppSelector((state) => state.editor);
   const [aspect, setAspect] = useState(false);
   const [width, setWidth] = useState('');
   const [height, setHeight] = useState('');
 
   useEffect(() => {
-    setWidth(workspace.width.toString());
-    setHeight(workspace.height.toString());
-  }, [workspace]);
+    if (templateSize) {
+      setWidth(templateSize.width.toString());
+      setHeight(templateSize.height.toString());
+    }
+  }, [templateSize]);
 
   const handleWidth = (val: string) => {
     setWidth(val);
@@ -90,10 +91,10 @@ export default function ResizeTemplate() {
 }
 
 function Dropdown() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  const { templateSize } = useAppSelector((state) => state.editor);
   const [visible, setVisible] = useState(false);
-  const [selectedTemplate, setSelectedTemplate] =
-    useState<TemplateSizeProps | null>(templateSizePresets[0]);
+
   const ref = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = () => {
@@ -101,8 +102,8 @@ function Dropdown() {
   };
 
   const handleItemClick = (item: TemplateSizeProps) => {
-    setSelectedTemplate(item);
     setVisible(false);
+    dispatch(setSelectedTemplateSize(item));
     dispatch(setWorkspace({ width: item.width, height: item.height }));
   };
 
@@ -113,9 +114,9 @@ function Dropdown() {
       <p className="dropdown-title">Template Size Presets</p>
       <button className="dropdown-btn" onClick={toggleDropdown}>
         <div className="dropdown-btn-text">
-          <p>{selectedTemplate?.name}</p>
+          <p>{templateSize?.name}</p>
           <p>
-            {selectedTemplate?.width}&times;{selectedTemplate?.height}px
+            {templateSize?.width}&times;{templateSize?.height}px
           </p>
         </div>
         <span className="dropdown-btn-icon">
@@ -128,7 +129,7 @@ function Dropdown() {
             {templateSizePresets.map((item) => (
               <div
                 className={`drop-item ${
-                  selectedTemplate && selectedTemplate.name === item.name
+                  templateSize && templateSize.name === item.name
                     ? 'selected-item'
                     : ''
                 }`}

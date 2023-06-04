@@ -43,9 +43,13 @@ export const editorSlice = createSlice({
       console.log('DATA', data);
       state.workspace = data;
     },
+    setSelectedTemplateSize: (state, action) => {
+      state.templateSize = action.payload;
+    },
   },
 });
 
-export const { setCurrentZoom, setWorkspace } = editorSlice.actions;
+export const { setCurrentZoom, setWorkspace, setSelectedTemplateSize } =
+  editorSlice.actions;
 
 export default editorSlice.reducer;
