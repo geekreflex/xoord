@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import Icon from './common/Icon';
+import Icon from '../common/Icon';
 import { IconName } from '@/types/icons';
 import { useAppContext } from '@/context/AppContext';
 import { ToolType } from '@/types/app';

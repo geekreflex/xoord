@@ -1,5 +1,6 @@
 export interface Theme {
   colors: {
+    accent: string;
     primaryColor: string;
     secondaryColor: string;
     sceneBg: string;
@@ -20,6 +21,7 @@ export interface Theme {
 
 export const lightTheme: Theme = {
   colors: {
+    accent: '#1521cc',
     primaryColor: '#ffffff',
     secondaryColor: '#fafafa',
     sceneBg: '#f5f4f3',
@@ -40,6 +42,7 @@ export const lightTheme: Theme = {
 
 export const darkTheme: Theme = {
   colors: {
+    accent: '#1521cc',
     primaryColor: '#2c2c2c',
     secondaryColor: '#1e1e1e',
     sceneBg: '#1e1e1e',

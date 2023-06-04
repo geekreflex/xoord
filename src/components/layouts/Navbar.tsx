@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
-import History from './toolbox/History';
-import DupDelLock from './toolbox/DupDelLock';
-import { Zoom } from './toolbox';
+import History from '../toolbox/History';
+import DupDelLock from '../toolbox/DupDelLock';
+import { Zoom } from '../toolbox';
 
 export default function Navbar() {
   return (

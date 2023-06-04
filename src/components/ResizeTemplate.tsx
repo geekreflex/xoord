@@ -1,10 +1,10 @@
 import { styled } from 'styled-components';
-import Modal from '../common/Modal';
-import CustomInput from '../common/CustomInput';
+import Modal from './common/Modal';
+import CustomInput from './common/CustomInput';
 import { useEffect, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { toggleReszieTempleteModal } from '@/features/appSlice';
-import ToggleSwitch from '../common/ToggleSwitch';
+import ToggleSwitch from './common/ToggleSwitch';
 import { BtnPrimary, BtnSecondary } from '@/styles/global';
 import { ArrowDownIcon } from '@/icons';
 import { useEditorContext } from '@/context/EditorContext';
@@ -104,7 +104,6 @@ function Dropdown() {
   const handleItemClick = (item: TemplateSizeProps) => {
     setVisible(false);
     dispatch(setSelectedTemplateSize(item));
-    dispatch(setWorkspace({ width: item.width, height: item.height }));
   };
 
   useClickOutside(ref, () => setVisible(false));
@@ -238,14 +237,18 @@ const DropItem = styled.div`
     border: 1px solid ${(props) => props.theme.colors.borderColor}50;
     padding: 5px;
     border-radius: ${(props) => props.theme.radius.small};
+    background-color: ${(props) => props.theme.colors.secondaryColor};
     cursor: pointer;
     &:hover {
       border: 1px solid ${(props) => props.theme.colors.borderColor};
-      background-color: ${(props) => props.theme.colors.secondaryColor};
+      background-color: ${(props) => props.theme.colors.accent}10;
     }
   }
 
   .selected-item {
-    border: 1px solid lightblue;
+    border: 1px solid ${(props) => props.theme.colors.accent}30;
+    &:hover {
+      background-color: ${(props) => props.theme.colors.accent}10;
+    }
   }
 `;

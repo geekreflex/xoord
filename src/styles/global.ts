@@ -50,7 +50,7 @@ export const BtnSecondary = styled.div`
 
 export const BtnPrimary = styled(BtnSecondary)`
   button {
-    background-color: #1521cc;
+    background-color: ${(props) => props.theme.colors.accent};
     color: #fff;
   }
 `;

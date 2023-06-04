@@ -1,11 +1,11 @@
 import { styled } from 'styled-components';
-import { Gridline } from './toolbox';
-import Layers from './toolbox/Layers';
+// import { Gridline } from '../toolbox';
+import Layers from '../toolbox/Layers';
 
 export default function Float() {
   return (
     <FloatWrap>
-      <Gridline />
+      {/* <Gridline /> */}
       <Layers />
     </FloatWrap>
   );

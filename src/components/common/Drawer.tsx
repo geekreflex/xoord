@@ -46,7 +46,7 @@ const DrawerWrap = styled.div<DW>`
   position: fixed;
   min-width: 200px;
   max-width: 400px;
-  top: 50;
+  top: 60px;
   left: ${(props) => `${props.pos === 'left' ? props.ml : 'auto'}px`};
   right: ${(props) => `${props.pos === 'right' ? 0 : 'auto'}`};
   height: calc(100vh - 50px);
@@ -89,5 +89,8 @@ const DrawerTop = styled.div`
 const DrawerMain = styled.div<{ pad?: number }>`
   flex: 1;
   overflow-y: auto;
-  padding: ${(props) => `10px ${props.pad}px`};
+  overflow-x: hidden;
+  padding: ${(props) => `0px ${props.pad}px`};
+  padding-top: 10px;
+  width: 100%;
 `;

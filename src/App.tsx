@@ -1,4 +1,4 @@
-import Stage from './components/Stage';
+import Layout from './components/Layout';
 import Providers from './context';
 import GlobalCSS from './styles/global';
 
@@ -7,7 +7,7 @@ export default function App() {
     <>
       <Providers>
         <GlobalCSS />
-        <Stage />
+        <Layout />
       </Providers>
     </>
   );
