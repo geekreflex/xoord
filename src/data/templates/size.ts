@@ -1,6 +1,6 @@
-import { SizeProps } from '@/types/template';
+import { TemplateSizeProps } from '@/types/editor';
 
-export const sizePresets: SizeProps[] = [
+export const templateSizePresets: TemplateSizeProps[] = [
   {
     name: 'Presentation (4:3)',
     width: 1024,

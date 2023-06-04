@@ -9,9 +9,9 @@ import { BtnPrimary, BtnSecondary } from '@/styles/global';
 import { ArrowDownIcon } from '@/icons';
 import { useEditorContext } from '@/context/EditorContext';
 import { setWorkspace } from '@/features/editorSlice';
-import { sizePresets } from '@/data/templates/size';
+import { templateSizePresets } from '@/data/templates/size';
 import useClickOutside from '@/hooks/useClickOutside';
-import { SizeProps } from '@/types/template';
+import { TemplateSizeProps } from '@/types/editor';
 import { useDispatch } from 'react-redux';
 
 export default function ResizeTemplate() {
@@ -92,16 +92,15 @@ export default function ResizeTemplate() {
 function Dropdown() {
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
-  const [selectedTemplate, setSelectedTemplate] = useState<SizeProps | null>(
-    sizePresets[0]
-  );
+  const [selectedTemplate, setSelectedTemplate] =
+    useState<TemplateSizeProps | null>(templateSizePresets[0]);
   const ref = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = () => {
     setVisible(!visible);
   };
 
-  const handleItemClick = (item: SizeProps) => {
+  const handleItemClick = (item: TemplateSizeProps) => {
     setSelectedTemplate(item);
     setVisible(false);
     dispatch(setWorkspace({ width: item.width, height: item.height }));
@@ -126,7 +125,7 @@ function Dropdown() {
       {visible && (
         <DropItem>
           <div className="drop-item-wrap">
-            {sizePresets.map((item) => (
+            {templateSizePresets.map((item) => (
               <div
                 className={`drop-item ${
                   selectedTemplate && selectedTemplate.name === item.name

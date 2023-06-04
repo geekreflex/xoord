@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '@/app/store';
+import { TemplateSizeProps } from '@/types/editor';
+import { templateSizePresets } from '@/data/templates/size';
 
 interface EditorState {
   currentZoom: number;
@@ -9,6 +11,8 @@ interface EditorState {
     width: number;
     height: number;
   };
+  templateSize: TemplateSizeProps | null;
+  template: null;
 }
 
 const initialState: EditorState = {
@@ -18,6 +22,8 @@ const initialState: EditorState = {
     width: 0,
     height: 0,
   },
+  templateSize: templateSizePresets[0],
+  template: null,
 };
 
 export const editorSlice = createSlice({

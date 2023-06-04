@@ -6,3 +6,11 @@ export enum ObjectTypes {
   Selection = 'selection',
   Unknown = 'unknown',
 }
+
+export interface TemplateSizeProps {
+  name: string;
+  width: number;
+  height: number;
+  unit: string;
+  categrory: string;
+}
