@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useAppDispatch } from '@/app/hooks';
 import { toggleReszieTempleteModal } from '@/features/appSlice';
 import ToggleSwitch from '../common/ToggleSwitch';
-import { BtnPrimary } from '@/styles/global';
+import { BtnPrimary, BtnSecondary } from '@/styles/global';
 
 export default function ResizeTemplate() {
   const dispatch = useAppDispatch();
@@ -34,6 +34,7 @@ export default function ResizeTemplate() {
   return (
     <Modal title="Resize Template" close={closeModal}>
       <CCSizeWrap>
+        <Dropdown />
         <div className="canvas-size-wrap">
           <div className="canvas-size">
             <CustomInput
@@ -59,7 +60,10 @@ export default function ResizeTemplate() {
             />
           </div>
         </div>
-        <div>
+        <div className="btn-wrap">
+          <BtnSecondary>
+            <button>Close</button>
+          </BtnSecondary>
           <BtnPrimary>
             <button>Resize</button>
           </BtnPrimary>
@@ -69,8 +73,19 @@ export default function ResizeTemplate() {
   );
 }
 
+function Dropdown() {
+  return (
+    <DropWrap>
+      <div>---dropdown---</div>
+    </DropWrap>
+  );
+}
+
 const CCSizeWrap = styled.div`
   width: 450px;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
   .canvas-size-wrap {
     padding: 20px;
     background-color: ${(props) => props.theme.colors.secondaryColor};
@@ -82,4 +97,15 @@ const CCSizeWrap = styled.div`
       margin-bottom: 20px;
     }
   }
+  .btn-wrap {
+    display: flex;
+    width: 200px;
+    grid-template-columns: 10px;
+    gap: 10px;
+    div {
+      width: 100%;
+    }
+  }
 `;
+
+const DropWrap = styled.div``;

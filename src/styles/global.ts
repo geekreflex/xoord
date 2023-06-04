@@ -32,17 +32,25 @@ export const DividerX = styled.div`
   margin: 10px 0;
 `;
 
-export const BtnPrimary = styled.div`
+export const BtnSecondary = styled.div`
   display: flex;
+  width: 100%;
   button {
     border: none;
     outline: none;
     width: 100%;
-    height: 40px;
+    height: 35px;
     border-radius: ${(props) => props.theme.radius.small};
     font-weight: 600;
+    background-color: #e8e8e8;
+    color: #222222;
+    cursor: pointer;
+  }
+`;
+
+export const BtnPrimary = styled(BtnSecondary)`
+  button {
     background-color: #1521cc;
     color: #fff;
-    cursor: pointer;
   }
 `;
