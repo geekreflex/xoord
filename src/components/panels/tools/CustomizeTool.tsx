@@ -13,15 +13,15 @@ export default function CustomizeTool() {
 
   const { editor } = useEditorContext();
   const colors = [
-    { color: '#18bd48' },
-    { color: '#553da9' },
-    { color: '#dc7780' },
-    { color: '#93bee6' },
-    { color: '#aab290' },
+    { color: '#42681f' },
+    { color: '#421039' },
+    { color: '#5b0406' },
+    { color: '#033442' },
+    { color: '#1b1d1a' },
     { color: '#e8e8e8' },
-    { color: '#7ac2b0' },
-    { color: '#542a5d' },
-    { color: '#cf7205' },
+    { color: '#073573' },
+    { color: '#120120' },
+    { color: '#5a3709' },
   ];
 
   useEffect(() => {
