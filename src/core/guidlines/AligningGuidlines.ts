@@ -1,5 +1,6 @@
 import { fabric } from 'fabric';
 import { Keys, omit } from './util';
+import { COLOR } from '@/utils/constants';
 
 type VerticalLineCoords = {
   x: number;
@@ -22,7 +23,7 @@ type ACoordsAppendCenter = NonNullable<fabric.Object['aCoords']> & {
 export class AlignGuidelines {
   aligningLineMargin = 4;
   aligningLineWidth = 0.75;
-  aligningLineColor = '#F68066';
+  aligningLineColor = COLOR;
   ignoreObjTypes: IgnoreObjTypes = [];
   pickObjTypes: IgnoreObjTypes = [];
 

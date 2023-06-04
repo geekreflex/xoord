@@ -1,3 +1,4 @@
+import CustomInput from '@/components/common/CustomInput';
 import Icon from '@/components/common/Icon';
 import { Input } from '@/components/common/Input';
 import { useEditorContext } from '@/context/EditorContext';
@@ -79,42 +80,51 @@ export default function SizeCoord() {
     }
   }, []);
 
+  const handleWidthChange = (val: string) => {
+    handleDimensionChange('width', val);
+  };
+
   return (
     <SizeCoordWrap>
       <Title>Size & Coords</Title>
       <DividerX />
       <div className="main">
         <div className="size wrap-group">
-          <Input
+          <CustomInput
             value={dimensions.width}
-            onChange={(value) => handleDimensionChange('width', value)}
-            sin="W"
+            onChange={handleWidthChange}
+            label="W"
+            labelPos="left"
           />
-          <Input
+          <CustomInput
             value={dimensions.height}
             onChange={(value) => handleDimensionChange('height', value)}
-            sin="H"
+            label="H"
+            labelPos="left"
           />
-          <div className="lock btn-numb">
-            <Icon name="unlockIcon" hover={false} size="small" />
-          </div>
+          {/* <div className="lock btn-numb">
+            <Icon name="unlockIcon" hover={true} size="small" />
+          </div> */}
         </div>
         <div className="coord wrap-group">
-          <Input
+          <CustomInput
             value={dimensions.x}
             onChange={(value) => handleDimensionChange('x', value)}
-            sin="X"
+            label="X"
+            labelPos="left"
           />
-          <Input
+          <CustomInput
             value={dimensions.y}
             onChange={(value) => handleDimensionChange('y', value)}
-            sin="Y"
+            label="Y"
+            labelPos="left"
           />
-          <Input
+          {/* <CustomInput
             value={dimensions.angle}
             onChange={(value) => handleDimensionChange('angle', value)}
-            sin="R"
-          />
+            label="R"
+            labelPos="left"
+          /> */}
         </div>
       </div>
     </SizeCoordWrap>
@@ -136,7 +146,7 @@ const SizeCoordWrap = styled.div`
   }
 
   .btn-numb {
-    width: 33%;
+    width: 15%;
     border: none;
     outline: none;
     display: flex;
@@ -145,5 +155,9 @@ const SizeCoordWrap = styled.div`
     border-radius: ${(props) => props.theme.radius.medium};
     font-size: 13px;
     cursor: pointer;
+  }
+
+  .coord {
+    width: 100%;
   }
 `;

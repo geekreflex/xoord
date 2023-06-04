@@ -87,6 +87,6 @@ const IconWrap = styled.button<{
 
   svg,
   path {
-    stroke-width: 2px;
+    /* stroke-width: 2px; */
   }
 `;

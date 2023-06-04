@@ -26,8 +26,9 @@ export default function RangeSlider({
         id="range"
         onChange={onChange}
       />
+
       <span className="input-sec">
-        <input value={value} onChange={onChange} />
+        <input value={value} onChange={onChange} type="number" />
       </span>
     </RangeWrap>
   );
@@ -71,9 +72,9 @@ const RangeWrap = styled.div`
     position: absolute;
     right: 0;
     bottom: 20px;
-    width: 60px;
+    width: 50px;
     border: 1px solid ${(props) => props.theme.colors.borderColor2};
-    border-radius: ${(props) => props.theme.radius.medium};
+    border-radius: ${(props) => props.theme.radius.small};
     overflow: hidden;
 
     input {
@@ -83,6 +84,12 @@ const RangeWrap = styled.div`
       outline: none;
       flex: 1;
       padding: 10px;
+      height: 30px;
+    }
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
     }
   }
 `;

@@ -25,7 +25,7 @@ export const lightTheme: Theme = {
     primaryColor: '#ffffff',
     secondaryColor: '#fafafa',
     sceneBg: '#f5f4f3',
-    textColor: '#181818',
+    textColor: '#222222',
     borderColor: '#dedede',
     borderColor2: '#c5c5c5',
     hoverColor1: '#e5e5e5',

@@ -7,16 +7,17 @@ interface CustomInputProps {
   max?: number;
   label?: string;
   value: string;
-  ext?: string;
+  labelPos?: string;
   onChange: (newValue: string) => void;
 }
 
 export default function CustomInput({
   min = 1,
-  max = 100,
+  max = 100000,
   label,
   value,
   onChange,
+  labelPos,
 }: CustomInputProps) {
   const [inputValue, setInputValue] = useState<string>(value);
 
@@ -55,8 +56,13 @@ export default function CustomInput({
   };
 
   return (
-    <InputNumWrap>
-      {label && <label>{label}</label>}
+    <InputNumWrap pos={labelPos}>
+      {label && (
+        <label>
+          {label}
+          {labelPos ? ':' : ''}
+        </label>
+      )}
       <div className="input-inner">
         <div className="input-main">
           <input
@@ -81,10 +87,13 @@ export default function CustomInput({
   );
 }
 
-const InputNumWrap = styled.div`
+const InputNumWrap = styled.div<{ pos: string | undefined }>`
   width: 100%;
   display: flex;
-  flex-direction: column;
+  align-items: ${(props) => (props.pos === 'left' ? 'center' : 'left')};
+  gap: 5px;
+  flex-direction: ${(props) => (props.pos === 'left' ? 'row' : 'column')};
+
   input[type='number']::-webkit-inner-spin-button,
   input[type='number']::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -92,8 +101,9 @@ const InputNumWrap = styled.div`
   }
 
   label {
-    margin-bottom: 8px;
-    font-size: 14px;
+    font-size: ${(props) => (props.pos === 'left' ? '12px' : '14px')};
+    display: flex;
+    align-items: ${(props) => (props.pos === 'left' ? 'center' : 'left')};
   }
 
   .input-inner {
@@ -102,6 +112,7 @@ const InputNumWrap = styled.div`
     border-radius: 5px;
     overflow: hidden;
     background-color: #fff;
+    flex: 1;
   }
 
   .input-main {
