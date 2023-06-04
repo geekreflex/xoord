@@ -20,19 +20,19 @@ export default function Alignment() {
     {
       name: 'Left',
       icon: 'alignLeftIcon',
-      func: () => handleAlign('tleftop'),
+      func: () => handleAlign('left'),
       alias: 'left',
     },
     {
       name: 'Middle',
       icon: 'alignHorizontalIcon',
-      func: () => handleAlign('middle'),
+      func: () => handleAlign('horizontal'),
       alias: 'horizontal',
     },
     {
       name: 'Center',
       icon: 'alignVerticalIcon',
-      func: () => handleAlign('center'),
+      func: () => handleAlign('vertical'),
       alias: 'vertical',
     },
     {

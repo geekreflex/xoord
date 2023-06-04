@@ -45,6 +45,7 @@ export class Controller {
             });
             item.setCoords();
           });
+          console.log('left clicked');
 
           break;
         case 'right':
