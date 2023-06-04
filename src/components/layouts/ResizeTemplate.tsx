@@ -6,6 +6,7 @@ import { useAppDispatch } from '@/app/hooks';
 import { toggleReszieTempleteModal } from '@/features/appSlice';
 import ToggleSwitch from '../common/ToggleSwitch';
 import { BtnPrimary, BtnSecondary } from '@/styles/global';
+import { ArrowDownIcon } from '@/icons';
 
 export default function ResizeTemplate() {
   const dispatch = useAppDispatch();
@@ -62,7 +63,7 @@ export default function ResizeTemplate() {
         </div>
         <div className="btn-wrap">
           <BtnSecondary>
-            <button>Close</button>
+            <button onClick={closeModal}>Close</button>
           </BtnSecondary>
           <BtnPrimary>
             <button>Resize</button>
@@ -74,9 +75,21 @@ export default function ResizeTemplate() {
 }
 
 function Dropdown() {
+  const [selectedTemplate, setSelectedTemplate] = useState('');
+
   return (
     <DropWrap>
-      <div>---dropdown---</div>
+      <p className="dropdown-title">Template Size Presets</p>
+      <button className="dropdown-btn">
+        <div className="dropdown-btn-text">
+          <p>Letter</p>
+          <p>8.5&times;11''</p>
+        </div>
+        <span className="dropdown-btn-icon">
+          <ArrowDownIcon />
+        </span>
+      </button>
+      <div></div>
     </DropWrap>
   );
 }
@@ -84,12 +97,12 @@ function Dropdown() {
 const CCSizeWrap = styled.div`
   width: 450px;
   display: flex;
-  gap: 20px;
+  gap: 10px;
   flex-direction: column;
   .canvas-size-wrap {
     padding: 20px;
     background-color: ${(props) => props.theme.colors.secondaryColor};
-    border-radius: ${(props) => props.theme.radius.medium};
+    border-radius: ${(props) => props.theme.radius.small};
     border: 1px solid ${(props) => props.theme.colors.borderColor};
     .canvas-size {
       display: flex;
@@ -108,4 +121,42 @@ const CCSizeWrap = styled.div`
   }
 `;
 
-const DropWrap = styled.div``;
+const DropWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  .dropdown-title {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .dropdown-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    outline: none;
+    height: 35px;
+    padding: 0 8px;
+    border-radius: ${(props) => props.theme.radius.small};
+    border: 1px solid ${(props) => props.theme.colors.borderColor};
+    gap: 10px;
+    background-color: ${(props) => props.theme.colors.primaryColor};
+    cursor: pointer;
+  }
+
+  .dropdown-btn-text {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+  }
+
+  .dropdown-btn-icon {
+    display: flex;
+    font-size: 12px;
+    svg,
+    path {
+      stroke-width: 4px;
+    }
+  }
+`;
