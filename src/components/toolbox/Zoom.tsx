@@ -10,13 +10,16 @@ import { setCurrentZoom } from '@/features/editorSlice';
 
 export default function Zoom() {
   const dispatch = useAppDispatch();
-  const { currentZoom } = useAppSelector((state) => state.editor);
+  const { currentZoom, workspace } = useAppSelector((state) => state.editor);
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
-  // const [currentZoom, setCurrentZoom] = useState<number>(0);
   // @ts-ignore
   const zoomLevels = [0.1, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 4.0];
   const { editor } = useEditorContext();
+
+  useEffect(() => {
+    dispatch(setCurrentZoom(editor?.canvas.getZoom()));
+  }, [workspace, editor]);
 
   const updateCurrentZoom = () => {
     const canvas = editor?.canvas;

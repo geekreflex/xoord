@@ -16,16 +16,15 @@ export default function CustomInput({
   max = 100,
   label,
   value,
-  ext,
   onChange,
 }: CustomInputProps) {
   const [inputValue, setInputValue] = useState<string>(value);
 
   useEffect(() => {
-    if (ext) {
-      setInputValue(ext);
+    if (value) {
+      setInputValue(value);
     }
-  }, [ext]);
+  }, [value]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const sanitizedValue = e.target.value.replace(/[^0-9-]/g, '');
@@ -112,7 +111,7 @@ const InputNumWrap = styled.div`
       border: none;
       height: 35px;
       outline: none;
-      font-weight: 600;
+      font-weight: 400;
       padding-left: 10px;
       flex: 1;
     }
@@ -120,7 +119,7 @@ const InputNumWrap = styled.div`
       display: flex;
       align-items: center;
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 400;
       padding: 0 5px;
     }
   }

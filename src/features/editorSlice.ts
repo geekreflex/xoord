@@ -25,7 +25,8 @@ export const editorSlice = createSlice({
   initialState,
   reducers: {
     setCurrentZoom: (state, action) => {
-      state.currentZoom = action.payload;
+      const zoom = action.payload.toFixed(2);
+      state.currentZoom = zoom;
     },
     setWorkspace: (state, action) => {
       const data = {
@@ -33,6 +34,7 @@ export const editorSlice = createSlice({
         height: action.payload.height || state.workspace.height,
         fill: action.payload.fill || state.workspace.fill,
       };
+      console.log('DATA', data);
       state.workspace = data;
     },
   },

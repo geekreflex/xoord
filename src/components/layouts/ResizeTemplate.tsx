@@ -1,31 +1,42 @@
 import { styled } from 'styled-components';
 import Modal from '../common/Modal';
 import CustomInput from '../common/CustomInput';
-import { useState } from 'react';
-import { useAppDispatch } from '@/app/hooks';
+import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { toggleReszieTempleteModal } from '@/features/appSlice';
 import ToggleSwitch from '../common/ToggleSwitch';
 import { BtnPrimary, BtnSecondary } from '@/styles/global';
 import { ArrowDownIcon } from '@/icons';
+import { useEditorContext } from '@/context/EditorContext';
+import { setWorkspace } from '@/features/editorSlice';
 
 export default function ResizeTemplate() {
   const dispatch = useAppDispatch();
+  const { editor } = useEditorContext();
+  const { workspace } = useAppSelector((state) => state.editor);
   const [aspect, setAspect] = useState(false);
-  const [width, setWidth] = useState('100');
-  const [height, setHeight] = useState('200');
+  const [width, setWidth] = useState('');
+  const [height, setHeight] = useState('');
+
+  useEffect(() => {
+    setWidth(workspace.width.toString());
+    setHeight(workspace.height.toString());
+  }, [workspace]);
 
   const handleWidth = (val: string) => {
     setWidth(val);
-    if (aspect) {
-      handleHeight(val);
-    }
   };
 
   const handleHeight = (val: string) => {
     setHeight(val);
-    if (aspect) {
-      handleWidth(val);
+  };
+
+  const handleUpdateSize = () => {
+    if (editor) {
+      editor.setSize(Number(width), Number(height));
     }
+    dispatch(setWorkspace({ width, height }));
+    closeModal();
   };
 
   const closeModal = () => {
@@ -66,7 +77,7 @@ export default function ResizeTemplate() {
             <button onClick={closeModal}>Close</button>
           </BtnSecondary>
           <BtnPrimary>
-            <button>Resize</button>
+            <button onClick={handleUpdateSize}>Resize</button>
           </BtnPrimary>
         </div>
       </CCSizeWrap>
