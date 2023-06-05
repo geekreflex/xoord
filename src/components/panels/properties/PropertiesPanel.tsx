@@ -84,6 +84,6 @@ const Main = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  width: 350px;
+  width: 320px;
   padding: 0 10px;
 `;

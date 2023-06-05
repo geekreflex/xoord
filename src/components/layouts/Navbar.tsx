@@ -6,12 +6,14 @@ import { Zoom } from '../toolbox';
 export default function Navbar() {
   return (
     <NavbarWrap>
-      <div>Logo</div>
-      <div className="navbar-wrap-items">
+      <div className="item-wrap">Logo</div>
+      <div className="navbar-wrap-items item-wrap">
         <History />
         <Zoom />
       </div>
-      <DupDelLock />
+      <div className="item-wrap">
+        <DupDelLock />
+      </div>
     </NavbarWrap>
   );
 }
@@ -31,5 +33,12 @@ const NavbarWrap = styled.div`
   .navbar-wrap-items {
     display: flex;
     gap: 20px;
+  }
+
+  .item-wrap {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
 `;

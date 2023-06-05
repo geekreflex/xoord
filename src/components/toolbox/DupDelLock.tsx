@@ -3,11 +3,13 @@ import Icon from '../common/Icon';
 import { useEditorContext } from '@/context/EditorContext';
 
 export default function DupDelLock() {
-  const { controller } = useEditorContext();
+  const { controller, selectedObjects } = useEditorContext();
 
   const handleDelete = () => {
     controller?.delete();
   };
+
+  if (!selectedObjects) return null;
 
   return (
     <DupDelLockWrap>

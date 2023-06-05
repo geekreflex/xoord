@@ -118,6 +118,10 @@ const ZoomInOut = styled.div`
   align-items: center;
   gap: 5px;
 
+  path {
+    stroke-width: 2px;
+  }
+
   p {
     border: 1px solid ${(props) => props.theme.colors.borderColor2};
     font-size: 14px;
