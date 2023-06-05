@@ -39,4 +39,5 @@ export default function ToolsPanel() {
 
 const ToolsPanelWrap = styled.div`
   width: 250px;
+  padding-bottom: 30px;
 `;

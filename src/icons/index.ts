@@ -32,6 +32,7 @@ import ArrowUpIcon from './ArrowUpIcon';
 import ArrowDownIcon from './ArrowDownIcon';
 import SettingsIcon from './SettingsIcon';
 import AddImageIcon from './AddImageIcon';
+import SearchIcon from './SearchIcon';
 
 export {
   ZoomInIcon,
@@ -68,4 +69,5 @@ export {
   ArrowDownIcon,
   SettingsIcon,
   AddImageIcon,
+  SearchIcon,
 };

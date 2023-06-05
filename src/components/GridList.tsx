@@ -6,9 +6,7 @@ export default function GridList() {
     <GridListWrap>
       <div className="grid-list">
         {list.map((item) => (
-          <div className="grid-item" key={item}>
-            {item}
-          </div>
+          <div className="grid-item" key={item}></div>
         ))}
       </div>
     </GridListWrap>
@@ -23,13 +21,15 @@ const GridListWrap = styled.div`
 
     .grid-item {
       background-color: #f1f1f1;
-      height: 200px;
-      padding: 5px;
+      height: 180px;
+      padding: 10px;
       border-radius: ${(props) => props.theme.radius.small};
       border: 1px solid transparent;
       cursor: pointer;
+      border: 1px solid ${(props) => props.theme.colors.borderColor};
       &:hover {
-        border: 1px solid ${(props) => props.theme.colors.borderColor};
+        border: 1px solid ${(props) => props.theme.colors.accent}40;
+        background: ${(props) => props.theme.colors.accent}20;
       }
     }
   }

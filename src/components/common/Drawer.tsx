@@ -51,7 +51,7 @@ const DrawerWrap = styled.div<DW>`
   top: 60px;
   left: ${(props) => `${props.pos === 'left' ? props.ml : 'auto'}px`};
   right: ${(props) => `${props.pos === 'right' ? 0 : 'auto'}`};
-  height: calc(100vh - 50px);
+  height: calc(100vh - 60px);
   background-color: ${(props) => props.theme.colors.primaryColor};
   border-right: 1px solid
     ${(props) =>
