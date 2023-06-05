@@ -11,6 +11,25 @@ button {
   border: none;
   outline: none; */
 }
+
+  /* For Webkit based browsers (Chrome, Safari, Opera) */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  /* ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  } */
+
+  ::-webkit-scrollbar-thumb {
+    background: #bbb;
+    border-radius: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
 `;
 
 export const Divider = styled.div`
@@ -39,12 +58,25 @@ export const BtnSecondary = styled.div`
     border: none;
     outline: none;
     width: 100%;
-    height: 35px;
+    height: 40px;
     border-radius: ${(props) => props.theme.radius.small};
     font-weight: 600;
     background-color: #e8e8e8;
     color: #222222;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      display: flex;
+      align-items: center;
+      font-size: 22px;
+      margin-right: 10px;
+      path {
+        stroke-width: 2px;
+      }
+    }
   }
 `;
 

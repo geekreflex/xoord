@@ -19,7 +19,7 @@ const GridListWrap = styled.div`
   .grid-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5px;
+    gap: 10px;
 
     .grid-item {
       background-color: #f1f1f1;
