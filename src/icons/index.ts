@@ -31,6 +31,7 @@ import ArrowSwapYIcon from './ArrowSwapYIcon';
 import ArrowUpIcon from './ArrowUpIcon';
 import ArrowDownIcon from './ArrowDownIcon';
 import SettingsIcon from './SettingsIcon';
+import AddImageIcon from './AddImageIcon';
 
 export {
   ZoomInIcon,
@@ -66,4 +67,5 @@ export {
   ArrowUpIcon,
   ArrowDownIcon,
   SettingsIcon,
+  AddImageIcon,
 };

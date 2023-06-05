@@ -40,4 +40,5 @@ export type IconName =
   | 'arrowSwapYIcon'
   | 'arrowUpIcon'
   | 'arrowDownIcon'
-  | 'settingsIcon';
+  | 'settingsIcon'
+  | 'addImageIcon';

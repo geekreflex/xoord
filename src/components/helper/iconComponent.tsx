@@ -1,4 +1,5 @@
 import {
+  AddImageIcon,
   AlignBottomIcon,
   AlignHorizontalIcon,
   AlignLeftIcon,
@@ -66,4 +67,5 @@ export const iconComponents: { [key: string]: React.ComponentType } = {
   arrowUpIcon: ArrowUpIcon,
   arrowDownIcon: ArrowDownIcon,
   settingsIcon: SettingsIcon,
+  addImageIcon: AddImageIcon,
 };
