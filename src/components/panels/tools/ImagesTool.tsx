@@ -1,6 +1,6 @@
 import GridList from '@/components/GridList';
 import SearchInput from '@/components/SearchInput';
-import { ImageIcon } from '@/icons';
+import { AddImageIcon } from '@/icons';
 import { BtnPrimary } from '@/styles/global';
 import { styled } from 'styled-components';
 
@@ -13,7 +13,7 @@ export default function ImageTools() {
           <BtnPrimary>
             <button>
               <span>
-                <ImageIcon />
+                <AddImageIcon />
               </span>
               Upload Image
             </button>
