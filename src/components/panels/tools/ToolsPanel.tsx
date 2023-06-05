@@ -3,6 +3,7 @@ import { useAppContext } from '@/context/AppContext';
 import { styled } from 'styled-components';
 import ElementsTool from './ElementsTool';
 import CustomizeTool from './CustomizeTool';
+import ImagesTool from './ImagesTool';
 
 export default function ToolsPanel() {
   const { toolPanel, closeToolPanel } = useAppContext();
@@ -17,6 +18,8 @@ export default function ToolsPanel() {
         return <ElementsTool />;
       case 'customize':
         return <CustomizeTool />;
+      case 'images':
+        return <ImagesTool />;
       default:
         return null;
     }
