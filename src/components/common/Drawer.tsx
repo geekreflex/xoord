@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
-import Icon from './Icon';
 import { capitalizeWord } from '@/utils/string';
+import { Close2Icon } from '@/icons';
 
 interface DrawerProps {
   children: React.ReactNode;
@@ -27,7 +27,9 @@ export default function Drawer({
         <DrawerTop>
           <div className="title-close">
             <h3>{capitalizeWord(title)}</h3>
-            <Icon name="close2Icon" click={close} hover={true} />
+            <span className="close-drawer-icon" onClick={close}>
+              <Close2Icon />
+            </span>
           </div>
         </DrawerTop>
         <DrawerMain pad={pad}>{children}</DrawerMain>
@@ -82,6 +84,22 @@ const DrawerTop = styled.div`
 
     h3 {
       flex: 1;
+      font-size: 18px;
+      font-weight: 900;
+    }
+  }
+
+  .close-drawer-icon {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
+    color: #888;
+    &:hover {
+      color: #222;
     }
   }
 `;
