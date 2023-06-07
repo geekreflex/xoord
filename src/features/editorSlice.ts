@@ -40,7 +40,6 @@ export const editorSlice = createSlice({
         height: action.payload.height || state.workspace.height,
         fill: action.payload.fill || state.workspace.fill,
       };
-      console.log('DATA', data);
       state.workspace = data;
     },
     setSelectedTemplateSize: (state, action) => {

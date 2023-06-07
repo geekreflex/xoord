@@ -7,6 +7,7 @@ import Popup from '../common/Popup';
 import useClickOutside from '@/hooks/useClickOutside';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { setCurrentZoom } from '@/features/editorSlice';
+import { ArrowDownIcon } from '@/icons';
 
 export default function Zoom() {
   const dispatch = useAppDispatch();
@@ -81,7 +82,12 @@ export default function Zoom() {
           disabled={currentZoom === 0.1}
           click={handleZoomOut}
         />
-        <p onClick={onShowZoomLevels}>{toPercent(currentZoom)}%</p>
+        <div className="zoom-view" onClick={onShowZoomLevels}>
+          <span className="zoom-view-val">{toPercent(currentZoom)}%</span>
+          <span className="zoom-view-icon">
+            <ArrowDownIcon />
+          </span>
+        </div>
         <Icon
           name="zoomInIcon"
           disabled={currentZoom === 5}
@@ -122,11 +128,11 @@ const ZoomInOut = styled.div`
     stroke-width: 2px;
   }
 
-  p {
+  .zoom-view {
     border: 1px solid ${(props) => props.theme.colors.borderColor2};
     font-size: 14px;
     font-weight: 400;
-    padding: 8px 20px;
+    padding: 10px 15px;
     display: flex;
     align-items: center;
     line-height: 1;
@@ -134,6 +140,15 @@ const ZoomInOut = styled.div`
     cursor: pointer;
     background-color: ${(props) => props.theme.colors.secondaryColor};
     user-select: none;
+    gap: 10px;
+
+    .zoom-view-icon {
+      display: flex;
+      font-size: 12px;
+      path {
+        stroke-width: 4px;
+      }
+    }
   }
 `;
 

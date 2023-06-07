@@ -4,6 +4,7 @@ import { styled } from 'styled-components';
 import ElementsTool from './ElementsTool';
 import CustomizeTool from './CustomizeTool';
 import ImagesTool from './ImagesTool';
+import TextTool from './TextTool';
 
 export default function ToolsPanel() {
   const { toolPanel, closeToolPanel } = useAppContext();
@@ -20,6 +21,8 @@ export default function ToolsPanel() {
         return <CustomizeTool />;
       case 'images':
         return <ImagesTool />;
+      case 'text':
+        return <TextTool />;
       default:
         return null;
     }

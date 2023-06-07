@@ -1,27 +1,17 @@
 import Drawer from '@/components/common/Drawer';
 import { useEditorContext } from '@/context/EditorContext';
 import { ObjectTypes } from '@/types/editor';
-import ElementProperties from './ElementProperties';
 import { styled } from 'styled-components';
 import Selection from './Selection';
-import PropertieTab from './PropertiesTab';
-import { useState } from 'react';
-import { IconName } from '@/types/icons';
+import CircleProperties from './CircleProperties';
+import PolygonProperties from './PolygonProperties';
+import RectangleProperties from './RectangleProperties';
+import TriangleProperties from './TriangleProperties';
+import TextProperties from './TextProperties';
 
 export default function PropertiesPanel() {
-  const [activeTab, setActiveTab] = useState('fill-stroke');
   const { selectedType, selectedObjects, clearSelectedObjects } =
     useEditorContext();
-  interface TabProps {
-    name: string;
-    alias: string;
-    icon: IconName;
-  }
-  const tabList: TabProps[] = [
-    { name: 'Fill & Stroke', alias: 'fill-stroke', icon: 'brush2Icon' },
-    { name: 'Align & Position', alias: 'position', icon: 'positionIcon' },
-    { name: 'Shadows & Filters', alias: 'filter', icon: 'shadowIcon' },
-  ];
 
   const onClosePropertyPanel = () => {
     clearSelectedObjects();
@@ -43,10 +33,15 @@ export default function PropertiesPanel() {
   const RenderPanel = () => {
     switch (selectedType) {
       case ObjectTypes.Circle:
+        return <CircleProperties />;
       case ObjectTypes.Polygon:
+        return <PolygonProperties />;
       case ObjectTypes.Rectangle:
+        return <RectangleProperties />;
       case ObjectTypes.Triangle:
-        return <ElementProperties tab={activeTab} />;
+        return <TriangleProperties />;
+      case ObjectTypes.Text:
+        return <TextProperties />;
       case ObjectTypes.Selection:
         return <Selection />;
       default:
@@ -64,11 +59,6 @@ export default function PropertiesPanel() {
     >
       <Wrap>
         <Main>{RenderPanel()}</Main>
-        <PropertieTab
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          tabList={tabList}
-        />
       </Wrap>
     </Drawer>
   );

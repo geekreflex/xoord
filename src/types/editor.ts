@@ -3,6 +3,7 @@ export enum ObjectTypes {
   Triangle = 'triangle',
   Rectangle = 'rect',
   Polygon = 'polygon',
+  Text = 'textbox',
   Selection = 'selection',
   Unknown = 'unknown',
 }
