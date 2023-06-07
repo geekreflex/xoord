@@ -3,7 +3,7 @@ import verticalImg from '@/assets/editor/middlecontrol.svg';
 import horizontalImg from '@/assets/editor/middlecontrolhoz.svg';
 import edgeImg from '@/assets/editor/edgecontrol.svg';
 import rotateImg from '@/assets/editor/rotateicon.svg';
-import { scaleXOnly } from '../lib/scale';
+import { scaleXOnly, scaleYOnly } from '../lib/scale';
 
 export class CustomControls {
   canvas: fabric.Canvas;
@@ -159,7 +159,7 @@ export class CustomControls {
       y: 0.5,
       offsetY: 1,
       cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
-      actionHandler: fabric.controlsUtils.scalingYOrSkewingX,
+      actionHandler: scaleYOnly,
       getActionName: fabric.controlsUtils.scaleOrSkewActionName,
       render: renderHorizontalIcon.bind(this),
     });
@@ -169,7 +169,7 @@ export class CustomControls {
       y: -0.5,
       offsetY: -1,
       cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
-      actionHandler: fabric.controlsUtils.scalingYOrSkewingX,
+      actionHandler: scaleYOnly,
       getActionName: fabric.controlsUtils.scaleOrSkewActionName,
       render: renderHorizontalIcon.bind(this),
     });

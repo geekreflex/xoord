@@ -47,8 +47,30 @@ export const scaleXOnly = (
     y
   );
   const strokePadding =
-    target.strokeWidth! / (target.strokeUniform ? scaleX : 1);
-  const newWidth = Math.abs(localPoint.x / scaleX) - strokePadding;
+    target.strokeWidth! / (target.strokeUniform ? target.scaleX! : 1);
+  const newWidth = Math.abs(localPoint.x / target.scaleX!) - strokePadding;
   target.set('width', Math.max(newWidth, 0));
+  return true;
+};
+
+export const scaleYOnly = (
+  eventData: Event,
+  transform: fabric.Transform,
+  x: number,
+  y: number
+) => {
+  const target = transform.target as fabric.Object;
+  const scaleY = transform.scaleY || 1;
+  const localPoint = getLocalPoint(
+    transform,
+    transform.originX,
+    transform.originY,
+    x,
+    y
+  );
+  const strokePadding =
+    target.strokeWidth! / (target.strokeUniform ? target.scaleY! : 1);
+  const newHeight = Math.abs(localPoint.y / target.scaleY!) - strokePadding;
+  target.set('height', Math.max(newHeight, 0));
   return true;
 };
