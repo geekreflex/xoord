@@ -3,7 +3,7 @@ import verticalImg from '@/assets/editor/middlecontrol.svg';
 import horizontalImg from '@/assets/editor/middlecontrolhoz.svg';
 import edgeImg from '@/assets/editor/edgecontrol.svg';
 import rotateImg from '@/assets/editor/rotateicon.svg';
-import { scaleXOnly, scaleYOnly } from '../lib/scale';
+import { scaleXOnly } from '../lib/scale';
 
 export class CustomControls {
   canvas: fabric.Canvas;
