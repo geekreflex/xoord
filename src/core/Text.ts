@@ -12,14 +12,19 @@ export class Text {
       width: 200,
       textAlign: 'left',
     });
+
+    text.setControlsVisibility({
+      mt: false,
+      mb: false,
+      ml: false,
+      tr: false,
+      bl: false,
+      br: false,
+    });
+
     this.editor.canvas.add(text);
     this.editor.canvas.setActiveObject(text);
     this.editor.canvas.renderAll();
-
-    // textbox.setControlsVisibility({
-    //   mt: false,
-    //   mb: false,
-    // });
   }
 
   public updateTextSize = () => {};

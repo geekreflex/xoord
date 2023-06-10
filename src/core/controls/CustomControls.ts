@@ -134,16 +134,6 @@ export class CustomControls {
      * Textbox controls
      */
 
-    fabric.Textbox.prototype.controls.ml = new fabric.Control({
-      x: -0.5,
-      y: 0,
-      offsetX: -1,
-      cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
-      actionHandler: scaleXOnly,
-      getActionName: fabric.controlsUtils.scaleOrSkewActionName,
-      render: renderVerticalIcon.bind(this),
-    });
-
     fabric.Textbox.prototype.controls.mr = new fabric.Control({
       x: 0.5,
       y: 0,
@@ -152,26 +142,6 @@ export class CustomControls {
       actionHandler: scaleXOnly,
       getActionName: fabric.controlsUtils.scaleOrSkewActionName,
       render: renderVerticalIcon.bind(this),
-    });
-
-    fabric.Textbox.prototype.controls.mb = new fabric.Control({
-      x: 0,
-      y: 0.5,
-      offsetY: 1,
-      cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
-      actionHandler: scaleYOnly,
-      getActionName: fabric.controlsUtils.scaleOrSkewActionName,
-      render: renderHorizontalIcon.bind(this),
-    });
-
-    fabric.Textbox.prototype.controls.mt = new fabric.Control({
-      x: 0,
-      y: -0.5,
-      offsetY: -1,
-      cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
-      actionHandler: scaleYOnly,
-      getActionName: fabric.controlsUtils.scaleOrSkewActionName,
-      render: renderHorizontalIcon.bind(this),
     });
   }
 
@@ -220,6 +190,16 @@ export class CustomControls {
       actionHandler: fabric.controlsUtils.scalingEqually,
       render: renderPeakIcon.bind(this),
     });
+
+    fabric.Textbox.prototype.controls.tl = new fabric.Control({
+      x: -0.5,
+      y: -0.5,
+      offsetX: -1,
+      cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
+      actionHandler: fabric.controlsUtils.scalingEqually,
+      getActionName: fabric.controlsUtils.scaleOrSkewActionName,
+      render: renderPeakIcon.bind(this),
+    });
   }
 
   private setupRotationControl() {
@@ -237,6 +217,16 @@ export class CustomControls {
     };
 
     fabric.Object.prototype.controls.mtr = new fabric.Control({
+      x: 0,
+      y: 0.5,
+      cursorStyleHandler: fabric.controlsUtils.rotationStyleHandler,
+      actionHandler: fabric.controlsUtils.rotationWithSnapping,
+      offsetY: 30,
+      actionName: 'rotate',
+      render: renderRotationIcon,
+    });
+
+    fabric.Textbox.prototype.controls.mtr = new fabric.Control({
       x: 0,
       y: 0.5,
       cursorStyleHandler: fabric.controlsUtils.rotationStyleHandler,
