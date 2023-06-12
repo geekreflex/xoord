@@ -5,7 +5,7 @@ export default function Circle() {
   return (
     <Wrap>
       <Fill />
-      <Stroke />
+      {/* <Stroke /> */}
     </Wrap>
   );
 }

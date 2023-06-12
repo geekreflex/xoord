@@ -4,7 +4,6 @@ import { DividerX, Title } from '@/styles/global';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import ColorBlock from '../shared/ColorBlock';
-import ColorPalette from '../shared/ColorPalette';
 
 export default function Fill() {
   const { editor, selectedObjects } = useEditorContext();
@@ -35,9 +34,17 @@ export default function Fill() {
     }
   };
 
-  const handleFill = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // const handleFill = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (selectedObject) {
+  //     const fill = e.target.value;
+  //     selectedObject?.set('fill', fill);
+  //     setPreviousFill(fill);
+  //   }
+  //   editor?.canvas.renderAll();
+  // };
+
+  const handleFill = (fill: string) => {
     if (selectedObject) {
-      const fill = e.target.value;
       selectedObject?.set('fill', fill);
       setPreviousFill(fill);
     }
@@ -51,7 +58,7 @@ export default function Fill() {
       <div className="fill-block-wrap">
         <ColorBlock
           color={selectedObject && (selectedObject.fill as string)}
-          onChange={handleFill}
+          onChange={(value: string) => handleFill(value)}
         />
         {/* <ColorPalette /> */}
         <ToggleSwitch checked={hasFill} onChange={handleToggleFill} id="fill" />

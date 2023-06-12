@@ -1,22 +1,26 @@
 import { SettingsIcon } from '@/icons';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { styled } from 'styled-components';
+import Color from './Color';
 
 interface CBType {
   color: string | undefined;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (value: string) => void;
 }
 
 export default function ColorBlock({ color, onChange }: CBType) {
+  const [visible, setVisible] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleBlockClick = () => {
-    if (inputRef && inputRef.current) {
-      inputRef.current.click();
-    }
+    // if (inputRef && inputRef.current) {
+    //   inputRef.current.click();
+    // }
+    setVisible(!visible);
   };
   return (
     <CBWrap>
+      {visible && <Color color={color} onChange={onChange} />}
       <div
         onClick={handleBlockClick}
         className="block"
@@ -24,7 +28,7 @@ export default function ColorBlock({ color, onChange }: CBType) {
           backgroundColor: color,
         }}
       >
-        <input ref={inputRef} type="color" onChange={onChange} value={color} />
+        {/* <input ref={inputRef} type="color" onChange={onChange} value={color} /> */}
         <span className="color-block-icon">
           <SettingsIcon />
         </span>
@@ -37,7 +41,7 @@ const CBWrap = styled.div`
   display: flex;
 
   div {
-    flex: 1;
+    /* flex: 1; */
   }
 
   input {

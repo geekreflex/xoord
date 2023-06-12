@@ -5,6 +5,7 @@ interface ToggleProps {
   checked: boolean;
   onChange: () => void;
   label?: string;
+  id?: string;
 }
 
 export default function ToggleSwitch({

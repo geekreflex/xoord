@@ -33,3 +33,8 @@ declare namespace fabric {
     rotationStyleHandler: ControlStringHandler;
   };
 }
+
+declare module 'react-best-gradient-color-picker' {
+  const ColorPicker: any;
+  export default ColorPicker;
+}
