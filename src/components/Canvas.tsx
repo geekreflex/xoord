@@ -15,7 +15,7 @@ export default function Canvas() {
     });
 
     const workspaceEl = document.getElementById('workspace');
-    const option = { width: 1200, height: 1200 };
+    const option = { width: 3000, height: 3000 };
 
     const editor = new Editor(fabricCanvas, workspaceEl!, option);
     setEditor(editor);

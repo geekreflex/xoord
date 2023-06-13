@@ -11,7 +11,13 @@ const initialState: EditorState = {
 export const editorSlice = createSlice({
   name: 'editor',
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentZoom: (state, action) => {
+      const zoom = Number(action.payload);
+      state.currentZoom = zoom;
+    },
+  },
 });
 
+export const { setCurrentZoom } = editorSlice.actions;
 export default editorSlice.reducer;

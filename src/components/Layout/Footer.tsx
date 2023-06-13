@@ -1,8 +1,13 @@
 import { FOOTER_HEIGHT } from '@/utils/constants';
 import { styled } from 'styled-components';
+import Zoom from '../Zoom';
 
 export default function Footer() {
-  return <Wrap height={FOOTER_HEIGHT}></Wrap>;
+  return (
+    <Wrap height={FOOTER_HEIGHT}>
+      <Zoom />
+    </Wrap>
+  );
 }
 
 interface WrapProps {
