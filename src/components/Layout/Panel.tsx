@@ -1,10 +1,16 @@
 import { useAppSelector } from '@/app/hooks';
 import { PANEL_WIDTH } from '@/utils/constants';
 import { styled } from 'styled-components';
+import ToolsPanel from '../tools/ToolsPanel';
 
 export default function Panel() {
-  const { layout } = useAppSelector((state) => state.app);
-  return <Wrap width={PANEL_WIDTH} layout={layout}></Wrap>;
+  const { layout, panel } = useAppSelector((state) => state.app);
+  return (
+    <Wrap width={PANEL_WIDTH} layout={layout}>
+      {panel === 'tools' && <ToolsPanel />}
+      {panel === 'properties' && 'Props'}
+    </Wrap>
+  );
 }
 
 interface WrapProps {

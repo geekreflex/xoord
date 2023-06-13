@@ -1,8 +1,11 @@
 import { IconName } from '@/types/icon';
 import { styled } from 'styled-components';
 import Icon from './shared/Icon';
+import { useAppDispatch } from '@/app/hooks';
+import { switchActiveTool } from '@/features/appSlice';
 
 export default function Tools() {
+  const dispatch = useAppDispatch();
   interface ITools {
     name: string;
     icon: IconName;
@@ -19,6 +22,10 @@ export default function Tools() {
     { name: 'Customize', icon: 'bgIcon' },
   ];
 
+  const onToolClick = (tool: string) => {
+    dispatch(switchActiveTool(tool));
+  };
+
   return (
     <Wrap>
       {tools.map((tool) => (
@@ -28,6 +35,7 @@ export default function Tools() {
           disabled={tool.disabled}
           label={tool.name}
           size="big"
+          click={() => onToolClick(tool.name.toLowerCase())}
         />
       ))}
     </Wrap>
