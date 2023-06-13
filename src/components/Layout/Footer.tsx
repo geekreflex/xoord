@@ -8,4 +8,7 @@ export default function Footer() {
   );
 }
 
-const Wrap = styled.div``;
+const Wrap = styled.div`
+  height: 40px;
+  background-color: orange;
+`;

@@ -8,4 +8,8 @@ export default function Navbar() {
   );
 }
 
-const Wrap = styled.div``;
+const Wrap = styled.div`
+  width: 100%;
+  height: 50px;
+  background-color: blue;
+`;

@@ -8,4 +8,9 @@ export default function Panel() {
   );
 }
 
-const Wrap = styled.div``;
+const Wrap = styled.div`
+  width: 300px;
+  background-color: #333;
+  height: 100%;
+  border: 1px solid green;
+`;
