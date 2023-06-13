@@ -10,8 +10,10 @@ import {
   PANEL_WIDTH,
   SIDEBAR_WIDTH,
 } from '@/utils/constants';
+import { useAppSelector } from '@/app/hooks';
 
 export default function Editor() {
+  const { layout } = useAppSelector((state) => state.app);
   const props = {
     navbarHeight: NAVBAR_HEIGHT,
     leftSideWidth: PANEL_WIDTH + SIDEBAR_WIDTH,
@@ -19,7 +21,7 @@ export default function Editor() {
   };
 
   return (
-    <Wrap data={props}>
+    <Wrap data={props} layout={layout}>
       <Navbar />
       <div className="main">
         <div className="tools">
@@ -36,6 +38,7 @@ export default function Editor() {
 }
 
 interface WrapProps {
+  layout: string;
   data: {
     navbarHeight: number;
     leftSideWidth: number;
@@ -58,11 +61,13 @@ const Wrap = styled.div<WrapProps>`
 
   .tools {
     display: flex;
+    order: ${(props) => (props.layout === 'left' ? 1 : 2)};
   }
 
   .workstation {
     width: ${(props) => `calc(100% - ${props.data.leftSideWidth}px)`};
     display: flex;
     flex-direction: column;
+    order: ${(props) => (props.layout === 'left' ? 2 : 1)};
   }
 `;
