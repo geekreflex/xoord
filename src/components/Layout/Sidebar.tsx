@@ -5,7 +5,8 @@ export default function Sidebar() {
 }
 
 const Wrap = styled.div`
-  background-color: yellow;
   height: 100%;
   width: 50px;
+  background-color: ${(props) => props.theme.colors.primary};
+  border-right: 1px solid ${(props) => props.theme.colors.borderColor};
 `;

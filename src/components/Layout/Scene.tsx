@@ -9,6 +9,5 @@ export default function Scene() {
 }
 
 const Wrap = styled.div`
-  border: 1px solid red;
   flex: 1;
 `;

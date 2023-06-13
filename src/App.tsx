@@ -1,10 +1,13 @@
 import { styled } from 'styled-components';
 import Editor from './components/Editor';
+import Providers from './context';
 
 export default function App() {
   return (
     <Wrap>
-      <Editor />
+      <Providers>
+        <Editor />
+      </Providers>
     </Wrap>
   );
 }

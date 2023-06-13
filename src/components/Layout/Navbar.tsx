@@ -11,5 +11,6 @@ export default function Navbar() {
 const Wrap = styled.div`
   width: 100%;
   height: 50px;
-  background-color: blue;
+  background-color: ${(props) => props.theme.colors.primary};
+  border-bottom: 1px solid ${(props) => props.theme.colors.borderColor};
 `;

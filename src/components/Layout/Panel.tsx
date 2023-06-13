@@ -10,7 +10,7 @@ export default function Panel() {
 
 const Wrap = styled.div`
   width: 300px;
-  background-color: #333;
   height: 100%;
-  border: 1px solid green;
+  background-color: ${(props) => props.theme.colors.primary};
+  border-right: 1px solid ${(props) => props.theme.colors.borderColor};
 `;

@@ -10,5 +10,6 @@ export default function Footer() {
 
 const Wrap = styled.div`
   height: 40px;
-  background-color: orange;
+  background-color: ${(props) => props.theme.colors.primary};
+  border-top: 1px solid ${(props) => props.theme.colors.borderColor};
 `;
