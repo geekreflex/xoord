@@ -6,12 +6,19 @@ import TextTool from './TextTool';
 import CustomizeTool from './CustomizeTool';
 import DrawTool from './DrawTool';
 import TemplatesTool from './TemplatesTool';
+import { useEditorContext } from '@/context/EditorContext';
 
 export default function ToolsPanel() {
   const { activeTool } = useAppSelector((state) => state.app);
+  const { tool } = useEditorContext();
+
+  if (!tool) {
+    return null;
+  }
+
   return (
     <Wrap>
-      {activeTool === 'elements' && <ElementsTool />}
+      {activeTool === 'elements' && <ElementsTool tool={tool} />}
       {activeTool === 'images' && <ImagesTool />}
       {activeTool === 'text' && <TextTool />}
       {activeTool === 'templates' && <TemplatesTool />}
