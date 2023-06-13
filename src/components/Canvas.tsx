@@ -1,4 +1,3 @@
-import { useAppDispatch } from '@/app/hooks';
 import { useEditorContext } from '@/context/EditorContext';
 import { Editor } from '@/core/Editor';
 import { fabric } from 'fabric';
