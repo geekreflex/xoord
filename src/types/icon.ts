@@ -4,7 +4,7 @@ export interface IIcon {
   color?: string;
   disabled?: boolean;
   hover?: boolean;
-  title?: string | null;
+  label?: string | null;
   click?: () => void;
 }
 

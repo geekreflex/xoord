@@ -1,10 +1,12 @@
+import { useThemeContext } from '@/context/ThemeContext';
 import { NAVBAR_HEIGHT } from '@/utils/constants';
 import { styled } from 'styled-components';
 
 export default function Navbar() {
+  const { toggleTheme } = useThemeContext();
   return (
     <Wrap height={NAVBAR_HEIGHT}>
-      <p>Navbar</p>
+      <button onClick={toggleTheme}>toggle theme</button>
     </Wrap>
   );
 }

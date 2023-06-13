@@ -2,11 +2,7 @@ import { PANEL_WIDTH } from '@/utils/constants';
 import { styled } from 'styled-components';
 
 export default function Panel() {
-  return (
-    <Wrap width={PANEL_WIDTH}>
-      <p>Panel</p>
-    </Wrap>
-  );
+  return <Wrap width={PANEL_WIDTH}></Wrap>;
 }
 
 interface WrapProps {

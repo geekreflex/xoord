@@ -8,7 +8,7 @@ export default function Icon({
   color,
   disabled,
   hover = true,
-  title = null,
+  label = null,
   click,
 }: IIcon) {
   const IconComponent = IconComponents[name];
@@ -35,13 +35,13 @@ export default function Icon({
       color={color}
       disabled={disabled}
       hover={hover.toString()}
-      t={title}
+      label={label}
       onClick={click}
     >
       <span id="icon">
         <IconComponent />
       </span>
-      {title && <span id="title">{title}</span>}
+      {label && <span id="title">{label}</span>}
     </IconWrap>
   );
 }
@@ -51,7 +51,7 @@ const IconWrap = styled.button<{
   color?: string;
   disabled?: boolean;
   hover?: string;
-  t: string | null;
+  label: string | null;
 }>`
   display: flex;
   font-size: ${(props) => props.size};
@@ -65,15 +65,15 @@ const IconWrap = styled.button<{
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: ${(props) => (props.t ? '100%' : 'auto')};
-  height: ${(props) => (props.t ? '70px' : '')};
+  width: ${(props) => (props.label ? '100%' : 'auto')};
+  height: ${(props) => (props.label ? '70px' : '')};
   gap: 7px;
   cursor: pointer;
   padding: ${(props) => (props.hover == 'true' ? '5px' : '')};
   border-radius: 5px;
   &:hover {
     background-color: ${(props) =>
-      props.hover == 'true' ? props.theme.colors.hoverColor1 : ''};
+      props.hover == 'true' ? props.theme.colors.hoverColor : ''};
   }
 
   span#icon {
@@ -83,10 +83,5 @@ const IconWrap = styled.button<{
   span#title {
     font-size: 11px;
     font-weight: 600;
-  }
-
-  svg,
-  path {
-    /* stroke-width: 2px; */
   }
 `;

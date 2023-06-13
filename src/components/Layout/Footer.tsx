@@ -2,12 +2,7 @@ import { FOOTER_HEIGHT } from '@/utils/constants';
 import { styled } from 'styled-components';
 
 export default function Footer() {
-  return (
-    <Wrap height={FOOTER_HEIGHT}>
-      <p>Footer</p>
-      <p>Other</p>
-    </Wrap>
-  );
+  return <Wrap height={FOOTER_HEIGHT}></Wrap>;
 }
 
 interface WrapProps {
