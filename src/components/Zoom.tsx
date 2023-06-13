@@ -27,15 +27,32 @@ export default function Zoom() {
 
   return (
     <Wrap>
-      <RangeSlider
-        min={8}
-        max={400}
-        value={currentZoom}
-        step={10}
-        onChange={onZoom}
-      />
+      <div className="zoom-range">
+        <RangeSlider min={8} max={400} value={currentZoom} onChange={onZoom} />
+      </div>
+      <div className="zoom-value">{currentZoom.toFixed(0)}%</div>
     </Wrap>
   );
 }
 
-const Wrap = styled.div``;
+const Wrap = styled.div`
+  display: flex;
+  width: 250px;
+  align-items: center;
+  gap: 10px;
+
+  .zoom-range {
+    width: 100%;
+  }
+
+  .zoom-value {
+    width: 80px;
+    border: 1px solid ${(props) => props.theme.colors.borderColor};
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+`;

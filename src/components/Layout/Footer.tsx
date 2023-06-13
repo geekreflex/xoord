@@ -20,4 +20,5 @@ const Wrap = styled.div<WrapProps>`
   border-top: 1px solid ${(props) => props.theme.colors.borderColor};
   display: flex;
   justify-content: space-between;
+  padding: 0 20px;
 `;

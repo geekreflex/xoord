@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "@reduxjs/toolkit": "^1.9.5",
     "@scena/guides": "^0.28.0",
     "axios": "^1.4.0",

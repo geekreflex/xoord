@@ -23,9 +23,9 @@ export const lightTheme: Theme = {
 export const darkTheme: Theme = {
   colors: {
     accent: '#1521cc',
-    primary: '#1e1e1e',
-    secondary: '#2c2c2c',
-    borderColor: '#444444',
+    primary: '#171717',
+    secondary: '#111111',
+    borderColor: '#2e2e2e',
     hoverColor: '#2c2c2c',
     textColor: '#f5f5f5',
   },

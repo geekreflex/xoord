@@ -35,7 +35,7 @@ const Wrap = styled.div`
   input[type='range'] {
     appearance: none;
     width: 100%;
-    height: 3px;
+    height: 2px;
     border-radius: 5px;
     background-color: ${(props) => props.theme.colors.textColor};
     outline: none;
