@@ -126,4 +126,15 @@ export class Editor {
     // Apply the zoom and translation to the canvas
     this.setZoomAuto(scaleFactor);
   }
+
+  public dispose() {
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+      this.resizeObserver = null;
+    }
+
+    if (this.canvas) {
+      this.canvas.dispose();
+    }
+  }
 }

@@ -1,15 +1,23 @@
+import { FOOTER_HEIGHT } from '@/utils/constants';
 import { styled } from 'styled-components';
 
 export default function Footer() {
   return (
-    <Wrap>
+    <Wrap height={FOOTER_HEIGHT}>
       <p>Footer</p>
+      <p>Other</p>
     </Wrap>
   );
 }
 
-const Wrap = styled.div`
-  height: 40px;
+interface WrapProps {
+  height: number;
+}
+
+const Wrap = styled.div<WrapProps>`
+  height: ${(props) => `${props.height}px`};
   background-color: ${(props) => props.theme.colors.primary};
   border-top: 1px solid ${(props) => props.theme.colors.borderColor};
+  display: flex;
+  justify-content: space-between;
 `;

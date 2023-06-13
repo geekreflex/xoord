@@ -1,10 +1,12 @@
 import { useAppDispatch } from '@/app/hooks';
+import { useEditorContext } from '@/context/EditorContext';
+import { Editor } from '@/core/Editor';
 import { fabric } from 'fabric';
 import { useEffect } from 'react';
 import { styled } from 'styled-components';
 
 export default function Canvas() {
-  const dispatch = useAppDispatch();
+  const { setEditor } = useEditorContext();
 
   useEffect(() => {
     const fabricCanvas = new fabric.Canvas('canvas', {
@@ -15,7 +17,15 @@ export default function Canvas() {
 
     const workspaceEl = document.getElementById('workspace');
     const option = { width: 1200, height: 1200 };
-  });
+
+    const editor = new Editor(fabricCanvas, workspaceEl!, option);
+    setEditor(editor);
+
+    return () => {
+      editor.dispose();
+      setEditor(null);
+    };
+  }, []);
 
   return (
     <Wrap>
@@ -26,4 +36,14 @@ export default function Canvas() {
   );
 }
 
-const Wrap = styled.div``;
+const Wrap = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+
+  #workspace {
+    width: 100%;
+    height: 100%;
+  }
+`;
