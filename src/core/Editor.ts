@@ -1,5 +1,7 @@
 import { fabric } from 'fabric';
 import { throttle } from 'lodash-es';
+import { Controls } from './Controls';
+import { AlignGuidelines } from './AligningGuidelines';
 
 declare type EditorOption = { width: number; height: number };
 
@@ -26,6 +28,7 @@ export class Editor {
     this.initBackground();
     this.initWorkspace();
     this.initResizeObserver();
+    this.initControls();
   }
 
   private initBackground() {
@@ -51,6 +54,11 @@ export class Editor {
 
     this.workspace = workspace;
     this.auto();
+  }
+
+  private initControls() {
+    new Controls(this.canvas);
+    new AlignGuidelines({ canvas: this.canvas }).init();
   }
 
   private auto() {

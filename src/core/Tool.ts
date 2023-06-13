@@ -48,6 +48,7 @@ export class Tool {
   public addSquare() {
     const square = new fabric.Rect({
       ...SQUARE,
+      ...this.size(),
       id: this.id(),
       name: 'rect',
     });
@@ -57,6 +58,7 @@ export class Tool {
   public addTriangle() {
     const triangle = new fabric.Triangle({
       ...TRIANGLE,
+      ...this.size(),
       id: this.id(),
       name: 'triangle',
     });
