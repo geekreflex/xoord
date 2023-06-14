@@ -27,6 +27,5 @@ const Wrap = styled.div<WrapProps>`
   border-left: 1px solid
     ${(props) =>
       props.layout === 'right' ? props.theme.colors.borderColor : 'none'};
-  padding: 5px 0;
   order: ${(props) => (props.layout === 'right' ? 2 : 1)};
 `;

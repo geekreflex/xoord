@@ -3,6 +3,7 @@ import { Editor } from '@/core/Editor';
 import { fabric } from 'fabric';
 import { useEffect } from 'react';
 import { styled } from 'styled-components';
+import 'fabric-history';
 
 export default function Canvas() {
   const { setEditor } = useEditorContext();

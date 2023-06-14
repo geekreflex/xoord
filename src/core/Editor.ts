@@ -156,6 +156,21 @@ export class Editor {
     this.setZoomAuto(scaleFactor);
   }
 
+  /**
+   * We reset workspace to it's default behavior
+   * by removing the controls and disabling select
+   * after we perform undo/redo
+   */
+  public resetWorkspace() {
+    const workspace = this.canvas.getObjects()[0];
+    if (workspace) {
+      workspace.hoverCursor = 'default';
+      workspace.set('selectable', false);
+      workspace.set('hasControls', false);
+      this.canvas.renderAll();
+    }
+  }
+
   public dispose() {
     if (this.resizeObserver) {
       this.resizeObserver.disconnect();

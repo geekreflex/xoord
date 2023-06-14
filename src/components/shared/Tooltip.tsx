@@ -74,7 +74,6 @@ export default function Tooltip({
 const Wrap = styled.div`
   .main-tooltip {
     padding: 6px;
-    border: 1px solid ${(props) => props.theme.colors.borderColor};
     border-radius: ${(props) => props.theme.radius.medium};
     font-size: 12px;
     z-index: 998;

@@ -38,8 +38,8 @@ export const darkTheme: Theme = {
     borderColor: '#2e2e2e',
     hoverColor: '#2c2c2c',
     textColor: '#f5f5f5',
-    tooltipBg: '#ffffff',
-    tooltipColor: '#111111',
+    tooltipBg: '#222222',
+    tooltipColor: '#f5f5f5',
   },
   radius: {
     medium: '4px',
