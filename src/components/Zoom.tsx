@@ -118,6 +118,7 @@ const Wrap = styled.div`
     z-index: 99;
     flex-direction: column-reverse;
     width: 150px;
+    font-size: 14px;
 
     .level {
       padding: 10px 15px;

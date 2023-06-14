@@ -82,6 +82,6 @@ const Wrap = styled.div`
   }
 
   .tooltip-arrow {
-    background-color: red;
+    /* Todo */
   }
 `;
