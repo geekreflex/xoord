@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 import Icon from './shared/Icon';
 import { useAppDispatch } from '@/app/hooks';
 import { switchActiveTool } from '@/features/appSlice';
+import Tooltip from './shared/Tooltip';
 
 export default function Tools() {
   const dispatch = useAppDispatch();
@@ -11,15 +12,20 @@ export default function Tools() {
     icon: IconName;
     disabled?: boolean;
     alias?: 'element';
+    desc?: string;
   }
 
   const tools: ITools[] = [
-    { name: 'Elements', icon: 'shapesIcon' },
-    { name: 'Images', icon: 'imageIcon' },
-    { name: 'Text', icon: 'textIcon' },
-    { name: 'Templates', icon: 'grid3Icon' },
-    { name: 'Draw', icon: 'brushIcon' },
-    { name: 'Customize', icon: 'bgIcon' },
+    { name: 'Elements', icon: 'shapesIcon', desc: 'Elements and shapes' },
+    { name: 'Images', icon: 'imageIcon', desc: 'Upload or browse images' },
+    { name: 'Text', icon: 'textIcon', desc: 'Add text' },
+    {
+      name: 'Templates',
+      icon: 'grid3Icon',
+      desc: 'Start from a pre-built layout',
+    },
+    { name: 'Draw', icon: 'brushIcon', desc: 'Free drawing' },
+    { name: 'Customize', icon: 'bgIcon', desc: 'Customize workspace' },
   ];
 
   const onToolClick = (tool: string) => {
@@ -29,14 +35,19 @@ export default function Tools() {
   return (
     <Wrap>
       {tools.map((tool) => (
-        <Icon
+        <Tooltip
           key={tool.name}
-          name={tool.icon as IconName}
-          disabled={tool.disabled}
-          label={tool.name}
-          size="big"
-          click={() => onToolClick(tool.name.toLowerCase())}
-        />
+          content={tool.desc || tool.name}
+          placement={'right'}
+        >
+          <Icon
+            name={tool.icon as IconName}
+            disabled={tool.disabled}
+            label={tool.name}
+            size="big"
+            click={() => onToolClick(tool.name.toLowerCase())}
+          />
+        </Tooltip>
       ))}
     </Wrap>
   );

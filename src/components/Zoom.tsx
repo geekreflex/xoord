@@ -10,11 +10,12 @@ import useClickOutside from '@/hooks/useClickOutside';
 
 export default function Zoom() {
   const ref = useRef<HTMLDivElement | null>(null);
+  const [activeZoom, setActiveZoom] = useState();
   const dispatch = useAppDispatch();
   const { editor } = useEditorContext();
   const [visible, setVisible] = useState(false);
   const { currentZoom } = useAppSelector((state) => state.editor);
-  const levels = [10, 25, 50, 75, 100, 150, 200, 300, 400];
+  const levels = [10, 25, 50, 75, 100, 150, 200, 400];
 
   useEffect(() => {
     if (editor) {
@@ -60,7 +61,7 @@ export default function Zoom() {
       <div className="zoom-range">
         <RangeSlider min={8} max={400} value={currentZoom} onChange={onZoom} />
       </div>
-      <div className="zoom-data" onClick={onShowLevels}>
+      <div ref={ref} className="zoom-data" onClick={onShowLevels}>
         <Tooltip content="Zoom">
           <div className="zoom-value">{currentZoom.toFixed(0)}%</div>
         </Tooltip>
@@ -111,7 +112,7 @@ const Wrap = styled.div`
   }
 
   .zoom-value {
-    width: 80px;
+    width: 70px;
     border: 1px solid ${(props) => props.theme.colors.borderColor};
     height: 30px;
     display: flex;
