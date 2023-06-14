@@ -3,13 +3,18 @@ import { styled } from 'styled-components';
 import Zoom from '../Zoom';
 import History from '../History';
 import Icon from '../shared/Icon';
+import Tooltip from '../shared/Tooltip';
 
 export default function Footer() {
   return (
     <Wrap height={FOOTER_HEIGHT}>
       <div className="footer-left">
-        <Icon name="settingsIcon" />
-        <Icon name="layerIcon" />
+        <Tooltip content="Settings">
+          <Icon name="settingsIcon" />
+        </Tooltip>
+        <Tooltip content="Layers and Groups">
+          <Icon name="layerIcon" />
+        </Tooltip>
       </div>
       <Zoom />
       <History />
