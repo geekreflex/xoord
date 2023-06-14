@@ -4,11 +4,13 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { useEditorContext } from '@/context/EditorContext';
 import { setCurrentZoom } from '@/features/editorSlice';
 import { useEffect } from 'react';
+import Popup from './shared/Popup';
 
 export default function Zoom() {
   const dispatch = useAppDispatch();
   const { editor } = useEditorContext();
   const { currentZoom } = useAppSelector((state) => state.editor);
+  const levels = [10, 25, 50, 75, 100, 150, 200, 300, 400];
 
   useEffect(() => {
     if (editor) {
@@ -18,11 +20,19 @@ export default function Zoom() {
 
   const onZoom = (e: React.ChangeEvent<HTMLInputElement>) => {
     const zoom = e.target.value;
-    const normZoom = Number(zoom) / 100;
+    updateZoom(Number(zoom));
+  };
+
+  const onZoomLevel = (level: number) => {
+    updateZoom(level);
+  };
+
+  const updateZoom = (zoom: number) => {
+    const normZoom = zoom / 100;
+    dispatch(setCurrentZoom(zoom));
     if (editor) {
       editor.setZoomAuto(normZoom);
     }
-    dispatch(setCurrentZoom(zoom));
   };
 
   return (
@@ -30,7 +40,23 @@ export default function Zoom() {
       <div className="zoom-range">
         <RangeSlider min={8} max={400} value={currentZoom} onChange={onZoom} />
       </div>
-      <div className="zoom-value">{currentZoom.toFixed(0)}%</div>
+      <div className="zoom-data">
+        <div className="zoom-value">{currentZoom.toFixed(0)}%</div>
+        <Popup>
+          <div className="zoom-levels">
+            <div className="zoom-fit-fill">
+              <div className="level">Fit</div>
+              <div className="level">Fill</div>
+            </div>
+            <div className="line"></div>
+            {levels.map((level) => (
+              <div className="level" onClick={() => onZoomLevel(level)}>
+                {level}%
+              </div>
+            ))}
+          </div>
+        </Popup>
+      </div>
     </Wrap>
   );
 }
@@ -45,6 +71,13 @@ const Wrap = styled.div`
     width: 100%;
   }
 
+  .line {
+    width: 100%;
+    height: 1px;
+    background-color: ${(props) => props.theme.colors.borderColor};
+    margin: 5px 0;
+  }
+
   .zoom-value {
     width: 80px;
     border: 1px solid ${(props) => props.theme.colors.borderColor};
@@ -54,5 +87,26 @@ const Wrap = styled.div`
     align-items: center;
     border-radius: 4px;
     font-size: 12px;
+    cursor: pointer;
+  }
+
+  .zoom-data {
+    display: flex;
+    justify-content: center;
+  }
+
+  .zoom-levels {
+    display: flex;
+    z-index: 99;
+    flex-direction: column-reverse;
+    width: 150px;
+
+    .level {
+      padding: 10px 15px;
+      cursor: pointer;
+      &:hover {
+        background-color: ${(props) => props.theme.colors.secondary};
+      }
+    }
   }
 `;

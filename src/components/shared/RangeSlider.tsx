@@ -31,6 +31,7 @@ export default function RangeSlider({
 
 const Wrap = styled.div`
   position: relative;
+  display: flex;
 
   input[type='range'] {
     appearance: none;

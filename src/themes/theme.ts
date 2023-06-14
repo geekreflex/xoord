@@ -7,6 +7,9 @@ export interface Theme {
     hoverColor: string;
     textColor: string;
   };
+  radius: {
+    medium: string;
+  };
 }
 
 export const lightTheme: Theme = {
@@ -18,6 +21,9 @@ export const lightTheme: Theme = {
     hoverColor: '#f1f1f1',
     textColor: '#111111',
   },
+  radius: {
+    medium: '4px',
+  },
 };
 
 export const darkTheme: Theme = {
@@ -28,5 +34,8 @@ export const darkTheme: Theme = {
     borderColor: '#2e2e2e',
     hoverColor: '#2c2c2c',
     textColor: '#f5f5f5',
+  },
+  radius: {
+    medium: '4px',
   },
 };
