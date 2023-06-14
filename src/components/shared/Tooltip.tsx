@@ -1,7 +1,87 @@
+import { useState } from 'react';
+import { usePopper } from 'react-popper';
 import { styled } from 'styled-components';
 
-export default function Tooltip() {
-  return <Wrap></Wrap>;
+interface TooltipProps {
+  content: string;
+  placement?: string | any;
+  children: React.ReactElement;
 }
 
-const Wrap = styled.div``;
+export default function Tooltip({
+  content,
+  placement = 'top',
+  children,
+}: TooltipProps) {
+  const [tooltipVisible, setTooltipVisible] = useState(false);
+  const [referenceElement, setReferenceElement] =
+    useState<HTMLDivElement | null>(null);
+  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
+    null
+  );
+  const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null);
+
+  const showTooltip = () => setTooltipVisible(true);
+  const hideTooltip = () => setTooltipVisible(false);
+
+  const { styles, attributes } = usePopper(referenceElement, popperElement, {
+    placement,
+    modifiers: [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 10],
+        },
+      },
+      {
+        name: 'arrow',
+        options: {
+          element: arrowElement,
+        },
+      },
+    ],
+  });
+
+  return (
+    <Wrap>
+      <div
+        ref={setReferenceElement}
+        onMouseEnter={showTooltip}
+        onMouseLeave={hideTooltip}
+      >
+        {children}
+      </div>
+      {tooltipVisible && (
+        <div
+          ref={setPopperElement}
+          className="main-tooltip"
+          style={{ ...styles.popper }}
+          {...attributes.popper}
+        >
+          {content}
+          <div
+            ref={setArrowElement}
+            className="tooltip-arrow"
+            style={{ ...styles.arrow }}
+            {...attributes.arrow}
+          ></div>
+        </div>
+      )}
+    </Wrap>
+  );
+}
+
+const Wrap = styled.div`
+  .main-tooltip {
+    padding: 10px;
+    border: 1px solid ${(props) => props.theme.colors.borderColor};
+    border-radius: ${(props) => props.theme.radius.medium};
+    font-size: 12px;
+    z-index: 998;
+    background-color: ${(props) => props.theme.colors.secondary};
+  }
+
+  .tooltip-arrow {
+    background-color: red;
+  }
+`;

@@ -3,12 +3,16 @@ import RangeSlider from './shared/RangeSlider';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { useEditorContext } from '@/context/EditorContext';
 import { setCurrentZoom } from '@/features/editorSlice';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Popup from './shared/Popup';
+import Tooltip from './shared/Tooltip';
+import useClickOutside from '@/hooks/useClickOutside';
 
 export default function Zoom() {
+  const ref = useRef<HTMLDivElement | null>(null);
   const dispatch = useAppDispatch();
   const { editor } = useEditorContext();
+  const [visible, setVisible] = useState(false);
   const { currentZoom } = useAppSelector((state) => state.editor);
   const levels = [10, 25, 50, 75, 100, 150, 200, 300, 400];
 
@@ -35,27 +39,41 @@ export default function Zoom() {
     }
   };
 
+  const onShowLevels = () => {
+    setVisible(!visible);
+  };
+
+  useClickOutside(ref, () => setVisible(false));
+
   return (
     <Wrap>
       <div className="zoom-range">
         <RangeSlider min={8} max={400} value={currentZoom} onChange={onZoom} />
       </div>
-      <div className="zoom-data">
-        <div className="zoom-value">{currentZoom.toFixed(0)}%</div>
-        <Popup>
-          <div className="zoom-levels">
-            <div className="zoom-fit-fill">
-              <div className="level">Fit</div>
-              <div className="level">Fill</div>
-            </div>
-            <div className="line"></div>
-            {levels.map((level) => (
-              <div className="level" onClick={() => onZoomLevel(level)}>
-                {level}%
+      <div className="zoom-data" onClick={onShowLevels}>
+        <Tooltip content="Zoom">
+          <div className="zoom-value">{currentZoom.toFixed(0)}%</div>
+        </Tooltip>
+        {visible && (
+          <Popup>
+            <div className="zoom-levels">
+              <div className="zoom-fit-fill">
+                <div className="level">Fit</div>
+                <div className="level">Fill</div>
               </div>
-            ))}
-          </div>
-        </Popup>
+              <div className="line"></div>
+              {levels.map((level) => (
+                <div
+                  key={level}
+                  className="level"
+                  onClick={() => onZoomLevel(level)}
+                >
+                  {level}%
+                </div>
+              ))}
+            </div>
+          </Popup>
+        )}
       </div>
     </Wrap>
   );
