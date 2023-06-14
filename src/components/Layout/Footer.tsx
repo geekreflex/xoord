@@ -4,13 +4,21 @@ import Zoom from '../Zoom';
 import History from '../History';
 import Icon from '../shared/Icon';
 import Tooltip from '../shared/Tooltip';
+import { useAppDispatch } from '@/app/hooks';
+import { toggleSettingsModal } from '@/features/appSlice';
 
 export default function Footer() {
+  const dispatch = useAppDispatch();
+
+  const showSettings = () => {
+    dispatch(toggleSettingsModal());
+  };
+
   return (
     <Wrap height={FOOTER_HEIGHT}>
       <div className="footer-left">
         <Tooltip content="Settings">
-          <Icon name="settingsIcon" />
+          <Icon name="settingsIcon" click={showSettings} />
         </Tooltip>
         <Tooltip content="Layers and Groups">
           <Icon name="layerIcon" />

@@ -5,6 +5,7 @@ interface AppState {
   layout: string;
   panel: 'tools' | 'properties';
   activeTool: string;
+  settingsModal: boolean;
 }
 
 const initialState: AppState = {
@@ -12,6 +13,7 @@ const initialState: AppState = {
   layout: 'left',
   panel: 'tools',
   activeTool: 'elements',
+  settingsModal: false,
 };
 
 export const appSlice = createSlice({
@@ -29,8 +31,17 @@ export const appSlice = createSlice({
     switchActiveTool(state, action) {
       state.activeTool = action.payload;
     },
+
+    toggleSettingsModal(state) {
+      state.settingsModal = !state.settingsModal;
+    },
   },
 });
 
-export const { toggleLayout, switchPanel, switchActiveTool } = appSlice.actions;
+export const {
+  toggleLayout,
+  switchPanel,
+  switchActiveTool,
+  toggleSettingsModal,
+} = appSlice.actions;
 export default appSlice.reducer;

@@ -11,6 +11,7 @@ import {
   SIDEBAR_WIDTH,
 } from '@/utils/constants';
 import { useAppSelector } from '@/app/hooks';
+import Float from './Layout/Float';
 
 export default function Editor() {
   const { layout } = useAppSelector((state) => state.app);
@@ -33,6 +34,7 @@ export default function Editor() {
           <Footer />
         </div>
       </div>
+      <Float />
     </Wrap>
   );
 }
