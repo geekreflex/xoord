@@ -41,7 +41,7 @@ export default function Icon({
       <span id="icon">
         <IconComponent />
       </span>
-      {label && <span id="title">{label}</span>}
+      {label && <span id="label">{label}</span>}
     </IconWrap>
   );
 }
@@ -70,7 +70,6 @@ const IconWrap = styled.button<{
   gap: 7px;
   cursor: pointer;
   padding: ${(props) => (props.hover == 'true' ? '5px' : '')};
-  border-radius: 5px;
   &:hover {
     background-color: ${(props) =>
       props.hover == 'true' ? props.theme.colors.hoverColor : ''};
@@ -80,7 +79,7 @@ const IconWrap = styled.button<{
     display: flex;
   }
 
-  span#title {
+  span#label {
     font-size: 11px;
     font-weight: 600;
   }
