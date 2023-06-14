@@ -31,6 +31,16 @@ export default function Zoom() {
     updateZoom(level);
   };
 
+  const onZoomFitFill = (type: string) => {
+    if (type === 'fill') {
+      editor?.zoomToFill();
+    }
+    if (type === 'fit') {
+      editor?.zoomToFit();
+    }
+    updateZoom(editor?.canvas.getZoom()! * 100);
+  };
+
   const updateZoom = (zoom: number) => {
     const normZoom = zoom / 100;
     dispatch(setCurrentZoom(zoom));
@@ -58,8 +68,12 @@ export default function Zoom() {
           <Popup>
             <div className="zoom-levels">
               <div className="zoom-fit-fill">
-                <div className="level">Fit</div>
-                <div className="level">Fill</div>
+                <div className="level" onClick={() => onZoomFitFill('fit')}>
+                  Fit
+                </div>
+                <div className="level" onClick={() => onZoomFitFill('fill')}>
+                  Fill
+                </div>
               </div>
               <div className="line"></div>
               {levels.map((level) => (

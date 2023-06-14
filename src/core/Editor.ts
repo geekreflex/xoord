@@ -135,6 +135,27 @@ export class Editor {
     this.setZoomAuto(scaleFactor);
   }
 
+  public zoomToFill(offset: number = 100) {
+    if (!this.workspace) return;
+
+    // Get the dimensions of the workspace rectangle
+    const workspaceWidth = this.workspace.width!;
+    const workspaceHeight = this.workspace.height!;
+
+    // Calculate the available space within the canvas
+    const canvasWidth = this.canvas.getWidth();
+    const canvasHeight = this.canvas.getHeight();
+
+    // Calculate the scaling factor to fit the workspace within the available space
+    const scaleFactor = Math.max(
+      (canvasWidth - offset * 2) / workspaceWidth,
+      (canvasHeight - offset * 2) / workspaceHeight
+    );
+
+    // Apply the zoom and translation to the canvas
+    this.setZoomAuto(scaleFactor);
+  }
+
   public dispose() {
     if (this.resizeObserver) {
       this.resizeObserver.disconnect();
