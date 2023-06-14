@@ -50,6 +50,7 @@ const Wrap = styled.div<WrapProps>`
   position: fixed;
   justify-content: center;
   align-items: center;
+  z-index: 99998;
 
   .overlay {
     width: 100%;

@@ -58,7 +58,9 @@ export default function History() {
 const Wrap = styled.div`
   display: flex;
   align-items: center;
+  position: relative;
   .redo-undo {
     display: flex;
+    gap: 5px;
   }
 `;

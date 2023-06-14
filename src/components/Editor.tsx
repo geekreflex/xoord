@@ -71,5 +71,6 @@ const Wrap = styled.div<WrapProps>`
     display: flex;
     flex-direction: column;
     order: ${(props) => (props.layout === 'left' ? 2 : 1)};
+    flex: 1;
   }
 `;
