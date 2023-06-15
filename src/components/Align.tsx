@@ -18,10 +18,10 @@ interface AlignProps {
 export default function Align() {
   const [visible, setVisible] = useState(false);
   const ref = useRef(null);
-  // const { controller } = useEditorContext();
+  const { controller } = useEditorContext();
 
   const handleAlign = (val: string) => {
-    // controller?.align(val);
+    controller?.align(val);
   };
 
   const aligns: AlignProps[] = [
@@ -73,7 +73,7 @@ export default function Align() {
             <div className="align-inner">
               <GridItems>
                 {aligns.map((align) => (
-                  <GridItem key={align.name}>
+                  <GridItem key={align.name} onClick={align.func}>
                     <Icon name={align.icon} hover={false} />
                     <p>{align.name}</p>
                   </GridItem>
