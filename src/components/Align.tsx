@@ -3,17 +3,10 @@ import Icon from './shared/Icon';
 import Tooltip from './shared/Tooltip';
 import Popup from './shared/Popup';
 import { useEditorContext } from '@/context/EditorContext';
-import { IconName } from '@/types/icon';
 import { GridItem, GridItems } from '@/styles/global';
 import { useRef, useState } from 'react';
 import useClickOutside from '@/hooks/useClickOutside';
-
-interface AlignProps {
-  name: string;
-  icon: IconName;
-  func: () => void;
-  alias: string;
-}
+import { GridItemProps } from '@/types/app';
 
 export default function Align() {
   const [visible, setVisible] = useState(false);
@@ -24,7 +17,7 @@ export default function Align() {
     controller?.align(val);
   };
 
-  const aligns: AlignProps[] = [
+  const aligns: GridItemProps[] = [
     {
       name: 'Top',
       icon: 'alignTopIcon',
@@ -69,7 +62,7 @@ export default function Align() {
     <Wrap ref={ref}>
       <div className="align-wrap">
         {visible && (
-          <Popup placement="top">
+          <Popup placement="top" offset={60}>
             <div className="align-inner">
               <GridItems>
                 {aligns.map((align) => (
@@ -91,7 +84,6 @@ export default function Align() {
 }
 
 const Wrap = styled.div`
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;

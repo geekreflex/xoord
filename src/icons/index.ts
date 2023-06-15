@@ -36,6 +36,8 @@ import SearchIcon from './SearchIcon';
 import ArrowLeftIcon from './ArrowLeftIcon';
 import ArrowRightIcon from './ArrowRightIcon';
 import HandleIcon from './HandleIcon';
+import RotateLeftIcon from './RotateLeftIcon';
+import RotateRightIcon from './RotateRightIcon';
 
 export {
   ZoomInIcon,
@@ -76,4 +78,6 @@ export {
   ArrowLeftIcon,
   ArrowRightIcon,
   HandleIcon,
+  RotateLeftIcon,
+  RotateRightIcon,
 };

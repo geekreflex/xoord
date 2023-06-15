@@ -23,6 +23,8 @@ import {
   LockIcon,
   PositionIcon,
   RedoIcon,
+  RotateLeftIcon,
+  RotateRightIcon,
   SettingsIcon,
   ShadowIcon,
   ShapesIcon,
@@ -68,4 +70,6 @@ export const IconComponents: { [key: string]: React.ComponentType } = {
   arrowDownIcon: ArrowDownIcon,
   settingsIcon: SettingsIcon,
   addImageIcon: AddImageIcon,
+  rotateLeftIcon: RotateLeftIcon,
+  rotateRightIcon: RotateRightIcon,
 };

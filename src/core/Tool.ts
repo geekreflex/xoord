@@ -34,7 +34,6 @@ export class Tool {
   public addRectangle() {
     const rectangle = new fabric.Rect({
       ...RECTANGLE,
-      ...this.size(),
       id: this.id(),
       name: 'rect',
     });
@@ -48,7 +47,6 @@ export class Tool {
   public addSquare() {
     const square = new fabric.Rect({
       ...SQUARE,
-      ...this.size(),
       id: this.id(),
       name: 'rect',
     });
@@ -58,7 +56,6 @@ export class Tool {
   public addTriangle() {
     const triangle = new fabric.Triangle({
       ...TRIANGLE,
-      ...this.size(),
       id: this.id(),
       name: 'triangle',
     });
@@ -103,7 +100,13 @@ export class Tool {
   private addObject(obj: fabric.Object) {
     this.editor.canvas.add(obj);
     this.editor.canvas.setActiveObject(obj);
+    this.objOrigin(obj);
     this.editor.canvas.renderAll();
+  }
+
+  private objOrigin(obj: fabric.Object) {
+    obj.set('originX', 'center');
+    obj.set('originY', 'center');
   }
 
   private id() {

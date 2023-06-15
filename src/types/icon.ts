@@ -41,4 +41,6 @@ export type IconName =
   | 'arrowUpIcon'
   | 'arrowDownIcon'
   | 'settingsIcon'
-  | 'addImageIcon';
+  | 'addImageIcon'
+  | 'rotateLeftIcon'
+  | 'rotateRightIcon';

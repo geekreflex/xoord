@@ -11,7 +11,8 @@ const defaultProps = {
   strokeWidth: STROKE_WIDTH,
   strokeUniform: STROKE_UNIFORM,
   angle: 0,
-  // left: 50,
+  left: 300,
+  top: 300,
 };
 
 const defaultSize = {

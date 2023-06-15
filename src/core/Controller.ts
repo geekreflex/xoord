@@ -7,6 +7,43 @@ export class Controller {
     this.editor = editor;
   }
 
+  public flipX() {
+    const activeObject = this.editor.canvas.getActiveObject();
+    if (activeObject && activeObject.flipX) {
+      activeObject.toggle('flipX');
+    }
+    this.editor.canvas.renderAll();
+  }
+
+  public flipY() {
+    const activeObject = this.editor.canvas.getActiveObject();
+    console.log('clicked');
+    if (activeObject) {
+      activeObject.toggle('flipY');
+    }
+    this.editor.canvas.renderAll();
+  }
+
+  public rotateLeft(angle: number) {
+    const activeObject = this.editor.canvas.getActiveObject();
+
+    if (activeObject) {
+      activeObject.set('angle', activeObject.angle! - angle).setCoords();
+    }
+    this.editor.canvas.renderAll();
+  }
+
+  public rotateRight(angle: number) {
+    const activeObject = this.editor.canvas.getActiveObject();
+
+    if (activeObject) {
+      activeObject.set('originX', 'center');
+      activeObject.set('originY', 'center');
+      activeObject.set('angle', activeObject.angle! + angle).setCoords();
+    }
+    this.editor.canvas.renderAll();
+  }
+
   public align(position: string) {
     const activeObject = this.editor.canvas.getActiveObject();
 

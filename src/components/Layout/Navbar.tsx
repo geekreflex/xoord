@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 import Align from '../Align';
 import Icon from '../shared/Icon';
 import Tooltip from '../shared/Tooltip';
+import FlipRotate from '../FlipRotate';
 
 export default function Navbar() {
   return (
@@ -10,6 +11,7 @@ export default function Navbar() {
       <div>Awesome Editor</div>
       <div className="object-tools">
         <Align />
+        <FlipRotate />
         <Tooltip content="Duplicate">
           <Icon name="copyIcon" />
         </Tooltip>
