@@ -40,7 +40,7 @@ export default function Tab({ tabs, activeTab, setActiveTab }: TabProps) {
   return (
     <Wrap>
       <div className="tablist" ref={gliderRef}>
-        {tabs.map((tab, index) => (
+        {tabs.map((tab) => (
           <div
             className={tab.name === activeTab ? 'active tab' : 'tab'}
             onClick={() => onTabClick(tab.name)}
@@ -83,7 +83,7 @@ const Wrap = styled.div`
       position: absolute;
       bottom: 0;
       height: 100%;
-      background-color: ${(props) => props.theme.colors.primary};
+      background-color: ${(props) => props.theme.colors.hoverColor};
       border-radius: ${(props) => props.theme.radius.medium};
       transition: transform 0.3s ease;
       width: 100%;

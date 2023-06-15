@@ -1,34 +1,40 @@
 import { styled } from 'styled-components';
 import Popup from './shared/Popup';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Tooltip from './shared/Tooltip';
 import Icon from './shared/Icon';
 import Tab from './shared/Tab';
+import useClickOutside from '@/hooks/useClickOutside';
 
 export default function Layers() {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
   const [activeTab, setActiveTab] = useState('Layers');
   const tabs = [{ name: 'Layers' }, { name: 'Groups' }];
+  const ref = useRef(null);
+
+  useClickOutside(ref, () => setVisible(false));
 
   return (
-    <Wrap>
-      {visible && (
-        <Popup>
-          <div className="layers-wrap">
-            <Tab
-              tabs={tabs}
-              activeTab={activeTab}
-              setActiveTab={setActiveTab}
-            />
-            <div className="main">
-              {activeTab === 'Layers' && 'Layers'}
-              {activeTab === 'Groups' && 'Groups'}
+    <Wrap ref={ref}>
+      <div className="layer-group-wrap">
+        {visible && (
+          <Popup placement="bottom">
+            <div className="layers-wrap">
+              <Tab
+                tabs={tabs}
+                activeTab={activeTab}
+                setActiveTab={setActiveTab}
+              />
+              <div className="main">
+                {activeTab === 'Layers' && 'Layers'}
+                {activeTab === 'Groups' && 'Groups'}
+              </div>
             </div>
-          </div>
-        </Popup>
-      )}
+          </Popup>
+        )}
+      </div>
       <Tooltip content="Layers and Groups">
-        <Icon name="layerIcon" />
+        <Icon name="layerIcon" click={() => setVisible(true)} />
       </Tooltip>
     </Wrap>
   );
@@ -37,7 +43,6 @@ export default function Layers() {
 const Wrap = styled.div`
   display: flex;
   justify-content: center;
-  position: relative;
 
   .layers-wrap {
     width: 300px;

@@ -12,6 +12,9 @@ export interface Theme {
   radius: {
     medium: string;
   };
+  shadow: {
+    shadow1: string;
+  };
 }
 
 export const lightTheme: Theme = {
@@ -28,6 +31,9 @@ export const lightTheme: Theme = {
   radius: {
     medium: '4px',
   },
+  shadow: {
+    shadow1: 'rgba(0, 0, 0, 0.16) 0px 1px 4px;',
+  },
 };
 
 export const darkTheme: Theme = {
@@ -36,12 +42,15 @@ export const darkTheme: Theme = {
     primary: '#171717',
     secondary: '#111111',
     borderColor: '#2e2e2e',
-    hoverColor: '#2c2c2c',
+    hoverColor: '#2d2d2d',
     textColor: '#f5f5f5',
     tooltipBg: '#222222',
     tooltipColor: '#f5f5f5',
   },
   radius: {
     medium: '4px',
+  },
+  shadow: {
+    shadow1: 'rgba(0, 0, 0, 0.5) 0px 1px 4px;',
   },
 };
