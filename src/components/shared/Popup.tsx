@@ -12,4 +12,5 @@ const Wrap = styled.div`
   padding: 5px 0;
   border-radius: ${(props) => props.theme.radius.medium};
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  z-index: 998;
 `;

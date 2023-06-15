@@ -6,6 +6,7 @@ import Icon from '../shared/Icon';
 import Tooltip from '../shared/Tooltip';
 import { useAppDispatch } from '@/app/hooks';
 import { toggleSettingsModal } from '@/features/appSlice';
+import Layers from '../Layers';
 
 export default function Footer() {
   const dispatch = useAppDispatch();
@@ -20,9 +21,7 @@ export default function Footer() {
         <Tooltip content="Settings">
           <Icon name="settingsIcon" click={showSettings} />
         </Tooltip>
-        <Tooltip content="Layers and Groups">
-          <Icon name="layerIcon" />
-        </Tooltip>
+        <Layers />
       </div>
       <Zoom />
       <History />

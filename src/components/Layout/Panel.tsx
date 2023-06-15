@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { PANEL_WIDTH } from '@/utils/constants';
 import { styled } from 'styled-components';
 import ToolsPanel from '../tools/ToolsPanel';
-import { ArrowLeftIcon } from '@/icons';
+import { ArrowLeftIcon, HandleIcon } from '@/icons';
 import { closePanel } from '@/features/appSlice';
 
 export default function Panel() {
@@ -24,8 +24,9 @@ export default function Panel() {
         {panel === 'tools' && <ToolsPanel />}
         {panel === 'properties' && 'Props'}
       </div>
-      <div className="panel-handle" onClick={onClosePanel}>
-        <span>
+      <div className="handle" onClick={onClosePanel}>
+        <HandleIcon />
+        <span className="icon">
           <ArrowLeftIcon />
         </span>
       </div>
@@ -55,6 +56,7 @@ const Wrap = styled.div<WrapProps>`
   visibility: ${(props) => (props.open ? 'visible' : 'hidden')};
   opacity: ${(props) => (props.open ? '1' : '0')};
   border: ${(props) => (props.open === false ? 'none' : 'auto')};
+  z-index: 99;
 
   .panel-header {
     display: flex;
@@ -63,31 +65,21 @@ const Wrap = styled.div<WrapProps>`
     margin: 20px 0;
   }
 
-  .panel-handle {
+  .handle {
     position: absolute;
-    width: 15px;
-    height: 80px;
-    background-color: ${(props) => props.theme.colors.primary};
-    right: -14px;
-    top: 50%;
-    transform: translateY(-50%);
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border: 1px solid ${(props) => props.theme.colors.borderColor};
-    border-left: none;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    top: 50%;
+    right: -20px;
+    transform: translateY(-50%);
+    color: ${(props) => props.theme.colors.primary};
     cursor: pointer;
-    z-index: 98;
 
-    span {
+    .icon {
+      position: absolute;
+      color: ${(props) => props.theme.colors.textColor};
       display: flex;
-    }
-    &:hover {
-      span {
-        opacity: 0.6;
-      }
     }
   }
 `;

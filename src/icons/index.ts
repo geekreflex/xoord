@@ -35,6 +35,7 @@ import AddImageIcon from './AddImageIcon';
 import SearchIcon from './SearchIcon';
 import ArrowLeftIcon from './ArrowLeftIcon';
 import ArrowRightIcon from './ArrowRightIcon';
+import HandleIcon from './HandleIcon';
 
 export {
   ZoomInIcon,
@@ -74,4 +75,5 @@ export {
   SearchIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
+  HandleIcon,
 };

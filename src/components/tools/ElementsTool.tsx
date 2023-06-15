@@ -12,7 +12,7 @@ export default function ElementsTool({ tool }: { tool: Tool }) {
   ];
   return (
     <Wrap>
-      <p>Element</p>
+      <p>Shapes</p>
       <div className="list-items">
         {shapes.map((shape) => (
           <div
