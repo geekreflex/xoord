@@ -2,13 +2,13 @@ import { IconName } from '@/types/icon';
 import { styled } from 'styled-components';
 import Icon from './shared/Icon';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
-import { switchActiveTool } from '@/features/appSlice';
+import { setPanelTitle, switchActiveTool } from '@/features/appSlice';
 import Tooltip from './shared/Tooltip';
 
 export default function Tools() {
   const dispatch = useAppDispatch();
   const { activeTool } = useAppSelector((state) => state.app);
-  interface ITools {
+  interface ITool {
     name: string;
     icon: IconName;
     disabled?: boolean;
@@ -16,7 +16,7 @@ export default function Tools() {
     desc?: string;
   }
 
-  const tools: ITools[] = [
+  const tools: ITool[] = [
     { name: 'Elements', icon: 'shapesIcon', desc: 'Elements and shapes' },
     { name: 'Images', icon: 'imageIcon', desc: 'Upload or browse images' },
     { name: 'Text', icon: 'textIcon', desc: 'Add text' },
@@ -26,11 +26,12 @@ export default function Tools() {
       desc: 'Start from a pre-built layout',
     },
     { name: 'Draw', icon: 'brushIcon', desc: 'Free drawing' },
-    { name: 'Customize', icon: 'bgIcon', desc: 'Customize workspace' },
+    { name: 'Background', icon: 'bgIcon', desc: 'Customize workspace' },
   ];
 
-  const onToolClick = (tool: string) => {
-    dispatch(switchActiveTool(tool));
+  const onToolClick = (tool: ITool) => {
+    dispatch(switchActiveTool(tool.name.toLowerCase()));
+    dispatch(setPanelTitle(tool.name));
   };
 
   return (
@@ -53,7 +54,7 @@ export default function Tools() {
               disabled={tool.disabled}
               label={tool.name}
               size="big"
-              click={() => onToolClick(tool.name.toLowerCase())}
+              click={() => onToolClick(tool)}
               hover={false}
             />
           </div>

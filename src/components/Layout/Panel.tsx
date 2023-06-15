@@ -7,7 +7,9 @@ import { closePanel } from '@/features/appSlice';
 
 export default function Panel() {
   const dispatch = useAppDispatch();
-  const { layout, panel, isPanelOpen } = useAppSelector((state) => state.app);
+  const { layout, panel, isPanelOpen, panelTitle } = useAppSelector(
+    (state) => state.app
+  );
 
   const onClosePanel = () => {
     dispatch(closePanel());
@@ -16,7 +18,7 @@ export default function Panel() {
   return (
     <Wrap width={PANEL_WIDTH} layout={layout} open={isPanelOpen}>
       <div className="panel-header">
-        <h3>Untitled</h3>
+        <h3>{panelTitle}</h3>
       </div>
       <div className="panel-main">
         {panel === 'tools' && <ToolsPanel />}

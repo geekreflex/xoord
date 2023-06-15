@@ -7,6 +7,7 @@ interface AppState {
   activeTool: string;
   settingsModal: boolean;
   isPanelOpen: boolean;
+  panelTitle: string | null;
 }
 
 const initialState: AppState = {
@@ -16,6 +17,7 @@ const initialState: AppState = {
   activeTool: 'elements',
   settingsModal: false,
   isPanelOpen: true,
+  panelTitle: 'Elements',
 };
 
 export const appSlice = createSlice({
@@ -43,6 +45,10 @@ export const appSlice = createSlice({
     toggleSettingsModal(state) {
       state.settingsModal = !state.settingsModal;
     },
+
+    setPanelTitle(state, action) {
+      state.panelTitle = action.payload;
+    },
   },
 });
 
@@ -52,5 +58,6 @@ export const {
   switchActiveTool,
   toggleSettingsModal,
   closePanel,
+  setPanelTitle,
 } = appSlice.actions;
 export default appSlice.reducer;

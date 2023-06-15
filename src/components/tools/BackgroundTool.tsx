@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
 
-export default function CustomizeTool() {
+export default function BackgroundTool() {
   return (
     <Wrap>
-      <p>Customize</p>
+      <p>Background</p>
     </Wrap>
   );
 }

@@ -44,12 +44,20 @@ export default function History() {
   return (
     <Wrap>
       <div className="redo-undo">
-        <Tooltip content="Undo">
-          <Icon name="undoIcon" click={onUndo} disabled={!canUndo} />
-        </Tooltip>
-        <Tooltip content="Redo">
-          <Icon name="redoIcon" click={onRedo} disabled={!canRedo} />
-        </Tooltip>
+        <div className={`${!canUndo && 'disabled'}`}>
+          <Tooltip content="Undo">
+            <span className="icon-wrap">
+              <Icon name="undoIcon" click={onUndo} />
+            </span>
+          </Tooltip>
+        </div>
+        <div className={`${!canRedo && 'disabled'}`}>
+          <Tooltip content="Redo">
+            <span className="icon-wrap">
+              <Icon name="redoIcon" click={onRedo} />
+            </span>
+          </Tooltip>
+        </div>
       </div>
     </Wrap>
   );
@@ -62,5 +70,21 @@ const Wrap = styled.div`
   .redo-undo {
     display: flex;
     gap: 5px;
+  }
+
+  .disabled {
+    cursor: not-allowed;
+    position: relative;
+
+    .icon-wrap {
+      opacity: 0.2;
+    }
+
+    * {
+      cursor: not-allowed;
+      &:hover {
+        background-color: transparent;
+      }
+    }
   }
 `;
