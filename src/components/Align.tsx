@@ -3,7 +3,7 @@ import Icon from './shared/Icon';
 import Tooltip from './shared/Tooltip';
 import Popup from './shared/Popup';
 import { useEditorContext } from '@/context/EditorContext';
-import { GridItem, GridItems, TitleSmall } from '@/styles/global';
+import { GridItem, GridItems, LineX, TitleSmall } from '@/styles/global';
 import { useRef, useState } from 'react';
 import useClickOutside from '@/hooks/useClickOutside';
 import { GridItemProps } from '@/types/app';
@@ -56,6 +56,28 @@ export default function Align() {
     },
   ];
 
+  const orders: GridItemProps[] = [
+    { name: 'Forward', icon: 'forwardIcon', func: () => {}, alias: 'forward' },
+    {
+      name: 'Backwards',
+      icon: 'backwardIcon',
+      func: () => {},
+      alias: 'backward',
+    },
+    {
+      name: 'Front',
+      icon: 'bringFrontIcon',
+      func: () => {},
+      alias: 'bring-front',
+    },
+    {
+      name: 'Back',
+      icon: 'sendBackIcon',
+      func: () => {},
+      alias: 'send-back',
+    },
+  ];
+
   useClickOutside(ref, () => setVisible(false));
 
   return (
@@ -64,20 +86,34 @@ export default function Align() {
         {visible && (
           <Popup placement="top" offset={60}>
             <div className="align-inner">
-              <TitleSmall>Align objects</TitleSmall>
-              <GridItems>
-                {aligns.map((align) => (
-                  <GridItem key={align.name} onClick={align.func}>
-                    <Icon name={align.icon} hover={false} />
-                    <p>{align.name}</p>
-                  </GridItem>
-                ))}
-              </GridItems>
+              <div>
+                <TitleSmall>Align</TitleSmall>
+                <GridItems>
+                  {aligns.map((align) => (
+                    <GridItem key={align.name} onClick={align.func}>
+                      <Icon name={align.icon} hover={false} />
+                      <p>{align.name}</p>
+                    </GridItem>
+                  ))}
+                </GridItems>
+              </div>
+              <LineX />
+              <div>
+                <TitleSmall>Layer</TitleSmall>
+                <GridItems>
+                  {orders.map((order) => (
+                    <GridItem key={order.name} onClick={order.func}>
+                      <Icon name={order.icon} hover={false} />
+                      <p>{order.name}</p>
+                    </GridItem>
+                  ))}
+                </GridItems>
+              </div>
             </div>
           </Popup>
         )}
       </div>
-      <Tooltip content="Align">
+      <Tooltip content="Align and Layer">
         <Icon name="alignLeftIcon" click={() => setVisible(true)} />
       </Tooltip>
     </Wrap>

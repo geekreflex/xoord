@@ -40,6 +40,8 @@ import RotateLeftIcon from './RotateLeftIcon';
 import RotateRightIcon from './RotateRightIcon';
 import BackwardIcon from './BackwardIcon';
 import ForwardIcon from './ForwardIcon';
+import BringFrontIcon from './BringFrontIcon';
+import SendBackIcon from './SendBackIcon';
 
 export {
   ZoomInIcon,
@@ -84,4 +86,6 @@ export {
   RotateRightIcon,
   BackwardIcon,
   ForwardIcon,
+  BringFrontIcon,
+  SendBackIcon,
 };

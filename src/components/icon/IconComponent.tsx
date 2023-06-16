@@ -12,6 +12,7 @@ import {
   ArrowUpIcon,
   BackwardIcon,
   BgIcon,
+  BringFrontIcon,
   Brush2Icon,
   BrushIcon,
   Close2Icon,
@@ -27,6 +28,7 @@ import {
   RedoIcon,
   RotateLeftIcon,
   RotateRightIcon,
+  SendBackIcon,
   SettingsIcon,
   ShadowIcon,
   ShapesIcon,
@@ -76,4 +78,6 @@ export const IconComponents: { [key: string]: React.ComponentType } = {
   rotateRightIcon: RotateRightIcon,
   backwardIcon: BackwardIcon,
   forwardIcon: ForwardIcon,
+  bringFrontIcon: BringFrontIcon,
+  sendBackIcon: SendBackIcon,
 };
