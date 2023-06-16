@@ -21,7 +21,7 @@ export class Controls {
       transparentCorners: false,
       borderColor: '#51B9F9',
       cornerColor: '#FFF',
-      borderScaleFactor: 1,
+      borderScaleFactor: 1.5,
       cornerStyle: 'circle',
       cornerStrokeColor: '#0E98FC',
       borderOpacityWhenMoving: 1,

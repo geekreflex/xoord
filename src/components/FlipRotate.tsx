@@ -34,13 +34,13 @@ export default function FlipRotate() {
     {
       name: 'Rotate Left 90°',
       icon: 'rotateLeftIcon',
-      func: () => controller?.rotateLeft(90),
+      func: () => controller?.rotate(-90),
       alias: 'r-left',
     },
     {
       name: 'Rotate Right 90°',
       icon: 'rotateRightIcon',
-      func: () => controller?.rotateRight(90),
+      func: () => controller?.rotate(90),
       alias: 'r-right',
     },
   ];

@@ -1,3 +1,4 @@
+import { fabric } from 'fabric';
 import { generateUniqueId } from '@/utils/unique';
 import { Editor } from './Editor';
 import {
@@ -100,21 +101,15 @@ export class Tool {
       br: false,
     });
 
-    this.editor.canvas.add(text);
-    this.editor.canvas.setActiveObject(text);
-    this.editor.canvas.renderAll();
+    this.addObject(text);
   }
 
-  private addObject(obj: fabric.Object) {
+  private addObject(obj: fabric.Object | fabric.Textbox) {
     this.editor.canvas.add(obj);
     this.editor.canvas.setActiveObject(obj);
-    this.objOrigin(obj);
+    const center = this.editor.workspace?.getCenterPoint();
+    this.editor.canvas._centerObject(obj, center!);
     this.editor.canvas.renderAll();
-  }
-
-  private objOrigin(obj: fabric.Object) {
-    obj.set('originX', 'center');
-    obj.set('originY', 'center');
   }
 
   private id() {

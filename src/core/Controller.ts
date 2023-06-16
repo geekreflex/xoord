@@ -24,23 +24,15 @@ export class Controller {
     this.editor.canvas.renderAll();
   }
 
-  public rotateLeft(angle: number) {
+  public rotate(angleOffset: number) {
     const activeObject = this.editor.canvas.getActiveObject();
 
-    if (activeObject) {
-      activeObject.set('angle', activeObject.angle! - angle).setCoords();
-    }
-    this.editor.canvas.renderAll();
-  }
+    if (!activeObject) return;
 
-  public rotateRight(angle: number) {
-    const activeObject = this.editor.canvas.getActiveObject();
+    let angle = activeObject.angle! + angleOffset;
+    angle = angle > 360 ? 90 : angle < 0 ? 270 : angle;
 
-    if (activeObject) {
-      activeObject.set('originX', 'center');
-      activeObject.set('originY', 'center');
-      activeObject.set('angle', activeObject.angle! + angle).setCoords();
-    }
+    activeObject.set('angle', angle).setCoords();
     this.editor.canvas.renderAll();
   }
 
@@ -178,7 +170,7 @@ export class Controller {
 
       switch (position) {
         case 'left':
-          activeObject?.set({
+          activeObject.set({
             left: 0,
           });
           break;
@@ -223,6 +215,7 @@ export class Controller {
               2,
           });
       }
+      activeObject.setCoords();
     }
     this.editor.canvas.renderAll();
   }
