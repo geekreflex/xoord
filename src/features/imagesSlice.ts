@@ -28,8 +28,8 @@ const initialState: ImagesState = {
 
 export const fetchImages = createAsyncThunk(
   'images/fetchImages',
-  async (_, { getState }) => {
-    const { page, perPage } = (getState() as { images: ImagesState }).images;
+  async (page: number, { getState }) => {
+    const { perPage } = (getState() as { images: ImagesState }).images;
 
     // Perform the actual API call to fetch images
     const response = await fetch(
@@ -43,6 +43,7 @@ export const fetchImages = createAsyncThunk(
     const data = await response.json();
 
     if (response.ok) {
+      console.log('DATA', data);
       return data.photos;
     } else {
       throw new Error(data.error);
@@ -62,7 +63,8 @@ const imagesSlice = createSlice({
       })
       .addCase(fetchImages.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data = action.payload;
+        state.data = [...state.data, ...action.payload];
+        state.page += 1;
       })
       .addCase(fetchImages.rejected, (state, action) => {
         state.status = 'failed';
