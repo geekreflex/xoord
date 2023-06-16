@@ -1,9 +1,11 @@
+import { useEditorContext } from '@/context/EditorContext';
 import { styled } from 'styled-components';
 
 export default function TextTool() {
+  const { tool } = useEditorContext();
   return (
     <Wrap>
-      <p>Text</p>
+      <button onClick={() => tool?.addText()}>Add Text</button>
     </Wrap>
   );
 }

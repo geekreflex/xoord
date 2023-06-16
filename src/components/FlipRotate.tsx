@@ -5,7 +5,7 @@ import Popup from './shared/Popup';
 import useClickOutside from '@/hooks/useClickOutside';
 import { useRef, useState } from 'react';
 import { useEditorContext } from '@/context/EditorContext';
-import { GridItem, GridItems } from '@/styles/global';
+import { GridItem, GridItems, LineX, TitleSmall } from '@/styles/global';
 import { GridItemProps } from '@/types/app';
 
 export default function FlipRotate() {
@@ -52,6 +52,7 @@ export default function FlipRotate() {
           <Popup placement="top" offset={60}>
             <div className="inner">
               <div>
+                <TitleSmall>Flip</TitleSmall>
                 <GridItems>
                   {flips.map((flip) => (
                     <GridItem key={flip.alias} onClick={flip.func}>
@@ -61,7 +62,10 @@ export default function FlipRotate() {
                   ))}
                 </GridItems>
               </div>
+              <LineX />
               <div>
+                <TitleSmall>Rotate</TitleSmall>
+
                 <GridItems>
                   {rotates.map((rotate) => (
                     <GridItem key={rotate.alias} onClick={rotate.func}>

@@ -25,6 +25,18 @@ export default createGlobalStyle`
 
 `;
 
+export const LineX = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: ${(props) => props.theme.colors.borderColor};
+  margin: 10px 0;
+`;
+
+export const TitleSmall = styled.h5`
+  margin: 10px;
+  font-weight: 400;
+`;
+
 export const GridItems = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;

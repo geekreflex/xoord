@@ -85,16 +85,24 @@ export class Tool {
     this.addObject(star);
   }
 
-  private size() {
-    const workspaceWidth = this.editor.workspace?.width;
-    const workspaceHeight = this.editor.workspace?.height;
-    const relativeWidth = workspaceWidth! * (50 / 100);
-    const relativeHeight = workspaceHeight! * (25 / 100);
+  public addText() {
+    const text = new fabric.Textbox('Click to edit', {
+      width: 200,
+      textAlign: 'left',
+    });
 
-    return {
-      width: relativeWidth,
-      height: relativeHeight,
-    };
+    text.setControlsVisibility({
+      mt: false,
+      mb: false,
+      ml: false,
+      tr: false,
+      bl: false,
+      br: false,
+    });
+
+    this.editor.canvas.add(text);
+    this.editor.canvas.setActiveObject(text);
+    this.editor.canvas.renderAll();
   }
 
   private addObject(obj: fabric.Object) {

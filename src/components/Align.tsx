@@ -3,7 +3,7 @@ import Icon from './shared/Icon';
 import Tooltip from './shared/Tooltip';
 import Popup from './shared/Popup';
 import { useEditorContext } from '@/context/EditorContext';
-import { GridItem, GridItems } from '@/styles/global';
+import { GridItem, GridItems, TitleSmall } from '@/styles/global';
 import { useRef, useState } from 'react';
 import useClickOutside from '@/hooks/useClickOutside';
 import { GridItemProps } from '@/types/app';
@@ -64,6 +64,7 @@ export default function Align() {
         {visible && (
           <Popup placement="top" offset={60}>
             <div className="align-inner">
+              <TitleSmall>Align objects</TitleSmall>
               <GridItems>
                 {aligns.map((align) => (
                   <GridItem key={align.name} onClick={align.func}>
