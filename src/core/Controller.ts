@@ -29,9 +29,10 @@ export class Controller {
 
     if (!activeObject) return;
 
-    let angle = activeObject.angle! + angleOffset;
+    let angle = activeObject.get('angle')! + angleOffset;
     angle = angle > 360 ? 90 : angle < 0 ? 270 : angle;
 
+    activeObject.rotate(angle).setCoords();
     activeObject.set('angle', angle).setCoords();
     this.editor.canvas.renderAll();
   }
@@ -215,7 +216,6 @@ export class Controller {
               2,
           });
       }
-      activeObject.setCoords();
     }
     this.editor.canvas.renderAll();
   }

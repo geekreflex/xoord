@@ -51,18 +51,25 @@ const Wrap = styled.div<WrapProps>`
   border-left: 1px solid
     ${(props) =>
       props.layout === 'right' ? props.theme.colors.borderColor : 'none'};
-  padding: ${(props) => (props.open ? '5px' : 0)};
   order: ${(props) => (props.layout === 'right' ? 1 : 2)};
   visibility: ${(props) => (props.open ? 'visible' : 'hidden')};
   opacity: ${(props) => (props.open ? '1' : '0')};
   border: ${(props) => (props.open === false ? 'none' : 'auto')};
   z-index: 99;
+  display: flex;
+  flex-direction: column;
+
+  .panel-main {
+    flex: 1;
+    overflow-y: auto;
+  }
 
   .panel-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 20px 0;
+    padding: 0 5px;
   }
 
   .handle {
