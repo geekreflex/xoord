@@ -13,6 +13,7 @@ export default function Canvas() {
       fireRightClick: true,
       stopContextMenu: true,
       controlsAboveOverlay: true,
+      preserveObjectStacking: true,
     });
 
     const workspaceEl = document.getElementById('workspace');

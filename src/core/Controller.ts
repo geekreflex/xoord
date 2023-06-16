@@ -79,6 +79,33 @@ export class Controller {
     this.editor.canvas.renderAll();
   }
 
+  public order(action: string) {
+    const object = this.editor.canvas.getActiveObject();
+    const objectIndex = this.editor.canvas.getObjects().indexOf(object!);
+
+    switch (action) {
+      case 'front':
+        object?.bringToFront();
+        break;
+      case 'back':
+        this.editor.canvas.moveTo(object!, 1);
+        break;
+      case 'forward':
+        object?.bringForward();
+        break;
+      case 'backward':
+        if (objectIndex === 1) {
+          return;
+        }
+        object?.sendBackwards();
+        break;
+      default:
+        break;
+    }
+
+    this.editor.canvas.renderAll();
+  }
+
   public align(position: string) {
     const activeObject = this.editor.canvas.getActiveObject();
 

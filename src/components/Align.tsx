@@ -57,24 +57,29 @@ export default function Align() {
   ];
 
   const orders: GridItemProps[] = [
-    { name: 'Forward', icon: 'forwardIcon', func: () => {}, alias: 'forward' },
+    {
+      name: 'Forward',
+      icon: 'forwardIcon',
+      func: () => controller?.order('forward'),
+      alias: 'forward',
+    },
     {
       name: 'Backwards',
       icon: 'backwardIcon',
-      func: () => {},
+      func: () => controller?.order('backward'),
       alias: 'backward',
     },
     {
       name: 'Front',
       icon: 'bringFrontIcon',
-      func: () => {},
-      alias: 'bring-front',
+      func: () => controller?.order('front'),
+      alias: 'front',
     },
     {
       name: 'Back',
       icon: 'sendBackIcon',
-      func: () => {},
-      alias: 'send-back',
+      func: () => controller?.order('back'),
+      alias: 'back',
     },
   ];
 
