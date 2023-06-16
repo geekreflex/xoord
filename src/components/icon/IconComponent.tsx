@@ -10,6 +10,7 @@ import {
   ArrowSwapXIcon,
   ArrowSwapYIcon,
   ArrowUpIcon,
+  BackwardIcon,
   BgIcon,
   Brush2Icon,
   BrushIcon,
@@ -72,4 +73,5 @@ export const IconComponents: { [key: string]: React.ComponentType } = {
   addImageIcon: AddImageIcon,
   rotateLeftIcon: RotateLeftIcon,
   rotateRightIcon: RotateRightIcon,
+  backwardIcon: BackwardIcon,
 };
