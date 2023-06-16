@@ -17,9 +17,6 @@ export class Tool {
     this.editor = editor;
   }
 
-  /**
-   * Add Circle
-   */
   public addCircle() {
     const circle = new fabric.Circle({
       ...CIRCLE,
@@ -29,9 +26,6 @@ export class Tool {
     this.addObject(circle);
   }
 
-  /**
-   * Add Rectangle
-   */
   public addRectangle() {
     const rectangle = new fabric.Rect({
       ...RECTANGLE,
@@ -41,10 +35,6 @@ export class Tool {
     this.addObject(rectangle);
   }
 
-  /**
-   *
-   * @returns
-   */
   public addSquare() {
     const square = new fabric.Rect({
       ...SQUARE,
@@ -102,6 +92,24 @@ export class Tool {
     });
 
     this.addObject(text);
+  }
+
+  public addImage(imageUrl: string) {
+    fabric.Image.fromURL(
+      imageUrl,
+      (img) => {
+        const image = new fabric.Image(img.getElement());
+        image.set({
+          left: 100,
+          top: 100,
+          scaleX: 0.5,
+          scaleY: 0.5,
+        });
+        this.editor.canvas.add(image);
+        this.editor.canvas.renderAll();
+      },
+      { crossOrigin: 'anonymous' }
+    );
   }
 
   private addObject(obj: fabric.Object | fabric.Textbox) {

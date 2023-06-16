@@ -3,9 +3,11 @@ import { fetchImages } from '@/features/imagesSlice';
 import { useEffect, useRef } from 'react';
 import { styled } from 'styled-components';
 import Masonry from 'react-masonry-css';
+import { useEditorContext } from '@/context/EditorContext';
 
 export default function ImagesTool() {
   const dispatch = useAppDispatch();
+  const { tool } = useEditorContext();
   const { data, page, status, error } = useAppSelector((state) => state.images);
 
   const observer = useRef<IntersectionObserver | null>(null);
@@ -38,6 +40,10 @@ export default function ImagesTool() {
     };
   }, [dispatch]);
 
+  const onAddImage = (imageUrl: string) => {
+    tool?.addImage(imageUrl);
+  };
+
   if (status === 'loading') {
     return <div>Loading...</div>;
   }
@@ -50,7 +56,11 @@ export default function ImagesTool() {
     <Wrap>
       <Masonry breakpointCols={2} className="image-list">
         {data.map((image, index) => (
-          <div key={index} className="image">
+          <div
+            key={index}
+            className="image"
+            onClick={() => onAddImage(image.src.large)}
+          >
             <img src={image.src.medium} />
           </div>
         ))}
