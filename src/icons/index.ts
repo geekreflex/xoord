@@ -39,6 +39,7 @@ import HandleIcon from './HandleIcon';
 import RotateLeftIcon from './RotateLeftIcon';
 import RotateRightIcon from './RotateRightIcon';
 import BackwardIcon from './BackwardIcon';
+import ForwardIcon from './ForwardIcon';
 
 export {
   ZoomInIcon,
@@ -82,4 +83,5 @@ export {
   RotateLeftIcon,
   RotateRightIcon,
   BackwardIcon,
+  ForwardIcon,
 };

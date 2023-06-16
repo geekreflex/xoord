@@ -44,4 +44,5 @@ export type IconName =
   | 'addImageIcon'
   | 'rotateLeftIcon'
   | 'rotateRightIcon'
-  | 'backwardIcon';
+  | 'backwardIcon'
+  | 'forwardIcon';

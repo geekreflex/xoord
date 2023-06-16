@@ -17,6 +17,7 @@ import {
   Close2Icon,
   CloseIcon,
   CopyIcon,
+  ForwardIcon,
   Grid1Icon,
   Grid3Icon,
   ImageIcon,
@@ -74,4 +75,5 @@ export const IconComponents: { [key: string]: React.ComponentType } = {
   rotateLeftIcon: RotateLeftIcon,
   rotateRightIcon: RotateRightIcon,
   backwardIcon: BackwardIcon,
+  forwardIcon: ForwardIcon,
 };
