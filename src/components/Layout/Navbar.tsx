@@ -4,6 +4,7 @@ import Align from '../Align';
 import Icon from '../shared/Icon';
 import Tooltip from '../shared/Tooltip';
 import FlipRotate from '../FlipRotate';
+import { Delete, Duplicate, Lock } from '../toolbox';
 
 export default function Navbar() {
   return (
@@ -12,15 +13,9 @@ export default function Navbar() {
       <div className="object-tools">
         <Align />
         <FlipRotate />
-        <Tooltip content="Duplicate">
-          <Icon name="copyIcon" />
-        </Tooltip>
-        <Tooltip content="Lock">
-          <Icon name="unlockIcon" />
-        </Tooltip>
-        <Tooltip content="Delete">
-          <Icon name="trashIcon" />
-        </Tooltip>
+        <Duplicate />
+        <Lock />
+        <Delete />
       </div>
       <div>Right Side</div>
     </Wrap>

@@ -29,6 +29,8 @@ export class Editor {
     this.initWorkspace();
     this.initResizeObserver();
     this.initControls();
+
+    this.initEvents();
   }
 
   private initBackground() {
@@ -180,5 +182,14 @@ export class Editor {
     if (this.canvas) {
       this.canvas.dispose();
     }
+  }
+
+  private initEvents() {
+    this.canvas.on('mouse:over', (opt) => {
+      const object = opt.target;
+      if (!object || object?.id === 'workspace') {
+        return;
+      }
+    });
   }
 }

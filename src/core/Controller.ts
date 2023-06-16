@@ -44,6 +44,41 @@ export class Controller {
     this.editor.canvas.renderAll();
   }
 
+  public delete() {
+    const objects = this.editor.canvas.getActiveObjects();
+    objects.map((obj) => {
+      this.editor.canvas.remove(obj);
+      this.editor.canvas.getActiveObject();
+    });
+    this.editor.canvas.discardActiveObject().renderAll();
+    this.editor.canvas.renderAll();
+  }
+
+  public duplicate() {
+    const activeObject = this.editor.canvas.getActiveObject();
+    if (activeObject) {
+      activeObject.clone((clone: fabric.Object) => {
+        this.editor.canvas.add(
+          clone.set({
+            left: activeObject.left! + 10,
+            top: activeObject.top! + 10,
+          })
+        );
+      });
+    }
+  }
+
+  public lock() {
+    const activeObject = this.editor.canvas.getActiveObject();
+    if (activeObject) {
+      activeObject.lockMovementX = true;
+      activeObject.lockMovementY = true;
+      activeObject.lockRotation = true;
+      activeObject.selectable = false;
+    }
+    this.editor.canvas.renderAll();
+  }
+
   public align(position: string) {
     const activeObject = this.editor.canvas.getActiveObject();
 
