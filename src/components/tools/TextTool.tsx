@@ -1,12 +1,12 @@
 import { useEditorContext } from '@/context/EditorContext';
 import { AddIcon } from '@/icons';
-import { BtnWrap, Button } from '@/styles/global';
-import { styled } from 'styled-components';
+import { BtnWrap, Button, ToolWrap } from '@/styles/global';
+import SearchInput from '../shared/SearchInput';
 
 export default function TextTool() {
   const { tool } = useEditorContext();
   return (
-    <Wrap>
+    <ToolWrap>
       <BtnWrap>
         <Button onClick={() => tool?.addText()}>
           <span id="btn-icon">
@@ -15,8 +15,8 @@ export default function TextTool() {
           <span id="btn-text">Add your text</span>
         </Button>
       </BtnWrap>
-    </Wrap>
+      <SearchInput placeholder="Search Text" />
+    </ToolWrap>
   );
 }
 
-const Wrap = styled.div``;

@@ -1,9 +1,8 @@
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { fetchImages } from '@/features/imagesSlice';
 import { useEffect } from 'react';
-import { styled } from 'styled-components';
 import ImageList from '../shared/ImageList';
-import { BtnWrap, Button } from '@/styles/global';
+import { BtnWrap, Button, ToolWrap } from '@/styles/global';
 import { AddImageIcon } from '@/icons';
 import SearchInput from '../shared/SearchInput';
 
@@ -16,7 +15,7 @@ export default function ImagesTool() {
   }, [dispatch]);
 
   return (
-    <Wrap>
+    <ToolWrap>
       <BtnWrap>
         <Button>
           <span id="btn-icon">
@@ -27,13 +26,6 @@ export default function ImagesTool() {
       </BtnWrap>
       <SearchInput placeholder="Search Images" />
       <ImageList images={images} type="image" status={status} error={error} />
-    </Wrap>
+    </ToolWrap>
   );
 }
-
-const Wrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  height: 100%;
-`;

@@ -1,9 +1,8 @@
-import { styled } from 'styled-components';
 import ImageList from '../shared/ImageList';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { useEffect } from 'react';
 import { fetchBackgrounds } from '@/features/imagesSlice';
-import { BtnWrap, Button } from '@/styles/global';
+import { BtnWrap, Button, ToolWrap } from '@/styles/global';
 import { BgIcon } from '@/icons';
 import SearchInput from '../shared/SearchInput';
 
@@ -18,7 +17,7 @@ export default function BackgroundsTool() {
   }, [dispatch]);
 
   return (
-    <Wrap>
+    <ToolWrap>
       <BtnWrap>
         <Button>
           <span id="btn-icon">
@@ -34,13 +33,6 @@ export default function BackgroundsTool() {
         status={status}
         error={error}
       />
-    </Wrap>
+    </ToolWrap>
   );
 }
-
-const Wrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  height: 100%;
-`;

@@ -90,3 +90,10 @@ export const BtnWrap = styled.div`
   display: flex;
   justify-content: center;
 `;
+
+export const ToolWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+`;
