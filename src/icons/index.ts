@@ -46,6 +46,9 @@ import AddIcon from './AddIcon';
 import TextBoldIcon from './TextBoldIcon';
 import TextItalicIcon from './TextItalicIcon';
 import TextUnderlineIcon from './TextUnderlineIcon';
+import TextAlignCenterIcon from './TextAlignCenterIcon';
+import TextAlignLeftIcon from './TextAlignLeftIcon';
+import TextAlignRightIcon from './TextAlignRightIcon';
 
 export {
   ZoomInIcon,
@@ -96,4 +99,7 @@ export {
   TextBoldIcon,
   TextItalicIcon,
   TextUnderlineIcon,
+  TextAlignCenterIcon,
+  TextAlignLeftIcon,
+  TextAlignRightIcon,
 };
