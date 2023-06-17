@@ -1,8 +1,10 @@
+import { useEditorContext } from '@/context/EditorContext';
 import { Close2Icon } from '@/icons';
 import { LineX } from '@/styles/global';
 import { styled } from 'styled-components';
 
 export default function PropertiesPanel() {
+  const { selectedType } = useEditorContext();
   return (
     <Wrap>
       <div className="inner">
@@ -13,7 +15,7 @@ export default function PropertiesPanel() {
           </span>
         </div>
         <LineX />
-        <div className="property-main">hello</div>
+        <div className="property-main">{JSON.stringify(selectedType)}</div>
       </div>
     </Wrap>
   );

@@ -64,15 +64,10 @@ export class Editor {
 
     // Load the background image;
     fabric.Image.fromURL(imageUrl, (img) => {
-      // Calculate the scaling factors to fit the image within the workspace
       const scaleX = workspace!.width! / img.width!;
       const scaleY = workspace!.height! / img.height!;
 
       const scale = Math.max(scaleX, scaleY);
-
-      // Scale the image to fill the workspace
-      // img.scaleToWidth(workspace!.width!);
-      // img.scaleToHeight(workspace!.height!);
 
       workspace?.set({
         fill: new fabric.Pattern({
