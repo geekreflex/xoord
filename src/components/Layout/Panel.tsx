@@ -20,10 +20,7 @@ export default function Panel() {
       <div className="panel-header">
         <h3>{panelTitle}</h3>
       </div>
-      <div className="panel-main">
-        {panel === 'tools' && <ToolsPanel />}
-        {panel === 'properties' && 'Props'}
-      </div>
+      <div className="panel-main">{panel === 'tools' && <ToolsPanel />}</div>
       <div className="handle" onClick={onClosePanel}>
         <HandleIcon />
         <span className="icon">

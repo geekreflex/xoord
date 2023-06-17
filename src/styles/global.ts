@@ -71,13 +71,17 @@ export const Button = styled.button`
   cursor: pointer;
   background-color: ${(props) => props.theme.colors.btnBgColor};
   color: ${(props) => props.theme.colors.textColor};
+  transition: all 300ms;
+  &:hover {
+    background-color: ${(props) => props.theme.colors.btnHoverColor};
+  }
 
   #btn-icon {
     font-size: 20px;
   }
 
   #btn-text {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
   }
 
