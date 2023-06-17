@@ -30,6 +30,4 @@ export default function ToolsPanel() {
 
 const Wrap = styled.div`
   height: 100%;
-  flex: 1;
-  padding: 0 5px;
 `;

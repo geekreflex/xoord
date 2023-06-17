@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { fetchBackgrounds } from '@/features/imagesSlice';
 import { BtnWrap, Button } from '@/styles/global';
 import { BgIcon } from '@/icons';
+import SearchInput from '../shared/SearchInput';
 
 export default function BackgroundsTool() {
   const dispatch = useAppDispatch();
@@ -16,14 +17,6 @@ export default function BackgroundsTool() {
     dispatch(fetchBackgrounds(1));
   }, [dispatch]);
 
-  if (status === 'loading') {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
   return (
     <Wrap>
       <BtnWrap>
@@ -34,9 +27,20 @@ export default function BackgroundsTool() {
           <span id="btn-text">Edit Background</span>
         </Button>
       </BtnWrap>
-      <ImageList images={backgrounds} type="background" />
+      <SearchInput placeholder="Search Backgrounds" />
+      <ImageList
+        images={backgrounds}
+        type="background"
+        status={status}
+        error={error}
+      />
     </Wrap>
   );
 }
 
-const Wrap = styled.div``;
+const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+`;

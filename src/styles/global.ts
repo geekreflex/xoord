@@ -89,5 +89,4 @@ export const Button = styled.button`
 export const BtnWrap = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
 `;

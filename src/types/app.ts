@@ -15,3 +15,5 @@ export interface Image {
     medium: string;
   };
 }
+
+export type IStatus = 'idle' | 'loading' | 'succeeded' | 'failed';

@@ -60,8 +60,7 @@ const Wrap = styled.div<WrapProps>`
   flex-direction: column;
 
   .panel-main {
-    flex: 1;
-    overflow-y: auto;
+    height: 100%;
   }
 
   .panel-header {

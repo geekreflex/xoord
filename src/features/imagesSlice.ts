@@ -1,4 +1,5 @@
 import { PEXELS_KEY } from '@/config/key';
+import { IStatus } from '@/types/app';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 interface Image {
@@ -15,7 +16,7 @@ interface ImagesState {
   backgrounds: Image[];
   page: number;
   perPage: number;
-  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  status: IStatus;
   error: string | null;
 }
 

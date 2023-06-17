@@ -5,6 +5,7 @@ import { styled } from 'styled-components';
 import ImageList from '../shared/ImageList';
 import { BtnWrap, Button } from '@/styles/global';
 import { AddImageIcon } from '@/icons';
+import SearchInput from '../shared/SearchInput';
 
 export default function ImagesTool() {
   const dispatch = useAppDispatch();
@@ -13,14 +14,6 @@ export default function ImagesTool() {
   useEffect(() => {
     dispatch(fetchImages(1));
   }, [dispatch]);
-
-  if (status === 'loading') {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
 
   return (
     <Wrap>
@@ -32,9 +25,15 @@ export default function ImagesTool() {
           <span id="btn-text">Upload Image</span>
         </Button>
       </BtnWrap>
-      <ImageList images={images} type="image" />
+      <SearchInput placeholder="Search Images" />
+      <ImageList images={images} type="image" status={status} error={error} />
     </Wrap>
   );
 }
 
-const Wrap = styled.div``;
+const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+`;

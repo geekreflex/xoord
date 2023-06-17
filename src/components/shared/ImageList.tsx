@@ -1,14 +1,21 @@
 import { useEditorContext } from '@/context/EditorContext';
-import { Image } from '@/types/app';
+import { IStatus, Image } from '@/types/app';
 import Masonry from 'react-masonry-css';
 import { styled } from 'styled-components';
 
 interface ImageListProps {
   images: Image[];
   type: 'image' | 'background';
+  status: IStatus;
+  error: string | null;
 }
 
-export default function ImageList({ images, type }: ImageListProps) {
+export default function ImageList({
+  images,
+  type,
+  status,
+  error,
+}: ImageListProps) {
   const { tool, editor } = useEditorContext();
 
   const onAddImage = (imageUrl: string) => {
@@ -20,6 +27,14 @@ export default function ImageList({ images, type }: ImageListProps) {
       editor?.setBackgroundImage(imageUrl);
     }
   };
+
+  if (status === 'loading') {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <Wrap>
@@ -40,6 +55,10 @@ export default function ImageList({ images, type }: ImageListProps) {
 
 const Wrap = styled.div`
   width: 100%;
+  padding: 0 5px;
+  overflow-y: auto;
+  height: 100%;
+  margin-bottom: 60px;
 
   .image-list {
     display: flex;
@@ -50,7 +69,6 @@ const Wrap = styled.div`
     position: relative;
     display: flex;
     margin-bottom: 5px;
-    height: 23 0px;
     cursor: pointer;
     border-radius: ${(props) => props.theme.radius.medium};
     overflow: hidden;
