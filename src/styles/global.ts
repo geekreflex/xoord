@@ -72,11 +72,11 @@ export const Button = styled.button`
   background-color: ${(props) => props.theme.colors.btnBgColor};
   color: ${(props) => props.theme.colors.textColor};
 
-  .btn-icon {
+  #btn-icon {
     font-size: 20px;
   }
 
-  .btn-text {
+  #btn-text {
     font-size: 15px;
     font-weight: 600;
   }
@@ -84,4 +84,10 @@ export const Button = styled.button`
   span {
     display: flex;
   }
+`;
+
+export const BtnWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 `;

@@ -3,6 +3,8 @@ import ImageList from '../shared/ImageList';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { useEffect } from 'react';
 import { fetchBackgrounds } from '@/features/imagesSlice';
+import { BtnWrap, Button } from '@/styles/global';
+import { BgIcon } from '@/icons';
 
 export default function BackgroundsTool() {
   const dispatch = useAppDispatch();
@@ -24,6 +26,14 @@ export default function BackgroundsTool() {
 
   return (
     <Wrap>
+      <BtnWrap>
+        <Button>
+          <span id="btn-icon">
+            <BgIcon />
+          </span>
+          <span id="btn-text">Edit Background</span>
+        </Button>
+      </BtnWrap>
       <ImageList images={backgrounds} type="background" />
     </Wrap>
   );

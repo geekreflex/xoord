@@ -1,27 +1,22 @@
 import { useEditorContext } from '@/context/EditorContext';
 import { AddIcon } from '@/icons';
-import { Button } from '@/styles/global';
+import { BtnWrap, Button } from '@/styles/global';
 import { styled } from 'styled-components';
 
 export default function TextTool() {
   const { tool } = useEditorContext();
   return (
     <Wrap>
-      <div className="btn-wrap">
+      <BtnWrap>
         <Button onClick={() => tool?.addText()}>
-          <span className="btn-icon">
+          <span id="btn-icon">
             <AddIcon />
           </span>
-          <span className="btn-text">Add your text</span>
+          <span id="btn-text">Add your text</span>
         </Button>
-      </div>
+      </BtnWrap>
     </Wrap>
   );
 }
 
-const Wrap = styled.div`
-  .btn-wrap {
-    display: flex;
-    justify-content: center;
-  }
-`;
+const Wrap = styled.div``;

@@ -3,6 +3,8 @@ import { fetchImages } from '@/features/imagesSlice';
 import { useEffect } from 'react';
 import { styled } from 'styled-components';
 import ImageList from '../shared/ImageList';
+import { BtnWrap, Button } from '@/styles/global';
+import { AddImageIcon } from '@/icons';
 
 export default function ImagesTool() {
   const dispatch = useAppDispatch();
@@ -22,6 +24,14 @@ export default function ImagesTool() {
 
   return (
     <Wrap>
+      <BtnWrap>
+        <Button>
+          <span id="btn-icon">
+            <AddImageIcon />
+          </span>
+          <span id="btn-text">Upload Image</span>
+        </Button>
+      </BtnWrap>
       <ImageList images={images} type="image" />
     </Wrap>
   );
