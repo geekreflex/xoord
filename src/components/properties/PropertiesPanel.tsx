@@ -6,7 +6,7 @@ import { styled } from 'styled-components';
 export default function PropertiesPanel() {
   const { selectedType } = useEditorContext();
   return (
-    <Wrap>
+    <Wrap visible={!!selectedType}>
       <div className="inner">
         <div className="property-header">
           <h3>Untitled</h3>
@@ -21,13 +21,17 @@ export default function PropertiesPanel() {
   );
 }
 
-const Wrap = styled.div`
+interface WProps {
+  visible: boolean;
+}
+
+const Wrap = styled.div<WProps>`
   position: fixed;
   right: 30px;
   top: 0;
   height: 100%;
   pointer-events: none;
-  display: flex;
+  display: ${(props) => (props.visible ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;
 
