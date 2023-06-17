@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { useEffect } from 'react';
 import { fetchBackgrounds } from '@/features/imagesSlice';
 
-export default function BackgroundTool() {
+export default function BackgroundsTool() {
   const dispatch = useAppDispatch();
   const { backgrounds, status, error } = useAppSelector(
     (state) => state.images

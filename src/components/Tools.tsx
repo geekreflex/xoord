@@ -26,7 +26,11 @@ export default function Tools() {
       desc: 'Start from a pre-built layout',
     },
     { name: 'Draw', icon: 'brushIcon', desc: 'Free drawing' },
-    { name: 'Background', icon: 'bgIcon', desc: 'Customize workspace' },
+    {
+      name: 'Backgrounds',
+      icon: 'bgIcon',
+      desc: 'Choose a desired background',
+    },
   ];
 
   const onToolClick = (tool: ITool) => {

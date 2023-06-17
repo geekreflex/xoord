@@ -83,5 +83,9 @@ const IconWrap = styled.button<{
   span#label {
     font-size: 11px;
     font-weight: 600;
+    text-overflow: ellipsis;
+    width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
   }
 `;

@@ -3,7 +3,7 @@ import ElementsTool from './ElementsTool';
 import { useAppSelector } from '@/app/hooks';
 import ImagesTool from './ImagesTools';
 import TextTool from './TextTool';
-import BackgroundTool from './BackgroundTool';
+import BackgroundsTool from './BackgroundsTool';
 import DrawTool from './DrawTool';
 import TemplatesTool from './TemplatesTool';
 import { useEditorContext } from '@/context/EditorContext';
@@ -23,7 +23,7 @@ export default function ToolsPanel() {
       {activeTool === 'text' && <TextTool />}
       {activeTool === 'templates' && <TemplatesTool />}
       {activeTool === 'draw' && <DrawTool />}
-      {activeTool === 'background' && <BackgroundTool />}
+      {activeTool === 'backgrounds' && <BackgroundsTool />}
     </Wrap>
   );
 }
