@@ -11,7 +11,8 @@ interface Image {
 }
 
 interface ImagesState {
-  data: Image[];
+  images: Image[];
+  backgrounds: Image[];
   page: number;
   perPage: number;
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
@@ -19,7 +20,8 @@ interface ImagesState {
 }
 
 const initialState: ImagesState = {
-  data: [],
+  images: [],
+  backgrounds: [],
   page: 1,
   perPage: 40,
   status: 'idle',
@@ -43,7 +45,30 @@ export const fetchImages = createAsyncThunk(
     const data = await response.json();
 
     if (response.ok) {
-      console.log('DATA', data);
+      console.log('Images', data);
+      return data.photos;
+    } else {
+      throw new Error(data.error);
+    }
+  }
+);
+
+export const fetchBackgrounds = createAsyncThunk(
+  'images/fetchBackgrounds',
+  async (page: number, { getState }) => {
+    const { perPage } = (getState() as { images: ImagesState }).images;
+
+    const response = await fetch(
+      `https://api.pexels.com/v1/search?query=background&page=${page}&per_page=${perPage}`,
+      {
+        headers: {
+          Authorization: PEXELS_KEY,
+        },
+      }
+    );
+    const data = await response.json();
+
+    if (response.ok) {
       return data.photos;
     } else {
       throw new Error(data.error);
@@ -63,10 +88,23 @@ const imagesSlice = createSlice({
       })
       .addCase(fetchImages.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data = [...state.data, ...action.payload];
-        state.page += 1;
+        state.images = action.payload;
       })
       .addCase(fetchImages.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message ?? 'Unknown error';
+      });
+
+    builder
+      .addCase(fetchBackgrounds.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(fetchBackgrounds.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.backgrounds = action.payload;
+      })
+      .addCase(fetchBackgrounds.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message ?? 'Unknown error';
       });

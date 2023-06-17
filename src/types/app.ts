@@ -6,3 +6,12 @@ export interface GridItemProps {
   func: () => void;
   alias: string;
 }
+
+export interface Image {
+  id: string;
+  src: {
+    small: string;
+    large: string;
+    medium: string;
+  };
+}
