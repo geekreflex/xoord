@@ -44,6 +44,8 @@ import BringFrontIcon from './BringFrontIcon';
 import SendBackIcon from './SendBackIcon';
 import AddIcon from './AddIcon';
 import TextBoldIcon from './TextBoldIcon';
+import TextItalicIcon from './TextItalicIcon';
+import TextUnderlineIcon from './TextUnderlineIcon';
 
 export {
   ZoomInIcon,
@@ -92,4 +94,6 @@ export {
   SendBackIcon,
   AddIcon,
   TextBoldIcon,
+  TextItalicIcon,
+  TextUnderlineIcon,
 };
