@@ -59,3 +59,29 @@ export const GridItem = styled.div`
     font-weight: 600;
   }
 `;
+
+export const Button = styled.button`
+  padding: 12px 25px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  background-color: ${(props) => props.theme.colors.btnBgColor};
+  color: ${(props) => props.theme.colors.textColor};
+
+  .btn-icon {
+    font-size: 20px;
+  }
+
+  .btn-text {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  span {
+    display: flex;
+  }
+`;

@@ -8,6 +8,7 @@ export interface Theme {
     textColor: string;
     tooltipBg: string;
     tooltipColor: string;
+    btnBgColor: string;
   };
   radius: {
     medium: string;
@@ -27,6 +28,7 @@ export const lightTheme: Theme = {
     textColor: '#111111',
     tooltipBg: '#171717',
     tooltipColor: '#fafafa',
+    btnBgColor: '#ADADAE',
   },
   radius: {
     medium: '4px',
@@ -37,6 +39,26 @@ export const lightTheme: Theme = {
 };
 
 export const darkTheme: Theme = {
+  colors: {
+    accent: '#307FF4',
+    primary: '#1A1C1E',
+    secondary: '#141517',
+    borderColor: '#2e2e2e',
+    hoverColor: '#2d2d2d',
+    textColor: '#f5f5f5',
+    tooltipBg: '#222222',
+    tooltipColor: '#f5f5f5',
+    btnBgColor: '#262B2B',
+  },
+  radius: {
+    medium: '4px',
+  },
+  shadow: {
+    shadow1: 'rgba(0, 0, 0, 0.5) 0px 1px 4px;',
+  },
+};
+
+export const _darkTheme = {
   colors: {
     accent: '#1521cc',
     primary: '#171717',
