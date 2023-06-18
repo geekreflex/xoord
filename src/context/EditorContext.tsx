@@ -2,7 +2,8 @@ import { useAppDispatch } from '@/app/hooks';
 import { Controller } from '@/core/Controller';
 import { Editor } from '@/core/Editor';
 import { Tool } from '@/core/Tool';
-import { setObject } from '@/features/editorSlice';
+import { switchPropertyPanel } from '@/features/appSlice';
+import { clearObject, setObject } from '@/features/editorSlice';
 import { ObjectTypes } from '@/types/editor';
 import { fabric } from 'fabric';
 import {
@@ -55,6 +56,8 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
 
   const clearSelectedObjects = () => {
     setSelectedObjects(undefined);
+    dispatch(clearObject());
+    dispatch(switchPropertyPanel(null));
     editor?.canvas.discardActiveObject();
     editor?.canvas.renderAll();
   };
@@ -78,9 +81,17 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
               ? ObjectTypes.Selection
               : (selected[0].type as ObjectTypes)
           );
+          dispatch(
+            switchPropertyPanel(
+              selected.length > 1
+                ? ObjectTypes.Selection
+                : (selected[0].type as ObjectTypes)
+            )
+          );
         } else {
           setSelectedObjects(undefined);
           setSelectedType(ObjectTypes.Unknown);
+          dispatch(switchPropertyPanel(null));
         }
       };
       canvas.on('selection:created', onSelection);
@@ -88,6 +99,8 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
       canvas.on('selection:modified', onSelection);
       canvas.on('selection:cleared', () => {
         setSelectedObjects(undefined);
+        dispatch(clearObject());
+        dispatch(switchPropertyPanel(null));
         setSelectedType(undefined);
       });
 

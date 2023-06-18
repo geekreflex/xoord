@@ -5,8 +5,11 @@ import { fetchBackgrounds } from '@/features/imagesSlice';
 import { BtnWrap, Button, ToolWrap } from '@/styles/global';
 import { BgIcon } from '@/icons';
 import SearchInput from '../shared/SearchInput';
+import { switchPropertyPanel } from '@/features/appSlice';
+import { useEditorContext } from '@/context/EditorContext';
 
 export default function BackgroundsTool() {
+  const { editor } = useEditorContext();
   const dispatch = useAppDispatch();
   const { backgrounds, status, error } = useAppSelector(
     (state) => state.images
@@ -16,10 +19,16 @@ export default function BackgroundsTool() {
     dispatch(fetchBackgrounds(1));
   }, [dispatch]);
 
+  const showEditPanel = () => {
+    editor?.canvas.discardActiveObject();
+    editor?.canvas.renderAll();
+    dispatch(switchPropertyPanel('background'));
+  };
+
   return (
     <ToolWrap>
       <BtnWrap>
-        <Button>
+        <Button onClick={showEditPanel}>
           <span id="btn-icon">
             <BgIcon />
           </span>

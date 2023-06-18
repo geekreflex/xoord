@@ -15,6 +15,7 @@ import { setObject } from '@/features/editorSlice';
 import NumberInput from '../shared/NumberInput';
 import { useEffect } from 'react';
 import { fabric } from 'fabric';
+import FontList from '../FontList';
 
 export default function TextProperties() {
   const dispatch = useAppDispatch();
@@ -97,6 +98,7 @@ export default function TextProperties() {
 
   return (
     <Wrap>
+      <FontList />
       <div className="text-tweak">
         <div className="text-align-wrap">
           {textStyles.map((item) => (

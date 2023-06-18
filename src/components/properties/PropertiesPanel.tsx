@@ -3,26 +3,42 @@ import { Close2Icon } from '@/icons';
 import { LineX } from '@/styles/global';
 import { styled } from 'styled-components';
 import TextProperties from './TextProperties';
+import { useAppSelector } from '@/app/hooks';
+import BackgroundProperties from './BackgroundProperties';
 
 export default function PropertiesPanel() {
-  const { selectedType, clearSelectedObjects } = useEditorContext();
+  const { propPanel } = useAppSelector((state) => state.app);
+  const { clearSelectedObjects } = useEditorContext();
 
   const close = () => {
     clearSelectedObjects();
   };
 
+  const panelTitle = () => {
+    if (propPanel === 'textbox') {
+      return 'Textbox';
+    } else if (propPanel === 'circle') {
+      return 'Circle';
+    } else if (propPanel === 'background') {
+      return 'Background';
+    } else if (propPanel === 'selection') {
+      return 'Selection';
+    }
+  };
+
   return (
-    <Wrap visible={selectedType}>
+    <Wrap visible={propPanel}>
       <div className="inner">
         <div className="property-header">
-          <h3>Untitled</h3>
+          <h3>{`${panelTitle()} properties` || 'Untitled'}</h3>
           <span id="close-icon" onClick={close}>
             <Close2Icon />
           </span>
         </div>
         <LineX />
         <div className="property-main">
-          {selectedType === 'textbox' && <TextProperties />}
+          {propPanel === 'textbox' && <TextProperties />}
+          {propPanel === 'background' && <BackgroundProperties />}
         </div>
       </div>
     </Wrap>
@@ -30,7 +46,7 @@ export default function PropertiesPanel() {
 }
 
 interface WProps {
-  visible: string | undefined;
+  visible: string | null;
 }
 
 const Wrap = styled.div<WProps>`
@@ -62,6 +78,9 @@ const Wrap = styled.div<WProps>`
     justify-content: space-between;
     align-items: center;
     padding: 0 10px;
+    h3 {
+      font-size: 16px;
+    }
     #close-icon {
       cursor: pointer;
       display: flex;

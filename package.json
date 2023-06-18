@@ -17,6 +17,7 @@
     "events": "^3.3.0",
     "fabric": "^5.3.0",
     "fabric-history": "^1.7.0",
+    "fontfaceobserver": "^2.3.0",
     "framer-motion": "^10.12.16",
     "lodash-es": "^4.17.21",
     "rc-input-number": "^7.4.2",
@@ -33,6 +34,7 @@
   "devDependencies": {
     "@types/events": "^3.0.0",
     "@types/fabric": "^5.3.2",
+    "@types/fontfaceobserver": "^2.1.0",
     "@types/lodash-es": "^4.17.7",
     "@types/node": "^20.2.3",
     "@types/react": "^18.0.28",

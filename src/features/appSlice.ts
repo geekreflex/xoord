@@ -1,3 +1,4 @@
+import { ObjectTypes } from '@/types/editor';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface AppState {
@@ -9,6 +10,7 @@ interface AppState {
   isPanelOpen: boolean;
   panelTitle: string | null;
   propertyTitle: string | null;
+  propPanel: ObjectTypes | null;
 }
 
 const initialState: AppState = {
@@ -20,6 +22,7 @@ const initialState: AppState = {
   isPanelOpen: true,
   panelTitle: 'Elements',
   propertyTitle: null,
+  propPanel: null,
 };
 
 export const appSlice = createSlice({
@@ -55,6 +58,9 @@ export const appSlice = createSlice({
     setPropertyTitle(state, action) {
       state.propertyTitle = action.payload;
     },
+    switchPropertyPanel(state, action) {
+      state.propPanel = action.payload;
+    },
   },
 });
 
@@ -65,5 +71,6 @@ export const {
   toggleSettingsModal,
   closePanel,
   setPanelTitle,
+  switchPropertyPanel,
 } = appSlice.actions;
 export default appSlice.reducer;

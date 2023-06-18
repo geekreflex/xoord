@@ -88,6 +88,13 @@ export const Button = styled.button`
   span {
     display: flex;
   }
+
+  .arr-icon {
+    svg,
+    path {
+      stroke-width: 4px;
+    }
+  }
 `;
 
 export const BtnWrap = styled.div`

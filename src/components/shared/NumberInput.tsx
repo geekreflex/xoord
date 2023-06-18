@@ -94,7 +94,7 @@ const Wrap = styled.div`
     outline: none;
     background-color: transparent;
     flex: 1;
-    height: 35px;
+    height: 32px;
     text-align: right;
     color: ${(props) => props.theme.colors.textColor};
   }

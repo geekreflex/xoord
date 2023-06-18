@@ -25,8 +25,11 @@ export const editorSlice = createSlice({
         ...action.payload,
       };
     },
+    clearObject: (state) => {
+      state.object = null;
+    },
   },
 });
 
-export const { setCurrentZoom, setObject } = editorSlice.actions;
+export const { setCurrentZoom, setObject, clearObject } = editorSlice.actions;
 export default editorSlice.reducer;
