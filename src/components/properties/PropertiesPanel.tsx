@@ -7,7 +7,7 @@ import TextProperties from './TextProperties';
 export default function PropertiesPanel() {
   const { selectedType } = useEditorContext();
   return (
-    <Wrap visible={!!selectedType}>
+    <Wrap visible={selectedType}>
       <div className="inner">
         <div className="property-header">
           <h3>Untitled</h3>
@@ -25,7 +25,7 @@ export default function PropertiesPanel() {
 }
 
 interface WProps {
-  visible: boolean;
+  visible: string | undefined;
 }
 
 const Wrap = styled.div<WProps>`

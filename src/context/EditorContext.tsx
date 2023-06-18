@@ -1,6 +1,8 @@
+import { useAppDispatch } from '@/app/hooks';
 import { Controller } from '@/core/Controller';
 import { Editor } from '@/core/Editor';
 import { Tool } from '@/core/Tool';
+import { setObject } from '@/features/editorSlice';
 import { ObjectTypes } from '@/types/editor';
 import { fabric } from 'fabric';
 import {
@@ -32,6 +34,7 @@ const EditorContext = createContext<EditorContextType>({
 });
 
 export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
+  const dispatch = useAppDispatch();
   const [editor, _setEditor] = useState<Editor | null>(null);
   const [tool, setTool] = useState<Tool | null>(null);
   const [selectedObjects, setSelectedObjects] = useState<
@@ -67,6 +70,9 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
 
         if (selected.length > 0) {
           setSelectedObjects(selected);
+          const selectedObject = selected[0];
+
+          dispatch(setObject(selectedObject.toJSON()));
           setSelectedType(
             selected.length > 1
               ? ObjectTypes.Selection
@@ -79,6 +85,7 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
       };
       canvas.on('selection:created', onSelection);
       canvas.on('selection:updated', onSelection);
+      canvas.on('selection:modified', onSelection);
       canvas.on('selection:cleared', () => {
         setSelectedObjects(undefined);
         setSelectedType(undefined);
@@ -87,6 +94,7 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
       return () => {
         canvas.off('selection:created', onSelection);
         canvas.off('selection:updated', onSelection);
+        canvas.off('selection:modified', onSelection);
         canvas.off('selection:cleared');
       };
     }

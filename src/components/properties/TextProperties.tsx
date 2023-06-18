@@ -1,3 +1,4 @@
+import { useEditorContext } from '@/context/EditorContext';
 import {
   TextAlignCenterIcon,
   TextAlignLeftIcon,
@@ -5,24 +6,47 @@ import {
 } from '@/icons';
 import TextAlignJustify from '@/icons/TextAlignJustify';
 import { styled } from 'styled-components';
+import Tooltip from '../shared/Tooltip';
+import { useAppDispatch, useAppSelector } from '@/app/hooks';
+import { setObject } from '@/features/editorSlice';
 
 export default function TextProperties() {
+  const dispatch = useAppDispatch();
+  const { controller } = useEditorContext();
+  const { object } = useAppSelector((state) => state.editor);
+
+  const textAligns = [
+    { name: 'Align Left', alignment: 'left', icon: <TextAlignLeftIcon /> },
+    {
+      name: 'Align Center',
+      alignment: 'center',
+      icon: <TextAlignCenterIcon />,
+    },
+    { name: 'Align Right', alignment: 'right', icon: <TextAlignRightIcon /> },
+    { name: 'Align Justify', alignment: 'justify', icon: <TextAlignJustify /> },
+  ];
+
+  const onTextAlign = (align: string) => {
+    controller?.textAlign(align);
+    dispatch(setObject({ textAlign: align }));
+  };
+
   return (
     <Wrap>
-      <p>from text</p>
       <div className="text-align-wrap">
-        <span>
-          <TextAlignLeftIcon />
-        </span>
-        <span>
-          <TextAlignCenterIcon />
-        </span>
-        <span>
-          <TextAlignRightIcon />
-        </span>
-        <span>
-          <TextAlignJustify />
-        </span>
+        {textAligns.map((item) => (
+          <Tooltip key={item.alignment} content={item.name} placement="right">
+            <span
+              key={item.alignment}
+              onClick={() => onTextAlign(item.alignment)}
+              className={`${
+                object?.textAlign === item.alignment ? 'active' : ''
+              }`}
+            >
+              {item.icon}
+            </span>
+          </Tooltip>
+        ))}
       </div>
     </Wrap>
   );
@@ -42,8 +66,11 @@ const Wrap = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
-      border: 1px solid red;
       cursor: pointer;
     }
+  }
+
+  .active {
+    border: 1px solid red;
   }
 `;

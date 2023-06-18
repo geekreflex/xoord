@@ -219,4 +219,12 @@ export class Controller {
     }
     this.editor.canvas.renderAll();
   }
+
+  public textAlign(alignment: string) {
+    const activeObject = this.editor.canvas.getActiveObject();
+    if (activeObject instanceof fabric.Textbox) {
+      activeObject.set({ textAlign: alignment });
+    }
+    this.editor.canvas.renderAll();
+  }
 }
