@@ -2,6 +2,7 @@ import { useEditorContext } from '@/context/EditorContext';
 import { Close2Icon } from '@/icons';
 import { LineX } from '@/styles/global';
 import { styled } from 'styled-components';
+import TextProperties from './TextProperties';
 
 export default function PropertiesPanel() {
   const { selectedType } = useEditorContext();
@@ -15,7 +16,9 @@ export default function PropertiesPanel() {
           </span>
         </div>
         <LineX />
-        <div className="property-main">{JSON.stringify(selectedType)}</div>
+        <div className="property-main">
+          {selectedType === 'textbox' && <TextProperties />}
+        </div>
       </div>
     </Wrap>
   );
