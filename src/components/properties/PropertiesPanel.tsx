@@ -5,13 +5,18 @@ import { styled } from 'styled-components';
 import TextProperties from './TextProperties';
 
 export default function PropertiesPanel() {
-  const { selectedType } = useEditorContext();
+  const { selectedType, clearSelectedObjects } = useEditorContext();
+
+  const close = () => {
+    clearSelectedObjects();
+  };
+
   return (
     <Wrap visible={selectedType}>
       <div className="inner">
         <div className="property-header">
           <h3>Untitled</h3>
-          <span id="close-icon">
+          <span id="close-icon" onClick={close}>
             <Close2Icon />
           </span>
         </div>
@@ -43,7 +48,7 @@ const Wrap = styled.div<WProps>`
   }
 
   .inner {
-    background-color: ${(props) => props.theme.colors.primary};
+    background-color: ${(props) => props.theme.colors.panelBg};
     width: 280px;
     height: 80vh;
     border-radius: 8px;

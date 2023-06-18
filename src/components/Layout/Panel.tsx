@@ -41,7 +41,7 @@ const Wrap = styled.div<WrapProps>`
   position: relative;
   width: ${(props) => (props.open ? `${props.width}px` : 0)};
   height: 100%;
-  background-color: ${(props) => props.theme.colors.primary};
+  background-color: ${(props) => props.theme.colors.panelBg};
   border-right: 1px solid
     ${(props) =>
       props.layout === 'left' ? props.theme.colors.borderColor : 'none'};
@@ -76,7 +76,7 @@ const Wrap = styled.div<WrapProps>`
     top: 50%;
     right: -20px;
     transform: translateY(-50%);
-    color: ${(props) => props.theme.colors.primary};
+    color: ${(props) => props.theme.colors.panelBg};
     cursor: pointer;
 
     .icon {

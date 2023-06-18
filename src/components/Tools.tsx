@@ -4,9 +4,13 @@ import Icon from './shared/Icon';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { setPanelTitle, switchActiveTool } from '@/features/appSlice';
 import Tooltip from './shared/Tooltip';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Tools() {
   const dispatch = useAppDispatch();
+  const gliderRef = useRef<HTMLDivElement>(null);
+  const [gliderWidth, setGliderWidth] = useState(0);
+  const [gliderOffset, setGliderOffset] = useState(0);
   const { activeTool } = useAppSelector((state) => state.app);
   interface ITool {
     name: string;
@@ -38,32 +42,57 @@ export default function Tools() {
     dispatch(setPanelTitle(tool.name));
   };
 
+  useEffect(() => {
+    if (!gliderRef.current) {
+      return;
+    }
+
+    const activeTabElement = gliderRef.current.querySelector(
+      '.active'
+    ) as HTMLElement | null;
+    if (activeTabElement) {
+      const offsetTop = activeTabElement.offsetTop;
+      const height = activeTabElement.offsetHeight;
+      setGliderOffset(offsetTop);
+      setGliderWidth(height);
+    }
+  }, [activeTool]);
+
   return (
-    <Wrap>
-      {tools.map((tool) => (
-        <Tooltip
-          key={tool.name}
-          content={tool.desc || tool.name}
-          placement={'right'}
-        >
-          <div
-            className={`icon-wrap ${
-              activeTool.toLowerCase() === tool.name.toLowerCase()
-                ? 'active'
-                : ''
-            }`}
+    <Wrap ref={gliderRef}>
+      <div>
+        {tools.map((tool) => (
+          <Tooltip
+            key={tool.name}
+            content={tool.desc || tool.name}
+            placement={'right'}
           >
-            <Icon
-              name={tool.icon as IconName}
-              disabled={tool.disabled}
-              label={tool.name}
-              size="big"
-              click={() => onToolClick(tool)}
-              hover={false}
-            />
-          </div>
-        </Tooltip>
-      ))}
+            <div
+              className={`icon-wrap ${
+                activeTool.toLowerCase() === tool.name.toLowerCase()
+                  ? 'active'
+                  : ''
+              }`}
+            >
+              <Icon
+                name={tool.icon as IconName}
+                disabled={tool.disabled}
+                label={tool.name}
+                size="big"
+                click={() => onToolClick(tool)}
+                hover={false}
+              />
+            </div>
+          </Tooltip>
+        ))}
+      </div>
+      <div
+        className="glider"
+        style={{
+          transform: `translateY(${gliderOffset}px)`,
+          height: `${gliderWidth}px`,
+        }}
+      ></div>
     </Wrap>
   );
 }
@@ -72,9 +101,23 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
+  overflow: hidden;
 
   .icon-wrap {
     display: flex;
     position: relative;
+    z-index: 9;
+  }
+
+  .active {
+  }
+
+  .glider {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    background-color: ${(props) => props.theme.colors.panelBg};
+    transition: transform 0.3s ease;
+    width: 70px;
   }
 `;

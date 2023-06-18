@@ -10,6 +10,7 @@ export interface Theme {
     tooltipColor: string;
     btnBgColor: string;
     btnHoverColor: string;
+    panelBg: string;
   };
   radius: {
     medium: string;
@@ -31,6 +32,7 @@ export const lightTheme: Theme = {
     tooltipColor: '#fafafa',
     btnBgColor: '#d9d9d9',
     btnHoverColor: '#bfbfc0',
+    panelBg: '',
   },
   radius: {
     medium: '4px',
@@ -44,7 +46,7 @@ export const darkTheme: Theme = {
   colors: {
     accent: '#307FF4',
     primary: '#1A1C1E',
-    secondary: '#141517',
+    secondary: '#0c0c0e',
     borderColor: '#2e2e2e',
     hoverColor: '#2d2d2d',
     textColor: '#f5f5f5',
@@ -52,6 +54,7 @@ export const darkTheme: Theme = {
     tooltipColor: '#f5f5f5',
     btnBgColor: '#262B2B',
     btnHoverColor: '#242929',
+    panelBg: '#141517',
   },
   radius: {
     medium: '4px',
