@@ -119,5 +119,7 @@ const Wrap = styled.div`
     background-color: ${(props) => props.theme.colors.panelBg};
     transition: transform 0.3s ease;
     width: 70px;
+    border-top: 1px solid ${(props) => props.theme.colors.borderColor};
+    border-bottom: 1px solid ${(props) => props.theme.colors.borderColor};
   }
 `;

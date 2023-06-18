@@ -1,8 +1,5 @@
 import { styled } from 'styled-components';
 import ColorPicker from 'react-best-gradient-color-picker';
-import { useRef, useState } from 'react';
-import { useAppSelector } from '@/app/hooks';
-import useClickOutside from '@/hooks/useClickOutside';
 import Popover from './shared/Popover';
 
 interface ColorProps {
@@ -11,14 +8,8 @@ interface ColorProps {
 }
 
 export default function Color({ color, onChange }: ColorProps) {
-  const [visible, setVisible] = useState(false);
-  const { object } = useAppSelector((state) => state.editor);
-  const ref = useRef(null);
-
-  useClickOutside(ref, () => setVisible(false));
-
   return (
-    <Wrap ref={ref}>
+    <Wrap>
       <div>
         <Popover
           placement="top"
@@ -37,11 +28,7 @@ export default function Color({ color, onChange }: ColorProps) {
             </div>
           }
         >
-          <div
-            onClick={() => setVisible(!visible)}
-            className="color-block"
-            style={{ backgroundColor: object?.fill as string }}
-          ></div>
+          <div className="color-block" style={{ backgroundColor: color }}></div>
         </Popover>
       </div>
     </Wrap>

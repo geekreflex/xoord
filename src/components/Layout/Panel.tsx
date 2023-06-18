@@ -83,6 +83,12 @@ const Wrap = styled.div<WrapProps>`
       position: absolute;
       color: ${(props) => props.theme.colors.textColor};
       display: flex;
+      font-size: 12px;
+
+      svg,
+      path {
+        stroke-width: 4px;
+      }
     }
   }
 `;

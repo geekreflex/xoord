@@ -16,9 +16,8 @@ import NumberInput from '../shared/NumberInput';
 import { useEffect } from 'react';
 import { fabric } from 'fabric';
 import FontList from '../FontList';
-import Color from '../Color';
 import Fill from '../Fill';
-import Stroke from '../Stroke';
+import Outline from '../Outline';
 
 export default function TextProperties() {
   const dispatch = useAppDispatch();
@@ -131,11 +130,11 @@ export default function TextProperties() {
         </div>
       </div>
 
-      <div className="ttth">
+      <div className="props">
         <NumberInput value={object?.fontSize || 0} onChange={onFontSize} />
         <Fill />
-        <Stroke />
       </div>
+      <Outline />
     </Wrap>
   );
 }
@@ -144,11 +143,11 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 10px;
+  gap: 10px;
 
   .text-tweak {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
   }
 
   .text-align-wrap {
@@ -177,7 +176,7 @@ const Wrap = styled.div`
     }
   }
 
-  .ttth {
+  .props {
     display: flex;
     gap: 10px;
   }

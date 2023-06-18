@@ -42,7 +42,6 @@ export default function FontList() {
 
 const Wrap = styled.div`
   position: relative;
-  margin-bottom: 10px;
   .font-select {
     width: 100%;
     border: 1px solid ${(props) => props.theme.colors.borderColor};
