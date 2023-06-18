@@ -8,6 +8,7 @@ interface AppState {
   settingsModal: boolean;
   isPanelOpen: boolean;
   panelTitle: string | null;
+  propertyTitle: string | null;
 }
 
 const initialState: AppState = {
@@ -18,6 +19,7 @@ const initialState: AppState = {
   settingsModal: false,
   isPanelOpen: true,
   panelTitle: 'Elements',
+  propertyTitle: null,
 };
 
 export const appSlice = createSlice({
@@ -48,6 +50,10 @@ export const appSlice = createSlice({
 
     setPanelTitle(state, action) {
       state.panelTitle = action.payload;
+    },
+
+    setPropertyTitle(state, action) {
+      state.propertyTitle = action.payload;
     },
   },
 });

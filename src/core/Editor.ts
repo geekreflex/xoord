@@ -31,6 +31,7 @@ export class Editor {
     this.initControls();
 
     this.initEvents();
+    this.initZoom();
   }
 
   private initBackground() {
@@ -221,6 +222,30 @@ export class Editor {
       if (!object || object?.id === 'workspace') {
         return;
       }
+    });
+  }
+
+  private initZoom() {
+    this.canvas.on('mouse:wheel', function (this: fabric.Canvas, opt) {
+      const delta = opt.e.deltaY;
+      let zoom = this.getZoom();
+      zoom *= 0.999 ** delta;
+
+      // Set minimum and maximum zoom values
+      const minZoom = 0.1;
+      const maxZoom = 20;
+      zoom = Math.max(minZoom, Math.min(maxZoom, zoom));
+
+      /**
+       * Zoom to center
+       */
+      // const center = this.getCenter();
+      // this.zoomToPoint(new fabric.Point(center.left, center.top), zoom);
+
+      this.zoomToPoint({ x: opt.e.offsetX, y: opt.e.offsetY }, zoom);
+
+      opt.e.preventDefault();
+      opt.e.stopPropagation();
     });
   }
 }

@@ -54,6 +54,15 @@ export default function Zoom() {
     setVisible(!visible);
   };
 
+  useEffect(() => {
+    if (editor) {
+      editor.canvas.on('mouse:wheel', () => {
+        dispatch(setCurrentZoom(editor.canvas.getZoom() * 100));
+      });
+      dispatch(setCurrentZoom(editor.canvas.getZoom() * 100));
+    }
+  }, [editor]);
+
   useClickOutside(ref, () => setVisible(false));
 
   return (
