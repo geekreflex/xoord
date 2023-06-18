@@ -19,7 +19,7 @@ type EditorContextType = {
   setEditor: (editor: Editor | null) => void;
   controller: Controller | null;
   selectedType: ObjectTypes | undefined;
-  selectedObjects: fabric.Object[] | undefined;
+  selectedObjects: (fabric.Object[] & fabric.Textbox[]) | undefined;
   clearSelectedObjects: () => void;
 };
 
@@ -38,7 +38,7 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
   const [editor, _setEditor] = useState<Editor | null>(null);
   const [tool, setTool] = useState<Tool | null>(null);
   const [selectedObjects, setSelectedObjects] = useState<
-    fabric.Object[] | undefined
+    (fabric.Object[] & fabric.Textbox[]) | undefined
   >(undefined);
   const [controller, setController] = useState<Controller | null>(null);
   const [selectedType, setSelectedType] = useState<ObjectTypes | undefined>(
@@ -63,7 +63,7 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
     if (editor) {
       const { canvas } = editor;
 
-      const onSelection = (e: fabric.IEvent) => {
+      const onSelection = (e: fabric.IEvent | any) => {
         const { selected } = e;
 
         if (!selected) return;

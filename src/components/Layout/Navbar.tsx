@@ -1,8 +1,6 @@
 import { NAVBAR_HEIGHT } from '@/utils/constants';
 import { styled } from 'styled-components';
 import Align from '../Align';
-import Icon from '../shared/Icon';
-import Tooltip from '../shared/Tooltip';
 import FlipRotate from '../FlipRotate';
 import { Delete, Duplicate, Lock } from '../toolbox';
 

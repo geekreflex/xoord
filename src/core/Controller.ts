@@ -227,4 +227,40 @@ export class Controller {
     }
     this.editor.canvas.renderAll();
   }
+
+  public fontWeight() {
+    const activeObject = this.editor.canvas.getActiveObject();
+    if (activeObject instanceof fabric.Textbox) {
+      const isBold = activeObject.fontWeight === 'bold';
+      activeObject.set('fontWeight', isBold ? 'normal' : 'bold');
+    }
+    this.editor.canvas.renderAll();
+  }
+
+  public fontStyle() {
+    const activeObject = this.editor.canvas.getActiveObject();
+    if (activeObject instanceof fabric.Textbox) {
+      const isItalic = activeObject.fontStyle === 'italic';
+      activeObject.set('fontStyle', isItalic ? 'normal' : 'italic');
+    }
+    this.editor.canvas.renderAll();
+  }
+
+  public underline() {
+    const activeObject = this.editor.canvas.getActiveObject();
+    if (activeObject instanceof fabric.Textbox) {
+      const isUnderlined = activeObject.underline;
+      activeObject.set('underline', !isUnderlined);
+    }
+    this.editor.canvas.renderAll();
+  }
+
+  public fontSize(size: number) {
+    const activeObject = this.editor.canvas.getActiveObject();
+
+    if (activeObject instanceof fabric.Textbox) {
+      activeObject.set({ fontSize: size });
+    }
+    this.editor.canvas.renderAll();
+  }
 }

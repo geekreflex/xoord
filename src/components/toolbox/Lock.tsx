@@ -6,8 +6,10 @@ export default function Lock() {
   const { controller } = useEditorContext();
 
   return (
-    <Tooltip content="Lock">
-      <Icon name="lockIcon" click={() => controller?.lock()} />
-    </Tooltip>
+    <>
+      <Tooltip content="Lock">
+        <Icon name="lockIcon" click={() => controller?.lock()} />
+      </Tooltip>
+    </>
   );
 }

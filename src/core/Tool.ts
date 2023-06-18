@@ -78,8 +78,10 @@ export class Tool {
 
   public addText() {
     const text = new fabric.Textbox('Click to edit', {
-      width: 200,
-      textAlign: 'left',
+      width: 600,
+      textAlign: 'center',
+      fontFamily: 'Arial',
+      fontSize: 72,
     });
 
     text.setControlsVisibility({
