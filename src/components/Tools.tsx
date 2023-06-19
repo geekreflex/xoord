@@ -91,6 +91,7 @@ export default function Tools() {
         style={{
           transform: `translateY(${gliderOffset}px)`,
           height: `${gliderWidth}px`,
+          borderTop: `${gliderOffset === 50 ? 'none' : ''}`,
         }}
       ></div>
     </Wrap>

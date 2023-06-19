@@ -50,15 +50,15 @@ export default function History() {
   return (
     <Wrap>
       <div className="redo-undo">
-        <div className={`${!canUndo && 'disabled'}`}>
+        <div className={`icon-wrap ${!canUndo && 'disabled'}`}>
           <Tooltip content="Undo">
             <span className="icon-wrap">
               <Icon name="undoIcon" click={onUndo} />
             </span>
           </Tooltip>
         </div>
-        <div className={`${!canRedo && 'disabled'}`}>
-          <Tooltip content="Redo">
+        <div className={`icon-wrap ${!canRedo && 'disabled'}`}>
+          <Tooltip content="Redo" placement="top">
             <span className="icon-wrap">
               <Icon name="redoIcon" click={onRedo} />
             </span>
@@ -78,9 +78,12 @@ const Wrap = styled.div`
     gap: 5px;
   }
 
+  .icon-wrap {
+    display: flex;
+  }
+
   .disabled {
     cursor: not-allowed;
-    position: relative;
 
     .icon-wrap {
       opacity: 0.2;
