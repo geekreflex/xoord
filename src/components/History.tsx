@@ -33,10 +33,16 @@ export default function History() {
   };
 
   const onUndo = () => {
+    if (!canUndo) {
+      return;
+    }
     editor?.canvas.undo();
     editor?.resetWorkspace();
   };
   const onRedo = () => {
+    if (!canRedo) {
+      return;
+    }
     editor?.canvas.redo();
     editor?.resetWorkspace();
   };

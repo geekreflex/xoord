@@ -20,7 +20,7 @@ export default function Outline() {
   };
 
   return (
-    <Expander checked={false} onChange={() => console}>
+    <Expander checked={false} onChange={() => console} label="Outline">
       <Wrap>
         <Color color={object?.stroke as string} onChange={onStrokeChange} />
       </Wrap>

@@ -115,10 +115,10 @@ export class Tool {
   }
 
   private addObject(obj: fabric.Object | fabric.Textbox) {
-    this.editor.canvas.add(obj);
-    this.editor.canvas.setActiveObject(obj);
     const center = this.editor.workspace?.getCenterPoint();
     this.editor.canvas._centerObject(obj, center!);
+    this.editor.canvas.add(obj);
+    this.editor.canvas.setActiveObject(obj);
     this.editor.canvas.renderAll();
   }
 

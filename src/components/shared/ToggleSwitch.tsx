@@ -79,7 +79,7 @@ const Wrap = styled.div`
   }
 
   input:checked + .slider {
-    background-color: #111;
+    background-color: ${(props) => props.theme.colors.accent};
   }
   input:checked + .slider:before {
     transform: translateX(10px);
