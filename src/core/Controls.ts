@@ -131,7 +131,7 @@ export class Controls {
     });
 
     /**
-     * Textbox controls
+     * Textbox
      */
 
     fabric.Textbox.prototype.controls.mr = new fabric.Control({
@@ -191,6 +191,9 @@ export class Controls {
       render: renderPeakIcon.bind(this),
     });
 
+    /**
+     * Textbox
+     */
     fabric.Textbox.prototype.controls.tl = new fabric.Control({
       x: -0.5,
       y: -0.5,

@@ -224,6 +224,23 @@ export class Editor {
         return;
       }
     });
+
+    this.canvas.on('selection:created', (e) => {
+      const selected = e.selected;
+      selected?.forEach((obj) => {
+        if (obj instanceof fabric.Textbox) {
+          obj.setControlsVisibility({
+            mt: false,
+            mb: false,
+            ml: false,
+            tr: false,
+            bl: false,
+            br: false,
+          });
+        }
+      });
+      this.canvas.renderAll();
+    });
   }
 
   private initZoom() {
