@@ -17,7 +17,7 @@ import { useEffect } from 'react';
 import { fabric } from 'fabric';
 import FontList from '../FontList';
 import Fill from '../Fill';
-import Outline from '../Outline';
+import Stroke from '../Stroke';
 
 export default function TextProperties() {
   const dispatch = useAppDispatch();
@@ -134,7 +134,7 @@ export default function TextProperties() {
         <NumberInput value={object?.fontSize || 0} onChange={onFontSize} />
         <Fill />
       </div>
-      <Outline />
+      <Stroke />
     </Wrap>
   );
 }

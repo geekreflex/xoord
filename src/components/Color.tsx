@@ -11,25 +11,12 @@ export default function Color({ color, onChange }: ColorProps) {
   return (
     <Wrap>
       <div>
-        <Popover
-          placement="top"
-          content={
-            <div className="color-picker-wrap">
-              <ColorPicker
-                width={230}
-                value={color}
-                onChange={onChange}
-                hideColorGuide={true}
-                hideAdvancedSliders={true}
-                hidePresets={true}
-                hideInputType={false}
-                hideInputs={true}
-              />
-            </div>
-          }
+        <div
+          className="color-block"
+          style={{ backgroundColor: color || '#121212' }}
         >
-          <div className="color-block" style={{ backgroundColor: color }}></div>
-        </Popover>
+          <div className="color-block-triangle"></div>
+        </div>
       </div>
     </Wrap>
   );
@@ -43,6 +30,21 @@ const Wrap = styled.div`
     height: 35px;
     cursor: pointer;
     border-radius: ${(props) => props.theme.radius.medium};
+    border: 1px solid ${(props) => props.theme.colors.borderColor};
+
+    .color-block-triangle {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-bottom: 8px solid transparent;
+      border-top: 8px solid transparent;
+      border-left: 8px solid ${(props) => props.theme.colors.primary};
+      transform: rotate(45deg);
+      display: block;
+      right: 5px;
+      bottom: 0px;
+      filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.5));
+    }
   }
 
   .color-picker-wrap {
