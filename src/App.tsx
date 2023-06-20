@@ -1,16 +1,31 @@
 import { styled } from 'styled-components';
-import Editor from './components/Editor';
+import Editor from './components2/Editor';
 import Providers from './context';
 import GlobalCSS from './styles/global';
 import View from './View';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 export default function App() {
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: 'Hello',
+    },
+    {
+      path: '/editor/old',
+      element: <Editor />,
+    },
+    {
+      path: '/editor/new',
+      element: <View />,
+    },
+  ]);
+
   return (
     <Wrap>
       <Providers>
         <GlobalCSS />
-        {/* <Editor /> */}
-        <View />
+        <RouterProvider router={router} />
       </Providers>
     </Wrap>
   );
