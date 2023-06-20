@@ -44,6 +44,8 @@ const Wrap = styled.div<{ placement: string; offset: number }>`
   background-color: ${(props) => props.theme.colors.primary};
   border-radius: ${(props) => props.theme.radius.medium};
   z-index: 9;
+  display: flex;
+  flex-direction: column;
 
   .panel-header {
     display: flex;
@@ -63,5 +65,9 @@ const Wrap = styled.div<{ placement: string; offset: number }>`
       cursor: pointer;
       padding: 5px;
     }
+  }
+
+  .panel-main {
+    height: 100%;
   }
 `;
