@@ -15,9 +15,11 @@ export interface Theme {
   radius: {
     small: string;
     medium: string;
+    large: string;
   };
   shadow: {
     shadow1: string;
+    shadow2: string;
   };
 }
 
@@ -38,9 +40,11 @@ export const lightTheme: Theme = {
   radius: {
     small: '4px',
     medium: '8px',
+    large: '12px',
   },
   shadow: {
     shadow1: 'rgba(0, 0, 0, 0.16) 0px 1px 4px;',
+    shadow2: ' rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;',
   },
 };
 
@@ -61,8 +65,10 @@ export const darkTheme: Theme = {
   radius: {
     small: '4px',
     medium: '8px',
+    large: '12px',
   },
   shadow: {
     shadow1: 'rgba(0, 0, 0, 0.5) 0px 1px 4px;',
+    shadow2: 'rgba(0, 0, 0, 0.8) 0px 25px 20px -20px',
   },
 };
