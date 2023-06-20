@@ -1,5 +1,4 @@
 import { Close2Icon } from '@/icons';
-import { LineX } from '@/styles/global';
 import { styled } from 'styled-components';
 
 interface PanelProps {
@@ -25,7 +24,7 @@ export default function Panel({
           <Close2Icon />
         </span>
       </div>
-      <LineX />
+      {/* <LineX /> */}
       <div className="panel-main">{children}</div>
     </Wrap>
   );
@@ -51,10 +50,10 @@ const Wrap = styled.div<{ placement: string; offset: number }>`
   .panel-header {
     display: flex;
     align-items: center;
-    height: 30px;
+    height: 50px;
     justify-content: space-between;
     padding: 0 10px;
-    margin-top: 10px;
+    margin-bottom: 10px;
 
     h3 {
       font-weight: 600;
