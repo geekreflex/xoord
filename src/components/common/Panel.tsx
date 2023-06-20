@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 
 interface PanelProps {
   children: React.ReactNode;
-  title?: string;
+  title?: string | null;
   close?: () => {};
   placement?: 'left' | 'right';
   offset?: number;

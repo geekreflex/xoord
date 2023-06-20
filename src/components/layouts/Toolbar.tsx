@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import Tooltip from '@/components/common/Tooltip';
-import { setPanelTitle, switchActiveTool } from '@/features/appSlice';
+import { switchActiveTool } from '@/features/appSlice';
 import {
   BgIcon,
   BrushIcon,
@@ -85,8 +85,7 @@ export default function Toolbar() {
   }, [activeTool]);
 
   const onToolClick = (tool: ITool) => {
-    dispatch(switchActiveTool(tool.name.toLowerCase()));
-    dispatch(setPanelTitle(tool.name));
+    dispatch(switchActiveTool(tool.name));
   };
 
   return (
