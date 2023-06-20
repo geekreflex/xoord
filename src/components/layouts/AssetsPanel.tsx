@@ -1,17 +1,14 @@
 import { styled } from 'styled-components';
+import Panel from '../common/Panel';
 
 export default function AssetsPanel() {
-  return <Wrap></Wrap>;
+  return (
+    <Panel title="Assets" placement="left" offset={85}>
+      <Wrap></Wrap>
+    </Panel>
+  );
 }
 
 const Wrap = styled.div`
-  position: fixed;
-  width: 250px;
-  height: 90vh;
-  top: 50%;
-  left: 85px;
-  transform: translateY(-50%);
-  background-color: ${(props) => props.theme.colors.primary};
-  border-radius: ${(props) => props.theme.radius.medium};
-  z-index: 9;
+  padding: 0 10px;
 `;

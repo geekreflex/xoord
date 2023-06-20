@@ -1,17 +1,12 @@
 import { styled } from 'styled-components';
+import Panel from '../common/Panel';
 
 export default function PropertiesPanel() {
-  return <Wrap></Wrap>;
+  return (
+    <Panel title="Properties" placement="right" offset={20}>
+      <Wrap></Wrap>
+    </Panel>
+  );
 }
 
-const Wrap = styled.div`
-  position: fixed;
-  width: 250px;
-  height: 90vh;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: ${(props) => props.theme.colors.primary};
-  border-radius: ${(props) => props.theme.radius.medium};
-  z-index: 9;
-`;
+const Wrap = styled.div``;
