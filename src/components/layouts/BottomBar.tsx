@@ -1,7 +1,16 @@
 import { styled } from 'styled-components';
+import History from '../History';
 
 export default function BottomBar() {
-  return <Wrap></Wrap>;
+  return (
+    <Wrap>
+      <div></div>
+      <div></div>
+      <div>
+        <History />
+      </div>
+    </Wrap>
+  );
 }
 
 const Wrap = styled.div`
@@ -14,4 +23,8 @@ const Wrap = styled.div`
   background-color: ${(props) => props.theme.colors.primary};
   border-radius: ${(props) => props.theme.radius.medium};
   z-index: 9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
 `;

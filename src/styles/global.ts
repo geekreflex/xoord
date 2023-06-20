@@ -29,6 +29,29 @@ export default createGlobalStyle`
     margin-bottom: 20px;
   }
 
+  .iconn {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: ${(props) => props.theme.colors.textColor};
+    font-size: 22px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: ${(props) => props.theme.radius.small};
+
+    &:hover {
+      background-color: ${(props) => props.theme.colors.hoverColor};
+    }
+
+    path {
+      stroke-width: 2px;
+    }
+  }
+
 `;
 
 export const LineX = styled.div`
