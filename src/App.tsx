@@ -19,6 +19,10 @@ export default function App() {
       path: '/editor/new',
       element: <View />,
     },
+    {
+      path: '/editor/view',
+      element: <View />,
+    },
   ]);
 
   return (
