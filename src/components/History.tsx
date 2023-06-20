@@ -52,14 +52,14 @@ export default function History() {
       <div className="redo-undo">
         <div className={`icon-wrap ${!canUndo && 'disabled'}`}>
           <Tooltip content="Undo">
-            <button className="icon-wrap iconn" onClick={onUndo}>
+            <button className="icon-wrap iconn stroke2" onClick={onUndo}>
               <UndoIcon />
             </button>
           </Tooltip>
         </div>
         <div className={`icon-wrap ${!canRedo && 'disabled'}`}>
           <Tooltip content="Redo" placement="top">
-            <button className="icon-wrap iconn" onClick={onRedo}>
+            <button className="icon-wrap iconn stroke2" onClick={onRedo}>
               <RedoIcon />
             </button>
           </Tooltip>

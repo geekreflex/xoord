@@ -47,6 +47,9 @@ export default createGlobalStyle`
       background-color: ${(props) => props.theme.colors.hoverColor};
     }
 
+  }
+
+  .stroke2 {
     path {
       stroke-width: 2px;
     }

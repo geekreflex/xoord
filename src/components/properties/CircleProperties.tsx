@@ -1,9 +1,12 @@
 import { styled } from 'styled-components';
+import Alignment from '../Alignment';
+import { LineX } from '@/styles/global';
 
 export default function CircleProperties() {
   return (
     <Wrap>
-      <p>Circle here</p>
+      <Alignment />
+      <LineX />
     </Wrap>
   );
 }

@@ -4,6 +4,7 @@ import AssetsPanel from './layouts/AssetsPanel';
 import PropertiesPanel from './layouts/PropertiesPanel';
 import Canvas from './Canvas';
 import BottomBar from './layouts/BottomBar';
+import ColorPicker from './widget/ColorPicker';
 
 export default function Editor() {
   return (
@@ -13,6 +14,7 @@ export default function Editor() {
       <PropertiesPanel />
       <Canvas />
       <BottomBar />
+      <ColorPicker />
     </Wrap>
   );
 }
