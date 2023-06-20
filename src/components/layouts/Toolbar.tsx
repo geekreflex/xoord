@@ -109,7 +109,7 @@ export default function Toolbar() {
               }`}
               onClick={() => onToolClick(tool)}
             >
-              <span>{tool.icon}</span>
+              {tool.icon}
             </div>
           </Tooltip>
         ))}

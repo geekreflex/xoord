@@ -11,7 +11,7 @@ const shapes = [
   { name: 'Polygon' },
 ];
 
-export default function Elements() {
+export default function ElementsTool() {
   const { tool } = useEditorContext();
 
   const onShapeClick = (shape: string) => {

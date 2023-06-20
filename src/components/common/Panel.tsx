@@ -69,5 +69,6 @@ const Wrap = styled.div<{ placement: string; offset: number }>`
 
   .panel-main {
     height: 100%;
+    overflow-y: auto;
   }
 `;

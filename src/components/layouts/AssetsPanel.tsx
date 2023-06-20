@@ -1,7 +1,10 @@
 import { styled } from 'styled-components';
 import Panel from '../common/Panel';
 import { useAppSelector } from '@/app/hooks';
-import Elements from '../tools/Elements';
+import ElementsTool from '../tools/ElementsTool';
+import TextTool from '../tools/TextTool';
+import LayerTool from '../tools/LayerTool';
+import ImagesTool from '../tools/ImagesTool';
 
 export default function AssetsPanel() {
   const { activeTool } = useAppSelector((state) => state.app);
@@ -9,7 +12,13 @@ export default function AssetsPanel() {
   function renderToolAsset() {
     switch (activeTool) {
       case 'Elements':
-        return <Elements />;
+        return <ElementsTool />;
+      case 'Images':
+        return <ImagesTool />;
+      case 'Text':
+        return <TextTool />;
+      case 'Layers':
+        return <LayerTool />;
     }
   }
 

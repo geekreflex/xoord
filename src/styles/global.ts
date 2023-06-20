@@ -23,6 +23,12 @@ export default createGlobalStyle`
     background: #555;
   }
 
+  .btn-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
 `;
 
 export const LineX = styled.div`
