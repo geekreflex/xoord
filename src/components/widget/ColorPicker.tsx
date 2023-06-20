@@ -17,7 +17,8 @@ const Wrap = styled.div`
   position: fixed;
   right: 300px;
   background-color: ${(props) => props.theme.colors.primary};
-  padding: 10px;
+  padding: 20px;
+  border-radius: ${(props) => props.theme.radius.medium};
 
   .color-picker-wrap {
     .react-colorful__saturation-pointer {

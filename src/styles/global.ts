@@ -62,6 +62,7 @@ export const LineX = styled.div`
   height: 1px;
   background-color: ${(props) => props.theme.colors.borderColor};
   margin: 10px 0;
+  transform: translateY(-50%);
 `;
 
 export const TitleSmall = styled.h5`
