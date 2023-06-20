@@ -13,6 +13,7 @@ export interface Theme {
     panelBg: string;
   };
   radius: {
+    small: string;
     medium: string;
   };
   shadow: {
@@ -35,7 +36,8 @@ export const lightTheme: Theme = {
     panelBg: '#fff',
   },
   radius: {
-    medium: '4px',
+    small: '4px',
+    medium: '8px',
   },
   shadow: {
     shadow1: 'rgba(0, 0, 0, 0.16) 0px 1px 4px;',
@@ -45,8 +47,8 @@ export const lightTheme: Theme = {
 export const darkTheme: Theme = {
   colors: {
     accent: '#307FF4',
-    primary: '#1A1C1E',
-    secondary: '#0c0c0e',
+    primary: '#0c0c0e',
+    secondary: '#141517',
     borderColor: '#2e2e2e',
     hoverColor: '#2d2d2d',
     textColor: '#f5f5f5',
@@ -54,10 +56,11 @@ export const darkTheme: Theme = {
     tooltipColor: '#f5f5f5',
     btnBgColor: '#262B2B',
     btnHoverColor: '#242929',
-    panelBg: '#141517',
+    panelBg: '#1A1C1E',
   },
   radius: {
-    medium: '4px',
+    small: '4px',
+    medium: '8px',
   },
   shadow: {
     shadow1: 'rgba(0, 0, 0, 0.5) 0px 1px 4px;',

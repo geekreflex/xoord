@@ -1,0 +1,153 @@
+import { useAppDispatch, useAppSelector } from '@/app/hooks';
+import Tooltip from '@/components/common/Tooltip';
+import { setPanelTitle, switchActiveTool } from '@/features/appSlice';
+import {
+  BgIcon,
+  BrushIcon,
+  Grid3Icon,
+  ImageIcon,
+  ShapesIcon,
+  TextIcon,
+} from '@/icons';
+import { useEffect, useRef, useState } from 'react';
+import { styled } from 'styled-components';
+
+interface ITool {
+  name: string;
+  icon: React.ReactNode;
+  disabled?: boolean;
+  alias?: 'element';
+  description: string;
+}
+
+const tools: ITool[] = [
+  {
+    name: 'Elements',
+    icon: <ShapesIcon />,
+    description: 'Elements and shapes',
+  },
+  {
+    name: 'Images',
+    icon: <ImageIcon />,
+    description: 'Upload or browse images',
+  },
+  {
+    name: 'Text',
+    icon: <TextIcon />,
+    description: 'Add text',
+  },
+  {
+    name: 'Templates',
+    icon: <Grid3Icon />,
+    description: 'Start from a pre-built layout',
+  },
+  {
+    name: 'Draw',
+    icon: <BrushIcon />,
+    description: 'Upload or browse images',
+  },
+  {
+    name: 'Background',
+    icon: <BgIcon />,
+    description: 'Choose a desired background',
+  },
+];
+
+export default function Toolbar() {
+  const dispatch = useAppDispatch();
+  const gliderRef = useRef<HTMLDivElement>(null);
+  const [gliderWidth, setGliderWidth] = useState(0);
+  const [gliderOffset, setGliderOffset] = useState(0);
+  const { activeTool } = useAppSelector((state) => state.app);
+
+  useEffect(() => {
+    if (!gliderRef.current) {
+      return;
+    }
+
+    const activeTabElement = gliderRef.current.querySelector(
+      '.active'
+    ) as HTMLElement | null;
+    if (activeTabElement) {
+      const offsetTop = activeTabElement.offsetTop;
+      const height = activeTabElement.offsetHeight;
+      setGliderOffset(offsetTop);
+      setGliderWidth(height);
+    }
+  }, [activeTool]);
+
+  const onToolClick = (tool: ITool) => {
+    dispatch(switchActiveTool(tool.name.toLowerCase()));
+    dispatch(setPanelTitle(tool.name));
+  };
+
+  return (
+    <Wrap ref={gliderRef}>
+      <div className="tools-wrap">
+        {tools.map((tool) => (
+          <Tooltip
+            key={tool.name}
+            content={tool.description}
+            placement={'right'}
+          >
+            <div
+              className={`tool ${
+                activeTool.toLowerCase() === tool.name.toLowerCase()
+                  ? 'active'
+                  : ''
+              }`}
+              onClick={() => onToolClick(tool)}
+            >
+              <span>{tool.icon}</span>
+            </div>
+          </Tooltip>
+        ))}
+      </div>
+      <div
+        className="glider"
+        style={{
+          transform: `translateY(${gliderOffset}px)`,
+          height: `${gliderWidth}px`,
+        }}
+      ></div>
+    </Wrap>
+  );
+}
+
+const Wrap = styled.div`
+  position: fixed;
+  width: 60px;
+  height: 90vh;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: ${(props) => props.theme.colors.primary};
+  border-radius: ${(props) => props.theme.radius.medium};
+  z-index: 10;
+  display: flex;
+
+  .tools-wrap {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .tool {
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      cursor: pointer;
+    }
+  }
+
+  .glider {
+    position: absolute;
+    top: -0;
+    height: 100%;
+    background-color: ${(props) => props.theme.colors.secondary};
+    transition: transform 0.3s ease-in-out;
+    width: 60px;
+    z-index: -1;
+  }
+`;

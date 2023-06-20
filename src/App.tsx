@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
-import Editor from './components2/Editor';
+import Editor2 from './components2/Editor';
+import Editor from './components/Editor';
 import Providers from './context';
 import GlobalCSS from './styles/global';
 import View from './View';
@@ -13,11 +14,11 @@ export default function App() {
     },
     {
       path: '/editor/old',
-      element: <Editor />,
+      element: <Editor2 />,
     },
     {
       path: '/editor/new',
-      element: <View />,
+      element: <Editor />,
     },
     {
       path: '/editor/view',
