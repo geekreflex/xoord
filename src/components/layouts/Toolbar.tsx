@@ -4,11 +4,14 @@ import { setPanelTitle, switchActiveTool } from '@/features/appSlice';
 import {
   BgIcon,
   BrushIcon,
+  Grid1Icon,
   Grid3Icon,
   ImageIcon,
+  LayerIcon,
   ShapesIcon,
   TextIcon,
 } from '@/icons';
+import { LineX } from '@/styles/global';
 import { useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 
@@ -51,6 +54,11 @@ const tools: ITool[] = [
     icon: <BgIcon />,
     description: 'Choose a desired background',
   },
+  {
+    name: 'Layers',
+    icon: <LayerIcon />,
+    description: 'Layers and groups',
+  },
 ];
 
 export default function Toolbar() {
@@ -83,6 +91,10 @@ export default function Toolbar() {
 
   return (
     <Wrap ref={gliderRef}>
+      <div className="logo">
+        <Grid1Icon />
+      </div>
+      <LineX />
       <div className="tools-wrap">
         {tools.map((tool) => (
           <Tooltip
@@ -123,8 +135,19 @@ const Wrap = styled.div`
   transform: translateY(-50%);
   background-color: ${(props) => props.theme.colors.primary};
   border-radius: ${(props) => props.theme.radius.medium};
-  z-index: 10;
+  z-index: 99;
   display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+
+  .logo {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    cursor: pointer;
+  }
 
   .tools-wrap {
     display: flex;
@@ -138,6 +161,14 @@ const Wrap = styled.div`
       align-items: center;
       font-size: 24px;
       cursor: pointer;
+      opacity: 0.7;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        opacity: 1;
+      }
+    }
+    .active {
+      opacity: 1;
     }
   }
 

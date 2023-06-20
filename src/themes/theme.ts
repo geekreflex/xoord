@@ -52,7 +52,7 @@ export const darkTheme: Theme = {
     borderColor: '#2e2e2e',
     hoverColor: '#2d2d2d',
     textColor: '#f5f5f5',
-    tooltipBg: '#222222',
+    tooltipBg: '#111111',
     tooltipColor: '#f5f5f5',
     btnBgColor: '#262B2B',
     btnHoverColor: '#242929',
@@ -66,22 +66,3 @@ export const darkTheme: Theme = {
     shadow1: 'rgba(0, 0, 0, 0.5) 0px 1px 4px;',
   },
 };
-
-// export const _darkTheme = {
-//   colors: {
-//     accent: '#1521cc',
-//     primary: '#171717',
-//     secondary: '#111111',
-//     borderColor: '#2e2e2e',
-//     hoverColor: '#2d2d2d',
-//     textColor: '#f5f5f5',
-//     tooltipBg: '#222222',
-//     tooltipColor: '#f5f5f5',
-//   },
-//   radius: {
-//     medium: '4px',
-//   },
-//   shadow: {
-//     shadow1: 'rgba(0, 0, 0, 0.5) 0px 1px 4px;',
-//   },
-// };

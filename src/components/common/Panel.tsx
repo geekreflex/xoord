@@ -43,7 +43,8 @@ const Wrap = styled.div<{ placement: string; offset: number }>`
   transform: translateY(-50%);
   background-color: ${(props) => props.theme.colors.primary};
   border-radius: ${(props) => props.theme.radius.medium};
-  z-index: 9;
+  border: 1px solid ${(props) => props.theme.colors.borderColor};
+  z-index: 98;
   display: flex;
   flex-direction: column;
 
