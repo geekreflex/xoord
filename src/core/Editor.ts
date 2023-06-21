@@ -3,6 +3,7 @@ import { throttle } from 'lodash-es';
 import { Controls } from './Controls';
 import { AlignGuidelines } from './AligningGuidelines';
 import 'fabric-history';
+import { getBoundingRect } from './helper/object';
 
 declare type EditorOption = { width: number; height: number };
 
@@ -191,8 +192,56 @@ export class Editor {
     this.setZoomAuto(scaleFactor);
   }
 
-  public zoomToSelection(offset: number = 100) {
+  public zoomToSelection() {
     // TODO ::: Important
+
+    const zoom = 2;
+    const activeSelection = this.canvas.getActiveObject();
+    const selectedObjects = this.canvas.getActiveObjects();
+
+    if (selectedObjects.length > 0) {
+      const boundingRect = getBoundingRect(selectedObjects);
+
+      if (boundingRect) {
+        const canvasCenterX = this.canvas.width! / 2;
+        const canvasCenterY = this.canvas.height! / 2;
+
+        const boundingBoxCenterX = boundingRect.left! + boundingRect.width! / 2;
+        const boundingBoxCenterY = boundingRect.top! + boundingRect.height! / 2;
+
+        const zoomedBoundingBoxWidth = boundingRect.width! * zoom;
+        const zoomedBoundingBoxHeight = boundingRect.height! * zoom;
+
+        const newLeft =
+          canvasCenterX -
+          boundingBoxCenterX * zoom -
+          zoomedBoundingBoxWidth / 2;
+        const newTop =
+          canvasCenterY -
+          boundingBoxCenterY * zoom -
+          zoomedBoundingBoxHeight / 2;
+
+        this.canvas.setViewportTransform([zoom, 0, 0, zoom, newLeft, newTop]);
+        this.canvas.setZoom(zoom);
+      }
+    }
+
+    if (activeSelection) {
+      const canvasCenterX = this.canvas.width! / 2;
+      const canvasCenterY = this.canvas.height! / 2;
+
+      const newLeft =
+        canvasCenterX -
+        activeSelection.left! * zoom -
+        (activeSelection.width! * zoom) / 2;
+      const newTop =
+        canvasCenterY -
+        activeSelection.top! * zoom -
+        (activeSelection.height! * zoom) / 2;
+
+      this.canvas.setViewportTransform([zoom, 0, 0, zoom, newLeft, newTop]);
+      this.canvas.setZoom(zoom);
+    }
   }
 
   /**
