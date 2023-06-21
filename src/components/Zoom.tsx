@@ -1,56 +1,84 @@
+import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { useEditorContext } from '@/context/EditorContext';
+import { setCurrentZoom } from '@/features/editorSlice';
 import useClickOutside from '@/hooks/useClickOutside';
 import { ArrowDownIcon } from '@/icons';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 
 export default function Zoom() {
   const ref = useRef(null);
+  const dispatch = useAppDispatch();
   const { editor } = useEditorContext();
+  const { currentZoom } = useAppSelector((state) => state.editor);
   const [visible, setVisible] = useState(false);
 
   useClickOutside(ref, () => setVisible(false));
 
-  const handleZoomIn = () => {
+  useEffect(() => {
     if (editor) {
-      editor.setZoomAuto(1);
+      const zoom = editor.canvas.getZoom() * 100;
+      dispatch(setCurrentZoom(zoom));
     }
+  }, []);
+
+  const handleZoomIn = () => {
+    const zoomFactor = 1.1;
+    if (editor) {
+      const zoom = editor.canvas.getZoom() * zoomFactor;
+      editor.setZoomAuto(zoom);
+    }
+    handleUpdateZoom();
   };
 
   const handleZoomOut = () => {
+    const zoomFactor = 0.9;
     if (editor) {
-      editor.setZoomAuto(0.5);
+      const zoom = editor.canvas.getZoom() * zoomFactor;
+      editor.setZoomAuto(zoom);
     }
+    handleUpdateZoom();
   };
 
   const handleZoom100 = () => {
     if (editor) {
       editor.setZoomAuto(1);
     }
+    handleUpdateZoom();
   };
 
   const handleZoomToFit = () => {
     if (editor) {
       editor.zoomToFit();
     }
+    handleUpdateZoom();
   };
 
   const handleZoomToWidth = () => {
     if (editor) {
       editor.zoomToFill();
     }
+    handleUpdateZoom();
   };
 
   const handleZoomToSelection = () => {
     if (editor) {
       editor.zoomToSelection();
     }
+    handleUpdateZoom();
+  };
+
+  const handleUpdateZoom = () => {
+    if (editor) {
+      const zoom = editor?.canvas.getZoom();
+      dispatch(setCurrentZoom(zoom * 100));
+    }
   };
 
   return (
     <Wrap ref={ref}>
       <div className="zoom-level-view" onClick={() => setVisible(!visible)}>
-        <span id="zoom-level">{120}%</span>
+        <span id="zoom-level">{currentZoom.toFixed()}%</span>
         <span id="zoom-arr">
           <ArrowDownIcon />
         </span>
@@ -106,6 +134,7 @@ export default function Zoom() {
 
 const Wrap = styled.div`
   position: relative;
+  user-select: none;
   .zoom-level-view {
     display: flex;
     background-color: ${(props) => props.theme.colors.panelBg};

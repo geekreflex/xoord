@@ -11,6 +11,7 @@ interface AppState {
   panelTitle: string | null;
   propertyTitle: string | null;
   propPanel: ObjectTypes | null;
+  colorPickerWidget: boolean;
 }
 
 const initialState: AppState = {
@@ -23,6 +24,7 @@ const initialState: AppState = {
   panelTitle: 'Elements',
   propertyTitle: null,
   propPanel: null,
+  colorPickerWidget: false,
 };
 
 export const appSlice = createSlice({
@@ -61,6 +63,14 @@ export const appSlice = createSlice({
     switchPropertyPanel(state, action) {
       state.propPanel = action.payload;
     },
+
+    showColorPicker(state) {
+      state.colorPickerWidget = true;
+    },
+
+    hideColorPicker(state) {
+      state.colorPickerWidget = false;
+    },
   },
 });
 
@@ -72,5 +82,7 @@ export const {
   closePanel,
   setPanelTitle,
   switchPropertyPanel,
+  showColorPicker,
+  hideColorPicker,
 } = appSlice.actions;
 export default appSlice.reducer;

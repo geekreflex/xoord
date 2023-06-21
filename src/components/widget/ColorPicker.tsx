@@ -1,13 +1,16 @@
 import { useAppDispatch } from '@/app/hooks';
 import { useEditorContext } from '@/context/EditorContext';
+import { hideColorPicker } from '@/features/appSlice';
 import { setObject } from '@/features/editorSlice';
+import useClickOutside from '@/hooks/useClickOutside';
 import { Close2Icon } from '@/icons';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { HexAlphaColorPicker } from 'react-colorful';
 import Draggable from 'react-draggable';
 import { styled } from 'styled-components';
 
 export default function ColorPicker() {
+  const ref = useRef(null);
   const dispatch = useAppDispatch();
   const { editor, selectedObjects } = useEditorContext();
   const [color, setColor] = useState('');
@@ -27,12 +30,19 @@ export default function ColorPicker() {
     }
   };
 
+  const handleHideColorPicker = () => {
+    console.log('hide');
+    dispatch(hideColorPicker());
+  };
+
+  useClickOutside(ref, () => handleHideColorPicker);
+
   return (
     <Draggable handle=".handle">
-      <Wrap>
+      <Wrap ref={ref}>
         <div className="color-picker-header handle">
           <h4 className="handle">Fill</h4>
-          <span className="">
+          <span className="" onClick={handleHideColorPicker}>
             <Close2Icon />
           </span>
         </div>
@@ -45,10 +55,10 @@ export default function ColorPicker() {
 }
 
 const Wrap = styled.div`
+  position: fixed;
   width: 270px;
   top: 100px;
   z-index: 9999;
-  position: fixed;
   right: 300px;
   background-color: ${(props) => props.theme.colors.primary};
   padding-bottom: 20px;

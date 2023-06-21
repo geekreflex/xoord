@@ -31,7 +31,6 @@ export default function Panel({
 }
 
 const Wrap = styled.div<{ placement: string; offset: number }>`
-  position: fixed;
   width: 250px;
   height: 90vh;
   top: 50%;
@@ -39,7 +38,6 @@ const Wrap = styled.div<{ placement: string; offset: number }>`
     props.placement === 'left' ? `${props.offset}px` : 'auto'};
   right: ${(props) =>
     props.placement === 'right' ? `${props.offset}px` : 'auto'};
-  transform: translateY(-50%);
   background-color: ${(props) => props.theme.colors.primary};
   border-radius: ${(props) => props.theme.radius.medium};
   z-index: 98;
