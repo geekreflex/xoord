@@ -71,7 +71,7 @@ const Wrap = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: ${(props) => props.theme.colors.secondary};
-  border-radius: ${(props) => props.theme.radius.small};
+  border-radius: ${(props) => props.theme.radius.medium};
   display: flex;
   align-items: center;
   height: 35px;

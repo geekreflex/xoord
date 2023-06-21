@@ -4,6 +4,7 @@ import { useEditorContext } from '@/context/EditorContext';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { setObject } from '@/features/editorSlice';
 import { STROKE } from '@/core/lib/defaultShapes';
+import NumberInput from './common/NumberInput';
 
 export default function Stroke() {
   const dispatch = useAppDispatch();
@@ -39,6 +40,15 @@ export default function Stroke() {
     }
   };
 
+  const handleStrokeWidth = (width: number) => {
+    if (editor) {
+      const activeObject = editor.canvas.getActiveObject();
+      activeObject?.set({ strokeWidth: width });
+      dispatch(setObject({ strokeWidth: width }));
+      editor.canvas.renderAll();
+    }
+  };
+
   return (
     <Wrap className="prop-wrap">
       <h4>Stroke</h4>
@@ -52,7 +62,10 @@ export default function Stroke() {
         />
         {object?.stroke && (
           <div className="other-props">
-            <div className="width">1</div>
+            <NumberInput
+              value={object?.strokeWidth || 0}
+              onChange={handleStrokeWidth}
+            />
             <div className="style">Dashed</div>
           </div>
         )}
@@ -79,7 +92,7 @@ const Wrap = styled.div`
     .style {
       height: 100%;
       background-color: ${(props) => props.theme.colors.secondary};
-      border-radius: ${(props) => props.theme.radius.small};
+      border-radius: ${(props) => props.theme.radius.medium};
       cursor: pointer;
       padding: 0 10px;
       display: flex;
