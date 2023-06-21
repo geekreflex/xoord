@@ -41,6 +41,12 @@ export default function Zoom() {
     }
   };
 
+  const handleZoomToSelection = () => {
+    if (editor) {
+      editor.zoomToSelection();
+    }
+  };
+
   return (
     <Wrap ref={ref}>
       <div className="zoom-level-view" onClick={() => setVisible(!visible)}>
@@ -86,7 +92,7 @@ export default function Zoom() {
               </div>
             </li>
             <li>
-              <div className="inner">
+              <div className="inner" onClick={handleZoomToSelection}>
                 <span id="zoom-text">Zoom to Selection</span>
                 <span id="zoom-key">Shift+ 3</span>
               </div>

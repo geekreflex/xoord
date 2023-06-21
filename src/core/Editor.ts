@@ -191,6 +191,10 @@ export class Editor {
     this.setZoomAuto(scaleFactor);
   }
 
+  public zoomToSelection(offset: number = 100) {
+    // TODO ::: Important
+  }
+
   /**
    * We reset workspace to it's default behavior
    * by removing the controls and disabling select
@@ -245,6 +249,9 @@ export class Editor {
 
   private initZoom() {
     this.canvas.on('mouse:wheel', function (this: fabric.Canvas, opt) {
+      // check if ctrl or cmd key is held down
+      const isControlKeyHeld = opt.e.ctrlKey || opt.e.metaKey;
+
       const delta = opt.e.deltaY;
       let zoom = this.getZoom();
       zoom *= 0.999 ** delta;
@@ -254,14 +261,18 @@ export class Editor {
       const maxZoom = 20;
       zoom = Math.max(minZoom, Math.min(maxZoom, zoom));
 
-      /**
-       * Zoom to center
-       */
-      // const center = this.getCenter();
-      // this.zoomToPoint(new fabric.Point(center.left, center.top), zoom);
-
-      this.zoomToPoint({ x: opt.e.offsetX, y: opt.e.offsetY }, zoom);
-
+      if (isControlKeyHeld) {
+        /**
+         * Zoom to cursor
+         */
+        this.zoomToPoint({ x: opt.e.offsetX, y: opt.e.offsetY }, zoom);
+      } else {
+        /**
+         * Zoom to center
+         */
+        const center = this.getCenter();
+        this.zoomToPoint(new fabric.Point(center.left, center.top), zoom);
+      }
       opt.e.preventDefault();
       opt.e.stopPropagation();
     });
