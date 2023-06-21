@@ -55,6 +55,16 @@ export default createGlobalStyle`
     }
   }
 
+  .prop-wrap {
+    display: flex;
+    flex-direction: column;
+    h4 {
+      font-size: 12px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+  }
+
 `;
 
 export const LineX = styled.div`

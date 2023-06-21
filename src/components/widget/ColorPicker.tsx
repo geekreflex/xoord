@@ -1,4 +1,3 @@
-import { Close2Icon } from '@/icons';
 import { useRef } from 'react';
 import { HexAlphaColorPicker } from 'react-colorful';
 import { styled } from 'styled-components';

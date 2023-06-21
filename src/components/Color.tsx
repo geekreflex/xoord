@@ -8,38 +8,52 @@ interface ColorProps {
   label: string;
   color: string;
   onChange: (color: string) => void;
+  clear: () => void;
+  add: () => void;
 }
 
 export default function Color({
   label = 'No label',
   color,
   onChange,
+  clear,
+  add,
 }: ColorProps) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 
   const handleClose = () => {
-    console.log('close');
     setVisible(false);
+  };
+
+  const handleClear = () => {
+    clear();
+    handleClose();
   };
 
   useClickOutside(ref, () => handleClose());
 
   return (
     <Wrap ref={ref}>
-      <div className="label">{label}</div>
-      <div className="color-main">
-        <div className="color-wrap" onClick={() => setVisible(!visible)}>
-          <div
-            className="color-block"
-            style={{ backgroundColor: color || '#fff' }}
-          ></div>
-          <div className="color-value">{color}</div>
+      {color ? (
+        <>
+          <div className="color-wrap" onClick={() => setVisible(!visible)}>
+            <div
+              className="color-block"
+              style={{ backgroundColor: color || '#fff' }}
+            ></div>
+            <div className="color-value">{color}</div>
+          </div>
+          <div className="clear-color" onClick={handleClear}>
+            <Close2Icon />
+          </div>
+        </>
+      ) : (
+        <div className="add-color" onClick={add}>
+          Add...
         </div>
-        <div className="clear-color">
-          <Close2Icon />
-        </div>
-      </div>
+      )}
+
       {visible && (
         <ColorPicker
           color={color}
@@ -54,32 +68,25 @@ export default function Color({
 
 const Wrap = styled.div`
   display: flex;
-  padding: 0 10px;
   justify-content: space-between;
   align-items: center;
-  .label {
-    font-size: 14px;
-  }
+  background-color: ${(props) => props.theme.colors.secondary};
+  border-radius: ${(props) => props.theme.radius.small};
+  display: flex;
+  align-items: center;
+  height: 35px;
 
-  .color-main {
-    width: 70%;
-    background-color: ${(props) => props.theme.colors.secondary};
-    border-radius: ${(props) => props.theme.radius.medium};
+  .color-wrap {
     display: flex;
     align-items: center;
-
-    .color-wrap {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 5px;
-      flex: 1;
-      cursor: pointer;
-    }
+    gap: 10px;
+    padding: 5px 10px;
+    flex: 1;
+    cursor: pointer;
 
     .color-block {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       border-radius: ${(props) => props.theme.radius.small};
       border: 1px solid ${(props) => props.theme.colors.borderColor};
     }
@@ -88,16 +95,30 @@ const Wrap = styled.div`
       font-size: 12px;
       font-weight: 600;
     }
+  }
 
-    .clear-color {
-      display: flex;
-      width: 30px;
-      justify-content: center;
-      align-items: center;
-      padding: 5px;
-      font-size: 12px;
-      height: 30px;
-      cursor: pointer;
+  .add-color {
+    opacity: 0.5;
+    font-size: 12px;
+    font-weight: 600;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 10px;
+    cursor: pointer;
+    &:hover {
+      opacity: 1;
     }
+  }
+
+  .clear-color {
+    display: flex;
+    width: 40px;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    height: 100%;
+    cursor: pointer;
   }
 `;
