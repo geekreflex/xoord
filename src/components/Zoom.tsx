@@ -1,11 +1,48 @@
+import { useEditorContext } from '@/context/EditorContext';
+import useClickOutside from '@/hooks/useClickOutside';
 import { ArrowDownIcon } from '@/icons';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { styled } from 'styled-components';
 
 export default function Zoom() {
+  const ref = useRef(null);
+  const { editor } = useEditorContext();
   const [visible, setVisible] = useState(false);
+
+  useClickOutside(ref, () => setVisible(false));
+
+  const handleZoomIn = () => {
+    if (editor) {
+      editor.setZoomAuto(1);
+    }
+  };
+
+  const handleZoomOut = () => {
+    if (editor) {
+      editor.setZoomAuto(0.5);
+    }
+  };
+
+  const handleZoom100 = () => {
+    if (editor) {
+      editor.setZoomAuto(1);
+    }
+  };
+
+  const handleZoomToFit = () => {
+    if (editor) {
+      editor.zoomToFit();
+    }
+  };
+
+  const handleZoomToWidth = () => {
+    if (editor) {
+      editor.zoomToFill();
+    }
+  };
+
   return (
-    <Wrap>
+    <Wrap ref={ref}>
       <div className="zoom-level-view" onClick={() => setVisible(!visible)}>
         <span id="zoom-level">{120}%</span>
         <span id="zoom-arr">
@@ -16,13 +53,13 @@ export default function Zoom() {
         <div className="zoom-list-wrap">
           <ul className="zoom-list">
             <li>
-              <div className="inner">
+              <div className="inner" onClick={handleZoomIn}>
                 <span id="zoom-text">Zoom In</span>
                 <span id="zoom-key">Ctrl+ =</span>
               </div>
             </li>
             <li>
-              <div className="inner">
+              <div className="inner" onClick={handleZoomOut}>
                 <span id="zoom-text">Zoom Out</span>
                 <span id="zoom-key">Ctrl+ –</span>
               </div>
@@ -31,19 +68,19 @@ export default function Zoom() {
               <div className="separator"></div>
             </li>
             <li>
-              <div className="inner">
+              <div className="inner" onClick={handleZoom100}>
                 <span id="zoom-text">Zoom to 100%</span>
                 <span id="zoom-key">Shift+ 0</span>
               </div>
             </li>
             <li>
-              <div className="inner">
+              <div className="inner" onClick={handleZoomToFit}>
                 <span id="zoom-text">Zoom to Fit</span>
                 <span id="zoom-key">Shift+ 1</span>
               </div>
             </li>
             <li>
-              <div className="inner">
+              <div className="inner" onClick={handleZoomToWidth}>
                 <span id="zoom-text">Zoom to Width</span>
                 <span id="zoom-key">Shift+ 2</span>
               </div>
