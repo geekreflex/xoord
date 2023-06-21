@@ -53,7 +53,7 @@ export const darkTheme: Theme = {
     accent: '#307FF4',
     primary: '#0c0c0e',
     secondary: '#141517',
-    borderColor: '#2e2e2e',
+    borderColor: '#1e1e1e',
     hoverColor: '#2d2d2d',
     textColor: '#f5f5f5',
     tooltipBg: '#111111',

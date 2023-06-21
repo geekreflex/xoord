@@ -1,11 +1,14 @@
 import { styled } from 'styled-components';
 import History from '../History';
+import Zoom from '../Zoom';
 
 export default function BottomBar() {
   return (
     <Wrap>
       <div></div>
-      <div></div>
+      <div>
+        <Zoom />
+      </div>
       <div>
         <History />
       </div>
@@ -27,4 +30,8 @@ const Wrap = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 10px;
+
+  * {
+    transform: translateX(0);
+  }
 `;
