@@ -1,17 +1,14 @@
 import { styled } from 'styled-components';
 import Alignment from '../Alignment';
-import { LineX } from '@/styles/global';
 import Fill from '../Fill';
-import Stroke from '../Stroke';
+import { LineX } from '@/styles/global';
 
-export default function CircleProperties() {
+export default function TextProperties() {
   return (
     <Wrap>
       <Alignment />
       <LineX />
       <Fill />
-      <LineX />
-      <Stroke />
       <LineX />
     </Wrap>
   );

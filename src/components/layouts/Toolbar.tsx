@@ -150,6 +150,7 @@ const Wrap = styled.div`
     width: 100%;
 
     .tool {
+      position: relative;
       height: 50px;
       display: flex;
       justify-content: center;
@@ -158,6 +159,7 @@ const Wrap = styled.div`
       cursor: pointer;
       opacity: 0.7;
       transition: all 0.3s ease-in-out;
+      z-index: 99;
       &:hover {
         opacity: 1;
       }
@@ -169,11 +171,12 @@ const Wrap = styled.div`
 
   .glider {
     position: absolute;
-    top: -0;
+    top: 0;
+    left: 0;
     height: 100%;
     background-color: ${(props) => props.theme.colors.secondary};
     transition: transform 0.3s ease-in-out;
     width: 60px;
-    z-index: -1;
+    z-index: 1;
   }
 `;

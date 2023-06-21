@@ -1,51 +1,31 @@
-import { useAppDispatch } from '@/app/hooks';
-import { useEditorContext } from '@/context/EditorContext';
-import { hideColorPicker } from '@/features/appSlice';
-import { setObject } from '@/features/editorSlice';
-import useClickOutside from '@/hooks/useClickOutside';
 import { Close2Icon } from '@/icons';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { HexAlphaColorPicker } from 'react-colorful';
-import Draggable from 'react-draggable';
 import { styled } from 'styled-components';
+import Draggable from '../common/Draggable';
 
-export default function ColorPicker() {
+interface ColorPickerProps {
+  color: string;
+  label: string;
+  onChange: (color: string) => void;
+  close: () => void;
+}
+
+export default function ColorPicker({
+  color,
+  label,
+  onChange,
+  close,
+}: ColorPickerProps) {
   const ref = useRef(null);
-  const dispatch = useAppDispatch();
-  const { editor, selectedObjects } = useEditorContext();
-  const [color, setColor] = useState('');
-
-  useEffect(() => {
-    if (selectedObjects?.length) {
-      setColor(selectedObjects[0]?.fill as string);
-    }
-  }, [selectedObjects]);
 
   const handleChange = (color: string) => {
-    if (editor) {
-      const activeObject = editor.canvas.getActiveObject();
-      activeObject?.set('fill', color);
-      dispatch(setObject({ fill: color }));
-      editor.canvas.renderAll();
-    }
+    onChange(color);
   };
-
-  const handleHideColorPicker = () => {
-    console.log('hide');
-    dispatch(hideColorPicker());
-  };
-
-  useClickOutside(ref, () => handleHideColorPicker);
 
   return (
-    <Draggable handle=".handle">
+    <Draggable title={label} close={close}>
       <Wrap ref={ref}>
-        <div className="color-picker-header handle">
-          <h4 className="handle">Fill</h4>
-          <span className="" onClick={handleHideColorPicker}>
-            <Close2Icon />
-          </span>
-        </div>
         <div className="color-picker-wrap">
           <HexAlphaColorPicker color={color} onChange={handleChange} />
         </div>
@@ -55,37 +35,7 @@ export default function ColorPicker() {
 }
 
 const Wrap = styled.div`
-  position: fixed;
   width: 270px;
-  top: 100px;
-  z-index: 9999;
-  right: 300px;
-  background-color: ${(props) => props.theme.colors.primary};
-  padding-bottom: 20px;
-  border-radius: ${(props) => props.theme.radius.large};
-  box-shadow: ${(props) => props.theme.shadow.shadow2};
-
-  .color-picker-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px 20px;
-    cursor: grab;
-
-    h4 {
-      font-size: 14px;
-    }
-
-    span {
-      display: flex;
-      padding: 10px;
-      cursor: pointer;
-      opacity: 0.5;
-      &:hover {
-        opacity: 1;
-      }
-    }
-  }
 
   .color-picker-wrap {
     width: 100%;

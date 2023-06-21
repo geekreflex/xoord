@@ -16,11 +16,8 @@ export default function Zoom() {
   useClickOutside(ref, () => setVisible(false));
 
   useEffect(() => {
-    if (editor) {
-      const zoom = editor.canvas.getZoom() * 100;
-      dispatch(setCurrentZoom(zoom));
-    }
-  }, []);
+    handleUpdateZoom();
+  }, [editor]);
 
   const handleZoomIn = () => {
     const zoomFactor = 1.1;
