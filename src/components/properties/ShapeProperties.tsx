@@ -4,7 +4,7 @@ import { LineX } from '@/styles/global';
 import Fill from '../Fill';
 import Stroke from '../Stroke';
 
-export default function CircleProperties() {
+export default function ShapeProperties() {
   return (
     <Wrap>
       <Alignment />

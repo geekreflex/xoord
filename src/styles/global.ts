@@ -58,6 +58,7 @@ export default createGlobalStyle`
   .prop-wrap {
     display: flex;
     flex-direction: column;
+    padding: 0 10px;
     h4 {
       font-size: 12px;
       margin-bottom: 10px;

@@ -1,8 +1,8 @@
 import { styled } from 'styled-components';
 import Panel from '../common/Panel';
 import { useEditorContext } from '@/context/EditorContext';
-import CircleProperties from '../properties/CircleProperties';
 import TextProperties from '../properties/TextProperties';
+import ShapeProperties from '../properties/ShapeProperties';
 
 export default function PropertiesPanel() {
   const { selectedType } = useEditorContext();
@@ -10,7 +10,10 @@ export default function PropertiesPanel() {
   const renderProperties = () => {
     switch (selectedType) {
       case 'circle':
-        return <CircleProperties />;
+      case 'triangle':
+      case 'polygon':
+      case 'rect':
+        return <ShapeProperties />;
       case 'textbox':
         return <TextProperties />;
     }
