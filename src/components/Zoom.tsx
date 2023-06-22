@@ -77,7 +77,7 @@ export default function Zoom() {
     <Wrap ref={ref}>
       <div className="zoom-level-view" onClick={() => setVisible(!visible)}>
         <span id="zoom-level">{currentZoom.toFixed()}%</span>
-        <span id="zoom-arr">
+        <span id="zoom-arr" className="arr-down-icon">
           <ArrowDownIcon />
         </span>
       </div>
@@ -99,8 +99,20 @@ export default function Zoom() {
             <LineX />
             <li>
               <div className="inner" onClick={handleZoom100}>
+                <span id="zoom-text">Zoom to 50%</span>
+                <span id="zoom-key"></span>
+              </div>
+            </li>
+            <li>
+              <div className="inner" onClick={handleZoom100}>
                 <span id="zoom-text">Zoom to 100%</span>
                 <span id="zoom-key">Shift+ 0</span>
+              </div>
+            </li>
+            <li>
+              <div className="inner" onClick={handleZoom100}>
+                <span id="zoom-text">Zoom to 200%</span>
+                <span id="zoom-key"></span>
               </div>
             </li>
             <li>
@@ -133,16 +145,18 @@ const Wrap = styled.div`
   user-select: none;
   .zoom-level-view {
     display: flex;
-    background-color: ${(props) => props.theme.colors.panelBg};
+    background-color: ${(props) => props.theme.colors.highlightColor};
     padding: 10px;
-    border-radius: ${(props) => props.theme.radius.small};
+    border-radius: ${(props) => props.theme.radius.medium};
     align-items: center;
     justify-content: space-between;
     gap: 10px;
     min-width: 60px;
     cursor: pointer;
+    border: 1px solid transparent;
     &:hover {
       background-color: ${(props) => props.theme.colors.hoverColor};
+      border: 1px solid ${(props) => props.theme.colors.borderColor};
     }
   }
 
@@ -153,13 +167,6 @@ const Wrap = styled.div`
   #zoom-level {
     font-size: 12px;
     font-weight: 600;
-  }
-
-  #zoom-arr {
-    font-size: 9px;
-    path {
-      stroke-width: 4px;
-    }
   }
 
   .separator {
@@ -173,7 +180,7 @@ const Wrap = styled.div`
     width: 250px;
     position: absolute;
     bottom: 50px;
-    background-color: ${(props) => props.theme.colors.panelBg};
+    background-color: ${(props) => props.theme.colors.btnBgColor};
     padding: 6px 0;
     border-radius: ${(props) => props.theme.radius.medium};
 

@@ -75,7 +75,7 @@ const Wrap = styled.div`
   position: relative;
   height: 35px;
   display: flex;
-  background-color: ${(props) => props.theme.colors.secondary};
+  background-color: ${(props) => props.theme.colors.highlightColor};
   border-radius: ${(props) => props.theme.radius.medium};
   overflow: hidden;
   &:hover {
@@ -107,7 +107,7 @@ const Wrap = styled.div`
     align-items: center;
     font-size: 12px;
     font-weight: 600;
-    background-color: ${(props) => props.theme.colors.secondary};
+    background-color: ${(props) => props.theme.colors.highlightColor};
   }
 
   .input-btns {

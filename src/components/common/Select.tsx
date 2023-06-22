@@ -20,9 +20,11 @@ export default function Select({ options, value, onChange }: SelectProps) {
           <option value={option.value}>{option.label}</option>
         ))}
       </select>
-      <span>
-        <ArrowDownIcon />
-      </span>
+      <div className="arr-wrap">
+        <span className="arr-down-icon">
+          <ArrowDownIcon />
+        </span>
+      </div>
     </Wrap>
   );
 }
@@ -46,7 +48,7 @@ const Wrap = styled.div`
     cursor: pointer;
   }
 
-  span {
+  .arr-wrap {
     position: absolute;
     right: 0;
     height: 100%;
@@ -54,15 +56,9 @@ const Wrap = styled.div`
     background-color: transparent;
     border: none;
     outline: none;
-    color: ${(props) => props.theme.colors.textColor};
-    font-size: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     pointer-events: none;
-
-    path {
-      stroke-width: 4px;
-    }
   }
 `;

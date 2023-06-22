@@ -72,6 +72,11 @@ export default function Tooltip({
 }
 
 const Wrap = styled.div`
+  /* display: flex; */
+  /* width: 100%; */
+  /* align-items: center; */
+  flex: 1;
+
   .main-tooltip {
     padding: 6px 10px;
     border-radius: ${(props) => props.theme.radius.medium};

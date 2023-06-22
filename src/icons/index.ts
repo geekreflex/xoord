@@ -49,6 +49,7 @@ import TextUnderlineIcon from './TextUnderlineIcon';
 import TextAlignCenterIcon from './TextAlignCenterIcon';
 import TextAlignLeftIcon from './TextAlignLeftIcon';
 import TextAlignRightIcon from './TextAlignRightIcon';
+import TextAlignJustify from './TextAlignJustify';
 import SunIcon from './SunIcon';
 import MoonIcon from './MoonIcon';
 
@@ -104,6 +105,7 @@ export {
   TextAlignCenterIcon,
   TextAlignLeftIcon,
   TextAlignRightIcon,
+  TextAlignJustify,
   SunIcon,
   MoonIcon,
 };

@@ -61,10 +61,10 @@ export default function Tab({ tabs, activeTab, setActiveTab }: TabProps) {
 }
 
 const Wrap = styled.div`
-  background-color: ${(props) => props.theme.colors.secondary};
-  padding: 3px;
+  background-color: ${(props) => props.theme.colors.btnBgColor};
+  padding: 4px;
 
-  border-radius: ${(props) => props.theme.radius.small};
+  border-radius: ${(props) => props.theme.radius.medium};
 
   .tablist {
     display: flex;
@@ -73,7 +73,7 @@ const Wrap = styled.div`
     .tab {
       flex: 1;
       padding: 5px 10px;
-      border-radius: ${(props) => props.theme.radius.small};
+      border-radius: ${(props) => props.theme.radius.medium};
       cursor: pointer;
       font-size: 14px;
       position: relative;
@@ -84,7 +84,7 @@ const Wrap = styled.div`
       position: absolute;
       bottom: 0;
       height: 100%;
-      background-color: ${(props) => props.theme.colors.btnBgColor};
+      background-color: ${(props) => props.theme.colors.highlightColor};
       border-radius: ${(props) => props.theme.radius.small};
       transition: transform 0.3s ease;
       width: 100%;

@@ -73,7 +73,7 @@ const Wrap = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: ${(props) => props.theme.colors.secondary};
+      background-color: ${(props) => props.theme.colors.highlightColor};
       border-radius: ${(props) => props.theme.radius.small};
       cursor: pointer;
       &:hover {

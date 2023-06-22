@@ -42,11 +42,38 @@ export default createGlobalStyle`
     justify-content: center;
     align-items: center;
     border-radius: ${(props) => props.theme.radius.small};
+    border: 1px solid transparent;
+    opacity: 0.6;
+    transition: all 200ms;
 
     &:hover {
-      background-color: ${(props) => props.theme.colors.hoverColor};
-    }
+      background-color: ${(props) => props.theme.colors.btnBgColor};
+    border: 1px solid ${(props) => props.theme.colors.borderColor};
+    opacity: 1;
 
+    }
+  }
+
+  .icon-sm {
+    font-size: 18px;
+  }
+
+  .icon-active {
+    background-color: ${(props) => props.theme.colors.btnBgColor};
+    border: 1px solid ${(props) => props.theme.colors.borderColor};
+  }
+
+  .arr-down-icon {
+    display: flex;
+    font-size: 10px;
+    justify-content: center;
+    align-items: center;
+    color: ${(props) => props.theme.colors.textColor};
+   
+
+    path {
+      stroke-width: 4px !important;
+    }
   }
 
   .stroke2 {
@@ -65,6 +92,7 @@ export default createGlobalStyle`
       font-weight: 600;
     }
   }
+
 
 `;
 

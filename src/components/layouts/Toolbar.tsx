@@ -175,9 +175,15 @@ const Wrap = styled.div`
     top: 0;
     left: 0;
     height: 100%;
-    background-color: ${(props) => props.theme.colors.secondary};
+    background-color: ${(props) => props.theme.colors.btnBgColor};
+    border: 1px solid transparent;
     transition: transform 0.3s ease-in-out;
-    width: 60px;
+    width: 50px;
+    left: 5px;
     z-index: 1;
+    border-radius: ${(props) => props.theme.radius.medium};
+    &:hover {
+      border: 1px solid ${(props) => props.theme.colors.borderColor};
+    }
   }
 `;
