@@ -36,7 +36,7 @@ export default function ElementsTool() {
   return (
     <Wrap>
       <div className="items-wrap">
-        <h4>Shapes</h4>
+        <h4 className="items-wrap__title">Shapes</h4>
         <LineX />
         <div className="item-list">
           {shapes.map((item, index) => (
@@ -58,13 +58,18 @@ const Wrap = styled.div`
     display: flex;
     flex-direction: column;
   }
+  .items-wrap__title {
+    font-size: 14px;
+    padding: 0 10px;
+  }
   .item-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 4px;
+    padding: 0 10px;
 
     .item {
-      height: 60px;
+      height: 55px;
       display: flex;
       justify-content: center;
       align-items: center;

@@ -134,6 +134,7 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   padding: 10px 0;
+  border: 1px solid ${(props) => props.theme.colors.borderColor};
 
   .logo {
     height: 50px;

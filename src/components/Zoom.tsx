@@ -3,6 +3,7 @@ import { useEditorContext } from '@/context/EditorContext';
 import { setCurrentZoom } from '@/features/editorSlice';
 import useClickOutside from '@/hooks/useClickOutside';
 import { ArrowDownIcon } from '@/icons';
+import { LineX } from '@/styles/global';
 import { useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 
@@ -95,9 +96,7 @@ export default function Zoom() {
                 <span id="zoom-key">Ctrl+ –</span>
               </div>
             </li>
-            <li>
-              <div className="separator"></div>
-            </li>
+            <LineX />
             <li>
               <div className="inner" onClick={handleZoom100}>
                 <span id="zoom-text">Zoom to 100%</span>
@@ -201,7 +200,8 @@ const Wrap = styled.div`
           align-items: center;
           &:hover {
             background-color: #09f;
-            #zoom-key {
+            #zoom-key,
+            #zoom-text {
               color: #fff;
             }
           }

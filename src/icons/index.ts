@@ -49,6 +49,8 @@ import TextUnderlineIcon from './TextUnderlineIcon';
 import TextAlignCenterIcon from './TextAlignCenterIcon';
 import TextAlignLeftIcon from './TextAlignLeftIcon';
 import TextAlignRightIcon from './TextAlignRightIcon';
+import SunIcon from './SunIcon';
+import MoonIcon from './MoonIcon';
 
 export {
   ZoomInIcon,
@@ -102,4 +104,6 @@ export {
   TextAlignCenterIcon,
   TextAlignLeftIcon,
   TextAlignRightIcon,
+  SunIcon,
+  MoonIcon,
 };

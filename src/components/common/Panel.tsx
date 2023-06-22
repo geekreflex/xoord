@@ -43,6 +43,7 @@ const Wrap = styled.div<{ placement: string; offset: number }>`
   z-index: 98;
   display: flex;
   flex-direction: column;
+  border: 1px solid ${(props) => props.theme.colors.borderColor};
 
   .panel-header {
     display: flex;

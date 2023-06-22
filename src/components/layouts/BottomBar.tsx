@@ -31,6 +31,7 @@ const Wrap = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 10px;
+  border: 1px solid ${(props) => props.theme.colors.borderColor};
 
   .item-wrap {
     display: flex;
