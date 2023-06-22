@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { setObject } from '@/features/editorSlice';
 import { STROKE } from '@/core/lib/defaultShapes';
 import NumberInput from './common/NumberInput';
+import Select from './common/Select';
 
 export default function Stroke() {
   const dispatch = useAppDispatch();
@@ -49,6 +50,22 @@ export default function Stroke() {
     }
   };
 
+  const handleStrokeStyle = (value: string) => {
+    if (editor) {
+      const activeObject = editor.canvas.getActiveObject();
+      const arr = value ? value.split(' ').map(Number) : [];
+      activeObject?.set({ strokeDashArray: arr });
+      dispatch(setObject({ strokeDashArray: arr }));
+      editor.canvas.renderAll();
+    }
+  };
+
+  const strokeStyles = [
+    { label: 'Solid', value: '' },
+    { label: 'Dashed', value: '30 10' },
+    { label: 'Dotted', value: '5 5' },
+  ];
+
   return (
     <Wrap className="prop-wrap">
       <h4>Stroke</h4>
@@ -62,11 +79,19 @@ export default function Stroke() {
         />
         {object?.stroke && (
           <div className="other-props">
-            <NumberInput
-              value={object?.strokeWidth || 0}
-              onChange={handleStrokeWidth}
-            />
-            <div className="style">Dashed</div>
+            <div className="stroke-width-wrap">
+              <NumberInput
+                value={object?.strokeWidth || 0}
+                onChange={handleStrokeWidth}
+              />
+            </div>
+            <div className="stroke-style-wrap">
+              <Select
+                options={strokeStyles}
+                value={object?.strokeDashArray?.join(' ') || ''}
+                onChange={handleStrokeStyle}
+              />
+            </div>
           </div>
         )}
       </div>
@@ -83,30 +108,16 @@ const Wrap = styled.div`
     gap: 10px;
   }
 
+  .stroke-width-wrap {
+    width: 40%;
+  }
+
+  .stroke-style-wrap {
+    width: 60%;
+  }
+
   .other-props {
     display: flex;
     gap: 10px;
-    height: 35px;
-
-    .width,
-    .style {
-      height: 100%;
-      background-color: ${(props) => props.theme.colors.secondary};
-      border-radius: ${(props) => props.theme.radius.medium};
-      cursor: pointer;
-      padding: 0 10px;
-      display: flex;
-      align-items: center;
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .width {
-      width: 40%;
-    }
-
-    .style {
-      width: 60%;
-    }
   }
 `;

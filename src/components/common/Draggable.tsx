@@ -15,7 +15,7 @@ export default function Draggable({ children, handle, title, close }: Props) {
     <Drag handle={handle || '.handle'}>
       <Wrap>
         <div className="draggable-header handle">
-          <h4>{title}</h4>
+          <span className="draggable-title">{title}</span>
           <button className="close-btn" onClick={close}>
             <Close2Icon />
           </button>
@@ -46,8 +46,11 @@ const Wrap = styled.div`
     padding-top: 10px;
     cursor: grab;
 
-    h4 {
+    .draggable-title {
       font-size: 14px;
+      display: flex;
+      font-weight: 600;
+      line-height: 1;
     }
 
     .close-btn {
@@ -55,11 +58,13 @@ const Wrap = styled.div`
       padding: 5px;
       border: none;
       outline: none;
+      height: 100%;
       cursor: pointer;
       position: relative;
       opacity: 0.5;
       background-color: transparent;
       color: ${(props) => props.theme.colors.textColor};
+      align-items: center;
 
       &:hover {
         opacity: 1;
