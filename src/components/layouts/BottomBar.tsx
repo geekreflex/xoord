@@ -1,15 +1,18 @@
 import { styled } from 'styled-components';
 import History from '../History';
 import Zoom from '../Zoom';
+import ThemeToggle from '../excerpt/ThemeToggle';
+import { LineY } from '@/styles/global';
 
 export default function BottomBar() {
   return (
     <Wrap>
-      <div></div>
-      <div>
+      <div className="item-wrap">
+        <ThemeToggle />
         <Zoom />
       </div>
-      <div>
+      <LineY />
+      <div className="item-wrap">
         <History />
       </div>
     </Wrap>
@@ -17,8 +20,9 @@ export default function BottomBar() {
 }
 
 const Wrap = styled.div`
-  width: 300px;
-  height: 50px;
+  min-width: 200px;
+  max-width: 300px;
+  height: 45px;
   bottom: 20px;
   background-color: ${(props) => props.theme.colors.primary};
   border-radius: ${(props) => props.theme.radius.medium};
@@ -27,4 +31,10 @@ const Wrap = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 10px;
+
+  .item-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 `;

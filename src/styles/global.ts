@@ -75,6 +75,13 @@ export const LineX = styled.div`
   margin: 10px 0;
 `;
 
+export const LineY = styled.div`
+  width: 1px;
+  height: 100%;
+  background-color: ${(props) => props.theme.colors.borderColor};
+  margin: 0 10px;
+`;
+
 export const TitleSmall = styled.h5`
   margin: 10px;
   font-weight: 400;
