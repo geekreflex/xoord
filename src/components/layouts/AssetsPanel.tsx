@@ -5,6 +5,7 @@ import ElementsTool from '../tools/ElementsTool';
 import TextTool from '../tools/TextTool';
 import LayerTool from '../tools/LayerTool';
 import ImagesTool from '../tools/ImagesTool';
+import BackgroundTool from '../tools/BackgroundTool';
 
 export default function AssetsPanel() {
   const { activeTool } = useAppSelector((state) => state.app);
@@ -17,6 +18,8 @@ export default function AssetsPanel() {
         return <ImagesTool />;
       case 'Text':
         return <TextTool />;
+      case 'Background':
+        return <BackgroundTool />;
       case 'Layers':
         return <LayerTool />;
     }

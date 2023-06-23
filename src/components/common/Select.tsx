@@ -40,7 +40,7 @@ const Wrap = styled.div`
     border: none;
     height: 100%;
     outline: none;
-    background-color: ${(props) => props.theme.colors.secondary};
+    background-color: ${(props) => props.theme.colors.highlightColor};
     color: ${(props) => props.theme.colors.textColor};
     padding: 0 10px;
     border-radius: ${(props) => props.theme.radius.medium};
