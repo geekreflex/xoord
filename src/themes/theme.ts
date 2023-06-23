@@ -42,7 +42,7 @@ export const lightTheme: Theme = {
   radius: {
     small: '4px',
     medium: '8px',
-    large: '12px',
+    large: '30px',
   },
   shadow: {
     shadow1: 'rgba(0, 0, 0, 0.16) 0px 1px 4px;',
@@ -68,7 +68,7 @@ export const darkTheme: Theme = {
   radius: {
     small: '4px',
     medium: '8px',
-    large: '12px',
+    large: '30px',
   },
   shadow: {
     shadow1: 'rgba(0, 0, 0, 0.5) 0px 1px 4px;',

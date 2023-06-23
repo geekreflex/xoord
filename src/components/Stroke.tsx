@@ -100,8 +100,6 @@ export default function Stroke() {
 }
 
 const Wrap = styled.div`
-  padding: 0 10px;
-
   .main-wrap {
     display: flex;
     flex-direction: column;

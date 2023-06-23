@@ -55,7 +55,6 @@ export default function ImageList({
 
 const Wrap = styled.div`
   width: 100%;
-  padding: 0 5px;
   overflow-y: auto;
   height: 100%;
   margin-bottom: 60px;

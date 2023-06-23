@@ -60,7 +60,7 @@ export const fetchBackgrounds = createAsyncThunk(
     const { perPage } = (getState() as { images: ImagesState }).images;
 
     const response = await fetch(
-      `https://api.pexels.com/v1/search?query=background&page=${page}&per_page=${perPage}`,
+      `https://api.pexels.com/v1/search?query=abstract+background&page=${page}&per_page=${perPage}`,
       {
         headers: {
           Authorization: PEXELS_KEY,

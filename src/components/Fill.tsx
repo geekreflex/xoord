@@ -53,6 +53,4 @@ export default function Fill() {
   );
 }
 
-const Wrap = styled.div`
-  padding: 0 10px;
-`;
+const Wrap = styled.div``;

@@ -85,7 +85,6 @@ export default createGlobalStyle`
   .prop-wrap {
     display: flex;
     flex-direction: column;
-    padding: 0 10px;
     h4 {
       font-size: 12px;
       margin-bottom: 10px;
@@ -140,7 +139,7 @@ export const GridItem = styled.div`
 
 export const Button = styled.button`
   padding: 12px 25px;
-  border-radius: 30px;
+  border-radius: ${(props) => props.theme.radius.large};
   border: none;
   outline: none;
   display: flex;
