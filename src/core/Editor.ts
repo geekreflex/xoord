@@ -46,7 +46,7 @@ export class Editor {
   private initWorkspace() {
     const { width, height } = this.option;
     const workspace = new fabric.Rect({
-      fill: '#222',
+      fill: '#fff',
       width,
       height,
       id: 'workspace',

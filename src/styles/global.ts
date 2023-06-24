@@ -43,13 +43,12 @@ export default createGlobalStyle`
     align-items: center;
     border-radius: ${(props) => props.theme.radius.small};
     border: 1px solid transparent;
-    opacity: 0.6;
     transition: all 200ms;
+   
 
     &:hover {
-      background-color: ${(props) => props.theme.colors.btnBgColor};
+      background-color: ${(props) => props.theme.colors.hoverColor};
     border: 1px solid ${(props) => props.theme.colors.borderColor};
-    opacity: 1;
 
     }
   }
@@ -146,7 +145,7 @@ export const Button = styled.button`
   align-items: center;
   gap: 10px;
   cursor: pointer;
-  background-color: ${(props) => props.theme.colors.btnBgColor};
+  background-color: ${(props) => props.theme.colors.secondary};
   color: ${(props) => props.theme.colors.textColor};
   transition: all 300ms;
   &:hover {

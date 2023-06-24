@@ -66,7 +66,7 @@ const Wrap = styled.div`
   .switch-items {
     width: 100%;
     display: flex;
-    background-color: ${(props) => props.theme.colors.highlightColor};
+    background-color: ${(props) => props.theme.colors.secondary};
     padding: 5px;
     border-radius: ${(props) => props.theme.radius.medium};
 
@@ -93,10 +93,10 @@ const Wrap = styled.div`
 
   .glider {
     position: absolute;
-    bottom: 4px;
-    height: calc(100% - 8px);
-    background-color: ${(props) => props.theme.colors.hoverColor};
-    border-radius: ${(props) => props.theme.radius.small};
+    bottom: 2px;
+    height: calc(100% - 4px);
+    background-color: ${(props) => props.theme.colors.primary};
+    border-radius: ${(props) => props.theme.radius.medium};
     transition: transform 0.3s ease;
     width: 100%;
   }

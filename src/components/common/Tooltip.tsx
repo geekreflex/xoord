@@ -72,9 +72,6 @@ export default function Tooltip({
 }
 
 const Wrap = styled.div`
-  /* display: flex; */
-  /* width: 100%; */
-  /* align-items: center; */
   flex: 1;
 
   .main-tooltip {
@@ -82,10 +79,11 @@ const Wrap = styled.div`
     border-radius: ${(props) => props.theme.radius.medium};
     font-size: 12px;
     z-index: 998;
-    background-color: ${(props) => props.theme.colors.tooltipBg};
+    background-color: ${(props) => props.theme.colors.hoverColor};
     color: ${(props) => props.theme.colors.tooltipColor};
     width: max-content;
     max-width: 300px;
+    border: 1px solid ${(props) => props.theme.colors.borderColor};
   }
 
   .tooltip-arrow {

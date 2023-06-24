@@ -3,6 +3,7 @@ import ColorPicker from './widget/ColorPicker';
 import { useRef, useState } from 'react';
 import { Close2Icon } from '@/icons';
 import useClickOutside from '@/hooks/useClickOutside';
+import Tooltip from './common/Tooltip';
 
 interface ColorProps {
   label: string;
@@ -80,7 +81,7 @@ const Wrap = styled.div`
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 5px 10px;
+    padding: 5px;
     flex: 1;
     cursor: pointer;
 

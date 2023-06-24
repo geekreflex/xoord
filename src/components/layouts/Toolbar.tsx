@@ -158,15 +158,10 @@ const Wrap = styled.div`
       align-items: center;
       font-size: 24px;
       cursor: pointer;
-      opacity: 0.7;
       transition: all 0.3s ease-in-out;
       z-index: 99;
-      &:hover {
-        opacity: 1;
-      }
     }
     .active {
-      opacity: 1;
     }
   }
 
@@ -175,15 +170,13 @@ const Wrap = styled.div`
     top: 0;
     left: 0;
     height: 100%;
-    background-color: ${(props) => props.theme.colors.btnBgColor};
+    background-color: ${(props) => props.theme.colors.hoverColor};
     border: 1px solid transparent;
     transition: transform 0.3s ease-in-out;
     width: 50px;
     left: 5px;
     z-index: 1;
     border-radius: ${(props) => props.theme.radius.medium};
-    &:hover {
-      border: 1px solid ${(props) => props.theme.colors.borderColor};
-    }
+    border: 1px solid ${(props) => props.theme.colors.borderColor};
   }
 `;

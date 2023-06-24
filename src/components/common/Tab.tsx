@@ -61,10 +61,10 @@ export default function Tab({ tabs, activeTab, setActiveTab }: TabProps) {
 }
 
 const Wrap = styled.div`
-  background-color: ${(props) => props.theme.colors.btnBgColor};
+  background-color: ${(props) => props.theme.colors.secondary};
   padding: 4px;
-
   border-radius: ${(props) => props.theme.radius.medium};
+  border: 1px solid ${(props) => props.theme.colors.borderColor};
 
   .tablist {
     display: flex;
@@ -75,19 +75,22 @@ const Wrap = styled.div`
       padding: 5px 10px;
       border-radius: ${(props) => props.theme.radius.medium};
       cursor: pointer;
-      font-size: 14px;
+      font-size: 12px;
       position: relative;
       z-index: 9;
+      font-weight: 600;
     }
 
     .glider {
       position: absolute;
       bottom: 0;
       height: 100%;
-      background-color: ${(props) => props.theme.colors.highlightColor};
+      background-color: ${(props) => props.theme.colors.primary};
       border-radius: ${(props) => props.theme.radius.small};
       transition: transform 0.3s ease;
       width: 100%;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      border: 1px solid ${(props) => props.theme.colors.borderColor};
     }
   }
 `;

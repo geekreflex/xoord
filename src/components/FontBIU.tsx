@@ -48,7 +48,9 @@ export default function FontBIU() {
         <Tooltip content={item.name}>
           <span
             onClick={item.func}
-            className={` ${item.active ? 'icon-active' : ''} iconn icon-sm`}
+            className={` ${
+              item.active ? 'icon-active' : ''
+            } iconn icon-sm biu-icon`}
           >
             {item.icon}
           </span>
@@ -60,4 +62,8 @@ export default function FontBIU() {
 
 const Wrap = styled.div`
   display: flex;
+  gap: 5px;
+  .biu-icon {
+    border: 1px solid ${(props) => props.theme.colors.borderColor};
+  }
 `;

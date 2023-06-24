@@ -4,17 +4,17 @@ import AssetsPanel from './layouts/AssetsPanel';
 import PropertiesPanel from './layouts/PropertiesPanel';
 import Canvas from './Canvas';
 import BottomBar from './layouts/BottomBar';
+import { useAppSelector } from '@/app/hooks';
 
 export default function Editor() {
+  const { propPanel } = useAppSelector((state) => state.app);
   return (
     <Wrap>
       <div className="left-side">
         <Toolbar />
         <AssetsPanel />
       </div>
-      <div className="right-side">
-        <PropertiesPanel />
-      </div>
+      <div className="right-side">{propPanel && <PropertiesPanel />}</div>
       <Canvas />
       <div className="bottom">
         <BottomBar />

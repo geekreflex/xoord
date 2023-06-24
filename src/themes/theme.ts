@@ -7,11 +7,6 @@ export interface Theme {
     highlightColor: string;
     hoverColor: string;
     textColor: string;
-    tooltipBg: string;
-    tooltipColor: string;
-    btnBgColor: string;
-    btnHoverColor: string;
-    panelBg: string;
   };
   radius: {
     small: string;
@@ -28,16 +23,11 @@ export const lightTheme: Theme = {
   colors: {
     accent: '#1521cc',
     primary: '#ffffff',
-    secondary: '#eeeeee',
+    secondary: '#f3f3f3',
     borderColor: '#e5e5e5',
     hoverColor: '#f1f1f1',
     highlightColor: '#f3f3f3',
     textColor: '#111111',
-    tooltipBg: '#171717',
-    tooltipColor: '#fafafa',
-    btnBgColor: '#ddd',
-    btnHoverColor: '#e1e1e1',
-    panelBg: '#fff',
   },
   radius: {
     small: '4px',
@@ -54,16 +44,11 @@ export const darkTheme: Theme = {
   colors: {
     accent: '#307FF4',
     primary: '#121212',
-    secondary: '#000000',
+    secondary: '#080808',
     borderColor: '#1e1e1e',
-    hoverColor: '#181818',
+    hoverColor: '#090909',
     highlightColor: '#2b2b2b',
     textColor: '#eee',
-    tooltipBg: '#080808',
-    tooltipColor: '#f5f5f5',
-    btnBgColor: '#080808',
-    btnHoverColor: '#030303',
-    panelBg: '#1A1C1E',
   },
   radius: {
     small: '4px',

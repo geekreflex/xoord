@@ -145,7 +145,7 @@ const Wrap = styled.div`
   user-select: none;
   .zoom-level-view {
     display: flex;
-    background-color: ${(props) => props.theme.colors.highlightColor};
+    background-color: ${(props) => props.theme.colors.secondary};
     padding: 10px;
     border-radius: ${(props) => props.theme.radius.medium};
     align-items: center;
@@ -154,6 +154,7 @@ const Wrap = styled.div`
     min-width: 60px;
     cursor: pointer;
     border: 1px solid transparent;
+    border: 1px solid ${(props) => props.theme.colors.borderColor};
     &:hover {
       background-color: ${(props) => props.theme.colors.hoverColor};
       border: 1px solid ${(props) => props.theme.colors.borderColor};
@@ -169,20 +170,14 @@ const Wrap = styled.div`
     font-weight: 600;
   }
 
-  .separator {
-    width: 100%;
-    height: 1px;
-    background-color: #333;
-    margin: 6px 0;
-  }
-
   .zoom-list-wrap {
     width: 250px;
     position: absolute;
     bottom: 50px;
-    background-color: ${(props) => props.theme.colors.btnBgColor};
+    background-color: ${(props) => props.theme.colors.hoverColor};
     padding: 6px 0;
     border-radius: ${(props) => props.theme.radius.medium};
+    border: 1px solid ${(props) => props.theme.colors.borderColor};
 
     .zoom-list {
       list-style: none;
