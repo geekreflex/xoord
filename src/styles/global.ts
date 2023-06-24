@@ -58,11 +58,10 @@ export default createGlobalStyle`
   }
 
   .icon-active {
-    background-color: ${(props) => props.theme.colors.btnBgColor};
-    border: 1px solid ${(props) => props.theme.colors.borderColor};
+    background-color: ${(props) => props.theme.colors.hoverActiveColor};
   }
 
-  .arr-down-icon {
+  .arrow {
     display: flex;
     font-size: 10px;
     justify-content: center;
@@ -137,19 +136,22 @@ export const GridItem = styled.div`
 `;
 
 export const Button = styled.button`
-  padding: 12px 25px;
-  border-radius: ${(props) => props.theme.radius.large};
+  padding: 0 20px;
+  height: 40px;
+  border-radius: ${(props) => props.theme.radius.small};
   border: none;
   outline: none;
   display: flex;
   align-items: center;
   gap: 10px;
   cursor: pointer;
-  background-color: ${(props) => props.theme.colors.secondary};
+  background-color: ${(props) => props.theme.colors.primary};
   color: ${(props) => props.theme.colors.textColor};
+  border: 1px solid ${(props) => props.theme.colors.borderColor};
   transition: all 300ms;
   &:hover {
-    background-color: ${(props) => props.theme.colors.btnHoverColor};
+    background-color: ${(props) => props.theme.colors.accent};
+    border-color: transparent;
   }
 
   #btn-icon {

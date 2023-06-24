@@ -59,10 +59,10 @@ export default function NumberInput({
         onChange={handleInputChange}
       />
       <div className="input-btns">
-        <button onClick={handleIncrement}>
+        <button onClick={handleIncrement} className="arrow">
           <ArrowUpIcon />
         </button>
-        <button onClick={handleDecrement}>
+        <button onClick={handleDecrement} className="arrow">
           <ArrowDownIcon />
         </button>
       </div>
@@ -103,14 +103,10 @@ const Wrap = styled.div`
       color: ${(props) => props.theme.colors.textColor};
       border: none;
       outline: none;
-      font-size: 12px;
       display: flex;
       justify-content: center;
       align-items: center;
-
-      path {
-        stroke-width: 4px;
-      }
+      cursor: row-resize;
     }
   }
 

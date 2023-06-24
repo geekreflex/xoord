@@ -10,7 +10,7 @@ export default function Text() {
       <div className="main-font-props">
         <div className="font-select">
           <span>Darker Grotesque</span>
-          <span className="arr-icon">
+          <span className="arrow">
             <ArrowRightIcon />
           </span>
         </div>
@@ -51,14 +51,6 @@ const Wrap = styled.div`
 
     &:hover {
       background-color: ${(props) => props.theme.colors.hoverColor};
-    }
-
-    .arr-icon {
-      font-size: 12px;
-      display: flex;
-      path {
-        stroke-width: 4px;
-      }
     }
   }
 

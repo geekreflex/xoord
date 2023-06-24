@@ -62,7 +62,7 @@ export default function FontBIU() {
 
 const Wrap = styled.div`
   display: flex;
-  gap: 5px;
+  gap: 2px;
   .biu-icon {
     border: 1px solid ${(props) => props.theme.colors.borderColor};
   }

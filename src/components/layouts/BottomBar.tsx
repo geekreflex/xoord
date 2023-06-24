@@ -25,7 +25,7 @@ const Wrap = styled.div`
   height: 45px;
   bottom: 20px;
   background-color: ${(props) => props.theme.colors.primary};
-  border-radius: ${(props) => props.theme.radius.medium};
+  border-radius: ${(props) => props.theme.radius.small};
   z-index: 9;
   display: flex;
   align-items: center;

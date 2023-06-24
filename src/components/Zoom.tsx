@@ -77,7 +77,7 @@ export default function Zoom() {
     <Wrap ref={ref}>
       <div className="zoom-level-view" onClick={() => setVisible(!visible)}>
         <span id="zoom-level">{currentZoom.toFixed()}%</span>
-        <span id="zoom-arr" className="arr-down-icon">
+        <span id="zoom-arr" className="arrow">
           <ArrowDownIcon />
         </span>
       </div>
@@ -145,9 +145,9 @@ const Wrap = styled.div`
   user-select: none;
   .zoom-level-view {
     display: flex;
-    background-color: ${(props) => props.theme.colors.secondary};
+    background-color: ${(props) => props.theme.colors.primary};
     padding: 10px;
-    border-radius: ${(props) => props.theme.radius.medium};
+    border-radius: ${(props) => props.theme.radius.small};
     align-items: center;
     justify-content: space-between;
     gap: 10px;
@@ -176,7 +176,7 @@ const Wrap = styled.div`
     bottom: 50px;
     background-color: ${(props) => props.theme.colors.hoverColor};
     padding: 6px 0;
-    border-radius: ${(props) => props.theme.radius.medium};
+    border-radius: ${(props) => props.theme.radius.small};
     border: 1px solid ${(props) => props.theme.colors.borderColor};
 
     .zoom-list {
