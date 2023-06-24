@@ -4,34 +4,40 @@ import NumberInput from './common/NumberInput';
 import FontBIU from './FontBIU';
 import TextStyleAlgin from './TextStyleAlign';
 import Fill from './Fill';
+import ObjectOptions from './ObjectOptions';
 
 export default function Text() {
   return (
     <Wrap className="prop-wrap">
-      <div className="main-font-props">
-        <div className="font-select">
-          <span>Darker Grotesque</span>
-          <span className="arrow">
-            <ArrowRightIcon />
-          </span>
+      <h4>Text</h4>
+      <div className="main-wrap">
+        <div className="main-font-props">
+          <button className="font-select btn-text-arrow">
+            <span>Darker Grotesque</span>
+            <span className="arrow">
+              <ArrowRightIcon />
+            </span>
+          </button>
         </div>
-      </div>
-      <div className="size-color-wrap">
-        <div className="font-size-wrap">
-          <NumberInput value={1} />
+        <div className="size-color-wrap">
+          <div className="font-size-wrap">
+            <NumberInput value={1} />
+          </div>
+          <div className="fill-wrap">
+            <Fill />
+          </div>
+          <div className="font-spacing"></div>
         </div>
-        <div className="fill-wrap">
-          <Fill />
+        <div className="align-biu-wrap">
+          <div className="bui-wrap">
+            <FontBIU />
+          </div>
+          <div className="style-align-wrap">
+            <TextStyleAlgin />
+          </div>
         </div>
-        <div className="font-spacing"></div>
-      </div>
-      <div className="align-biu-wrap">
-        <div className="bui-wrap">
-          <FontBIU />
-        </div>
-        <div className="style-align-wrap">
-          <TextStyleAlgin />
-        </div>
+
+        <ObjectOptions />
       </div>
     </Wrap>
   );
@@ -41,20 +47,10 @@ const Wrap = styled.div`
   display: flex;
   gap: 10px;
 
-  .font-select {
-    border: 1px solid ${(props) => props.theme.colors.borderColor};
-    height: 35px;
+  .main-wrap {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 10px;
-    border-radius: ${(props) => props.theme.radius.small};
-    cursor: pointer;
-    font-size: 14px;
-
-    &:hover {
-      background-color: ${(props) => props.theme.colors.hoverColor};
-    }
+    flex-direction: column;
+    gap: 10px;
   }
 
   .size-color-wrap {

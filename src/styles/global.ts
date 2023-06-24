@@ -29,6 +29,25 @@ export default createGlobalStyle`
     margin-bottom: 20px;
   }
 
+  .btn-text-arrow {
+    width: 100%;
+    background-color: transparent;
+    color: ${(props) => props.theme.colors.textColor};
+    border: 1px solid ${(props) => props.theme.colors.borderColor};
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    border-radius: ${(props) => props.theme.radius.small};
+    cursor: pointer;
+    font-size: 14px;
+
+    &:hover {
+      background-color: ${(props) => props.theme.colors.hoverColor};
+    }
+  }
+
   .iconn {
     width: 32px;
     height: 32px;
@@ -85,7 +104,6 @@ export default createGlobalStyle`
     flex-direction: column;
     h4 {
       font-size: 12px;
-      margin-bottom: 10px;
       font-weight: 600;
     }
   }
@@ -93,11 +111,11 @@ export default createGlobalStyle`
 
 `;
 
-export const LineX = styled.div`
+export const LineX = styled.div<{ margin?: number }>`
   width: 100%;
   height: 1px;
   background-color: ${(props) => props.theme.colors.borderColor};
-  margin: 10px 0;
+  margin: ${(props) => props.margin || 0} 0;
 `;
 
 export const LineY = styled.div`
@@ -145,12 +163,12 @@ export const Button = styled.button`
   align-items: center;
   gap: 10px;
   cursor: pointer;
-  background-color: ${(props) => props.theme.colors.primary};
+  background-color: ${(props) => props.theme.colors.accent};
   color: ${(props) => props.theme.colors.textColor};
-  border: 1px solid ${(props) => props.theme.colors.borderColor};
+  border: 1px solid transparent;
   transition: all 300ms;
   &:hover {
-    background-color: ${(props) => props.theme.colors.accent};
+    background-color: ${(props) => props.theme.colors.accent}80;
     border-color: transparent;
   }
 

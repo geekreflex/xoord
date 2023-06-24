@@ -74,6 +74,10 @@ const Wrap = styled.div`
       justify-content: center;
       align-items: center;
       height: 100%;
+
+      path {
+        stroke-width: 2px;
+      }
     }
   }
 `;

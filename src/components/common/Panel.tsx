@@ -1,4 +1,5 @@
 import { Close2Icon } from '@/icons';
+import { LineX } from '@/styles/global';
 import { styled } from 'styled-components';
 
 interface PanelProps {
@@ -24,7 +25,7 @@ export default function Panel({
           <Close2Icon />
         </span>
       </div>
-      {/* <LineX /> */}
+      <LineX margin={0} />
       <div className="panel-main">{children}</div>
     </Wrap>
   );
@@ -39,19 +40,18 @@ const Wrap = styled.div<{ placement: string; offset: number }>`
   right: ${(props) =>
     props.placement === 'right' ? `${props.offset}px` : 'auto'};
   background-color: ${(props) => props.theme.colors.primary};
-  border-radius: ${(props) => props.theme.radius.medium};
+  border-radius: ${(props) => props.theme.radius.small};
   z-index: 98;
   display: flex;
   flex-direction: column;
   border: 1px solid ${(props) => props.theme.colors.borderColor};
+  padding: 0 10px;
 
   .panel-header {
     display: flex;
     align-items: center;
     height: 50px;
     justify-content: space-between;
-    padding: 0 10px;
-    margin-bottom: 10px;
 
     h3 {
       font-weight: 600;
@@ -68,6 +68,6 @@ const Wrap = styled.div<{ placement: string; offset: number }>`
   .panel-main {
     height: 100%;
     overflow-y: auto;
-    padding: 0 10px;
+    margin: 20px 0;
   }
 `;
