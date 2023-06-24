@@ -38,7 +38,7 @@ const Wrap = styled.div`
 
   .color-picker-wrap {
     width: 100%;
-    padding: 0 20px;
+    padding: 0 10px;
 
     .react-colorful {
       width: auto;

@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 import NumberInput from './common/NumberInput';
 import FontBIU from './FontBIU';
 import TextStyleAlgin from './TextStyleAlign';
+import Fill from './Fill';
 
 export default function Text() {
   return (
@@ -19,7 +20,9 @@ export default function Text() {
         <div className="font-size-wrap">
           <NumberInput value={1} />
         </div>
-        <div className="color-block"></div>
+        <div className="fill-wrap">
+          <Fill />
+        </div>
         <div className="font-spacing"></div>
       </div>
       <div className="align-biu-wrap">

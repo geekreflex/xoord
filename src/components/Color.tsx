@@ -1,9 +1,7 @@
 import { styled } from 'styled-components';
 import ColorPicker from './widget/ColorPicker';
 import { useRef, useState } from 'react';
-import { Close2Icon } from '@/icons';
 import useClickOutside from '@/hooks/useClickOutside';
-import Tooltip from './common/Tooltip';
 
 interface ColorProps {
   label: string;
@@ -17,8 +15,6 @@ export default function Color({
   label = 'No label',
   color,
   onChange,
-  clear,
-  add,
 }: ColorProps) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -27,33 +23,17 @@ export default function Color({
     setVisible(false);
   };
 
-  const handleClear = () => {
-    clear();
-    handleClose();
-  };
-
   useClickOutside(ref, () => handleClose());
 
   return (
     <Wrap ref={ref}>
-      {color ? (
-        <>
-          <div className="color-wrap" onClick={() => setVisible(!visible)}>
-            <div
-              className="color-block"
-              style={{ backgroundColor: color || '#fff' }}
-            ></div>
-            <div className="color-value">{color}</div>
-          </div>
-          <div className="clear-color" onClick={handleClear}>
-            <Close2Icon />
-          </div>
-        </>
-      ) : (
-        <div className="add-color" onClick={add}>
-          Add...
-        </div>
-      )}
+      <div
+        onClick={() => setVisible(true)}
+        className="color-block"
+        style={{ backgroundColor: color }}
+      >
+        <span className="color-block-angle"></span>
+      </div>
 
       {visible && (
         <ColorPicker
@@ -75,51 +55,24 @@ const Wrap = styled.div`
   border-radius: ${(props) => props.theme.radius.medium};
   display: flex;
   align-items: center;
-  height: 35px;
 
-  .color-wrap {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 5px;
-    flex: 1;
+  .color-block {
+    height: ${(props) => props.theme.resets.btnInputHeight};
     cursor: pointer;
-
-    .color-block {
-      width: 24px;
-      height: 24px;
-      border-radius: ${(props) => props.theme.radius.small};
-      border: 1px solid ${(props) => props.theme.colors.borderColor};
-    }
-
-    .color-value {
-      font-size: 12px;
-      font-weight: 600;
-    }
+    position: relative;
   }
 
-  .add-color {
-    opacity: 0.5;
-    font-size: 12px;
-    font-weight: 600;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 0 10px;
-    cursor: pointer;
-    &:hover {
-      opacity: 1;
-    }
-  }
-
-  .clear-color {
-    display: flex;
-    width: 40px;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-    height: 100%;
-    cursor: pointer;
+  .color-block-angle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-bottom: 8px solid transparent;
+    border-top: 8px solid transparent;
+    border-left: 8px solid ${(props) => props.theme.colors.secondary};
+    transform: rotate(45deg);
+    right: 2px;
+    bottom: -3px;
+    display: block;
+    filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.5));
   }
 `;

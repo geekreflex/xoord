@@ -41,7 +41,6 @@ export default function Fill() {
 
   return (
     <Wrap className="prop-wrap">
-      <h4>Fill</h4>
       <Color
         label={'Fill'}
         color={object?.fill as string}

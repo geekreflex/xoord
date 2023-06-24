@@ -1,4 +1,7 @@
 export interface Theme {
+  resets: {
+    btnInputHeight: string;
+  };
   colors: {
     accent: string;
     primary: string;
@@ -20,6 +23,9 @@ export interface Theme {
 }
 
 export const lightTheme: Theme = {
+  resets: {
+    btnInputHeight: '32px',
+  },
   colors: {
     accent: '#1521cc',
     primary: '#ffffff',
@@ -41,6 +47,9 @@ export const lightTheme: Theme = {
 };
 
 export const darkTheme: Theme = {
+  resets: {
+    btnInputHeight: '32px',
+  },
   colors: {
     accent: '#307FF4',
     primary: '#121212',

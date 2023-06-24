@@ -22,7 +22,7 @@ export default function Draggable({ children, handle, title, close }: Props) {
           </button>
         </div>
         <LineX />
-        <div className="main">{children}</div>
+        <div className="draggable-main">{children}</div>
       </Wrap>
     </Drag>
   );
@@ -33,9 +33,9 @@ const Wrap = styled.div`
   right: 300px;
   bottom: 300px;
   z-index: 9999;
-  background-color: ${(props) => props.theme.colors.primary};
+  background-color: ${(props) => props.theme.colors.hoverActiveColor};
   padding-bottom: 20px;
-  border-radius: ${(props) => props.theme.radius.medium};
+  border-radius: ${(props) => props.theme.radius.small};
   box-shadow: ${(props) => props.theme.shadow.shadow2};
   border: 1px solid ${(props) => props.theme.colors.borderColor};
 
@@ -43,10 +43,11 @@ const Wrap = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
+    height: 30px;
+    padding: 0 10px;
     padding-top: 10px;
-    cursor: grab;
 
+    cursor: grab;
     .draggable-title {
       font-size: 14px;
       display: flex;

@@ -46,14 +46,14 @@ export default function FontBIU() {
     <Wrap>
       {textStyles.map((item) => (
         <Tooltip content={item.name}>
-          <span
+          <button
             onClick={item.func}
             className={` ${
               item.active ? 'icon-active' : ''
             } iconn icon-sm biu-icon`}
           >
             {item.icon}
-          </span>
+          </button>
         </Tooltip>
       ))}
     </Wrap>
