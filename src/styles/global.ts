@@ -30,8 +30,8 @@ export default createGlobalStyle`
   }
 
   .iconn {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     background-color: transparent;
     border: none;
     outline: none;

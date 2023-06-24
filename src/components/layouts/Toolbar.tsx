@@ -170,7 +170,7 @@ const Wrap = styled.div`
     top: 0;
     left: 0;
     height: 100%;
-    background-color: ${(props) => props.theme.colors.hoverColor};
+    background-color: ${(props) => props.theme.colors.hoverActiveColor};
     border: 1px solid transparent;
     transition: transform 0.3s ease-in-out;
     width: 50px;

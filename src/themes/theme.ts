@@ -4,7 +4,7 @@ export interface Theme {
     primary: string;
     secondary: string;
     borderColor: string;
-    highlightColor: string;
+    hoverActiveColor: string;
     hoverColor: string;
     textColor: string;
   };
@@ -26,7 +26,7 @@ export const lightTheme: Theme = {
     secondary: '#f3f3f3',
     borderColor: '#e5e5e5',
     hoverColor: '#f1f1f1',
-    highlightColor: '#f3f3f3',
+    hoverActiveColor: '',
     textColor: '#111111',
   },
   radius: {
@@ -45,9 +45,9 @@ export const darkTheme: Theme = {
     accent: '#307FF4',
     primary: '#121212',
     secondary: '#080808',
-    borderColor: '#1e1e1e',
-    hoverColor: '#090909',
-    highlightColor: '#2b2b2b',
+    borderColor: '#202020',
+    hoverColor: '#1b1b1b',
+    hoverActiveColor: '#090909',
     textColor: '#eee',
   },
   radius: {

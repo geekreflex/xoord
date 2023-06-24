@@ -73,19 +73,13 @@ export default function NumberInput({
 
 const Wrap = styled.div`
   position: relative;
-  height: 35px;
+  height: 32px;
   display: flex;
-  background-color: ${(props) => props.theme.colors.highlightColor};
-  border-radius: ${(props) => props.theme.radius.medium};
+  border-radius: ${(props) => props.theme.radius.small};
   overflow: hidden;
+  border: 1px solid ${(props) => props.theme.colors.borderColor};
   &:hover {
-    .input-btns {
-      opacity: 1;
-    }
-
-    .input-label {
-      display: none;
-    }
+    background-color: ${(props) => props.theme.colors.hoverColor};
   }
 
   input {
@@ -97,43 +91,22 @@ const Wrap = styled.div`
     width: 100%;
   }
 
-  .input-label {
-    width: 30px;
-    position: absolute;
-    right: 0;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-    font-weight: 600;
-    background-color: ${(props) => props.theme.colors.highlightColor};
-  }
-
   .input-btns {
     display: flex;
     flex-direction: column;
     width: 40px;
-    opacity: 0;
+    border-left: 1px solid ${(props) => props.theme.colors.borderColor};
 
     button {
       height: 50%;
-      flex: 1;
-      border: none;
-      outline: none;
       background-color: transparent;
       color: ${(props) => props.theme.colors.textColor};
+      border: none;
+      outline: none;
+      font-size: 12px;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-weight: 600;
-      stroke-width: 4px;
-      font-size: 10px;
-      cursor: row-resize;
-      opacity: 0.5;
-      &:hover {
-        opacity: 1;
-      }
 
       path {
         stroke-width: 4px;

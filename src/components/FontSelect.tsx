@@ -27,17 +27,4 @@ export default function FontSelect() {
   );
 }
 
-const Wrap = styled.div`
-  width: 100%;
-  .font-select-wrap {
-    font-size: 12px;
-    padding: 10px 15px;
-    font-weight: 600;
-    height: 35px;
-    background-color: ${(props) => props.theme.colors.highlightColor};
-    border-radius: ${(props) => props.theme.radius.medium};
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-  }
-`;
+const Wrap = styled.div``;

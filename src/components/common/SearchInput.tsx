@@ -56,8 +56,8 @@ const Wrap = styled.div`
     outline: none;
     align-items: center;
     width: 100%;
-    background-color: ${(props) => props.theme.colors.highlightColor};
-    border-radius: ${(props) => props.theme.radius.large};
+    border-radius: ${(props) => props.theme.radius.small};
+    border: 1px solid ${(props) => props.theme.colors.borderColor};
 
     input {
       width: calc(100% - 60px);

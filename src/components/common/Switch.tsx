@@ -60,30 +60,31 @@ const Wrap = styled.div`
   position: relative;
   width: 100%;
   display: flex;
-  height: 35px;
+  height: 32px;
   align-items: center;
+  border: 1px solid ${(props) => props.theme.colors.borderColor};
+  border-radius: ${(props) => props.theme.radius.small};
+  overflow: hidden;
 
   .switch-items {
     width: 100%;
     display: flex;
-    background-color: ${(props) => props.theme.colors.secondary};
-    padding: 5px;
-    border-radius: ${(props) => props.theme.radius.medium};
+    height: 100%;
 
     .switch-item {
       flex: 1;
-      width: 100%;
       display: flex;
+      height: 32px;
       padding: 5px;
       cursor: pointer;
       position: relative;
       align-items: center;
       justify-content: center;
       z-index: 1;
-      opacity: 0.5;
-      &:hover {
-        opacity: 1;
-      }
+      border-left: 1px solid ${(props) => props.theme.colors.borderColor};
+    }
+    &:first-child {
+      border-left: 0 !important;
     }
 
     .active-switch {
@@ -93,11 +94,10 @@ const Wrap = styled.div`
 
   .glider {
     position: absolute;
-    bottom: 2px;
-    height: calc(100% - 4px);
+    height: 100%;
     background-color: ${(props) => props.theme.colors.primary};
-    border-radius: ${(props) => props.theme.radius.medium};
     transition: transform 0.3s ease;
     width: 100%;
+    background-color: ${(props) => props.theme.colors.secondary};
   }
 `;
