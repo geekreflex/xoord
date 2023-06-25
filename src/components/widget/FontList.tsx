@@ -17,4 +17,6 @@ export default function FontList({ close }: FontListProps) {
 
 const Wrap = styled.div`
   width: 250px;
+  min-height: 400px;
+  max-height: 70vh;
 `;

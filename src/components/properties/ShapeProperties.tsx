@@ -1,20 +1,18 @@
 import { styled } from 'styled-components';
-import Alignment from '../Alignment';
-import { LineX } from '@/styles/global';
 import Fill from '../Fill';
-import Stroke from '../Stroke';
+import ObjOpt from '../ObtOpt';
 
 export default function ShapeProperties() {
   return (
-    <Wrap>
-      <Alignment />
-      <LineX />
+    <Wrap className="props-wrap">
+      <ObjOpt />
       <Fill />
-      <LineX />
-      <Stroke />
-      <LineX />
     </Wrap>
   );
 }
 
-const Wrap = styled.div``;
+const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;

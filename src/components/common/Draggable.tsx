@@ -18,7 +18,6 @@ export default function Draggable({ children, handle, title, close }: Props) {
           <span className="draggable-title">{title}</span>
           <button className="close-btn" onClick={close}>
             <Close2Icon />
-            {/* &times; */}
           </button>
         </div>
         <LineX />
@@ -30,8 +29,9 @@ export default function Draggable({ children, handle, title, close }: Props) {
 
 const Wrap = styled.div`
   position: fixed;
-  right: 300px;
-  bottom: 300px;
+  min-width: 220px;
+  right: 280px;
+  bottom: 50px;
   z-index: 9999;
   background-color: ${(props) => props.theme.colors.hoverActiveColor};
   padding-bottom: 20px;

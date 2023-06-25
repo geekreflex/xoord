@@ -2,13 +2,23 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { useEditorContext } from '@/context/EditorContext';
 import { setObject } from '@/features/editorSlice';
 import { styled } from 'styled-components';
-import Color from './Color';
 import { FILL } from '@/core/lib/defaultShapes';
+import Toggle from './common/Toggle';
+import { useEffect, useState } from 'react';
 
 export default function Fill() {
   const dispatch = useAppDispatch();
+  const [checked, setChecked] = useState<boolean>(false);
   const { editor } = useEditorContext();
   const { object } = useAppSelector((state) => state.editor);
+
+  // useEffect(() => {
+  //   if (object && object.fill) {
+  //     setChecked(true);
+  //   } else {
+  //     setChecked(false);
+  //   }
+  // }, [object]);
 
   const handleFillChange = (color: string) => {
     if (editor) {
@@ -39,17 +49,19 @@ export default function Fill() {
     }
   };
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked(!checked);
+  };
+
   return (
     <Wrap className="prop-wrap">
-      <Color
-        label={'Fill'}
-        color={object?.fill as string}
-        onChange={handleFillChange}
-        clear={handleClearFill}
-        add={handleAddFill}
-      />
+      <div>
+        <Toggle checked={checked} onChange={handleChange} />
+      </div>
     </Wrap>
   );
 }
 
-const Wrap = styled.div``;
+const Wrap = styled.div`
+  display: flex;
+`;

@@ -115,7 +115,7 @@ export const LineX = styled.div<{ margin?: number }>`
   width: 100%;
   height: 1px;
   background-color: ${(props) => props.theme.colors.borderColor};
-  margin: ${(props) => props.margin || 0} 0;
+  margin: ${(props) => (props.margin ? `${props.margin}px 0` : `10px 0`)};
 `;
 
 export const LineY = styled.div`

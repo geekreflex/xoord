@@ -45,13 +45,13 @@ const Wrap = styled.div<{ placement: string; offset: number }>`
   display: flex;
   flex-direction: column;
   border: 1px solid ${(props) => props.theme.colors.borderColor};
-  padding: 0 10px;
 
   .panel-header {
     display: flex;
     align-items: center;
     height: 50px;
     justify-content: space-between;
+    padding: 0 10px;
 
     h3 {
       font-weight: 600;
@@ -69,5 +69,6 @@ const Wrap = styled.div<{ placement: string; offset: number }>`
     height: 100%;
     overflow-y: auto;
     margin: 20px 0;
+    padding: 0 10px;
   }
 `;

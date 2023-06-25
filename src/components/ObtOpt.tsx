@@ -2,8 +2,13 @@ import { ArrowDownIcon, CopyIcon, TrashIcon } from '@/icons';
 import { styled } from 'styled-components';
 import Tooltip from './common/Tooltip';
 import { useEditorContext } from '@/context/EditorContext';
+import { useRef, useState } from 'react';
+import ObjectOptions from './widget/ObjectOptions';
+import useClickOutside from '@/hooks/useClickOutside';
 
 export default function ObjOpt() {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
   const { controller } = useEditorContext();
 
   const handleDelete = () => {
@@ -18,6 +23,8 @@ export default function ObjOpt() {
     }
   };
 
+  useClickOutside(ref, () => setVisible(false));
+
   return (
     <Wrap>
       <Tooltip content="Delete">
@@ -30,12 +37,15 @@ export default function ObjOpt() {
           <CopyIcon />
         </button>
       </Tooltip>
-      <button className="btn-text-arrow">
-        <span>Options</span>
-        <span className="arrow">
-          <ArrowDownIcon />
-        </span>
-      </button>
+      <div ref={ref} className="options-wrap">
+        <button className="btn-text-arrow" onClick={() => setVisible(true)}>
+          <span>Options</span>
+          <span className="arrow">
+            <ArrowDownIcon />
+          </span>
+        </button>
+        {visible && <ObjectOptions close={() => setVisible(false)} />}
+      </div>
     </Wrap>
   );
 }
@@ -49,7 +59,7 @@ const Wrap = styled.div`
     border: 1px solid ${(props) => props.theme.colors.borderColor};
   }
 
-  .btn-text-arrow {
+  .options-wrap {
     width: 65%;
   }
 `;

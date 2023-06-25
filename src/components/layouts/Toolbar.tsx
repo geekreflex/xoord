@@ -149,6 +149,8 @@ const Wrap = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
+    padding: 0 5px;
+    gap: 5px;
 
     .tool {
       position: relative;
@@ -160,8 +162,19 @@ const Wrap = styled.div`
       cursor: pointer;
       transition: all 0.3s ease-in-out;
       z-index: 99;
+      border-radius: ${(props) => props.theme.radius.small};
+      border: 1px solid transparent;
+
+      &:hover {
+        background-color: ${(props) => props.theme.colors.hoverColor};
+        border: 1px solid ${(props) => props.theme.colors.borderColor};
+      }
     }
     .active {
+      &:hover {
+        background-color: ${(props) => props.theme.colors.hoverActiveColor};
+        border: 1px solid ${(props) => props.theme.colors.borderColor};
+      }
     }
   }
 
@@ -169,14 +182,14 @@ const Wrap = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
+    height: 50px;
     background-color: ${(props) => props.theme.colors.hoverActiveColor};
     border: 1px solid transparent;
     transition: transform 0.3s ease-in-out;
     width: 50px;
     left: 5px;
     z-index: 1;
-    border-radius: ${(props) => props.theme.radius.medium};
+    border-radius: ${(props) => props.theme.radius.small};
     border: 1px solid ${(props) => props.theme.colors.borderColor};
   }
 `;

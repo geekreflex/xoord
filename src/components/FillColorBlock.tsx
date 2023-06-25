@@ -1,46 +1,43 @@
+import { useAppDispatch, useAppSelector } from '@/app/hooks';
+import { useEditorContext } from '@/context/EditorContext';
+import { setObject } from '@/features/editorSlice';
 import { styled } from 'styled-components';
 import ColorPicker from './widget/ColorPicker';
 import { useRef, useState } from 'react';
-import useClickOutside from '@/hooks/useClickOutside';
 
-interface ColorProps {
-  label: string;
-  color: string;
-  onChange: (color: string) => void;
-  clear: () => void;
-  add: () => void;
-}
-
-export default function Color({
-  label = 'No label',
-  color,
-  onChange,
-}: ColorProps) {
+export default function FillColorBlock() {
+  const dispatch = useAppDispatch();
+  const { editor } = useEditorContext();
+  const { object } = useAppSelector((state) => state.editor);
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 
-  const handleClose = () => {
-    setVisible(false);
+  const handleFillChange = (color: string) => {
+    if (editor) {
+      const activeObject = editor.canvas.getActiveObject();
+      if (activeObject) {
+        activeObject.set({ fill: color });
+        dispatch(setObject({ fill: color }));
+      }
+      editor.canvas.renderAll();
+    }
   };
 
-  useClickOutside(ref, () => handleClose());
-
   return (
-    <Wrap ref={ref}>
+    <Wrap className="prop-wrap" ref={ref}>
       <div
         onClick={() => setVisible(true)}
         className="color-block"
-        style={{ backgroundColor: color }}
+        style={{ backgroundColor: object?.fill! as string }}
       >
         <span className="color-block-angle"></span>
       </div>
-
       {visible && (
         <ColorPicker
-          color={color}
-          onChange={onChange}
-          label={label}
-          close={handleClose}
+          color={object?.fill as string}
+          onChange={handleFillChange}
+          label={'Fill'}
+          close={() => setVisible(false)}
         />
       )}
     </Wrap>

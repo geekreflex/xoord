@@ -1,30 +1,78 @@
-import { ArrowRightIcon } from '@/icons';
+import { ArrowDownIcon } from '@/icons';
 import { styled } from 'styled-components';
 import NumberInput from './common/NumberInput';
 import FontBIU from './FontBIU';
 import TextStyleAlgin from './TextStyleAlign';
-import Fill from './Fill';
-import ObjectOptions from './ObjectOptions';
+import ObjOpt from './ObtOpt';
+import FillColorBlock from './FillColorBlock';
+import { useAppDispatch, useAppSelector } from '@/app/hooks';
+import { useEditorContext } from '@/context/EditorContext';
+import { useEffect, useRef, useState } from 'react';
+import { setObject } from '@/features/editorSlice';
+import useClickOutside from '@/hooks/useClickOutside';
+import FontList from './widget/FontList';
 
 export default function Text() {
+  const dispatch = useAppDispatch();
+  const fontListRef = useRef(null);
+  const { editor, controller } = useEditorContext();
+  const { object } = useAppSelector((state) => state.editor);
+  const [fontListVisible, setFontListVisible] = useState(false);
+
+  useEffect(() => {
+    if (editor) {
+      editor.canvas.on('object:scaling', (e: fabric.IEvent) => {
+        const target = e.target as fabric.Textbox;
+        if (target instanceof fabric.Textbox) {
+          dispatch(setObject({ fontSize: target.fontSize }));
+          const scaleFactor = target.scaleX!;
+          const originalFontSize = target.fontSize;
+          const newFontSize = (originalFontSize! * scaleFactor).toFixed();
+          target.set('fontSize', parseFloat(newFontSize));
+          target.set('width', scaleFactor * target.width!);
+          target.set('scaleX', 1);
+          target.set('scaleY', 1);
+          target.setCoords();
+          target.canvas?.requestRenderAll();
+        }
+      });
+    }
+  }, [editor]);
+
+  const handleFontSizeChange = (size: number) => {
+    controller?.fontSize(size);
+    dispatch(setObject({ fontSize: size }));
+  };
+
+  useClickOutside(fontListRef, () => setFontListVisible(false));
+
   return (
     <Wrap className="prop-wrap">
       <h4>Text</h4>
       <div className="main-wrap">
-        <div className="main-font-props">
-          <button className="font-select btn-text-arrow">
+        <div className="main-font-props" ref={fontListRef}>
+          <button
+            className="font-select btn-text-arrow"
+            onClick={() => setFontListVisible(true)}
+          >
             <span>Darker Grotesque</span>
             <span className="arrow">
-              <ArrowRightIcon />
+              <ArrowDownIcon />
             </span>
           </button>
+          {fontListVisible && (
+            <FontList close={() => setFontListVisible(false)} />
+          )}
         </div>
         <div className="size-color-wrap">
           <div className="font-size-wrap">
-            <NumberInput value={1} />
+            <NumberInput
+              value={object?.fontSize!}
+              onChange={handleFontSizeChange}
+            />
           </div>
           <div className="fill-wrap">
-            <Fill />
+            <FillColorBlock />
           </div>
           <div className="font-spacing"></div>
         </div>
@@ -37,7 +85,7 @@ export default function Text() {
           </div>
         </div>
 
-        <ObjectOptions />
+        <ObjOpt />
       </div>
     </Wrap>
   );

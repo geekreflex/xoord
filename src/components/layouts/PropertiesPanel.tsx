@@ -3,6 +3,7 @@ import Panel from '../common/Panel';
 import { useEditorContext } from '@/context/EditorContext';
 import TextProperties from '../properties/TextProperties';
 import ShapeProperties from '../properties/ShapeProperties';
+import SelectionProperties from '../properties/SelectionProperties';
 
 export default function PropertiesPanel() {
   const { selectedType } = useEditorContext();
@@ -16,6 +17,8 @@ export default function PropertiesPanel() {
         return <ShapeProperties />;
       case 'textbox':
         return <TextProperties />;
+      case 'selection':
+        return <SelectionProperties />;
     }
   };
 

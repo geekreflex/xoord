@@ -37,7 +37,6 @@ export default function ElementsTool() {
     <Wrap>
       <div className="items-wrap">
         <h4 className="items-wrap__title">Shapes</h4>
-        <LineX />
         <div className="item-list">
           {shapes.map((item, index) => (
             <div
@@ -60,20 +59,20 @@ const Wrap = styled.div`
   }
   .items-wrap__title {
     font-size: 14px;
-    padding: 0 10px;
+    margin-bottom: 10px;
   }
   .item-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 4px;
-    padding: 0 10px;
 
     .item {
       height: 55px;
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: ${(props) => props.theme.colors.highlightColor};
+      background-color: ${(props) => props.theme.colors.secondary};
+      border: 1px solid ${(props) => props.theme.colors.borderColor};
       border-radius: ${(props) => props.theme.radius.small};
       cursor: pointer;
       &:hover {
