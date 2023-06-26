@@ -7,11 +7,16 @@ import NumberInput from './common/NumberInput';
 import Select from './common/Select';
 
 import Expander from './common/Expander';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import ColorBlock from './common/ColorBlock';
+import useClickOutside from '@/hooks/useClickOutside';
+import ColorPicker from './widget/ColorPicker';
 
 export default function Stroke() {
-  const [checked, setChecked] = useState(false);
   const dispatch = useAppDispatch();
+  const ref = useRef(null);
+  const [checked, setChecked] = useState(false);
+  const [visible, setVisible] = useState(false);
   const { object } = useAppSelector((state) => state.editor);
   const { editor } = useEditorContext();
 
@@ -87,6 +92,16 @@ export default function Stroke() {
     { label: 'Dotted', value: '5 5' },
   ];
 
+  const handleShowColorPicker = () => {
+    setVisible(true);
+  };
+
+  const handleCloseColorPicker = () => {
+    setVisible(false);
+  };
+
+  useClickOutside(ref, () => handleCloseColorPicker());
+
   return (
     <Expander
       checked={checked}
@@ -94,9 +109,34 @@ export default function Stroke() {
       onAdd={handleAddStroke}
       label="Stroke"
     >
-      <Wrap>Hello from stroke</Wrap>
+      <Wrap>
+        <div className="color-block-wrap" ref={ref}>
+          <p>Color</p>
+          <ColorBlock
+            color={object?.stroke as string}
+            onClick={handleShowColorPicker}
+          />
+          {visible && (
+            <ColorPicker
+              color={object?.fill as string}
+              onChange={handleStrokeChange}
+              label="Fill"
+              close={handleCloseColorPicker}
+            />
+          )}
+        </div>
+      </Wrap>
     </Expander>
   );
 }
 
-const Wrap = styled.div``;
+const Wrap = styled.div`
+  .color-block-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p {
+      font-size: 14px;
+    }
+  }
+`;

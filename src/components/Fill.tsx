@@ -83,8 +83,8 @@ export default function Fill() {
       onAdd={handleAddFill}
     >
       <Wrap>
-        <p>Color</p>
         <div className="color-block-wrap" ref={ref}>
+          <p>Color</p>
           <ColorBlock
             color={object?.fill as string}
             onClick={handleShowColorPicker}
@@ -105,13 +105,14 @@ export default function Fill() {
 
 const Wrap = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  p {
-    font-size: 14px;
-  }
+  flex-direction: column;
 
   .color-block-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p {
+      font-size: 14px;
+    }
   }
 `;
