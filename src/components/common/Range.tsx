@@ -12,9 +12,11 @@ interface RangeProps {
 export default function Range({ min, max, step, value, onChange }: RangeProps) {
   const ref = useRef(null);
   const [_value, setValue] = useState<number>(value);
+  const [progressWidth, setProgressWidth] = useState<string>('');
 
   useEffect(() => {
     setValue(value);
+    updateProgressWidth(value);
   }, [value]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,12 +24,17 @@ export default function Range({ min, max, step, value, onChange }: RangeProps) {
     onChange(Number(val));
   };
 
+  const updateProgressWidth = (val: number) => {
+    const percentage = ((val - min) / (max - min)) * 100;
+    setProgressWidth(`${Math.abs(percentage)}%`);
+  };
+
   return (
     <Wrap>
       <div
         className="progress"
         style={{
-          width: `${Math.abs(_value)}%`,
+          width: progressWidth,
         }}
       ></div>
       <input

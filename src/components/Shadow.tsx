@@ -88,6 +88,18 @@ export default function Shadow() {
     }
   };
 
+  const handleBlur = (blur: number) => {
+    if (editor) {
+      const activeObject = editor.canvas.getActiveObject();
+      const updatedShadow = new fabric.Shadow({ ...shadow, blur });
+      activeObject?.set({
+        shadow: updatedShadow,
+      });
+      setShadow(updatedShadow as ShadowState);
+      editor.canvas.renderAll();
+    }
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.checked;
     if (!val) {
@@ -122,6 +134,15 @@ export default function Shadow() {
             step={1}
             value={shadow?.offsetY}
             onChange={handleOffsetY}
+          />
+        </div>
+        <div className="blur">
+          <Range
+            min={0}
+            max={100}
+            step={1}
+            value={shadow?.blur}
+            onChange={handleBlur}
           />
         </div>
       </Wrap>
