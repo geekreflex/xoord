@@ -1,5 +1,5 @@
-import { useId } from 'react';
-import { styled } from 'styled-components';
+import { useId } from "react";
+import { styled } from "styled-components";
 
 interface ToggleProps {
   checked: boolean;
@@ -48,6 +48,7 @@ const Wrap = styled.label`
     width: 0;
     height: 0;
     opacity: 0;
+    position: absolute;
   }
 
   h4 {
@@ -64,7 +65,7 @@ const Wrap = styled.label`
     transition: all 200ms ease-in;
 
     &:before {
-      content: '';
+      content: "";
       position: absolute;
       background-color: ${(props) => props.theme.colors.hoverColor};
       width: 14px;
