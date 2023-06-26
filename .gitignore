@@ -26,5 +26,4 @@ dist-ssr
 # Extra stuff
 VEND.md
 bin
-
 .env
