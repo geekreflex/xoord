@@ -11,6 +11,7 @@ import { useEffect, useRef, useState } from 'react';
 import ColorBlock from './common/ColorBlock';
 import useClickOutside from '@/hooks/useClickOutside';
 import ColorPicker from './widget/ColorPicker';
+import Range from './common/Range';
 
 export default function Stroke() {
   const dispatch = useAppDispatch();
@@ -134,6 +135,15 @@ export default function Stroke() {
             options={strokeStyles}
             value={object?.strokeDashArray?.join(' ') as string}
             onChange={handleStrokeStyle}
+          />
+        </div>
+        <div>
+          <Range
+            min={0}
+            max={100}
+            step={1}
+            value={object?.strokeWidth || 0}
+            onChange={handleStrokeWidth}
           />
         </div>
       </Wrap>
