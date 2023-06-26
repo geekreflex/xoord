@@ -31,6 +31,7 @@ const Wrap = styled.label`
   align-items: center;
   cursor: pointer;
   flex: 1;
+  height: 100%;
 
   .switch {
     position: relative;
