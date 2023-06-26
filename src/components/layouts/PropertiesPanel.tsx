@@ -5,12 +5,14 @@ import TextProperties from '../properties/TextProperties';
 import ShapeProperties from '../properties/ShapeProperties';
 import SelectionProperties from '../properties/SelectionProperties';
 import ImageProperties from '../properties/ImageProperties';
+import BackgroundProperties from '@/components2/properties/BackgroundProperties';
+import { useAppSelector } from '@/app/hooks';
 
 export default function PropertiesPanel() {
-  const { selectedType } = useEditorContext();
+  const { propPanel } = useAppSelector((state) => state.app);
 
   const renderProperties = () => {
-    switch (selectedType) {
+    switch (propPanel) {
       case 'circle':
       case 'triangle':
       case 'polygon':
@@ -22,6 +24,8 @@ export default function PropertiesPanel() {
         return <ImageProperties />;
       case 'selection':
         return <SelectionProperties />;
+      case 'background':
+        return <BackgroundProperties />;
     }
   };
 

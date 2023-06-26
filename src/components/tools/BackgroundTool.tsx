@@ -5,6 +5,7 @@ import ImageList from '../common/ImageList';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { useEffect } from 'react';
 import { fetchBackgrounds } from '@/features/imagesSlice';
+import { switchPropertyPanel } from '@/features/appSlice';
 
 export default function BackgroundTool() {
   const dispatch = useAppDispatch();
@@ -16,10 +17,14 @@ export default function BackgroundTool() {
     dispatch(fetchBackgrounds(1));
   }, []);
 
+  const handleEditBg = () => {
+    dispatch(switchPropertyPanel('background'));
+  };
+
   return (
     <Wrap>
       <div className="btn-wrap">
-        <Button>
+        <Button onClick={handleEditBg}>
           <span id="btn-icon">
             <BgIcon />
           </span>

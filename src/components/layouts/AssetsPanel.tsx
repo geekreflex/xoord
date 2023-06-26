@@ -18,7 +18,7 @@ export default function AssetsPanel() {
         return <ImagesTool />;
       case 'Text':
         return <TextTool />;
-      case 'Background':
+      case 'Backgrounds':
         return <BackgroundTool />;
       case 'Layers':
         return <LayerTool />;

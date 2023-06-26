@@ -50,7 +50,7 @@ const tools: ITool[] = [
     description: 'Upload or browse images',
   },
   {
-    name: 'Background',
+    name: 'Backgrounds',
     icon: <BgIcon />,
     description: 'Choose a desired background',
   },
