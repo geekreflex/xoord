@@ -4,6 +4,7 @@ import { useEditorContext } from '@/context/EditorContext';
 import TextProperties from '../properties/TextProperties';
 import ShapeProperties from '../properties/ShapeProperties';
 import SelectionProperties from '../properties/SelectionProperties';
+import ImageProperties from '../properties/ImageProperties';
 
 export default function PropertiesPanel() {
   const { selectedType } = useEditorContext();
@@ -17,6 +18,8 @@ export default function PropertiesPanel() {
         return <ShapeProperties />;
       case 'textbox':
         return <TextProperties />;
+      case 'image':
+        return <ImageProperties />;
       case 'selection':
         return <SelectionProperties />;
     }

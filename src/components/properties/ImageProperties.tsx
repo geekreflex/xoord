@@ -1,14 +1,14 @@
 import { styled } from 'styled-components';
-import Text from '../Text';
-import Stroke from '../Stroke';
+import ObjOpt from '../ObtOpt';
 import Shadow from '../Shadow';
+import Stroke from '../Stroke';
 
-export default function TextProperties() {
+export default function ImageProperties() {
   return (
     <Wrap>
-      <Text />
-      <Stroke />
+      <ObjOpt />
       <Shadow />
+      <Stroke />
     </Wrap>
   );
 }

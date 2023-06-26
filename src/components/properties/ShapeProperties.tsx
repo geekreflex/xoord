@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import Fill from '../Fill';
 import ObjOpt from '../ObtOpt';
 import Stroke from '../Stroke';
+import Shadow from '../Shadow';
 
 export default function ShapeProperties() {
   return (
@@ -9,6 +10,7 @@ export default function ShapeProperties() {
       <Fill />
       <Stroke />
       <ObjOpt />
+      <Shadow />
     </Wrap>
   );
 }

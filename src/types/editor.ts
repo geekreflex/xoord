@@ -4,6 +4,7 @@ export enum ObjectTypes {
   Rectangle = 'rect',
   Polygon = 'polygon',
   Text = 'textbox',
+  Image = 'image',
   Selection = 'selection',
   Background = 'background',
   Unknown = 'unknown',
