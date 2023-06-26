@@ -7,12 +7,12 @@ import BottomBar from './layouts/BottomBar';
 import { useAppSelector } from '@/app/hooks';
 
 export default function Editor() {
-  const { propPanel } = useAppSelector((state) => state.app);
+  const { propPanel, activeTool } = useAppSelector((state) => state.app);
   return (
     <Wrap>
       <div className="left-side">
         <Toolbar />
-        <AssetsPanel />
+        {activeTool && <AssetsPanel />}
       </div>
       <div className="right-side">{propPanel && <PropertiesPanel />}</div>
       <Canvas />

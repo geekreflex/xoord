@@ -5,7 +5,7 @@ import { styled } from 'styled-components';
 interface PanelProps {
   children: React.ReactNode;
   title?: string | null;
-  close?: () => {};
+  close?: () => void;
   placement?: 'left' | 'right';
   offset?: number;
 }

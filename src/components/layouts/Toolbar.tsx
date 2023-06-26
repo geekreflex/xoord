@@ -103,7 +103,7 @@ export default function Toolbar() {
           >
             <div
               className={`tool ${
-                activeTool.toLowerCase() === tool.name.toLowerCase()
+                activeTool?.toLowerCase() === tool.name.toLowerCase()
                   ? 'active'
                   : ''
               }`}

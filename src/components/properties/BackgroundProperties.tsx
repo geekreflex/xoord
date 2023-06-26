@@ -1,4 +1,3 @@
-import { useAppSelector } from '@/app/hooks';
 import { useEditorContext } from '@/context/EditorContext';
 import { MaximizeIcon } from '@/icons';
 import { Button } from '@/styles/global';

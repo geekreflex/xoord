@@ -1,13 +1,15 @@
 import { styled } from 'styled-components';
 import Panel from '../common/Panel';
-import { useAppSelector } from '@/app/hooks';
+import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import ElementsTool from '../tools/ElementsTool';
 import TextTool from '../tools/TextTool';
 import LayerTool from '../tools/LayerTool';
 import ImagesTool from '../tools/ImagesTool';
 import BackgroundTool from '../tools/BackgroundTool';
+import { switchActiveTool } from '@/features/appSlice';
 
 export default function AssetsPanel() {
+  const dispatch = useAppDispatch();
   const { activeTool } = useAppSelector((state) => state.app);
 
   function renderToolAsset() {
@@ -22,11 +24,17 @@ export default function AssetsPanel() {
         return <BackgroundTool />;
       case 'Layers':
         return <LayerTool />;
+      default:
+        return '';
     }
   }
 
+  const handleClose = () => {
+    dispatch(switchActiveTool(null));
+  };
+
   return (
-    <Panel title={activeTool} placement="left" offset={85}>
+    <Panel title={activeTool} placement="left" offset={85} close={handleClose}>
       <Wrap>{renderToolAsset()}</Wrap>
     </Panel>
   );
