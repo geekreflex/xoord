@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 
 interface RangeProps {
@@ -27,7 +27,7 @@ export default function Range({ min, max, step, value, onChange }: RangeProps) {
       <div
         className="progress"
         style={{
-          width: `${_value}%`,
+          width: `${Math.abs(_value)}%`,
         }}
       ></div>
       <input
@@ -38,6 +38,7 @@ export default function Range({ min, max, step, value, onChange }: RangeProps) {
         value={_value}
         ref={ref}
         onChange={handleChange}
+        id={useId()}
       />
     </Wrap>
   );
