@@ -73,7 +73,7 @@ export default function Fill() {
     setChecked(val);
   };
 
-  useClickOutside(ref, () => handleCloseColorPicker);
+  useClickOutside(ref, () => handleCloseColorPicker());
 
   return (
     <Expander
@@ -94,7 +94,7 @@ export default function Fill() {
               color={object?.fill as string}
               onChange={handleFillChange}
               label="Fill"
-              close={() => handleCloseColorPicker}
+              close={handleCloseColorPicker}
             />
           )}
         </div>
