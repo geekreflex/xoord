@@ -109,12 +109,6 @@ const Wrap = styled.div`
       width: 65%;
     }
 
-    .color-block {
-      width: 32px;
-      border: 1px solid ${(props) => props.theme.colors.borderColor};
-      border-radius: ${(props) => props.theme.radius.small};
-    }
-
     .font-spacing {
       width: 35px;
       border: 1px solid ${(props) => props.theme.colors.borderColor};

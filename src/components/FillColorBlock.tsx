@@ -24,7 +24,7 @@ export default function FillColorBlock() {
   };
 
   return (
-    <Wrap className="prop-wrap" ref={ref}>
+    <Wrap ref={ref}>
       <div
         onClick={() => setVisible(true)}
         className="color-block"
@@ -45,18 +45,13 @@ export default function FillColorBlock() {
 }
 
 const Wrap = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: ${(props) => props.theme.colors.highlightColor};
-  border-radius: ${(props) => props.theme.radius.medium};
-  display: flex;
-  align-items: center;
-
   .color-block {
+    display: flex;
+    width: 32px;
     height: ${(props) => props.theme.resets.btnInputHeight};
     cursor: pointer;
     position: relative;
+    border-radius: ${(props) => props.theme.radius.small};
   }
 
   .color-block-angle {

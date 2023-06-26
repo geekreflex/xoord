@@ -4,29 +4,34 @@ import { styled } from 'styled-components';
 interface ToggleProps {
   checked: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  label: string;
 }
 
-export default function Toggle({ checked, onChange }: ToggleProps) {
+export default function Toggle({ checked, onChange, label }: ToggleProps) {
   return (
     <Wrap>
-      <label>
-        <div className="switch">
-          <input
-            type="checkbox"
-            checked={checked}
-            id={useId()}
-            onChange={onChange}
-          />
-          <span className="slider"></span>
-        </div>
-        {checked.toString()}
-      </label>
+      <div className="switch">
+        <input
+          type="checkbox"
+          checked={checked}
+          id={useId()}
+          onChange={onChange}
+        />
+        <span className="slider"></span>
+      </div>
+      {label && <h4>{label}</h4>}
     </Wrap>
   );
 }
 
-const Wrap = styled.div`
+const Wrap = styled.label`
   position: relative;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  cursor: pointer;
+  flex: 1;
+
   .switch {
     position: relative;
     width: 32px;
@@ -41,9 +46,11 @@ const Wrap = styled.div`
     opacity: 0;
   }
 
+  h4 {
+    font-size: 14px;
+  }
   .slider {
     position: absolute;
-    cursor: pointer;
     top: 0;
     left: 0;
     right: 0;
