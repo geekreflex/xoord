@@ -61,6 +61,17 @@ export class Editor {
     this.auto();
   }
 
+  public setWorkspaceBg(bgColor: string) {
+    this.canvas.getObjects().forEach((obj) => {
+      if (obj.id === 'workspace') {
+        obj.set({
+          fill: bgColor,
+        });
+      }
+    });
+    this.canvas.renderAll();
+  }
+
   public setBackgroundImage(imageUrl: string) {
     const { canvas } = this;
     const workspace = this.workspace;

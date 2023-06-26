@@ -1,10 +1,21 @@
 import { useEditorContext } from '@/context/EditorContext';
+import useClickOutside from '@/hooks/useClickOutside';
 import { MaximizeIcon } from '@/icons';
 import { Button } from '@/styles/global';
+import { useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
+import ColorPicker from '../widget/ColorPicker';
 
 export default function BackgroundProperties() {
+  const colorBlockRef = useRef(null);
+  const [visible, setVisible] = useState(false);
   const { editor } = useEditorContext();
+  const [color, setColor] = useState('');
+
+  useEffect(() => {
+    setColor(editor?.workspace?.fill as string);
+  }, [editor]);
+
   const colors = [
     { color: '#c4b19e' },
     { color: '#d9939c' },
@@ -16,6 +27,15 @@ export default function BackgroundProperties() {
     { color: '#e20e0e' },
     { color: '#94b0b4' },
   ];
+
+  useClickOutside(colorBlockRef, () => setVisible(false));
+
+  const handleBgColor = (color: string) => {
+    if (editor) {
+      editor.setWorkspaceBg(color);
+      setColor(color);
+    }
+  };
 
   return (
     <Wrap>
@@ -31,15 +51,25 @@ export default function BackgroundProperties() {
 
       <div className="bg-presets">
         <h4>Backgrounds</h4>
-        <div className="bg-preset-list">
+        <div ref={colorBlockRef} className="bg-preset-list">
           <div
+            onClick={() => setVisible(true)}
             className="bg__color-block bg-color-block"
-            style={{ backgroundColor: editor?.workspace?.fill as string }}
+            style={{ backgroundColor: color as string }}
           >
             <span className="bg__color-block-angle"></span>
           </div>
+          {visible && (
+            <ColorPicker
+              label={'Background Color'}
+              color={color as string}
+              close={() => setVisible(false)}
+              onChange={handleBgColor}
+            />
+          )}
           {colors.map((color) => (
             <div
+              onClick={() => handleBgColor(color.color)}
               className="bg-color-block"
               style={{ backgroundColor: color.color }}
             ></div>

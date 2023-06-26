@@ -18,7 +18,7 @@ const initialState: AppState = {
   resizeModal: false,
   layout: 'left',
   panel: 'tools',
-  activeTool: 'elements',
+  activeTool: 'Elements',
   settingsModal: false,
   isPanelOpen: true,
   panelTitle: 'Elements',
