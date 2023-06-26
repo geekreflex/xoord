@@ -61,5 +61,6 @@ const Wrap = styled.div`
 
   .options-wrap {
     width: 65%;
+    height: 100%;
   }
 `;

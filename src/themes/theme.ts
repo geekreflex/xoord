@@ -10,6 +10,7 @@ export interface Theme {
     hoverActiveColor: string;
     hoverColor: string;
     textColor: string;
+    scrollbarThumbColor: string;
   };
   radius: {
     small: string;
@@ -34,6 +35,7 @@ export const lightTheme: Theme = {
     hoverColor: '#f1f1f1',
     hoverActiveColor: '',
     textColor: '#111111',
+    scrollbarThumbColor: '#eee',
   },
   radius: {
     small: '4px',
@@ -58,6 +60,7 @@ export const darkTheme: Theme = {
     hoverColor: '#1b1b1b',
     hoverActiveColor: '#090909',
     textColor: '#eee',
+    scrollbarThumbColor: '#333333',
   },
   radius: {
     small: '4px',

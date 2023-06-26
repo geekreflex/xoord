@@ -15,12 +15,12 @@ export default createGlobalStyle`
   } */
 
   ::-webkit-scrollbar-thumb {
-    background: #bbb;
+    background: ${(props) => props.theme.colors.scrollbarThumbColor};
     border-radius: 6px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: ${(props) => props.theme.colors.secondary};
   }
 
   .btn-wrap {
@@ -34,7 +34,7 @@ export default createGlobalStyle`
     background-color: transparent;
     color: ${(props) => props.theme.colors.textColor};
     border: 1px solid ${(props) => props.theme.colors.borderColor};
-    height: 35px;
+    height: ${(props) => props.theme.resets.btnInputHeight};
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -49,8 +49,8 @@ export default createGlobalStyle`
   }
 
   .iconn {
-    width: 32px;
-    height: 32px;
+    width: ${(props) => props.theme.resets.btnInputHeight};
+    height: ${(props) => props.theme.resets.btnInputHeight};
     background-color: transparent;
     border: none;
     outline: none;
@@ -115,7 +115,8 @@ export const LineX = styled.div<{ margin?: number }>`
   width: 100%;
   height: 1px;
   background-color: ${(props) => props.theme.colors.borderColor};
-  margin: ${(props) => (props.margin ? `${props.margin}px 0` : `10px 0`)};
+  margin: ${(props) =>
+    props.margin?.toString() ? `${props.margin}px 0` : `10px 0`};
 `;
 
 export const LineY = styled.div`
