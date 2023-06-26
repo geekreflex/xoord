@@ -33,17 +33,18 @@ const Wrap = styled.div`
   position: relative;
   display: flex;
   width: 100%;
-  height: 35px;
+  height: ${(props) => props.theme.resets.btnInputHeight};
   select {
     position: relative;
     width: 100%;
     border: none;
     height: 100%;
     outline: none;
-    background-color: ${(props) => props.theme.colors.highlightColor};
+    background-color: ${(props) => props.theme.colors.primary};
     color: ${(props) => props.theme.colors.textColor};
     padding: 0 10px;
-    border-radius: ${(props) => props.theme.radius.medium};
+    border-radius: ${(props) => props.theme.radius.small};
+    border: 1px solid ${(props) => props.theme.colors.borderColor};
     appearance: none;
     cursor: pointer;
   }

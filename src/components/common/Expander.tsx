@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import Toggle from './Toggle';
 import { ArrowDownIcon } from '@/icons';
 import { useEffect, useState } from 'react';
+import { LineX } from '@/styles/global';
 
 interface ExpanderProps {
   children: React.ReactNode;
@@ -55,6 +56,9 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  border: 1px solid ${(props) => props.theme.colors.borderColor};
+  padding: 0 10px;
+  border-radius: ${(props) => props.theme.radius.small};
 
   .expander-main {
     width: 100%;
@@ -83,7 +87,9 @@ const Wrap = styled.div`
     align-items: center;
   }
 
-  .content {
+  .expander-content {
     padding: 5px;
+    min-height: 50px;
+    padding-bottom: 10px;
   }
 `;

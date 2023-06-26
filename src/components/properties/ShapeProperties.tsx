@@ -6,9 +6,9 @@ import Stroke from '../Stroke';
 export default function ShapeProperties() {
   return (
     <Wrap className="props-wrap">
-      <ObjOpt />
       <Fill />
       <Stroke />
+      <ObjOpt />
     </Wrap>
   );
 }

@@ -118,12 +118,23 @@ export default function Stroke() {
           />
           {visible && (
             <ColorPicker
-              color={object?.fill as string}
+              color={object?.stroke as string}
               onChange={handleStrokeChange}
               label="Fill"
               close={handleCloseColorPicker}
             />
           )}
+        </div>
+        <div className="stroke-size-type">
+          <NumberInput
+            value={object?.strokeWidth || 0}
+            onChange={handleStrokeWidth}
+          />
+          <Select
+            options={strokeStyles}
+            value={object?.strokeDashArray?.join(' ') as string}
+            onChange={handleStrokeStyle}
+          />
         </div>
       </Wrap>
     </Expander>
@@ -131,6 +142,9 @@ export default function Stroke() {
 }
 
 const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   .color-block-wrap {
     display: flex;
     justify-content: space-between;
@@ -138,5 +152,10 @@ const Wrap = styled.div`
     p {
       font-size: 14px;
     }
+  }
+
+  .stroke-size-type {
+    display: flex;
+    gap: 10px;
   }
 `;

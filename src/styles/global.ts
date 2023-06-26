@@ -55,7 +55,7 @@ export default createGlobalStyle`
     border: none;
     outline: none;
     color: ${(props) => props.theme.colors.textColor};
-    font-size: 22px;
+    font-size: 20px;
     cursor: pointer;
     display: flex;
     justify-content: center;
