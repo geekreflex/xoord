@@ -1,11 +1,14 @@
 import { styled } from 'styled-components';
 import Expander from './common/Expander';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useEditorContext } from '@/context/EditorContext';
 import { fabric } from 'fabric';
 import Range from './common/Range';
 import NumberInput from './common/NumberInput';
 import { LineX } from '@/styles/global';
+import ColorBlock from './common/ColorBlock';
+import ColorPicker from './widget/ColorPicker';
+import useClickOutside from '@/hooks/useClickOutside';
 
 interface ShadowState {
   color: string;
@@ -15,8 +18,10 @@ interface ShadowState {
 }
 
 export default function Shadow() {
+  const ref = useRef(null);
   const [checked, setChecked] = useState(true);
   const { editor, selectedObjects } = useEditorContext();
+  const [visible, setVisible] = useState(false);
 
   const _shadow = {
     offsetX: 5,
@@ -115,6 +120,20 @@ export default function Shadow() {
     setChecked(val);
   };
 
+  const handleColorChange = (color: string) => {
+    if (editor) {
+      const activeObject = editor.canvas.getActiveObject();
+      const updatedShadow = new fabric.Shadow({ ...shadow, color });
+      activeObject?.set({
+        shadow: updatedShadow,
+      });
+      setShadow(updatedShadow as ShadowState);
+      editor.canvas.renderAll();
+    }
+  };
+
+  useClickOutside(ref, () => setVisible(false));
+
   return (
     <Expander
       checked={checked}
@@ -123,6 +142,19 @@ export default function Shadow() {
       label="Shadow"
     >
       <Wrap>
+        <div className="color-block-wrap" ref={ref}>
+          <h4>Color</h4>
+          <ColorBlock color={shadow.color} onClick={() => setVisible(true)} />
+          {visible && (
+            <ColorPicker
+              color={shadow?.color}
+              onChange={handleColorChange}
+              label="Fill"
+              close={() => setVisible(false)}
+            />
+          )}
+        </div>
+        <LineX />
         <div className="blur">
           <div className="item-wrap">
             <h4>Blur</h4>
@@ -190,5 +222,11 @@ const Wrap = styled.div`
 
   .number-wrap {
     width: 50%;
+  }
+
+  .color-block-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 `;
