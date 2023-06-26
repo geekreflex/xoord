@@ -2,7 +2,6 @@ import { styled } from 'styled-components';
 import Toggle from './Toggle';
 import { ArrowDownIcon } from '@/icons';
 import { useEffect, useState } from 'react';
-import { LineX } from '@/styles/global';
 
 interface ExpanderProps {
   children: React.ReactNode;
@@ -27,14 +26,11 @@ export default function Expander({
     }
   }, [checked]);
 
-  useEffect(() => {
-    if (visible) {
-      onAdd();
-    }
-  }, [visible]);
-
   const handleContentVisible = () => {
     setVisible(!visible);
+    if (!checked) {
+      onAdd();
+    }
   };
 
   return (

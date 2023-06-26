@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import { useEditorContext } from '@/context/EditorContext';
 import { fabric } from 'fabric';
 import Range from './common/Range';
-import { useAppSelector } from '@/app/hooks';
+import NumberInput from './common/NumberInput';
+import { LineX } from '@/styles/global';
 
 interface ShadowState {
   color: string;
@@ -14,10 +15,15 @@ interface ShadowState {
 }
 
 export default function Shadow() {
-  const [checked, setChecked] = useState(false);
-  const { editor } = useEditorContext();
+  const [checked, setChecked] = useState(true);
+  const { editor, selectedObjects } = useEditorContext();
 
-  const { object } = useAppSelector((state) => state.editor);
+  const _shadow = {
+    offsetX: 5,
+    offsetY: 5,
+    blur: 10,
+  };
+
   const [shadow, setShadow] = useState<ShadowState>({
     color: '#333',
     offsetX: 5,
@@ -26,39 +32,37 @@ export default function Shadow() {
   });
 
   useEffect(() => {
-    if (object && object.shadow) {
-      console.log(object.shadow);
-      const obj = object.shadow as ShadowState;
-      if (obj.blur || obj.offsetX || obj.offsetY) {
+    if (selectedObjects) {
+      if (selectedObjects[0].shadow) {
         setChecked(true);
-        setShadow(obj);
+        setShadow(selectedObjects[0].shadow as ShadowState);
       } else {
         setChecked(false);
       }
     }
-  }, [object]);
+  }, [selectedObjects]);
 
   const handleAddShadow = () => {
     if (editor) {
       const activeObject = editor.canvas.getActiveObject();
-      const updatedShadow = new fabric.Shadow(shadow);
+      const updatedShadow = new fabric.Shadow(_shadow);
       setShadow(updatedShadow as ShadowState);
+      setChecked(true);
       if (activeObject) {
         activeObject.set({
           shadow: updatedShadow,
         });
-        editor.canvas.renderAll();
       }
+      editor.canvas.renderAll();
     }
   };
 
   const handleClearShadow = () => {
     if (editor) {
       const activeObject = editor.canvas.getActiveObject();
-      const updatedShadow = new fabric.Shadow({});
-      setShadow(updatedShadow as ShadowState);
+      setShadow({} as ShadowState);
       activeObject?.set({
-        shadow: updatedShadow,
+        shadow: undefined,
       });
       editor.canvas.renderAll();
     }
@@ -106,6 +110,7 @@ export default function Shadow() {
       handleClearShadow();
     } else {
       handleAddShadow();
+      console.log(val);
     }
     setChecked(val);
   };
@@ -118,7 +123,30 @@ export default function Shadow() {
       label="Shadow"
     >
       <Wrap>
+        <div className="blur">
+          <div className="item-wrap">
+            <h4>Blur</h4>
+            <div className="number-wrap">
+              <NumberInput value={shadow.blur} onChange={handleBlur} />
+            </div>
+          </div>
+          <Range
+            min={0}
+            max={100}
+            step={1}
+            value={shadow.blur}
+            onChange={handleBlur}
+          />
+        </div>
+        <LineX />
+
         <div className="offset-x">
+          <div className="item-wrap">
+            <h4>Offset-X</h4>
+            <div className="number-wrap">
+              <NumberInput value={shadow.offsetX} onChange={handleOffsetX} />
+            </div>
+          </div>
           <Range
             min={-100}
             max={100}
@@ -127,7 +155,14 @@ export default function Shadow() {
             onChange={handleOffsetX}
           />
         </div>
+        <LineX />
         <div className="offset-y">
+          <div className="item-wrap">
+            <h4>Offset-Y</h4>
+            <div className="number-wrap">
+              <NumberInput value={shadow.offsetY} onChange={handleOffsetY} />
+            </div>
+          </div>
           <Range
             min={-100}
             max={100}
@@ -136,18 +171,24 @@ export default function Shadow() {
             onChange={handleOffsetY}
           />
         </div>
-        <div className="blur">
-          <Range
-            min={0}
-            max={100}
-            step={1}
-            value={shadow?.blur}
-            onChange={handleBlur}
-          />
-        </div>
       </Wrap>
     </Expander>
   );
 }
 
-const Wrap = styled.div``;
+const Wrap = styled.div`
+  .item-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  h4 {
+    font-size: 12px;
+  }
+
+  .number-wrap {
+    width: 50%;
+  }
+`;
