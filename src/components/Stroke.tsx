@@ -1,5 +1,4 @@
 import { styled } from 'styled-components';
-import Color from './Color';
 import { useEditorContext } from '@/context/EditorContext';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { setObject } from '@/features/editorSlice';
@@ -7,10 +6,22 @@ import { STROKE } from '@/core/lib/defaultShapes';
 import NumberInput from './common/NumberInput';
 import Select from './common/Select';
 
+import Expander from './common/Expander';
+import { useEffect, useState } from 'react';
+
 export default function Stroke() {
+  const [checked, setChecked] = useState(false);
   const dispatch = useAppDispatch();
   const { object } = useAppSelector((state) => state.editor);
   const { editor } = useEditorContext();
+
+  useEffect(() => {
+    if (object && object.stroke) {
+      setChecked(true);
+    } else {
+      setChecked(false);
+    }
+  }, [object]);
 
   const handleStrokeChange = (color: string) => {
     if (editor) {
@@ -60,6 +71,16 @@ export default function Stroke() {
     }
   };
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.checked;
+    if (!val) {
+      handleClearStroke();
+    } else {
+      handleAddStroke();
+    }
+    setChecked(val);
+  };
+
   const strokeStyles = [
     { label: 'Solid', value: '' },
     { label: 'Dashed', value: '30 10' },
@@ -67,55 +88,15 @@ export default function Stroke() {
   ];
 
   return (
-    <Wrap className="prop-wrap">
-      <h4>Stroke</h4>
-      <div className="main-wrap">
-        <Color
-          label={'Stroke'}
-          color={object?.stroke as string}
-          onChange={handleStrokeChange}
-          clear={handleClearStroke}
-          add={handleAddStroke}
-        />
-        {object?.stroke && (
-          <div className="other-props">
-            <div className="stroke-width-wrap">
-              <NumberInput
-                value={object?.strokeWidth || 0}
-                onChange={handleStrokeWidth}
-              />
-            </div>
-            <div className="stroke-style-wrap">
-              <Select
-                options={strokeStyles}
-                value={object?.strokeDashArray?.join(' ') || ''}
-                onChange={handleStrokeStyle}
-              />
-            </div>
-          </div>
-        )}
-      </div>
-    </Wrap>
+    <Expander
+      checked={checked}
+      onChange={handleChange}
+      onAdd={handleAddStroke}
+      label="Stroke"
+    >
+      <Wrap>Hello from stroke</Wrap>
+    </Expander>
   );
 }
 
-const Wrap = styled.div`
-  .main-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .stroke-width-wrap {
-    width: 40%;
-  }
-
-  .stroke-style-wrap {
-    width: 60%;
-  }
-
-  .other-props {
-    display: flex;
-    gap: 10px;
-  }
-`;
+const Wrap = styled.div``;
