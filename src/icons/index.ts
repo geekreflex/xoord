@@ -52,6 +52,7 @@ import TextAlignRightIcon from './TextAlignRightIcon';
 import TextAlignJustify from './TextAlignJustify';
 import SunIcon from './SunIcon';
 import MoonIcon from './MoonIcon';
+import MaximizeIcon from './MaximizeIcon';
 
 export {
   ZoomInIcon,
@@ -108,4 +109,5 @@ export {
   TextAlignJustify,
   SunIcon,
   MoonIcon,
+  MaximizeIcon,
 };
