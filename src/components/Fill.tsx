@@ -83,7 +83,7 @@ export default function Fill() {
       onAdd={handleAddFill}
     >
       <Wrap>
-        <h4>Color</h4>
+        <p>Color</p>
         <div className="color-block-wrap" ref={ref}>
           <ColorBlock
             color={object?.fill as string}
@@ -107,6 +107,10 @@ const Wrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  p {
+    font-size: 14px;
+  }
 
   .color-block-wrap {
   }

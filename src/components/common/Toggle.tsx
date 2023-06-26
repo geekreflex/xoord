@@ -34,10 +34,13 @@ const Wrap = styled.label`
 
   .switch {
     position: relative;
-    width: 32px;
-    height: 18px;
+    width: 30px;
+    height: 16px;
     border-radius: ${(props) => props.theme.radius.small};
     overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+      rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   }
 
   input {
@@ -48,6 +51,7 @@ const Wrap = styled.label`
 
   h4 {
     font-size: 14px;
+    font-weight: 400;
   }
   .slider {
     position: absolute;
@@ -57,16 +61,21 @@ const Wrap = styled.label`
     bottom: 0;
     background-color: ${(props) => props.theme.colors.secondary};
     transition: all 200ms ease-in;
+
     &:before {
       content: '';
       position: absolute;
       background-color: ${(props) => props.theme.colors.hoverColor};
       width: 14px;
       height: 14px;
-      left: 2px;
-      bottom: 2px;
+      left: 1px;
+      bottom: 1px;
       border-radius: ${(props) => props.theme.radius.small};
       transition: all cubic-bezier(0.03, 1.22, 0.31, -0.66) ease-in;
+      box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,
+        rgba(0, 0, 0, 0.24) 0px 1px 2px;
+      box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+        rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     }
   }
 
