@@ -17,6 +17,12 @@ export default function Zoom() {
   useClickOutside(ref, () => setVisible(false));
 
   useEffect(() => {
+    const canvas = editor?.canvas;
+    if (canvas) {
+      canvas.on('mouse:wheel', () => {
+        handleUpdateZoom();
+      });
+    }
     handleUpdateZoom();
   }, [editor]);
 
@@ -38,9 +44,9 @@ export default function Zoom() {
     handleUpdateZoom();
   };
 
-  const handleZoom100 = () => {
+  const handleZoom00 = (val: number) => {
     if (editor) {
-      editor.setZoomAuto(1);
+      editor.setZoomAuto(val);
     }
     handleUpdateZoom();
   };
@@ -98,19 +104,19 @@ export default function Zoom() {
             </li>
             <LineX />
             <li>
-              <div className="inner" onClick={handleZoom100}>
+              <div className="inner" onClick={() => handleZoom00(0.5)}>
                 <span id="zoom-text">Zoom to 50%</span>
                 <span id="zoom-key"></span>
               </div>
             </li>
             <li>
-              <div className="inner" onClick={handleZoom100}>
+              <div className="inner" onClick={() => handleZoom00(1)}>
                 <span id="zoom-text">Zoom to 100%</span>
                 <span id="zoom-key">Shift+ 0</span>
               </div>
             </li>
             <li>
-              <div className="inner" onClick={handleZoom100}>
+              <div className="inner" onClick={() => handleZoom00(2)}>
                 <span id="zoom-text">Zoom to 200%</span>
                 <span id="zoom-key"></span>
               </div>
