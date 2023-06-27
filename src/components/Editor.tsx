@@ -5,11 +5,15 @@ import PropertiesPanel from './layouts/PropertiesPanel';
 import Canvas from './Canvas';
 import BottomBar from './layouts/BottomBar';
 import { useAppSelector } from '@/app/hooks';
+import TopBar from './layouts/TopBar';
 
 export default function Editor() {
   const { propPanel, activeTool } = useAppSelector((state) => state.app);
   return (
     <Wrap>
+      <div className="top">
+        <TopBar />
+      </div>
       <div className="left-side">
         <Toolbar />
         {activeTool && <AssetsPanel />}
@@ -50,6 +54,20 @@ const Wrap = styled.div`
     align-items: center;
     top: 0;
     z-index: 998;
+    pointer-events: none;
+
+    * {
+      pointer-events: all;
+    }
+  }
+
+  .top {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    z-index: 998;
+    top: 20px;
+    justify-content: center;
     pointer-events: none;
 
     * {
