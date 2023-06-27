@@ -4,13 +4,19 @@ import Range from './common/Range';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { useEditorContext } from '@/context/EditorContext';
 import { setObject } from '@/features/editorSlice';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Opacity() {
   const dispatch = useAppDispatch();
   const { editor } = useEditorContext();
   const { object } = useAppSelector((state) => state.editor);
   const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    if (object) {
+      handleValue(object.opacity!);
+    }
+  }, [object]);
 
   const handleOpacity = (val: number) => {
     handleValue(val);
@@ -34,7 +40,7 @@ export default function Opacity() {
   };
 
   const handleValue = (val: number) => {
-    const reset = Math.round(val * 100);
+    const reset = Math.floor(val * 100);
     setValue(reset);
   };
 

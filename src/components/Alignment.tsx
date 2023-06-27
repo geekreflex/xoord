@@ -9,6 +9,7 @@ import {
 import { styled } from 'styled-components';
 import Tooltip from './common/Tooltip';
 import { useEditorContext } from '@/context/EditorContext';
+import { TitleSmall } from '@/styles/global';
 
 const list = [
   { name: 'Align Left', icon: <AlignLeftIcon />, action: 'left' },
@@ -36,13 +37,19 @@ export default function Alignment() {
 
   return (
     <Wrap>
-      {list.map((item) => (
-        <Tooltip content={item.name}>
-          <span className="iconn" onClick={() => handleAlignment(item.action)}>
-            {item.icon}
-          </span>
-        </Tooltip>
-      ))}
+      <TitleSmall>Layer align</TitleSmall>
+      <div className="align-wrap">
+        {list.map((item) => (
+          <Tooltip content={item.name}>
+            <span
+              className="iconn"
+              onClick={() => handleAlignment(item.action)}
+            >
+              {item.icon}
+            </span>
+          </Tooltip>
+        ))}
+      </div>
     </Wrap>
   );
 }
@@ -50,5 +57,11 @@ export default function Alignment() {
 const Wrap = styled.div`
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  flex-direction: column;
+
+  .align-wrap {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
 `;
