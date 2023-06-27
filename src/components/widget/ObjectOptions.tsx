@@ -4,6 +4,7 @@ import Alignment from '../Alignment';
 import Opacity from '../Opacity';
 import { LineX } from '@/styles/global';
 import FlipRotate from '../FlipRotate';
+import ObjectLayer from '../ObjectLayer';
 
 export default function ObjectOptions({ close }: { close: () => void }) {
   return (
@@ -14,6 +15,8 @@ export default function ObjectOptions({ close }: { close: () => void }) {
         <Opacity />
         <LineX />
         <FlipRotate />
+        <LineX />
+        <ObjectLayer />
       </Wrap>
     </Draggable>
   );

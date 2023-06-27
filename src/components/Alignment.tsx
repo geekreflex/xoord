@@ -39,7 +39,7 @@ export default function Alignment() {
     <Wrap>
       <TitleSmall>Layer align</TitleSmall>
       <div className="align-wrap">
-        {list.map((item) => (
+        {list.slice(0, 3).map((item) => (
           <Tooltip content={item.name}>
             <span
               className="iconn"

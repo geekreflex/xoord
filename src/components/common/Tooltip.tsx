@@ -72,7 +72,7 @@ export default function Tooltip({
 }
 
 const Wrap = styled.div`
-  flex: auto;
+  /* flex: auto; */
 
   .main-tooltip {
     padding: 6px 10px;
