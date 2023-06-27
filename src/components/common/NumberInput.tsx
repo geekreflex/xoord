@@ -26,7 +26,11 @@ export default function NumberInput({
   }, [value]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(Number(event.target.value));
+    const val = Number(event.target.value);
+    setInputValue(val);
+    if (onChange) {
+      onChange(val);
+    }
   };
 
   const handleIncrement = () => {

@@ -110,10 +110,7 @@ export class Editor {
     this.workspace = this.canvas
       .getObjects()
       .find((item) => item.id === 'workspace') as fabric.Rect;
-    // this.workspace.set({ width, height });
-
-    this.workspace.set('width', width);
-    this.workspace.set('height', height);
+    this.workspace.set({ width, height });
 
     this.auto();
   }

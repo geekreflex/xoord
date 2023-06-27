@@ -54,7 +54,7 @@ export default function ResizeModal() {
         <div className="footer">
           <div className="footer-action-btns">
             <div className="update btn">
-              <Button onClick={handleUpdateSize}>Update</Button>
+              <Button onClick={handleUpdateSize}>Resize</Button>
             </div>
           </div>
         </div>
@@ -64,12 +64,13 @@ export default function ResizeModal() {
 }
 
 const Wrap = styled.div`
-  width: 500px;
+  width: 400px;
   padding: 20px;
 
   .size-input-wrap {
     display: flex;
     gap: 20px;
+    margin-bottom: 20px;
   }
 
   .group-wrap {

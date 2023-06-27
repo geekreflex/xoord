@@ -156,7 +156,7 @@ export const GridItem = styled.div`
 
 export const Button = styled.button`
   padding: 0 20px;
-  height: 40px;
+  height: 35px;
   border-radius: ${(props) => props.theme.radius.small};
   border: none;
   outline: none;
