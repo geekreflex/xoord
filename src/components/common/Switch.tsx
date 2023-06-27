@@ -44,7 +44,7 @@ export default function Switch({ items, activeItem, onSwitch }: SwitchProps) {
     <Wrap ref={gliderRef}>
       <div className="switch-items">
         {items.map((item, index) => (
-          <Tooltip content={item.label}>
+          <Tooltip key={index} content={item.label}>
             <div
               onClick={() => {
                 onSwitch(item.alias);

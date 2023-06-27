@@ -27,7 +27,11 @@ export const fetchFonts = createAsyncThunk('fonts/fetchFonts', async () => {
 export const fontsSlice = createSlice({
   name: 'fonts',
   initialState,
-  reducers: {},
+  reducers: {
+    setLoading(state, action) {
+      state.status = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchFonts.pending, (state) => {
@@ -44,4 +48,5 @@ export const fontsSlice = createSlice({
   },
 });
 
+export const { setLoading } = fontsSlice.actions;
 export default fontsSlice.reducer;

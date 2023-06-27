@@ -5,8 +5,12 @@ import Providers from './context';
 import GlobalCSS from './styles/global';
 import View from './View';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useAppDispatch } from './app/hooks';
+import { fetchFonts } from './features/fontsSlice';
 
 export default function App() {
+  const dispatch = useAppDispatch();
   const router = createBrowserRouter([
     {
       path: '/',
@@ -25,6 +29,10 @@ export default function App() {
       element: <View />,
     },
   ]);
+
+  useEffect(() => {
+    dispatch(fetchFonts());
+  }, []);
 
   return (
     <Wrap>

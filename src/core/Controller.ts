@@ -268,17 +268,19 @@ export class Controller {
   public fontFamily(name: string) {
     const activeObject = this.editor.canvas.getActiveObject();
     const font = new FontFaceObserver(name);
+    const ed = this.editor.canvas;
 
     if (activeObject instanceof fabric.Textbox) {
       // Update code to check if font is system font
       // else load custom fonts with FonFaceObserver
-      if (name) {
+      if (name === 'ubuntu') {
         activeObject.set({ fontFamily: name });
       } else {
         font
           .load()
           .then(function () {
             activeObject.set({ fontFamily: name });
+            ed.renderAll();
           })
           .catch((err) => {
             console.error('Font failed', err);

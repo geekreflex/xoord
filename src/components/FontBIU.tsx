@@ -45,7 +45,7 @@ export default function FontBIU() {
   return (
     <Wrap>
       {textStyles.map((item) => (
-        <Tooltip content={item.name}>
+        <Tooltip key={item.name} content={item.name}>
           <button
             onClick={item.func}
             className={` ${
