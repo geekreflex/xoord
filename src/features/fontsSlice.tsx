@@ -14,9 +14,9 @@ const initialState: FontsState = {
   error: null,
 };
 
-const fetchFonts = createAsyncThunk('fonts/fetchFonts', async () => {
+export const fetchFonts = createAsyncThunk('fonts/fetchFonts', async () => {
   const response = await axios.get(
-    `https://www.googleapis.com/webfonts/v1/websfonts`,
+    `https://www.googleapis.com/webfonts/v1/webfonts`,
     {
       params: { key: GOOGLE_FONT_KEY },
     }

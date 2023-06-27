@@ -34,7 +34,6 @@ const Wrap = styled.div`
   bottom: 50px;
   z-index: 9999;
   background-color: ${(props) => props.theme.colors.primary};
-  padding-bottom: 20px;
   border-radius: ${(props) => props.theme.radius.small};
   box-shadow: ${(props) => props.theme.shadow.shadow2};
   border: 1px solid ${(props) => props.theme.colors.borderColor};
@@ -79,5 +78,7 @@ const Wrap = styled.div`
 
   .draggable-main {
     position: relative !important;
+    overflow-y: auto;
+    flex: 1;
   }
 `;
