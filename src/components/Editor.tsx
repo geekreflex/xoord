@@ -6,24 +6,28 @@ import Canvas from './Canvas';
 import BottomBar from './layouts/BottomBar';
 import { useAppSelector } from '@/app/hooks';
 import TopBar from './layouts/TopBar';
+import Over from './layouts/Over';
 
 export default function Editor() {
   const { propPanel, activeTool } = useAppSelector((state) => state.app);
   return (
-    <Wrap>
-      <div className="top">
-        <TopBar />
-      </div>
-      <div className="left-side">
-        <Toolbar />
-        {activeTool && <AssetsPanel />}
-      </div>
-      <div className="right-side">{propPanel && <PropertiesPanel />}</div>
-      <Canvas />
-      <div className="bottom">
-        <BottomBar />
-      </div>
-    </Wrap>
+    <>
+      <Wrap>
+        <div className="top">
+          <TopBar />
+        </div>
+        <div className="left-side">
+          <Toolbar />
+          {activeTool && <AssetsPanel />}
+        </div>
+        <div className="right-side">{propPanel && <PropertiesPanel />}</div>
+        <Canvas />
+        <div className="bottom">
+          <BottomBar />
+        </div>
+      </Wrap>
+      <Over />
+    </>
   );
 }
 

@@ -89,6 +89,7 @@ const Wrap = styled.div`
     color: #fff;
     padding: 0 10px;
     width: 100%;
+    text-align: right;
   }
 
   .input-btns {

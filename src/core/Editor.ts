@@ -103,6 +103,21 @@ export class Editor {
     });
   }
 
+  public setWorkspaceSize(width: number, height: number) {
+    this.initBackground();
+    this.option.width = width;
+    this.option.height = height;
+    this.workspace = this.canvas
+      .getObjects()
+      .find((item) => item.id === 'workspace') as fabric.Rect;
+    // this.workspace.set({ width, height });
+
+    this.workspace.set('width', width);
+    this.workspace.set('height', height);
+
+    this.auto();
+  }
+
   private initControls() {
     new Controls(this.canvas);
     new AlignGuidelines({ canvas: this.canvas }).init();
