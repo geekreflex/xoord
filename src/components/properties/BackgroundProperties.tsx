@@ -5,12 +5,15 @@ import { Button } from '@/styles/global';
 import { useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 import ColorPicker from '../widget/ColorPicker';
+import { useAppDispatch } from '@/app/hooks';
+import { toggleResizeModal } from '@/features/appSlice';
 
 export default function BackgroundProperties() {
   const colorBlockRef = useRef(null);
   const [visible, setVisible] = useState(false);
   const { editor } = useEditorContext();
   const [color, setColor] = useState('');
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     setColor(editor?.workspace?.fill as string);
@@ -37,16 +40,22 @@ export default function BackgroundProperties() {
     }
   };
 
+  const handleShowResizeModal = () => {
+    dispatch(toggleResizeModal(true));
+  };
+
   return (
     <Wrap>
       <div className="bg-resize-wrap">
-        <Button>
+        <Button onClick={handleShowResizeModal}>
           <span id="btn-icon">
             <MaximizeIcon />
           </span>
           <span id="btn-text">Resize Template</span>
         </Button>
-        <div className="bg-size">1200 &times; 1200</div>
+        <div className="bg-size">
+          {editor?.workspace?.width} &times; {editor?.workspace?.height}
+        </div>
       </div>
 
       <div className="bg-presets">

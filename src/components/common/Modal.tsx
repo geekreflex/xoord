@@ -3,15 +3,21 @@ import { styled } from 'styled-components';
 
 interface ModalProps {
   children: React.ReactNode;
+  close: () => void;
+  title?: string;
 }
 
-export default function Modal({ children }: ModalProps) {
+export default function Modal({
+  children,
+  close,
+  title = 'Untitled',
+}: ModalProps) {
   return (
     <Wrap>
-      <div className="overlay"></div>
+      <div className="overlay" onClick={close}></div>
       <div className="modal-inner">
         <div className="modal-header">
-          <h4>Resize Template</h4>
+          <h4>{title}</h4>
         </div>
         <LineX margin={0} />
         <div className="modal-main">{children}</div>
@@ -43,7 +49,7 @@ const Wrap = styled.div`
   }
 
   .modal-inner {
-    background-color: ${(props) => props.theme.colors.secondary};
+    background-color: ${(props) => props.theme.colors.primary};
     position: relative;
     min-width: 300px;
     border-radius: ${(props) => props.theme.radius.small};

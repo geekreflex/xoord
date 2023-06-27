@@ -4,11 +4,16 @@ import NumberInput from './common/NumberInput';
 import { useEffect, useState } from 'react';
 import { useEditorContext } from '@/context/EditorContext';
 import { Button } from '@/styles/global';
+import { useAppDispatch } from '@/app/hooks';
+import { toggleResizeModal } from '@/features/appSlice';
+import { LockIcon, UnlockIcon } from '@/icons';
 
 export default function ResizeModal() {
+  const dispatch = useAppDispatch();
   const { editor } = useEditorContext();
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
+  const [lock, setLock] = useState(false);
 
   useEffect(() => {
     if (editor) {
@@ -18,12 +23,17 @@ export default function ResizeModal() {
   }, [editor]);
 
   const handleWidth = (width: number) => {
-    console.log(width);
     setWidth(width);
+    if (lock) {
+      setHeight(width);
+    }
   };
 
   const handleHeight = (height: number) => {
     setHeight(height);
+    if (lock) {
+      setWidth(height);
+    }
   };
 
   const handleUpdateSize = () => {
@@ -31,10 +41,15 @@ export default function ResizeModal() {
       console.log(width, height);
       editor.setWorkspaceSize(width, height);
     }
+    handleClose();
+  };
+
+  const handleClose = () => {
+    dispatch(toggleResizeModal(false));
   };
 
   return (
-    <Modal>
+    <Modal close={handleClose} title="Resize Template">
       <Wrap>
         <div className="size-input-wrap">
           <div className="group-wrap">
@@ -42,6 +57,11 @@ export default function ResizeModal() {
             <div className="input-wrap">
               <NumberInput value={width} onChange={handleWidth} />
             </div>
+          </div>
+          <div className="lock-icon-wrap">
+            <button className="iconn" onClick={() => setLock(!lock)}>
+              {lock ? <LockIcon /> : <UnlockIcon />}
+            </button>
           </div>
           <div className="group-wrap">
             <p>Height</p>
@@ -69,8 +89,13 @@ const Wrap = styled.div`
 
   .size-input-wrap {
     display: flex;
-    gap: 20px;
+    gap: 5px;
     margin-bottom: 20px;
+  }
+
+  .lock-icon-wrap {
+    display: flex;
+    align-items: flex-end;
   }
 
   .group-wrap {

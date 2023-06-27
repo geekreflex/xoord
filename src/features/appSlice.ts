@@ -53,6 +53,10 @@ export const appSlice = createSlice({
       state.settingsModal = !state.settingsModal;
     },
 
+    toggleResizeModal(state, action) {
+      state.resizeModal = action.payload;
+    },
+
     setPanelTitle(state, action) {
       state.panelTitle = action.payload;
     },
@@ -84,5 +88,6 @@ export const {
   switchPropertyPanel,
   showColorPicker,
   hideColorPicker,
+  toggleResizeModal,
 } = appSlice.actions;
 export default appSlice.reducer;
