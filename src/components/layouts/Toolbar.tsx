@@ -165,16 +165,16 @@ const Wrap = styled.div`
       border-radius: ${(props) => props.theme.radius.small};
       border: 1px solid transparent;
 
-      &:hover {
+      /* &:hover {
         background-color: ${(props) => props.theme.colors.hoverColor};
         border: 1px solid ${(props) => props.theme.colors.borderColor};
-      }
+      } */
     }
     .active {
-      &:hover {
+      /* &:hover {
         background-color: ${(props) => props.theme.colors.hoverActiveColor};
         border: 1px solid ${(props) => props.theme.colors.borderColor};
-      }
+      } */
     }
   }
 
