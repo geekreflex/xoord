@@ -108,6 +108,21 @@ export default createGlobalStyle`
     }
   }
 
+  .input-number-range-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+  
+    h4 {
+      font-size: 12px;
+    }
+  
+    .number-wrap {
+      width: 50%;
+    }
+  }
+
 
 `;
 

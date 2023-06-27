@@ -156,7 +156,7 @@ export default function Shadow() {
         </div>
         <LineX />
         <div className="blur">
-          <div className="item-wrap">
+          <div className="input-number-range-wrap">
             <h4>Blur</h4>
             <div className="number-wrap">
               <NumberInput value={shadow.blur} onChange={handleBlur} />
@@ -173,7 +173,7 @@ export default function Shadow() {
         <LineX />
 
         <div className="offset-x">
-          <div className="item-wrap">
+          <div className="input-number-range-wrap">
             <h4>Offset-X</h4>
             <div className="number-wrap">
               <NumberInput value={shadow.offsetX} onChange={handleOffsetX} />
@@ -189,7 +189,7 @@ export default function Shadow() {
         </div>
         <LineX />
         <div className="offset-y">
-          <div className="item-wrap">
+          <div className="input-number-range-wrap">
             <h4>Offset-Y</h4>
             <div className="number-wrap">
               <NumberInput value={shadow.offsetY} onChange={handleOffsetY} />
@@ -209,21 +209,6 @@ export default function Shadow() {
 }
 
 const Wrap = styled.div`
-  .item-wrap {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 5px;
-  }
-
-  h4 {
-    font-size: 12px;
-  }
-
-  .number-wrap {
-    width: 50%;
-  }
-
   .color-block-wrap {
     display: flex;
     justify-content: space-between;
