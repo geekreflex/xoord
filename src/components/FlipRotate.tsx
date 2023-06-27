@@ -8,7 +8,7 @@ import {
   RotateRightIcon,
 } from '@/icons';
 import Tooltip from './common/Tooltip';
-import { TitleSmall } from '@/styles/global';
+import { LineY, TitleSmall } from '@/styles/global';
 
 export default function FlipRotate() {
   const { controller } = useEditorContext();
@@ -79,6 +79,8 @@ const Wrap = styled.div`
 
   .flip-rot-main {
     display: flex;
+    align-items: center;
+
     justify-content: space-between;
   }
 

@@ -84,11 +84,8 @@ const Wrap = styled.div`
     display: flex;
     height: 100%;
 
-    & > div {
-      flex: 1;
-    }
-
     .switch-item {
+      flex: 1;
       display: flex;
       height: 32px;
       padding: 5px;

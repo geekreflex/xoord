@@ -38,6 +38,7 @@ const Wrap = styled.div`
   border-radius: ${(props) => props.theme.radius.small};
   box-shadow: ${(props) => props.theme.shadow.shadow2};
   border: 1px solid ${(props) => props.theme.colors.borderColor};
+  transform: translateX(-50%);
 
   .draggable-header {
     display: flex;
@@ -46,8 +47,8 @@ const Wrap = styled.div`
     height: 30px;
     padding: 0 10px;
     padding-top: 10px;
-
     cursor: grab;
+
     .draggable-title {
       font-size: 14px;
       display: flex;
@@ -74,5 +75,9 @@ const Wrap = styled.div`
         opacity: 1;
       }
     }
+  }
+
+  .draggable-main {
+    position: relative !important;
   }
 `;
