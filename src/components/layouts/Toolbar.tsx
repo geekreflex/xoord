@@ -127,10 +127,10 @@ export default function Toolbar() {
 
 const Wrap = styled.div`
   width: 60px;
-  height: 90vh;
+  height: 95vh;
   left: 20px;
   background-color: ${(props) => props.theme.colors.primary};
-  border-radius: ${(props) => props.theme.radius.medium};
+  border-radius: ${(props) => props.theme.radius.small};
   display: flex;
   flex-direction: column;
   padding: 10px 0;

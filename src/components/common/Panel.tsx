@@ -33,7 +33,7 @@ export default function Panel({
 
 const Wrap = styled.div<{ placement: string; offset: number }>`
   width: 250px;
-  height: 90vh;
+  height: 95vh;
   top: 50%;
   left: ${(props) =>
     props.placement === 'left' ? `${props.offset}px` : 'auto'};
