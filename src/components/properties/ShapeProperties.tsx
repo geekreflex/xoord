@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import Fill from '../Fill';
-import ObjOpt from '../ObtOpt';
+import MoreAction from '../MoreAction';
 import Stroke from '../Stroke';
 import Shadow from '../Shadow';
 
@@ -9,7 +9,7 @@ export default function ShapeProperties() {
     <Wrap className="props-wrap">
       <Fill />
       <Stroke />
-      <ObjOpt />
+      <MoreAction />
       <Shadow />
     </Wrap>
   );

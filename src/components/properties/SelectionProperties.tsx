@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import ObjectOptions from '../ObtOpt';
+import ObjectOptions from '../MoreAction';
 
 export default function SelectionProperties() {
   return (

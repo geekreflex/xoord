@@ -33,7 +33,7 @@ const Wrap = styled.div`
   right: 280px;
   bottom: 50px;
   z-index: 9999;
-  background-color: ${(props) => props.theme.colors.hoverActiveColor};
+  background-color: ${(props) => props.theme.colors.primary};
   padding-bottom: 20px;
   border-radius: ${(props) => props.theme.radius.small};
   box-shadow: ${(props) => props.theme.shadow.shadow2};

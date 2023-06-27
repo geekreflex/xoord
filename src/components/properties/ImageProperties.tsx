@@ -1,12 +1,12 @@
 import { styled } from 'styled-components';
-import ObjOpt from '../ObtOpt';
+import MoreAction from '../MoreAction';
 import Shadow from '../Shadow';
 import Stroke from '../Stroke';
 
 export default function ImageProperties() {
   return (
     <Wrap>
-      <ObjOpt />
+      <MoreAction />
       <Shadow />
       <Stroke />
     </Wrap>

@@ -6,7 +6,7 @@ import { useRef, useState } from 'react';
 import ObjectOptions from './widget/ObjectOptions';
 import useClickOutside from '@/hooks/useClickOutside';
 
-export default function ObjOpt() {
+export default function MoreAction() {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
   const { controller } = useEditorContext();

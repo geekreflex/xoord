@@ -108,12 +108,12 @@ const Wrap = styled.div`
 
     .bg-preset-list {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      gap: 8px;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
     }
 
     .bg-color-block {
-      height: 40px;
+      height: 32px;
       border: 1px solid ${(props) => props.theme.colors.borderColor};
       border-radius: ${(props) => props.theme.radius.small};
       cursor: pointer;
