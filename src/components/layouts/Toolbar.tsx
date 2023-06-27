@@ -47,7 +47,7 @@ const tools: ITool[] = [
   {
     name: 'Draw',
     icon: <BrushIcon />,
-    description: 'Upload or browse images',
+    description: 'Free drawing',
   },
   {
     name: 'Backgrounds',
