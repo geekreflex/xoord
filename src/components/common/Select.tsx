@@ -15,13 +15,13 @@ export default function Select({ options, value, onChange }: SelectProps) {
 
   return (
     <Wrap>
-      <select name="" id="" value={value} onChange={handleSelect}>
+      <select name="" value={value} onChange={handleSelect}>
         {options.map((option) => (
           <option value={option.value}>{option.label}</option>
         ))}
       </select>
       <div className="arr-wrap">
-        <span className="arr-down-icon">
+        <span className="arrow">
           <ArrowDownIcon />
         </span>
       </div>
@@ -34,6 +34,7 @@ const Wrap = styled.div`
   display: flex;
   width: 100%;
   height: ${(props) => props.theme.resets.btnInputHeight};
+
   select {
     position: relative;
     width: 100%;
@@ -51,15 +52,17 @@ const Wrap = styled.div`
 
   .arr-wrap {
     position: absolute;
-    right: 0;
+    right: 10px;
     height: 100%;
-    width: 30px;
     background-color: transparent;
-    border: none;
-    outline: none;
     display: flex;
     justify-content: center;
     align-items: center;
     pointer-events: none;
+    user-select: none;
+    cursor: pointer;
+    * {
+      pointer-events: none;
+    }
   }
 `;

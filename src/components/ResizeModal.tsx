@@ -7,6 +7,7 @@ import { Button } from '@/styles/global';
 import { useAppDispatch } from '@/app/hooks';
 import { toggleResizeModal } from '@/features/appSlice';
 import { LockIcon, UnlockIcon } from '@/icons';
+import Option from './common/Option';
 
 export default function ResizeModal() {
   const dispatch = useAppDispatch();
@@ -51,6 +52,10 @@ export default function ResizeModal() {
   return (
     <Modal close={handleClose} title="Resize Template">
       <Wrap>
+        <div className="select-presets">
+          <p>Template Size Presets</p>
+          <Option />
+        </div>
         <div className="size-input-wrap">
           <div className="group-wrap">
             <p>Width</p>
@@ -86,6 +91,9 @@ export default function ResizeModal() {
 const Wrap = styled.div`
   width: 400px;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 
   .size-input-wrap {
     display: flex;
@@ -101,10 +109,10 @@ const Wrap = styled.div`
   .group-wrap {
     display: flex;
     flex-direction: column;
-
-    p {
-      font-size: 14px;
-      margin-bottom: 5px;
-    }
+  }
+  p {
+    font-size: 14px;
+    margin-bottom: 5px;
+    margin-left: 5px;
   }
 `;
