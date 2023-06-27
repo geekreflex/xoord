@@ -82,7 +82,7 @@ export class Tool {
       textAlign: 'center',
       fontFamily: 'Arial',
       fontSize: 72,
-      fill: '#888888',
+      fill: '#000000',
     });
 
     text.setControlsVisibility({
