@@ -80,5 +80,6 @@ const Wrap = styled.div`
     position: relative !important;
     overflow-y: auto;
     flex: 1;
+    padding-bottom: 10px;
   }
 `;

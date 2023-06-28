@@ -16,8 +16,10 @@ export default function Select({ options, value, onChange }: SelectProps) {
   return (
     <Wrap>
       <select name="" value={value} onChange={handleSelect}>
-        {options.map((option) => (
-          <option value={option.value}>{option.label}</option>
+        {options.map((option, index) => (
+          <option key={index} value={option.value}>
+            {option.label}
+          </option>
         ))}
       </select>
       <div className="arr-wrap">

@@ -21,7 +21,7 @@ export default function ObjectLayer() {
       <TitleSmall>Object Layer</TitleSmall>
       <div className="obj-layer-wrap">
         {items.map((item) => (
-          <div className="obj-layer-item">
+          <div key={item.name} className="obj-layer-item">
             <Tooltip key={item.name} content={item.name}>
               <button className="iconn">{item.icon}</button>
             </Tooltip>

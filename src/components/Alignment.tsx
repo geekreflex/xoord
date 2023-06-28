@@ -39,8 +39,8 @@ export default function Alignment() {
     <Wrap>
       <TitleSmall>Layer align</TitleSmall>
       <div className="align-wrap">
-        {list.map((item) => (
-          <Tooltip content={item.name}>
+        {list.map((item, index) => (
+          <Tooltip key={index} content={item.name}>
             <span
               className="iconn"
               onClick={() => handleAlignment(item.action)}
