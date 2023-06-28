@@ -3,11 +3,19 @@ import History from '../History';
 import Zoom from '../Zoom';
 import ThemeToggle from '../excerpt/ThemeToggle';
 import { LineY } from '@/styles/global';
+import {
+  IoGridSharp,
+  IoHandRightSharp,
+  IoSettingsOutline,
+} from 'react-icons/io5';
 
 export default function BottomBar() {
   return (
     <Wrap>
       <div className="item-wrap">
+        <button className="iconn">
+          <IoHandRightSharp />
+        </button>
         <ThemeToggle />
         <Zoom />
       </div>

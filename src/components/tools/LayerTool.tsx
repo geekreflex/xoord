@@ -4,66 +4,44 @@ import { useEffect, useState } from 'react';
 import { useEditorContext } from '@/context/EditorContext';
 import { fabric } from 'fabric';
 import { renderTitle } from '@/utils/string';
-import {
-  IoEyeOutline,
-  IoLockClosedOutline,
-  IoLockOpenOutline,
-} from 'react-icons/io5';
+import { IoEyeOutline, IoLockOpenOutline } from 'react-icons/io5';
 import Tooltip from '../common/Tooltip';
-import { useAppDispatch } from '@/app/hooks';
-import { setObject } from '@/features/editorSlice';
 
 export default function LayerTool() {
-  const dispatch = useAppDispatch();
-  const { editor, selectedObject, selectedObjects } = useEditorContext();
+  const { editor, selectedObjects } = useEditorContext();
   const [activeTab, setActiveTab] = useState('Layers');
   const tabList = [{ name: 'Layers' }, { name: 'Groups' }];
   const [objects, setObjects] = useState<fabric.Object[]>([]);
 
-  const handleGetObjects = () => {
-    if (editor) {
-      const objects = editor.canvas.getObjects();
-
-      const filteredObjects = objects.filter(
-        (object) => object.id !== 'workspace'
-      );
-      setObjects(filteredObjects);
-    }
-  };
-
   useEffect(() => {
-    handleGetObjects();
-  }, [editor, selectedObject]);
+    if (editor) {
+      const getObjects = () => {
+        const objects = editor.canvas.getObjects();
+
+        const filteredObjects = objects.filter(
+          (object) => object.id !== 'workspace'
+        );
+        setObjects(filteredObjects);
+      };
+
+      getObjects();
+
+      editor.canvas.on('object:added', getObjects);
+      editor.canvas.on('object:modified', getObjects);
+      editor.canvas.on('object:removed', getObjects);
+
+      return () => {
+        editor.canvas.off('object:added', getObjects);
+        editor.canvas.off('object:modified', getObjects);
+        editor.canvas.off('object:removed', getObjects);
+      };
+    }
+  }, [editor]);
 
   const handleClick = (id: string) => {
     const selected = editor?.canvas.getObjects().find((obj) => obj.id === id);
     editor?.canvas.setActiveObject(selected as any);
     editor?.canvas.renderAll();
-  };
-
-  const handleLock = (
-    e: React.MouseEvent<HTMLButtonElement>,
-    obj: fabric.Object
-  ) => {
-    e.stopPropagation();
-
-    const canvas = editor?.canvas;
-
-    if (canvas && obj) {
-      obj.lockMovementX = !obj.lockMovementX;
-      obj.lockMovementY = !obj.lockMovementY;
-      obj.lockScalingX = !obj.lockScalingX;
-      obj.lockScalingY = !obj.lockScalingY;
-      obj.lockRotation = !obj.lockRotation;
-      obj.selectable = !obj.selectable;
-      obj.locked = !obj.locked;
-      obj.hoverCursor = obj.locked ? 'default' : 'move';
-      obj.evented = !obj.evented;
-
-      dispatch(setObject({ locked: !obj.locked }));
-      canvas.renderAll();
-      handleGetObjects();
-    }
   };
 
   return (
@@ -97,18 +75,9 @@ export default function LayerTool() {
                   </p>
                 </div>
                 <div className="layer-item-right">
-                  <Tooltip
-                    content={`${!obj.locked ? 'Lock Layer' : 'Unlock Layer'}`}
-                  >
-                    <button
-                      className="iconn"
-                      onClick={(e) => handleLock(e, obj)}
-                    >
-                      {!obj?.locked ? (
-                        <IoLockOpenOutline />
-                      ) : (
-                        <IoLockClosedOutline />
-                      )}
+                  <Tooltip content="Lock Layer">
+                    <button className="iconn">
+                      <IoLockOpenOutline />
                     </button>
                   </Tooltip>
                   <Tooltip content="Hide Layer">

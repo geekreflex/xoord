@@ -2,7 +2,7 @@ export const renderTitle = (name: string | undefined) => {
   if (
     name === 'circle' ||
     name === 'triangle' ||
-    name === 'rectangle' ||
+    name === 'rect' ||
     name === 'polygon'
   ) {
     return 'Shape';

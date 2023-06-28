@@ -1,9 +1,16 @@
+import { Button } from '@/styles/global';
+import { IoDownloadOutline } from 'react-icons/io5';
 import { styled } from 'styled-components';
 
 export default function TopBar() {
   return (
     <Wrap>
-      <p>Untitled</p>
+      <Button>
+        <span id="btn-icon">
+          <IoDownloadOutline />
+        </span>
+        <span id="btn-text">Download </span>
+      </Button>
     </Wrap>
   );
 }
@@ -17,4 +24,6 @@ const Wrap = styled.div`
   display: flex;
   align-items: center;
   padding: 0 10px;
+  gap: 10px;
+  justify-content: flex-end;
 `;
