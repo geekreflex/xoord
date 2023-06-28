@@ -3,28 +3,52 @@ import Tab from '../common/Tab';
 import { useEffect, useState } from 'react';
 import { useEditorContext } from '@/context/EditorContext';
 import { fabric } from 'fabric';
-import { useAppSelector } from '@/app/hooks';
 import { renderTitle } from '@/utils/string';
+import {
+  IoEyeOffOutline,
+  IoEyeOutline,
+  IoEyeSharp,
+  IoLockClosed,
+  IoLockClosedOutline,
+  IoLockOpenOutline,
+  IoLockOpenSharp,
+} from 'react-icons/io5';
+import Tooltip from '../common/Tooltip';
+import { useAppDispatch, useAppSelector } from '@/app/hooks';
+import { setObject } from '@/features/editorSlice';
 
 export default function LayerTool() {
+  const dispatch = useAppDispatch();
   const { editor, selectedObjects } = useEditorContext();
   const [activeTab, setActiveTab] = useState('Layer');
-  const tabList = [{ name: 'Layer' }, { name: 'Groups' }];
   const { object } = useAppSelector((state) => state.editor);
+  const tabList = [{ name: 'Layer' }, { name: 'Groups' }];
   const [objects, setObjects] = useState<fabric.Object[]>([]);
 
   useEffect(() => {
     if (editor) {
-      const objs = editor.canvas.getObjects();
-      const newObjs = objs.filter((obj) => obj.id !== 'workspace');
-      setObjects(newObjs);
-      console.log(newObjs);
+      const objects = editor.canvas.getObjects();
+      const filteredObjects = objects.filter(
+        (object) => object.id !== 'workspace'
+      );
+      setObjects(filteredObjects);
     }
-  }, [editor]);
+  }, [editor, selectedObjects]);
 
   const handleClick = (id: string) => {
     const selected = editor?.canvas.getObjects().find((obj) => obj.id === id);
     editor?.canvas.setActiveObject(selected as any);
+    editor?.canvas.renderAll();
+  };
+
+  const handleLock = (obj: fabric.Object) => {
+    obj.set({
+      lockMovementX: !obj.lockMovementX,
+      lockMovementY: !obj.lockMovementY,
+      lockRotation: !obj.lockRotation,
+      selectable: !obj.selectable,
+    });
+    dispatch(setObject(obj));
     editor?.canvas.renderAll();
   };
 
@@ -46,16 +70,38 @@ export default function LayerTool() {
                     : ''
                 }`}
               >
-                <div className="object-box">
-                  {obj.type === 'image' && (
-                    <img src={(obj.toJSON() as any).src} alt="" />
-                  )}
+                <div className="layer-item-left">
+                  <div className="object-box">
+                    {obj.type === 'image' && (
+                      <img src={(obj.toJSON() as any).src} alt="" />
+                    )}
+                  </div>
+                  <p className="object-name">
+                    {obj.type === 'textbox'
+                      ? (obj as fabric.Textbox).text
+                      : renderTitle(obj.type)}
+                  </p>
                 </div>
-                <p>
-                  {obj.type === 'textbox'
-                    ? (obj as fabric.Textbox).text
-                    : renderTitle(obj.type)}
-                </p>
+                <div className="layer-item-right">
+                  <Tooltip
+                    content={`${
+                      object?.selectable ? 'Lock Layer' : 'Unlock Layer'
+                    }`}
+                  >
+                    <button className="iconn" onClick={() => handleLock(obj)}>
+                      {object?.selectable ? (
+                        <IoLockOpenOutline />
+                      ) : (
+                        <IoLockClosedOutline />
+                      )}
+                    </button>
+                  </Tooltip>
+                  <Tooltip content="Hide Layer">
+                    <button className="iconn">
+                      <IoEyeOutline />
+                    </button>
+                  </Tooltip>
+                </div>
               </div>
             ))}
           </div>
@@ -88,6 +134,32 @@ const Wrap = styled.div`
       &:hover {
         background-color: ${(props) => props.theme.colors.accent}20;
         border-color: ${(props) => props.theme.colors.accent}30;
+
+        .layer-item-right {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
+
+    .layer-item-left {
+      display: flex;
+      align-items: center;
+      width: 70%;
+      gap: 10px;
+    }
+
+    .layer-item-right {
+      display: flex;
+      align-items: center;
+      visibility: hidden;
+      opacity: 0;
+
+      .iconn {
+        font-size: 16px;
+        &:hover {
+          background-color: transparent;
+        }
       }
     }
 
@@ -101,6 +173,14 @@ const Wrap = styled.div`
         height: 100%;
         object-fit: contain;
       }
+    }
+
+    .object-name {
+      font-size: 14px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      flex: 1;
+      overflow: hidden;
     }
 
     .active-obj {

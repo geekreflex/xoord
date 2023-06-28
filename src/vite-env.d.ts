@@ -15,6 +15,7 @@ declare global {
     }
     interface IObjectOptions {
       id?: string | undefined;
+      locked?: boolean;
     }
 
     interface Object {

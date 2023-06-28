@@ -13,6 +13,7 @@ const defaultProps = {
   angle: 0,
   left: 0,
   top: 0,
+  locked: false,
 };
 
 const defaultSize = {
