@@ -46,7 +46,6 @@ export const fetchImages = createAsyncThunk(
     const data = await response.json();
 
     if (response.ok) {
-      console.log('Images', data);
       return data.photos;
     } else {
       throw new Error(data.error);

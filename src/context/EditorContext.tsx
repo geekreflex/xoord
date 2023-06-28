@@ -20,6 +20,7 @@ type EditorContextType = {
   setEditor: (editor: Editor | null) => void;
   controller: Controller | null;
   selectedType: ObjectTypes | undefined;
+  selectedObject: (fabric.Object | fabric.Textbox) | undefined;
   selectedObjects: (fabric.Object[] & fabric.Textbox[]) | undefined;
   clearSelectedObjects: () => void;
 };
@@ -30,6 +31,7 @@ const EditorContext = createContext<EditorContextType>({
   setEditor: () => {},
   controller: null,
   selectedType: undefined,
+  selectedObject: undefined,
   selectedObjects: undefined,
   clearSelectedObjects: () => {},
 });
@@ -38,6 +40,9 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useAppDispatch();
   const [editor, _setEditor] = useState<Editor | null>(null);
   const [tool, setTool] = useState<Tool | null>(null);
+  const [selectedObject, setSelectedObject] = useState<
+    (fabric.Object & fabric.Textbox) | undefined
+  >(undefined);
   const [selectedObjects, setSelectedObjects] = useState<
     (fabric.Object[] & fabric.Textbox[]) | undefined
   >(undefined);
@@ -73,6 +78,7 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
 
         if (selected.length > 0) {
           setSelectedObjects(selected);
+          setSelectedObject(selected[0]);
           const selectedObject = selected[0];
 
           dispatch(setObject(selectedObject.toJSON()));
@@ -90,6 +96,7 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
           );
         } else {
           setSelectedObjects(undefined);
+          setSelectedObject(undefined);
           setSelectedType(ObjectTypes.Unknown);
           dispatch(switchPropertyPanel(null));
         }
@@ -119,6 +126,7 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
     setEditor,
     controller,
     selectedType,
+    selectedObject,
     selectedObjects,
     clearSelectedObjects,
   };

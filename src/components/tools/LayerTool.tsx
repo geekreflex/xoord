@@ -5,35 +5,35 @@ import { useEditorContext } from '@/context/EditorContext';
 import { fabric } from 'fabric';
 import { renderTitle } from '@/utils/string';
 import {
-  IoEyeOffOutline,
   IoEyeOutline,
-  IoEyeSharp,
-  IoLockClosed,
   IoLockClosedOutline,
   IoLockOpenOutline,
-  IoLockOpenSharp,
 } from 'react-icons/io5';
 import Tooltip from '../common/Tooltip';
-import { useAppDispatch, useAppSelector } from '@/app/hooks';
+import { useAppDispatch } from '@/app/hooks';
 import { setObject } from '@/features/editorSlice';
 
 export default function LayerTool() {
   const dispatch = useAppDispatch();
-  const { editor, selectedObjects } = useEditorContext();
-  const [activeTab, setActiveTab] = useState('Layer');
-  const { object } = useAppSelector((state) => state.editor);
-  const tabList = [{ name: 'Layer' }, { name: 'Groups' }];
+  const { editor, selectedObject, selectedObjects } = useEditorContext();
+  const [activeTab, setActiveTab] = useState('Layers');
+  const tabList = [{ name: 'Layers' }, { name: 'Groups' }];
   const [objects, setObjects] = useState<fabric.Object[]>([]);
 
-  useEffect(() => {
+  const handleGetObjects = () => {
     if (editor) {
       const objects = editor.canvas.getObjects();
+
       const filteredObjects = objects.filter(
         (object) => object.id !== 'workspace'
       );
       setObjects(filteredObjects);
     }
-  }, [editor, selectedObjects]);
+  };
+
+  useEffect(() => {
+    handleGetObjects();
+  }, [editor, selectedObject]);
 
   const handleClick = (id: string) => {
     const selected = editor?.canvas.getObjects().find((obj) => obj.id === id);
@@ -41,15 +41,29 @@ export default function LayerTool() {
     editor?.canvas.renderAll();
   };
 
-  const handleLock = (obj: fabric.Object) => {
-    obj.set({
-      lockMovementX: !obj.lockMovementX,
-      lockMovementY: !obj.lockMovementY,
-      lockRotation: !obj.lockRotation,
-      selectable: !obj.selectable,
-    });
-    dispatch(setObject(obj));
-    editor?.canvas.renderAll();
+  const handleLock = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    obj: fabric.Object
+  ) => {
+    e.stopPropagation();
+
+    const canvas = editor?.canvas;
+
+    if (canvas && obj) {
+      obj.lockMovementX = !obj.lockMovementX;
+      obj.lockMovementY = !obj.lockMovementY;
+      obj.lockScalingX = !obj.lockScalingX;
+      obj.lockScalingY = !obj.lockScalingY;
+      obj.lockRotation = !obj.lockRotation;
+      obj.selectable = !obj.selectable;
+      obj.locked = !obj.locked;
+      obj.hoverCursor = obj.locked ? 'default' : 'move';
+      obj.evented = !obj.evented;
+
+      dispatch(setObject({ locked: !obj.locked }));
+      canvas.renderAll();
+      handleGetObjects();
+    }
   };
 
   return (
@@ -58,12 +72,12 @@ export default function LayerTool() {
         <Tab tabs={tabList} activeTab={activeTab} setActiveTab={setActiveTab} />
       </div>
       <div>
-        {activeTab === 'Layer' && (
+        {activeTab === 'Layers' && (
           <div className="layer-list">
-            {objects?.map((obj) => (
+            {objects?.map((obj, index) => (
               <div
                 onClick={() => handleClick(obj.id as string)}
-                key={obj.id}
+                key={index}
                 className={`layer-item ${
                   selectedObjects?.some((itm) => itm.id == obj.id)
                     ? 'active-obj'
@@ -84,12 +98,13 @@ export default function LayerTool() {
                 </div>
                 <div className="layer-item-right">
                   <Tooltip
-                    content={`${
-                      object?.selectable ? 'Lock Layer' : 'Unlock Layer'
-                    }`}
+                    content={`${!obj.locked ? 'Lock Layer' : 'Unlock Layer'}`}
                   >
-                    <button className="iconn" onClick={() => handleLock(obj)}>
-                      {object?.selectable ? (
+                    <button
+                      className="iconn"
+                      onClick={(e) => handleLock(e, obj)}
+                    >
+                      {!obj?.locked ? (
                         <IoLockOpenOutline />
                       ) : (
                         <IoLockClosedOutline />

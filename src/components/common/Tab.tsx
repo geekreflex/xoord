@@ -40,8 +40,9 @@ export default function Tab({ tabs, activeTab, setActiveTab }: TabProps) {
   return (
     <Wrap>
       <div className="tablist" ref={gliderRef}>
-        {tabs.map((tab) => (
+        {tabs.map((tab, index) => (
           <div
+            key={index}
             className={tab.name === activeTab ? 'active tab' : 'tab'}
             onClick={() => onTabClick(tab.name)}
           >

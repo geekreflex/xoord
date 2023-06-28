@@ -7,14 +7,22 @@ import {
 import { TitleSmall } from '@/styles/global';
 import { styled } from 'styled-components';
 import Tooltip from './common/Tooltip';
+import { useEditorContext } from '@/context/EditorContext';
 
 export default function ObjectLayer() {
+  const { controller } = useEditorContext();
   const items = [
-    { name: 'Bring Forward', icon: <ForwardIcon />, action: 'left' },
-    { name: 'Send Backwards', icon: <BackwardIcon />, action: 'left' },
-    { name: 'Bring to front', icon: <BringFrontIcon />, action: 'left' },
-    { name: 'Send to back', icon: <SendBackIcon />, action: 'left' },
+    { name: 'Bring Forward', icon: <ForwardIcon />, action: 'forward' },
+    { name: 'Send Backwards', icon: <BackwardIcon />, action: 'backward' },
+    { name: 'Bring to front', icon: <BringFrontIcon />, action: 'front' },
+    { name: 'Send to back', icon: <SendBackIcon />, action: 'back' },
   ];
+
+  const handleLayer = (action: string) => {
+    if (controller) {
+      controller.order(action);
+    }
+  };
 
   return (
     <Wrap>
@@ -23,7 +31,12 @@ export default function ObjectLayer() {
         {items.map((item) => (
           <div key={item.name} className="obj-layer-item">
             <Tooltip key={item.name} content={item.name}>
-              <button className="iconn">{item.icon}</button>
+              <button
+                onClick={() => handleLayer(item.action)}
+                className="iconn"
+              >
+                {item.icon}
+              </button>
             </Tooltip>
           </div>
         ))}
@@ -33,6 +46,7 @@ export default function ObjectLayer() {
 }
 
 const Wrap = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   .obj-layer-wrap {
