@@ -83,6 +83,7 @@ export class Tool {
       fontFamily: 'Arial',
       fontSize: 72,
       fill: '#000000',
+      id: this.id(),
     });
 
     text.setControlsVisibility({
@@ -107,6 +108,7 @@ export class Tool {
           top: 100,
           scaleX: 0.5,
           scaleY: 0.5,
+          id: this.id(),
         });
         this.editor.canvas.add(image);
         this.editor.canvas.renderAll();
