@@ -3,7 +3,7 @@ import { fabric } from 'fabric';
 
 interface EditorState {
   currentZoom: number;
-  object: (fabric.Object & fabric.Textbox) | null;
+  object: (fabric.Object & fabric.Textbox & fabric.Polygon) | null;
 }
 
 const initialState: EditorState = {

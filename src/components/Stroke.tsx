@@ -112,7 +112,7 @@ export default function Stroke() {
     >
       <Wrap>
         <div className="color-block-wrap" ref={ref}>
-          <p>Color</p>
+          <h4>Color</h4>
           <ColorBlock
             color={object?.stroke as string}
             onClick={handleShowColorPicker}
@@ -126,18 +126,21 @@ export default function Stroke() {
             />
           )}
         </div>
-        <div className="stroke-size-type">
-          <NumberInput
-            value={object?.strokeWidth || 0}
-            onChange={handleStrokeWidth}
-          />
-          <Select
-            options={strokeStyles}
-            value={object?.strokeDashArray?.join(' ') as string}
-            onChange={handleStrokeStyle}
-          />
-        </div>
+        <Select
+          options={strokeStyles}
+          value={object?.strokeDashArray?.join(' ') as string}
+          onChange={handleStrokeStyle}
+        />
         <div>
+          <div className="input-number-range-wrap">
+            <h4>Thickness</h4>
+            <div className="number-wrap">
+              <NumberInput
+                value={object?.strokeWidth || 0}
+                onChange={handleStrokeWidth}
+              />
+            </div>
+          </div>
           <Range
             min={0}
             max={100}

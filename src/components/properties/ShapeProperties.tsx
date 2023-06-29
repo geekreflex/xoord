@@ -3,12 +3,16 @@ import Fill from '../Fill';
 import MoreAction from '../MoreAction';
 import Stroke from '../Stroke';
 import Shadow from '../Shadow';
+import PolygonProps from '../PolygonProps';
+import { useEditorContext } from '@/context/EditorContext';
 
 export default function ShapeProperties() {
+  const { selectedType } = useEditorContext();
   return (
     <Wrap className="props-wrap">
       <Fill />
       <Stroke />
+      {selectedType === 'polygon' && <PolygonProps />}
       <MoreAction />
       <Shadow />
     </Wrap>
