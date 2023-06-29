@@ -45,4 +45,6 @@ export const TRIANGLE = {
 export const POLYGON = {
   ...defaultProps,
   ...defaultSize,
+  width: 500,
+  height: 500,
 };

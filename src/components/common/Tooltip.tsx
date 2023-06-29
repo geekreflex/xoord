@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { usePopper } from 'react-popper';
 import { styled } from 'styled-components';
 
@@ -14,8 +14,9 @@ export default function Tooltip({
   children,
 }: TooltipProps) {
   const [tooltipVisible, setTooltipVisible] = useState(false);
-  const [referenceElement, setReferenceElement] =
-    useState<HTMLDivElement | null>(null);
+  const [referenceElement, setReferenceElement] = useState<HTMLDivElement | null>(
+    null
+  );
   const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
     null
   );

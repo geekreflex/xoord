@@ -5,7 +5,6 @@ import PropertiesPanel from './layouts/PropertiesPanel';
 import Canvas from './Canvas';
 import BottomBar from './layouts/BottomBar';
 import { useAppSelector } from '@/app/hooks';
-import TopBar from './layouts/TopBar';
 import Over from './layouts/Over';
 
 export default function Editor() {
@@ -13,9 +12,6 @@ export default function Editor() {
   return (
     <>
       <Wrap>
-        <div className="top">
-          <TopBar />
-        </div>
         <div className="left-side">
           <Toolbar />
           {activeTool && <AssetsPanel />}

@@ -3,11 +3,7 @@ import History from '../History';
 import Zoom from '../Zoom';
 import ThemeToggle from '../excerpt/ThemeToggle';
 import { LineY } from '@/styles/global';
-import {
-  IoGridSharp,
-  IoHandRightSharp,
-  IoSettingsOutline,
-} from 'react-icons/io5';
+import { IoHandRightSharp, IoPaperPlane } from 'react-icons/io5';
 
 export default function BottomBar() {
   return (
@@ -23,13 +19,17 @@ export default function BottomBar() {
       <div className="item-wrap">
         <History />
       </div>
+      <LineY />
+      <button className="iconn">
+        <IoPaperPlane />
+      </button>
     </Wrap>
   );
 }
 
 const Wrap = styled.div`
   min-width: 200px;
-  max-width: 300px;
+  max-width: 600px;
   height: 45px;
   bottom: 20px;
   background-color: ${(props) => props.theme.colors.primary};

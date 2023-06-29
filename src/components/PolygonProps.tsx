@@ -30,10 +30,6 @@ export default function PolygonProps() {
         return;
       }
 
-      if (sides > 32) {
-        return;
-      }
-
       if (polygon) {
         const { width, height, left, top } = polygon._calcDimensions();
         let newPoints = (
@@ -77,7 +73,7 @@ export default function PolygonProps() {
         {selectedObject?.name === 'star' ? (
           <Range
             min={5}
-            max={32}
+            max={Math.max(32, points)}
             step={1}
             value={points}
             onChange={handleSides}
