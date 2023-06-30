@@ -23,7 +23,7 @@ const list = [
   {
     name: 'Align Vertically',
     icon: <AlignVerticalIcon />,
-    action: 'vertically',
+    action: 'vertical',
   },
   { name: 'Align Bottom', icon: <AlignBottomIcon />, action: 'bottom' },
 ];

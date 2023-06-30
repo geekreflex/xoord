@@ -203,7 +203,7 @@ export class Controller {
           activeObject.set({
             left:
               (workspaceWidth -
-                activeObject.height! * activeObject.scaleY! -
+                activeObject.width! * activeObject.scaleX! -
                 activeObjectStrokeWidth) /
               2,
           });
