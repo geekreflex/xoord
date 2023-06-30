@@ -53,7 +53,7 @@ export default function ElementsTool() {
         <h4 className="items-wrap__title">Shapes</h4>
         <div className="item-list">
           {shapes.map((item, index) => (
-            <Tooltip content={item.name} placement={'right'}>
+            <Tooltip key={index} content={item.name} placement={'right'}>
               <div
                 className="item"
                 key={index}

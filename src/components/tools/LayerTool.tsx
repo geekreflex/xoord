@@ -17,7 +17,6 @@ export default function LayerTool() {
     if (editor) {
       const getObjects = () => {
         const objects = editor.canvas.getObjects();
-
         const filteredObjects = objects.filter(
           (object) => object.id !== 'workspace'
         );

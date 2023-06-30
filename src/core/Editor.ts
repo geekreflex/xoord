@@ -297,6 +297,8 @@ export class Editor {
       workspace.hoverCursor = 'default';
       workspace.set('selectable', false);
       workspace.set('hasControls', false);
+      workspace.set('evented', false);
+      workspace.set('id', 'workspace');
       this.canvas.renderAll();
     }
   }
