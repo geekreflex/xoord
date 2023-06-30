@@ -8,52 +8,82 @@ export class KeyboardHandler {
   private canvas: fabric.Canvas;
   private dispatch: Dispatch;
   private controller: Controller;
+  private isCtrlKeyPressed: boolean;
 
   constructor(editor: Editor, dispatch: Dispatch) {
     this.editor = editor;
     this.canvas = editor.canvas;
     this.dispatch = dispatch;
     this.controller = new Controller(editor);
+    this.isCtrlKeyPressed = false;
     this.attachEventListeners();
   }
 
   private attachEventListeners() {
     document.addEventListener('keydown', this.handleKeyDown);
+    document.addEventListener('keyup', this.handleKeyUp);
   }
 
   private handleKeyDown = (event: KeyboardEvent) => {
-    // event.preventDefault();
-    switch (event.key) {
-      case '=':
-        this.zoomIn();
-        break;
-      case '-':
-        this.zoomOut();
-        break;
-      case ')':
-        this.zoom100();
-        break;
-      case 'Delete':
-      case 'Backspace':
-        this.deleteSelectedObject();
-        break;
-      default:
-        return '';
+    if (event.key === 'Control') {
+      event.preventDefault();
+      this.isCtrlKeyPressed = true;
+    } else {
+      switch (event.key) {
+        case '=':
+          if (this.isCtrlKeyPressed) {
+            event.preventDefault();
+          }
+          this.zoomIn();
+          break;
+        case '-':
+          if (this.isCtrlKeyPressed) {
+            event.preventDefault();
+          }
+          this.zoomOut();
+          break;
+        case ')':
+          this.zoom100();
+          break;
+        case 'Delete':
+        case 'Backspace':
+          this.deleteSelectedObject();
+          break;
+        default:
+          return;
+      }
+    }
+  };
+
+  private handleKeyUp = (event: KeyboardEvent) => {
+    if (event.key === 'Control') {
+      this.isCtrlKeyPressed = false;
     }
   };
 
   private zoomIn() {
+    if (this.isCtrlKeyPressed) {
+    }
     this.editor.zoomIn();
     this.handleUpdateZoom();
   }
 
   private zoomOut() {
+    if (this.isCtrlKeyPressed) {
+    }
     this.editor.zoomOut();
     this.handleUpdateZoom();
   }
 
   private deleteSelectedObject() {
-    this.controller.delete();
+    const obj = this.canvas.getActiveObject() as fabric.Textbox;
+
+    if (obj?.type === 'textbox') {
+      // obj.text = '';
+      // this.canvas.renderAll();
+    } else {
+      this.controller.delete();
+    }
   }
 
   private zoom100() {
