@@ -9,9 +9,9 @@ import Star from '@/assets/shapes/star.png';
 
 const shapes = [
   { name: 'Circle', image: Circle },
-  { name: 'Triangle', image: Rectangle },
-  { name: 'Rectangle', image: Square },
-  { name: 'Square', image: Triangle },
+  { name: 'Triangle', image: Triangle },
+  { name: 'Rectangle', image: Rectangle },
+  { name: 'Square', image: Square },
   { name: 'Polygon', image: Polygon },
   { name: 'Star', image: Star },
 ];
@@ -38,6 +38,10 @@ export default function ElementsTool() {
     }
   };
 
+  const handleDrag = (element: string) => {
+    onShapeClick(element);
+  };
+
   return (
     <Wrap>
       <div className="items-wrap">
@@ -47,8 +51,9 @@ export default function ElementsTool() {
             <div
               className="item"
               key={index}
-              title={item.name}
               onClick={() => onShapeClick(item.name)}
+              draggable={true}
+              onDragEnd={() => handleDrag(item.name)}
             >
               <img src={item.image} alt={item.name} />
             </div>

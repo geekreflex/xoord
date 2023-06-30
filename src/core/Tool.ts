@@ -12,9 +12,13 @@ import { regularPolygonPoints, starPolygonPoints } from './lib/polygonPoints';
 
 export class Tool {
   private editor: Editor;
+  private pos: { left: number; top: number } | null;
 
   constructor(editor: Editor) {
     this.editor = editor;
+    this.pos = null;
+
+    this.initDragEvent();
   }
 
   public addCircle() {
@@ -120,14 +124,32 @@ export class Tool {
   }
 
   private addObject(obj: fabric.Object | fabric.Textbox) {
-    const center = this.editor.workspace?.getCenterPoint();
-    this.editor.canvas._centerObject(obj, center!);
+    if (this.pos) {
+      obj.set({
+        left: this.pos.left,
+        top: this.pos.top,
+      });
+    } else {
+      const center = this.editor.workspace?.getCenterPoint();
+      this.editor.canvas._centerObject(obj, center!);
+    }
+
     this.editor.canvas.add(obj);
     this.editor.canvas.setActiveObject(obj);
     this.editor.canvas.renderAll();
+    this.pos = null;
   }
 
   private id() {
     return generateUniqueId();
+  }
+
+  private initDragEvent() {
+    const This = this;
+    this.editor.canvas.on('drop', (event) => {
+      const dropPosition = This.editor.canvas.getPointer(event.e);
+      console.log(dropPosition);
+      this.pos = { left: dropPosition.x, top: dropPosition.y };
+    });
   }
 }
