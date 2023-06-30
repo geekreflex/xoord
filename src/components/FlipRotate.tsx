@@ -51,20 +51,16 @@ export default function FlipRotate() {
       <div className="flip-rot-main">
         <div className="flip-wrap flip-rot-group-wrap">
           {flips.map((item) => (
-            <Tooltip key={item.name} content={item.name}>
-              <button onClick={item.func} className="iconn">
-                {item.icon}
-              </button>
-            </Tooltip>
+            <button key={item.name} onClick={item.func} className="iconn">
+              {item.icon}
+            </button>
           ))}
         </div>
         <div className="rotate-wrap flip-rot-group-wrap">
           {rotates.map((item) => (
-            <Tooltip key={item.name} content={item.name}>
-              <button onClick={item.func} className="iconn">
-                {item.icon}
-              </button>
-            </Tooltip>
+            <button key={item.name} onClick={item.func} className="iconn">
+              {item.icon}
+            </button>
           ))}
         </div>
       </div>
