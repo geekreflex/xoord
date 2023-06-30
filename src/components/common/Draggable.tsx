@@ -1,6 +1,6 @@
-import { Close2Icon } from '@/icons';
 import { LineX } from '@/styles/global';
 import Drag from 'react-draggable';
+import { IoClose } from 'react-icons/io5';
 import { styled } from 'styled-components';
 
 interface Props {
@@ -17,10 +17,10 @@ export default function Draggable({ children, handle, title, close }: Props) {
         <div className="draggable-header handle">
           <span className="draggable-title">{title}</span>
           <button className="close-btn" onClick={close}>
-            <Close2Icon />
+            <IoClose />
           </button>
         </div>
-        <LineX />
+        <LineX margin={0} />
         <div className="draggable-main">{children}</div>
       </Wrap>
     </Drag>
@@ -45,8 +45,8 @@ const Wrap = styled.div`
     justify-content: space-between;
     height: 30px;
     padding: 0 10px;
-    padding-top: 10px;
     cursor: grab;
+    height: 40px;
 
     .draggable-title {
       font-size: 14px;
@@ -67,7 +67,7 @@ const Wrap = styled.div`
       background-color: transparent;
       color: ${(props) => props.theme.colors.textColor};
       align-items: center;
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 900;
 
       &:hover {

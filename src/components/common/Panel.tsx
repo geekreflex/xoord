@@ -1,5 +1,6 @@
 import { Close2Icon } from '@/icons';
 import { LineX } from '@/styles/global';
+import { IoClose } from 'react-icons/io5';
 import { styled } from 'styled-components';
 
 interface PanelProps {
@@ -21,9 +22,9 @@ export default function Panel({
     <Wrap placement={placement} offset={offset}>
       <div className="panel-header">
         <h3>{title}</h3>
-        <span onClick={close}>
-          <Close2Icon />
-        </span>
+        <button className="close-btn" onClick={close}>
+          <IoClose />
+        </button>
       </div>
       <LineX margin={0} />
       <div className="panel-main">{children}</div>
@@ -70,5 +71,25 @@ const Wrap = styled.div<{ placement: string; offset: number }>`
     overflow-y: auto;
     margin: 20px 0;
     padding: 0 10px;
+  }
+
+  .close-btn {
+    display: flex;
+    padding: 5px;
+    border: none;
+    outline: none;
+    height: 100%;
+    cursor: pointer;
+    position: relative;
+    opacity: 0.5;
+    background-color: transparent;
+    color: ${(props) => props.theme.colors.textColor};
+    align-items: center;
+    font-size: 16px;
+    font-weight: 900;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 `;

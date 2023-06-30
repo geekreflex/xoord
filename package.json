@@ -28,6 +28,7 @@
     "react-redux": "^8.0.7",
     "react-router-dom": "^6.13.0",
     "styled-components": "^6.0.0-rc.1",
+    "tinycolor2": "^1.6.0",
     "uuid": "^9.0.0",
     "webfontloader": "^1.6.28"
   },
@@ -40,6 +41,7 @@
     "@types/react": "^18.0.28",
     "@types/react-color": "^3.0.6",
     "@types/react-dom": "^18.0.11",
+    "@types/tinycolor2": "^1.4.3",
     "@types/uuid": "^9.0.1",
     "@types/webfontloader": "^1.6.35",
     "@typescript-eslint/eslint-plugin": "^5.57.1",

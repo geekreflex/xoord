@@ -1,7 +1,9 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { HexAlphaColorPicker } from 'react-colorful';
 import { styled } from 'styled-components';
 import Draggable from '../common/Draggable';
+import { Grid1Icon } from '@/icons';
+import tinycolor from 'tinycolor2';
 
 interface ColorPickerProps {
   color: string;
@@ -25,8 +27,18 @@ export default function ColorPicker({
   return (
     <Draggable title={label} close={close}>
       <Wrap ref={ref}>
+        <div className="color-picker-top">
+          <button className="iconn">
+            <Grid1Icon />
+          </button>
+        </div>
         <div className="color-picker-wrap">
           <HexAlphaColorPicker color={color} onChange={handleChange} />
+        </div>
+        <div className="color-picker-bottom">
+          <div className="input-wrap">
+            <input value={color} />
+          </div>
         </div>
       </Wrap>
     </Draggable>
@@ -38,10 +50,11 @@ const Wrap = styled.div`
 
   .color-picker-wrap {
     width: 100%;
-    padding: 0 10px;
+    padding: 0 15px;
 
     .react-colorful {
       width: auto;
+      overflow: visible;
     }
 
     .react-colorful__saturation {
@@ -55,9 +68,9 @@ const Wrap = styled.div`
       height: 15px;
     }
     .react-colorful__hue {
-      height: 8px;
+      height: 12px;
       border-radius: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
     .react-colorful__hue-pointer {
       border-width: 3px;
@@ -66,7 +79,7 @@ const Wrap = styled.div`
     }
 
     .react-colorful__alpha {
-      height: 8px;
+      height: 12px;
       border-radius: 10px;
     }
 
@@ -74,6 +87,33 @@ const Wrap = styled.div`
       border-width: 3px;
       width: 15px;
       height: 15px;
+    }
+  }
+
+  .color-picker-top {
+    display: flex;
+    padding: 0 10px;
+    margin-bottom: 5px;
+  }
+
+  .color-picker-bottom {
+    padding: 0 10px;
+  }
+
+  .input-wrap {
+    display: flex;
+    margin: 10px 0;
+
+    input {
+      border: none;
+      outline: none;
+      border: 1px solid ${(props) => props.theme.colors.borderColor};
+      height: 32px;
+      background-color: transparent;
+      color: ${(props) => props.theme.colors.textColor};
+      font-weight: 600;
+      padding: 0 10px;
+      border-radius: ${(props) => props.theme.radius.small};
     }
   }
 `;
