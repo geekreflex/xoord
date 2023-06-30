@@ -8,6 +8,10 @@ export const renderTitle = (name: string | undefined) => {
     return 'Shape';
   }
 
+  if (name === 'line') {
+    return 'Line';
+  }
+
   if (name === 'image') {
     return 'Image';
   }

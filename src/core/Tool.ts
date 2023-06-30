@@ -36,7 +36,7 @@ export class Tool {
     const rectangle = new fabric.Rect({
       ...RECTANGLE,
       id: this.id(),
-      name: 'rect',
+      name: 'rectangle',
     });
     this.addObject(rectangle);
   }
@@ -45,7 +45,7 @@ export class Tool {
     const square = new fabric.Rect({
       ...SQUARE,
       id: this.id(),
-      name: 'rect',
+      name: 'rectangle',
     });
     this.addObject(square);
   }
@@ -64,6 +64,7 @@ export class Tool {
       stroke: 'black',
       strokeWidth: 2,
       strokeUniform: true,
+      name: 'line',
     });
     this.addObject(line);
   }
@@ -99,6 +100,7 @@ export class Tool {
       fontSize: 72,
       fill: '#000000',
       id: this.id(),
+      name: 'text',
     });
 
     text.setControlsVisibility({
@@ -124,6 +126,7 @@ export class Tool {
           scaleX: 0.5,
           scaleY: 0.5,
           id: this.id(),
+          name: 'image',
         });
         this.addObject(image);
       },

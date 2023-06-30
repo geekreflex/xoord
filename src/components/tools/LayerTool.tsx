@@ -3,9 +3,11 @@ import Tab from '../common/Tab';
 import { useEffect, useState } from 'react';
 import { useEditorContext } from '@/context/EditorContext';
 import { fabric } from 'fabric';
-import { renderTitle } from '@/utils/string';
-import { IoEyeOutline, IoLockOpenOutline } from 'react-icons/io5';
+import { LuLock, LuUnlock, LuEye, LuEyeOff } from 'react-icons/lu';
+
 import Tooltip from '../common/Tooltip';
+import LayerPreview from '../excerpt/LayerPreview';
+import LayerTitle from '../excerpt/LayerTitle';
 
 export default function LayerTool() {
   const { editor, selectedObjects } = useEditorContext();
@@ -62,26 +64,18 @@ export default function LayerTool() {
                 }`}
               >
                 <div className="layer-item-left">
-                  <div className="object-box">
-                    {obj.type === 'image' && (
-                      <img src={(obj.toJSON() as any).src} alt="" />
-                    )}
-                  </div>
-                  <p className="object-name">
-                    {obj.type === 'textbox'
-                      ? (obj as fabric.Textbox).text
-                      : renderTitle(obj.type)}
-                  </p>
+                  <LayerPreview obj={obj} />
+                  <LayerTitle obj={obj} />
                 </div>
                 <div className="layer-item-right">
                   <Tooltip content="Lock Layer">
                     <button className="iconn">
-                      <IoLockOpenOutline />
+                      <LuLock />
                     </button>
                   </Tooltip>
                   <Tooltip content="Hide Layer">
                     <button className="iconn">
-                      <IoEyeOutline />
+                      <LuEye />
                     </button>
                   </Tooltip>
                 </div>
@@ -144,26 +138,6 @@ const Wrap = styled.div`
           background-color: transparent;
         }
       }
-    }
-
-    .object-box {
-      width: 32px;
-      height: 32px;
-      border: 1px solid ${(props) => props.theme.colors.borderColor};
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
-    }
-
-    .object-name {
-      font-size: 14px;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      flex: 1;
-      overflow: hidden;
     }
 
     .active-obj {
