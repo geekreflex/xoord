@@ -2,6 +2,7 @@ import { useEditorContext } from '@/context/EditorContext';
 import { IStatus, Image } from '@/types/app';
 import Masonry from 'react-masonry-css';
 import { styled } from 'styled-components';
+import ImageListSkeleton from '../skeleton/ImageListSkeleton';
 
 interface ImageListProps {
   images: Image[];
@@ -29,7 +30,7 @@ export default function ImageList({
   };
 
   if (status === 'loading') {
-    return <div>Loading...</div>;
+    return <ImageListSkeleton />;
   }
 
   if (error) {
