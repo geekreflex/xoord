@@ -8,6 +8,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppDispatch } from './app/hooks';
 import { fetchFonts } from './features/fontsSlice';
+import { SkeletonTheme } from 'react-loading-skeleton';
 
 export default function App() {
   const dispatch = useAppDispatch();
@@ -38,7 +39,9 @@ export default function App() {
     <Wrap>
       <Providers>
         <GlobalCSS />
-        <RouterProvider router={router} />
+        <SkeletonTheme baseColor="#222" highlightColor="#444">
+          <RouterProvider router={router} />
+        </SkeletonTheme>
       </Providers>
     </Wrap>
   );

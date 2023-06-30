@@ -6,6 +6,7 @@ import { setLoading } from '@/features/fontsSlice';
 import SearchInput from '../common/SearchInput';
 import { useEditorContext } from '@/context/EditorContext';
 import WebFont from 'webfontloader';
+import FontListSkeleton from '../skeleton/FontListSkeleton';
 
 interface FontListProps {
   close: () => void;
@@ -99,7 +100,7 @@ export default function FontList({ close }: FontListProps) {
               </li>
             ))}
           </ul>
-          {status === 'loading' && <div>Loading more fonts...</div>}
+          {status === 'loading' && <FontListSkeleton />}
         </div>
       </Wrap>
     </Draggable>

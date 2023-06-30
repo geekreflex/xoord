@@ -18,8 +18,6 @@ export default function ImageListSkeleton() {
       <Masonry breakpointCols={2} className="image-list">
         {items.map(() => (
           <Skeleton
-            baseColor="#222"
-            highlightColor="#444"
             height={getRandomHeight()}
             style={{ marginBottom: '5px' }}
           />
