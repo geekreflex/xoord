@@ -1,8 +1,8 @@
-export const STROKE = '#000000';
+export const STROKE = '#444444';
 export const FILL = '#e8e8e8';
 export const WIDTH = 300;
 export const HEIGHT = 300;
-export const STROKE_WIDTH = 3;
+export const STROKE_WIDTH = 1;
 export const STROKE_UNIFORM = true;
 
 const defaultProps = {

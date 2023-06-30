@@ -69,7 +69,7 @@ export class Tool {
   }
 
   public addPolygon() {
-    const polygonPoints = regularPolygonPoints(5, 100);
+    const polygonPoints = regularPolygonPoints(5, 200);
     const polygon = new fabric.Polygon(polygonPoints, {
       ...POLYGON,
       id: this.id(),
@@ -81,7 +81,7 @@ export class Tool {
   }
 
   public addStar() {
-    const starPoints = starPolygonPoints(5, 50, 100);
+    const starPoints = starPolygonPoints(5, 80, 200);
     const star = new fabric.Polygon(starPoints, {
       ...POLYGON,
       id: this.id(),
