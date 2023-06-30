@@ -1,14 +1,18 @@
 import { Controller } from './Controller';
 import { Editor } from './Editor';
+import { setCurrentZoom } from '@/features/editorSlice';
+import { Dispatch } from '@reduxjs/toolkit';
 
 export class KeyboardHandler {
   private editor: Editor;
   private canvas: fabric.Canvas;
+  private dispatch: Dispatch;
   private controller: Controller;
 
-  constructor(editor: Editor) {
+  constructor(editor: Editor, dispatch: Dispatch) {
     this.editor = editor;
     this.canvas = editor.canvas;
+    this.dispatch = dispatch;
     this.controller = new Controller(editor);
     this.attachEventListeners();
   }
@@ -26,7 +30,7 @@ export class KeyboardHandler {
       case '-':
         this.zoomOut();
         break;
-      case ')':
+      case '0':
         this.zoom100();
         break;
       case 'Delete':
@@ -39,13 +43,13 @@ export class KeyboardHandler {
   };
 
   private zoomIn() {
-    const zoom = this.canvas.getZoom() * 1.1;
-    this.editor.setZoomAuto(zoom);
+    this.editor.zoomIn();
+    this.handleUpdateZoom();
   }
 
   private zoomOut() {
-    const zoom = this.canvas.getZoom() * 0.9;
-    this.editor.setZoomAuto(zoom);
+    this.editor.zoomOut();
+    this.handleUpdateZoom();
   }
 
   private deleteSelectedObject() {
@@ -54,5 +58,10 @@ export class KeyboardHandler {
 
   private zoom100() {
     this.editor.setZoomAuto(1);
+  }
+
+  private handleUpdateZoom() {
+    const zoom = this.canvas.getZoom();
+    this.dispatch(setCurrentZoom(zoom * 100));
   }
 }

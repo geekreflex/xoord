@@ -1,5 +1,6 @@
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { useEditorContext } from '@/context/EditorContext';
+import { KeyboardHandler } from '@/core/KeyboardHandler';
 import { setCurrentZoom } from '@/features/editorSlice';
 import useClickOutside from '@/hooks/useClickOutside';
 import { ArrowDownIcon } from '@/icons';
@@ -17,6 +18,12 @@ export default function Zoom() {
   useClickOutside(ref, () => setVisible(false));
 
   useEffect(() => {
+    if (editor) {
+      new KeyboardHandler(editor, dispatch);
+    }
+  }, [editor, dispatch]);
+
+  useEffect(() => {
     const canvas = editor?.canvas;
     if (canvas) {
       canvas.on('mouse:wheel', () => {
@@ -27,20 +34,12 @@ export default function Zoom() {
   }, [editor]);
 
   const handleZoomIn = () => {
-    const zoomFactor = 1.1;
-    if (editor) {
-      const zoom = editor.canvas.getZoom() * zoomFactor;
-      editor.setZoomAuto(zoom);
-    }
+    editor?.zoomIn();
     handleUpdateZoom();
   };
 
   const handleZoomOut = () => {
-    const zoomFactor = 0.9;
-    if (editor) {
-      const zoom = editor.canvas.getZoom() * zoomFactor;
-      editor.setZoomAuto(zoom);
-    }
+    editor?.zoomOut();
     handleUpdateZoom();
   };
 

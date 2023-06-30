@@ -4,7 +4,6 @@ import { Controls } from './Controls';
 import { AlignGuidelines } from './AligningGuidelines';
 import 'fabric-history';
 import { getBoundingRect } from './helper/object';
-import { KeyboardHandler } from './KeyboardHandler';
 
 declare type EditorOption = { width: number; height: number };
 declare type ExtCanvas = fabric.Canvas & {
@@ -41,8 +40,6 @@ export class Editor {
 
     this.initEvents();
     this.initZoom();
-
-    new KeyboardHandler(this);
   }
 
   private initBackground() {
@@ -165,6 +162,7 @@ export class Editor {
     cb?: (left?: number, top?: number) => void
   ) {
     const { workspaceEl } = this;
+
     const width = workspaceEl.offsetWidth;
     const height = workspaceEl.offsetHeight;
     this.canvas.setWidth(width);
@@ -222,6 +220,18 @@ export class Editor {
 
     // Apply the zoom and translation to the canvas
     this.setZoomAuto(scaleFactor);
+  }
+
+  public zoomIn() {
+    const zoomFactor = 1.1; // Adjust the zoom factor as needed
+    const zoom = this.canvas.getZoom() * zoomFactor;
+    this.setZoomAuto(Math.min(zoom, 4));
+  }
+
+  public zoomOut() {
+    const zoomFactor = 0.9; // Adjust the zoom factor as needed
+    const zoom = this.canvas.getZoom() * zoomFactor;
+    this.setZoomAuto(Math.max(zoom, 0.1));
   }
 
   public zoomToSelection() {
