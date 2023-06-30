@@ -12,7 +12,7 @@ import { regularPolygonPoints, starPolygonPoints } from './lib/polygonPoints';
 
 export class Tool {
   private editor: Editor;
-  private pos: { left: number; top: number } | null;
+  private pos: { x: number; y: number } | null;
 
   constructor(editor: Editor) {
     this.editor = editor;
@@ -57,6 +57,15 @@ export class Tool {
       name: 'triangle',
     });
     this.addObject(triangle);
+  }
+
+  public addLine() {
+    const line = new fabric.Line([50, 50, 400, 400], {
+      stroke: 'black',
+      strokeWidth: 2,
+      strokeUniform: true,
+    });
+    this.addObject(line);
   }
 
   public addPolygon() {
@@ -116,8 +125,7 @@ export class Tool {
           scaleY: 0.5,
           id: this.id(),
         });
-        this.editor.canvas.add(image);
-        this.editor.canvas.renderAll();
+        this.addObject(image);
       },
       { crossOrigin: 'anonymous' }
     );
@@ -126,8 +134,8 @@ export class Tool {
   private addObject(obj: fabric.Object | fabric.Textbox) {
     if (this.pos) {
       obj.set({
-        left: this.pos.left,
-        top: this.pos.top,
+        left: this.pos.x,
+        top: this.pos.y,
       });
     } else {
       const center = this.editor.workspace?.getCenterPoint();
@@ -148,8 +156,7 @@ export class Tool {
     const This = this;
     this.editor.canvas.on('drop', (event) => {
       const dropPosition = This.editor.canvas.getPointer(event.e);
-      console.log(dropPosition);
-      this.pos = { left: dropPosition.x, top: dropPosition.y };
+      this.pos = dropPosition;
     });
   }
 }

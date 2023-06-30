@@ -6,6 +6,8 @@ import Square from '@/assets/shapes/square.png';
 import Triangle from '@/assets/shapes/triangle.png';
 import Polygon from '@/assets/shapes/polygon.png';
 import Star from '@/assets/shapes/star.png';
+import Line from '@/assets/shapes/line.png';
+import Tooltip from '../common/Tooltip';
 
 const shapes = [
   { name: 'Circle', image: Circle },
@@ -14,6 +16,7 @@ const shapes = [
   { name: 'Square', image: Square },
   { name: 'Polygon', image: Polygon },
   { name: 'Star', image: Star },
+  { name: 'Line', image: Line },
 ];
 
 export default function ElementsTool() {
@@ -33,6 +36,8 @@ export default function ElementsTool() {
         return tool?.addStar();
       case 'Polygon':
         return tool?.addPolygon();
+      case 'Line':
+        return tool?.addLine();
       default:
         return null;
     }
@@ -48,15 +53,17 @@ export default function ElementsTool() {
         <h4 className="items-wrap__title">Shapes</h4>
         <div className="item-list">
           {shapes.map((item, index) => (
-            <div
-              className="item"
-              key={index}
-              onClick={() => onShapeClick(item.name)}
-              draggable={true}
-              onDragEnd={() => handleDrag(item.name)}
-            >
-              <img src={item.image} alt={item.name} />
-            </div>
+            <Tooltip content={item.name} placement={'right'}>
+              <div
+                className="item"
+                key={index}
+                onClick={() => onShapeClick(item.name)}
+                draggable={true}
+                onDragEnd={() => handleDrag(item.name)}
+              >
+                <img src={item.image} alt={item.name} />
+              </div>
+            </Tooltip>
           ))}
         </div>
       </div>

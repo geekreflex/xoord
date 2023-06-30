@@ -29,6 +29,10 @@ export default function ImageList({
     }
   };
 
+  const handleDrag = (imageUrl: string) => {
+    onAddImage(imageUrl);
+  };
+
   if (status === 'loading') {
     return <ImageListSkeleton />;
   }
@@ -42,8 +46,10 @@ export default function ImageList({
       <Masonry breakpointCols={2} className="image-list">
         {images.map((image, index) => (
           <div
+            draggable={true}
             key={index}
             className="image"
+            onDragEnd={() => handleDrag(image.src.large)}
             onClick={() => onAddImage(image.src.large)}
           >
             <img src={image.src.medium} />

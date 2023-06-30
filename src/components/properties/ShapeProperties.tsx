@@ -10,7 +10,7 @@ export default function ShapeProperties() {
   const { selectedType } = useEditorContext();
   return (
     <Wrap className="props-wrap">
-      <Fill />
+      {selectedType !== 'line' && <Fill />}
       <Stroke />
       {selectedType === 'polygon' && <PolygonProps />}
       <MoreAction />

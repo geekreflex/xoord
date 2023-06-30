@@ -20,6 +20,7 @@ export default function PropertiesPanel() {
       case 'triangle':
       case 'polygon':
       case 'rect':
+      case 'line':
         return <ShapeProperties />;
       case 'textbox':
         return <TextProperties />;

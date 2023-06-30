@@ -7,5 +7,6 @@ export enum ObjectTypes {
   Image = 'image',
   Selection = 'selection',
   Background = 'background',
+  Line = 'line',
   Unknown = 'unknown',
 }
