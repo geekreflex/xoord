@@ -7,10 +7,12 @@ import {
   regularPolygonPoints,
   starPolygonPoints,
 } from '@/core/lib/polygonPoints';
+import { getInsetDepth } from '@/core/helper/polygon';
 
 export default function PolygonProps() {
   const { editor, selectedObject } = useEditorContext();
   const [points, setPoints] = useState(0);
+  const [inset, setInset] = useState(50);
 
   useEffect(() => {
     if (selectedObject) {
@@ -59,7 +61,35 @@ export default function PolygonProps() {
     }
   };
 
-  const handleInset = () => {};
+  useEffect(() => {
+    if (selectedObject) {
+      const points = selectedObject.points as fabric.Point[];
+      const corners = points?.length! / 2;
+      const inset = getInsetDepth(points, corners, 100);
+      console.log(inset);
+      setInset(inset);
+    }
+  }, [selectedObject]);
+
+  const handleInset = (val: number) => {
+    if (editor) {
+      const activeObject = editor.canvas.getActiveObject() as fabric.Polygon;
+      const corners = activeObject.points?.length! / 2;
+      const newPoints = starPolygonPoints(corners, val, 100) as fabric.Point[];
+      const { width, height, left, top } = activeObject._calcDimensions();
+      activeObject
+        .set({
+          points: newPoints,
+          width,
+          height,
+          originX: 'left',
+          originY: 'top',
+          pathOffset: new fabric.Point(left + width / 2, top + height / 2),
+        })
+        .setCoords();
+      editor.canvas.renderAll();
+    }
+  };
 
   return (
     <Wrap>
@@ -93,11 +123,17 @@ export default function PolygonProps() {
           <div className="input-number-range-wrap">
             <h4>Inset </h4>
             <div className="number-wrap">
-              <NumberInput value={5} onChange={handleInset} />
+              <NumberInput value={inset} onChange={handleInset} />
             </div>
           </div>
 
-          <Range min={5} max={12} step={1} value={5} onChange={handleInset} />
+          <Range
+            min={5}
+            max={100}
+            step={1}
+            value={inset}
+            onChange={handleInset}
+          />
         </div>
       )}
     </Wrap>

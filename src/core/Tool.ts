@@ -22,6 +22,8 @@ export class Tool {
       ...CIRCLE,
       id: this.id(),
       name: 'circle',
+      scaleX: 1.25,
+      scaleY: 1.25,
     });
     this.addObject(circle);
   }

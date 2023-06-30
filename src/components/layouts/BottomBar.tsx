@@ -1,18 +1,54 @@
 import { styled } from 'styled-components';
 import History from '../History';
 import Zoom from '../Zoom';
-import ThemeToggle from '../excerpt/ThemeToggle';
 import { LineY } from '@/styles/global';
-import { IoHandRightSharp, IoPaperPlane } from 'react-icons/io5';
+import { IoHandRightOutline, IoSettingsOutline } from 'react-icons/io5';
+import { FiDownload } from 'react-icons/fi';
+import { BsCursor } from 'react-icons/bs';
+import { useEditorContext } from '@/context/EditorContext';
+import { useEffect, useState } from 'react';
 
 export default function BottomBar() {
+  const [panMode, setPanMode] = useState(false);
+  const { editor } = useEditorContext();
+
+  useEffect(() => {
+    setPanMode(editor?.panMode!);
+  }, [editor]);
+
+  const handlePanToggle = () => {
+    if (editor) {
+      editor.panMode ? editor.endPan() : editor.startPan();
+      setPanMode(editor.panMode);
+    }
+  };
+
+  const handleCursor = () => {
+    setPanMode(false);
+    editor?.endPan();
+  };
+
   return (
     <Wrap>
-      <div className="item-wrap">
-        <button className="iconn">
-          <IoHandRightSharp />
+      <div>
+        <button className={`iconn`}>
+          <IoSettingsOutline />
         </button>
-        <ThemeToggle />
+      </div>
+      <LineY />
+      <div className="item-wrap">
+        <button
+          className={`iconn ${panMode ? 'icon-active' : ''}`}
+          onClick={handlePanToggle}
+        >
+          <IoHandRightOutline />
+        </button>
+        <button
+          className={`iconn ${!panMode ? 'icon-active' : ''}`}
+          onClick={handleCursor}
+        >
+          <BsCursor />
+        </button>
         <Zoom />
       </div>
       <LineY />
@@ -21,7 +57,7 @@ export default function BottomBar() {
       </div>
       <LineY />
       <button className="iconn">
-        <IoPaperPlane />
+        <FiDownload />
       </button>
     </Wrap>
   );
