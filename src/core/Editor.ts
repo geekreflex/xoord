@@ -2,8 +2,8 @@ import { fabric } from 'fabric';
 import { throttle } from 'lodash-es';
 import { Controls } from './Controls';
 import { AlignGuidelines } from './AligningGuidelines';
-import 'fabric-history';
 import { getBoundingRect } from './helper/object';
+import './lib/History.js';
 
 declare type EditorOption = { width: number; height: number };
 declare type ExtCanvas = fabric.Canvas & {

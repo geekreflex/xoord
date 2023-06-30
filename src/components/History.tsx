@@ -22,13 +22,13 @@ export default function History() {
     const undoVal = editor?.canvas.historyUndo;
     const redoVal = editor?.canvas.historyRedo;
     if (undoVal) {
-      const toll = undoVal.length > 1;
-      setCanUndo(toll);
+      const undoLength = undoVal.length > 1;
+      setCanUndo(undoLength);
     }
 
     if (redoVal) {
-      const toll = redoVal.length > 0;
-      setCanRedo(toll);
+      const redoLength = redoVal.length > 0;
+      setCanRedo(redoLength);
     }
   };
 
