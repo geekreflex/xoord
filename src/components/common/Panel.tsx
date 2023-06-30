@@ -1,4 +1,3 @@
-import { Close2Icon } from '@/icons';
 import { LineX } from '@/styles/global';
 import { IoClose } from 'react-icons/io5';
 import { styled } from 'styled-components';

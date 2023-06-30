@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { HexAlphaColorPicker } from 'react-colorful';
 import { styled } from 'styled-components';
 import Draggable from '../common/Draggable';
 import { Grid1Icon } from '@/icons';
-import tinycolor from 'tinycolor2';
 
 interface ColorPickerProps {
   color: string;
