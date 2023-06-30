@@ -24,7 +24,7 @@ const initialState: ImagesState = {
   images: [],
   backgrounds: [],
   page: 1,
-  perPage: 40,
+  perPage: 60,
   status: 'idle',
   error: null,
 };

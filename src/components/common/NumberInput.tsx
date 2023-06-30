@@ -21,7 +21,7 @@ export default function NumberInput({
 
   useEffect(() => {
     if (value) {
-      setInputValue(value);
+      setInputValue(Math.min(value, max));
     }
   }, [value]);
 

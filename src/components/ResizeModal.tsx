@@ -6,8 +6,9 @@ import { useEditorContext } from '@/context/EditorContext';
 import { Button } from '@/styles/global';
 import { useAppDispatch } from '@/app/hooks';
 import { toggleResizeModal } from '@/features/appSlice';
-import { LockIcon, UnlockIcon } from '@/icons';
 import Option from './common/Option';
+import { LuLock, LuUnlock } from 'react-icons/lu';
+import Tooltip from './common/Tooltip';
 
 export default function ResizeModal() {
   const dispatch = useAppDispatch();
@@ -39,8 +40,9 @@ export default function ResizeModal() {
 
   const handleUpdateSize = () => {
     if (editor) {
-      console.log(width, height);
-      editor.setWorkspaceSize(width, height);
+      const resetWidth = Math.min(width, 2000);
+      const resetHeight = Math.min(height, 2000);
+      editor.setWorkspaceSize(resetWidth, resetHeight);
     }
     handleClose();
   };
@@ -60,18 +62,20 @@ export default function ResizeModal() {
           <div className="group-wrap">
             <p>Width</p>
             <div className="input-wrap">
-              <NumberInput value={width} onChange={handleWidth} />
+              <NumberInput value={width} onChange={handleWidth} max={2000} />
             </div>
           </div>
           <div className="lock-icon-wrap">
-            <button className="iconn" onClick={() => setLock(!lock)}>
-              {lock ? <LockIcon /> : <UnlockIcon />}
-            </button>
+            <Tooltip content={lock ? 'Unlock' : 'Lock'}>
+              <button className="iconn" onClick={() => setLock(!lock)}>
+                {lock ? <LuLock /> : <LuUnlock />}
+              </button>
+            </Tooltip>
           </div>
           <div className="group-wrap">
             <p>Height</p>
             <div className="input-wrap">
-              <NumberInput value={height} onChange={handleHeight} />
+              <NumberInput value={height} onChange={handleHeight} max={2000} />
             </div>
           </div>
         </div>
@@ -108,6 +112,7 @@ const Wrap = styled.div`
 
   .group-wrap {
     display: flex;
+    flex: 1;
     flex-direction: column;
   }
   p {

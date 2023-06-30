@@ -22,7 +22,7 @@ export class KeyboardHandler {
   }
 
   private handleKeyDown = (event: KeyboardEvent) => {
-    event.preventDefault();
+    // event.preventDefault();
     switch (event.key) {
       case '=':
         this.zoomIn();
@@ -30,7 +30,7 @@ export class KeyboardHandler {
       case '-':
         this.zoomOut();
         break;
-      case '0':
+      case ')':
         this.zoom100();
         break;
       case 'Delete':
