@@ -62,7 +62,7 @@ export default function PolygonProps() {
   };
 
   useEffect(() => {
-    if (selectedObject) {
+    if (selectedObject && selectedObject.name === 'star') {
       const points = selectedObject.points as fabric.Point[];
       const corners = points?.length! / 2;
       const inset = getInsetDepth(points, corners, 100);

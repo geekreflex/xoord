@@ -1,14 +1,19 @@
 import { useEditorContext } from '@/context/EditorContext';
-import { LineX } from '@/styles/global';
 import { styled } from 'styled-components';
+import Circle from '@/assets/shapes/circle.png';
+import Rectangle from '@/assets/shapes/rectangle.png';
+import Square from '@/assets/shapes/square.png';
+import Triangle from '@/assets/shapes/triangle.png';
+import Polygon from '@/assets/shapes/polygon.png';
+import Star from '@/assets/shapes/star.png';
 
 const shapes = [
-  { name: 'Circle' },
-  { name: 'Triangle' },
-  { name: 'Rectangle' },
-  { name: 'Square' },
-  { name: 'Star' },
-  { name: 'Polygon' },
+  { name: 'Circle', image: Circle },
+  { name: 'Triangle', image: Rectangle },
+  { name: 'Rectangle', image: Square },
+  { name: 'Square', image: Triangle },
+  { name: 'Polygon', image: Polygon },
+  { name: 'Star', image: Star },
 ];
 
 export default function ElementsTool() {
@@ -44,7 +49,9 @@ export default function ElementsTool() {
               key={index}
               title={item.name}
               onClick={() => onShapeClick(item.name)}
-            ></div>
+            >
+              <img src={item.image} alt={item.name} />
+            </div>
           ))}
         </div>
       </div>
@@ -71,12 +78,14 @@ const Wrap = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: ${(props) => props.theme.colors.secondary};
-      border: 1px solid ${(props) => props.theme.colors.borderColor};
+      border: 1px solid transparent;
+      background-color: ${(props) => props.theme.colors.secondary}60;
       border-radius: ${(props) => props.theme.radius.small};
       cursor: pointer;
+      padding: 5px;
       &:hover {
-        opacity: 0.5;
+        background-color: ${(props) => props.theme.colors.secondary};
+        border: 1px solid ${(props) => props.theme.colors.borderColor};
       }
 
       img {
