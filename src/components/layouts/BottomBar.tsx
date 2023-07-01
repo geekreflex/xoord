@@ -7,8 +7,12 @@ import { FiDownload } from 'react-icons/fi';
 import { BsCursor } from 'react-icons/bs';
 import { useEditorContext } from '@/context/EditorContext';
 import { useEffect, useState } from 'react';
+import { useAppDispatch } from '@/app/hooks';
+import { toggleDownloadModal } from '@/features/appSlice';
+import Tooltip from '../common/Tooltip';
 
 export default function BottomBar() {
+  const dispatch = useAppDispatch();
   const [panMode, setPanMode] = useState(false);
   const { editor } = useEditorContext();
 
@@ -26,6 +30,10 @@ export default function BottomBar() {
   const handleCursor = () => {
     setPanMode(false);
     editor?.endPan();
+  };
+
+  const handleDownloadModal = () => {
+    dispatch(toggleDownloadModal(true));
   };
 
   return (
@@ -56,9 +64,11 @@ export default function BottomBar() {
         <History />
       </div>
       <LineY />
-      <button className="iconn">
-        <FiDownload />
-      </button>
+      <Tooltip content="Download">
+        <button className="iconn" onClick={handleDownloadModal}>
+          <FiDownload />
+        </button>
+      </Tooltip>
     </Wrap>
   );
 }
