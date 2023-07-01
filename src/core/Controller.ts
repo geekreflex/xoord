@@ -1,11 +1,15 @@
+import { Dispatch } from '@reduxjs/toolkit';
 import { Editor } from './Editor';
 import FontFaceObserver from 'fontfaceobserver';
+import { switchPropertyPanel } from '@/features/appSlice';
 
 export class Controller {
   editor: Editor;
+  private dispatch: Dispatch;
 
-  constructor(editor: Editor) {
+  constructor(editor: Editor, dispatch: Dispatch) {
     this.editor = editor;
+    this.dispatch = dispatch;
   }
 
   public flipX() {
@@ -90,8 +94,8 @@ export class Controller {
     }
     // @ts-ignore
     selectedObject?.toActiveSelection();
-    selectedObject.set({ id: '23223' });
     this.editor.canvas.requestRenderAll();
+    this.dispatch(switchPropertyPanel('activeSelection'));
   }
 
   public order(action: string) {

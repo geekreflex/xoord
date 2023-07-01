@@ -28,6 +28,7 @@ export default function PropertiesPanel() {
         return <ImageProperties />;
       case 'selection':
       case 'group':
+      case 'activeSelection':
         return <SelectionProperties />;
       case 'background':
         return <BackgroundProperties />;

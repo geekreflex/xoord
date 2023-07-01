@@ -57,7 +57,7 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
     _setEditor(editor);
     if (editor) {
       setTool(new Tool(editor));
-      setController(new Controller(editor));
+      setController(new Controller(editor, dispatch));
     }
   }, []);
 
@@ -75,6 +75,16 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
 
       const onSelection = (e: fabric.IEvent | any) => {
         const { selected } = e;
+        const activeObject = canvas.getActiveObject();
+
+        if (!activeObject) {
+          setSelectedObjects(undefined);
+          dispatch(clearObject());
+          clearSelectedObjects();
+        }
+
+        setSelectedType(activeObject?.type as ObjectTypes);
+        dispatch(switchPropertyPanel(activeObject?.type as ObjectTypes));
 
         if (!selected) return;
 
@@ -86,18 +96,18 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
           dispatch(
             setObject(selectedObject.toJSON(['name', 'id', 'selectable']))
           );
-          setSelectedType(
-            selected.length > 1
-              ? ObjectTypes.Selection
-              : (selected[0].type as ObjectTypes)
-          );
-          dispatch(
-            switchPropertyPanel(
-              selected.length > 1
-                ? ObjectTypes.Selection
-                : (selected[0].type as ObjectTypes)
-            )
-          );
+          // setSelectedType(
+          //   selected.length > 1
+          //     ? ObjectTypes.Selection
+          //     : (selected[0].type as ObjectTypes)
+          // );
+          // dispatch(
+          //   switchPropertyPanel(
+          //     selected.length > 1
+          //       ? ObjectTypes.Selection
+          //       : (selected[0].type as ObjectTypes)
+          //   )
+          // );
         } else {
           setSelectedObjects(undefined);
           setSelectedObject(undefined);
@@ -108,11 +118,12 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
       canvas.on('selection:created', onSelection);
       canvas.on('selection:updated', onSelection);
       canvas.on('selection:modified', onSelection);
+
       canvas.on('selection:cleared', () => {
         setSelectedObjects(undefined);
         dispatch(clearObject());
-        dispatch(switchPropertyPanel(null));
         setSelectedType(undefined);
+        dispatch(switchPropertyPanel(null));
       });
 
       return () => {

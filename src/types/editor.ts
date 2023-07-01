@@ -9,5 +9,6 @@ export enum ObjectTypes {
   Background = 'background',
   Line = 'line',
   Group = 'group',
+  ActiveSelection = 'activeSelection',
   Unknown = 'unknown',
 }
