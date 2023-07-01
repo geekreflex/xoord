@@ -12,6 +12,8 @@ import ColorBlock from './common/ColorBlock';
 import useClickOutside from '@/hooks/useClickOutside';
 import ColorPicker from './widget/ColorPicker';
 import Range from './common/Range';
+import { RxBorderStyle } from 'react-icons/rx';
+import Tooltip from './common/Tooltip';
 
 export default function Stroke() {
   const dispatch = useAppDispatch();
@@ -126,11 +128,22 @@ export default function Stroke() {
             />
           )}
         </div>
-        <Select
-          options={strokeStyles}
-          value={object?.strokeDashArray?.join(' ') as string}
-          onChange={handleStrokeStyle}
-        />
+        <div className="stroke-select-style">
+          <div className="select-wrap">
+            <Select
+              options={strokeStyles}
+              value={object?.strokeDashArray?.join(' ') as string}
+              onChange={handleStrokeStyle}
+            />
+          </div>
+          <div>
+            <Tooltip content="Advance strokes" placement={'bottom'}>
+              <button className="iconn">
+                <RxBorderStyle />
+              </button>
+            </Tooltip>
+          </div>
+        </div>
         <div>
           <div className="input-number-range-wrap">
             <h4>Thickness</h4>
@@ -170,5 +183,15 @@ const Wrap = styled.div`
   .stroke-size-type {
     display: flex;
     gap: 10px;
+  }
+
+  .stroke-select-style {
+    display: flex;
+    gap: 10px;
+
+    .select-wrap {
+      flex: 1;
+      width: 100%;
+    }
   }
 `;
