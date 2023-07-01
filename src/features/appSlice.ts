@@ -12,6 +12,7 @@ interface AppState {
   propertyTitle: string | null;
   propPanel: ObjectTypes | null;
   colorPickerWidget: boolean;
+  downloadModal: boolean;
 }
 
 const initialState: AppState = {
@@ -25,6 +26,7 @@ const initialState: AppState = {
   propertyTitle: null,
   propPanel: null,
   colorPickerWidget: false,
+  downloadModal: false,
 };
 
 export const appSlice = createSlice({
@@ -55,6 +57,10 @@ export const appSlice = createSlice({
 
     toggleResizeModal(state, action) {
       state.resizeModal = action.payload;
+    },
+
+    toggleDownloadModal(state, action) {
+      state.downloadModal = action.payload;
     },
 
     setPanelTitle(state, action) {
@@ -89,5 +95,6 @@ export const {
   showColorPicker,
   hideColorPicker,
   toggleResizeModal,
+  toggleDownloadModal,
 } = appSlice.actions;
 export default appSlice.reducer;
