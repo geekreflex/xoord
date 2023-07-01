@@ -8,5 +8,6 @@ export enum ObjectTypes {
   Selection = 'selection',
   Background = 'background',
   Line = 'line',
+  Group = 'group',
   Unknown = 'unknown',
 }

@@ -73,6 +73,27 @@ export class Controller {
     this.editor.canvas.renderAll();
   }
 
+  public group() {
+    const selectedObject = this.editor.canvas.getActiveObject();
+    if (selectedObject?.type !== 'activeSelection') {
+      return;
+    }
+    // @ts-ignore
+    selectedObject?.toGroup();
+    this.editor.canvas.requestRenderAll();
+  }
+
+  public ungroup() {
+    const selectedObject = this.editor.canvas.getActiveObject();
+    if (selectedObject?.type !== 'group') {
+      return;
+    }
+    // @ts-ignore
+    selectedObject?.toActiveSelection();
+    selectedObject.set({ id: '23223' });
+    this.editor.canvas.requestRenderAll();
+  }
+
   public order(action: string) {
     const object = this.editor.canvas.getActiveObject();
     const objectIndex = this.editor.canvas.getObjects().indexOf(object!);

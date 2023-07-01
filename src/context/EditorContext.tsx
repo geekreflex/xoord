@@ -83,7 +83,9 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
           setSelectedObject(selected[0]);
           const selectedObject = selected[0];
 
-          dispatch(setObject(selectedObject.toJSON()));
+          dispatch(
+            setObject(selectedObject.toJSON(['name', 'id', 'selectable']))
+          );
           setSelectedType(
             selected.length > 1
               ? ObjectTypes.Selection
