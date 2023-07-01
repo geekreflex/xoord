@@ -12,23 +12,36 @@ export default function DownloadModal() {
   };
 
   return (
-    <Modal close={handleClose} title="Download">
+    <Modal close={handleClose}>
       <Wrap>
         <section className="preview-wrap">
           <DesignPreview />
         </section>
-        <section className="download-options">Download Options</section>
+        <section className="download-options">
+          <div className="title">
+            <h3>Save to Computer</h3>
+          </div>
+        </section>
       </Wrap>
     </Modal>
   );
 }
 
 const Wrap = styled.div`
-  width: 800px;
-  padding: 20px;
+  width: 1000px;
+  max-width: 100%;
   display: flex;
+  height: 100%;
+
+  .preview-wrap {
+    width: 60%;
+  }
 
   section {
-    flex: 1;
+    padding: 20px;
+  }
+
+  .download-options {
+    border-left: 1px solid ${(props) => props.theme.colors.borderColor};
   }
 `;

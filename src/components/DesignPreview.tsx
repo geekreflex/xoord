@@ -5,7 +5,7 @@ export default function DesignPreview() {
 }
 
 const Wrap = styled.div`
-  height: 400px;
+  height: 600px;
   width: 100%;
-  border: 1px solid ${(props) => props.theme.borderColor};
+  border: 1px solid ${(props) => props.theme.colors.borderColor};
 `;

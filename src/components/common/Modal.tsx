@@ -1,4 +1,5 @@
 import { LineX } from '@/styles/global';
+import { AnimatePresence, motion } from 'framer-motion';
 import { styled } from 'styled-components';
 
 interface ModalProps {
@@ -7,22 +8,26 @@ interface ModalProps {
   title?: string;
 }
 
-export default function Modal({
-  children,
-  close,
-  title = 'Untitled',
-}: ModalProps) {
+export default function Modal({ children, close, title }: ModalProps) {
   return (
-    <Wrap>
-      <div className="overlay" onClick={close}></div>
-      <div className="modal-inner">
-        <div className="modal-header">
-          <h4>{title}</h4>
-        </div>
-        <LineX margin={0} />
-        <div className="modal-main">{children}</div>
-      </div>
-    </Wrap>
+    <AnimatePresence>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        <Wrap>
+          <div className="overlay" onClick={close}></div>
+          <div className="modal-inner">
+            {title && (
+              <>
+                <div className="modal-header">
+                  <h4>{title}</h4>
+                </div>
+                <LineX margin={0} />
+              </>
+            )}
+            <div className="modal-main">{children}</div>
+          </div>
+        </Wrap>
+      </motion.div>
+    </AnimatePresence>
   );
 }
 
