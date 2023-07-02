@@ -14,7 +14,7 @@ export class KeyboardHandler {
     this.editor = editor;
     this.canvas = editor.canvas;
     this.dispatch = dispatch;
-    this.controller = new Controller(editor);
+    this.controller = new Controller(editor, dispatch);
     this.isCtrlKeyPressed = false;
     this.attachEventListeners();
   }

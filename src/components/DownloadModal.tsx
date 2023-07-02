@@ -21,6 +21,7 @@ export default function DownloadModal() {
           <div className="title">
             <h3>Save to Computer</h3>
           </div>
+          <div className="options-wrap"></div>
         </section>
       </Wrap>
     </Modal>
