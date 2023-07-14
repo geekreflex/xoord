@@ -7,12 +7,9 @@ const useStyles = createStyles(() => ({
   box: {
     width: '100%',
     height: '100vh',
-    border: '1px solid red',
   },
 
-  canvas: {
-    border: '1px solid blue',
-  },
+  canvas: {},
 }));
 
 export default function Workspace() {
@@ -20,7 +17,8 @@ export default function Workspace() {
 
   useEffect(() => {
     const fabricCanvas = new fabric.Canvas('canvas', {});
-    const editor = new EditorSetup(fabricCanvas);
+    const workspaceEl = document.getElementById('workspace') as HTMLElement;
+    const editor = new EditorSetup(fabricCanvas, workspaceEl);
 
     return () => {
       editor.dispose();
@@ -28,8 +26,8 @@ export default function Workspace() {
   }, []);
 
   return (
-    <Box className={classes.box}>
-      <canvas className={classes.canvas} />
+    <Box className={classes.box} id="workspace">
+      <canvas className={classes.canvas} id="canvas" />
     </Box>
   );
 }
