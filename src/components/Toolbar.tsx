@@ -1,21 +1,84 @@
-import { ActionIcon, Group, Paper, Tooltip, createStyles } from '@mantine/core';
-import { IconCircleSquare } from '@tabler/icons-react';
+import {
+  ActionIcon,
+  Divider,
+  Group,
+  Menu,
+  Paper,
+  Tooltip,
+  createStyles,
+} from '@mantine/core';
+import {
+  IconArrowBackUp,
+  IconArrowForwardUp,
+  IconCircle,
+  IconCircleSquare,
+  IconHandStop,
+  IconLetterT,
+  IconRectangle,
+  IconTriangle,
+} from '@tabler/icons-react';
 
 const useStyles = createStyles(() => ({
   wrapper: {
     position: 'absolute',
     zIndex: 9999,
+    margin: 30,
+    marginLeft: 100,
+    display: 'flex',
+    gap: 20,
   },
 }));
 
 export default function Toolbar() {
   const { classes } = useStyles();
   return (
-    <Paper className={classes.wrapper} shadow="md" p="sm" m="lg" withBorder>
+    <Paper
+      className={classes.wrapper}
+      shadow="md"
+      p="sm"
+      radius="lg"
+      withBorder
+    >
       <Group spacing="xs">
-        <Tooltip label="Shapes tool" withArrow>
-          <ActionIcon onClick={() => console.log('clicked')}>
-            <IconCircleSquare size="1.25rem" />
+        <Tooltip label="Pan tool" position="bottom" withArrow>
+          <ActionIcon onClick={() => console.log('clicked')} variant="filled">
+            <IconHandStop size="1.25rem" />
+          </ActionIcon>
+        </Tooltip>
+        <Menu width={200} offset={14} withArrow>
+          <Menu.Target>
+            <ActionIcon onClick={() => console.log('clicked')} variant="light">
+              <Tooltip label="Shapes tool" position="bottom" withArrow>
+                <IconCircleSquare size="1.25rem" />
+              </Tooltip>
+            </ActionIcon>
+          </Menu.Target>
+          <Menu.Dropdown>
+            <Menu.Item icon={<IconRectangle size="1.25rem" />}>
+              Rectangle
+            </Menu.Item>
+            <Menu.Item icon={<IconCircle size="1.25rem" />}>Circle</Menu.Item>
+            <Menu.Item icon={<IconTriangle size="1.25rem" />}>
+              Triangle
+            </Menu.Item>
+          </Menu.Dropdown>
+        </Menu>
+        <Tooltip label="Text tool" position="bottom" withArrow>
+          <ActionIcon onClick={() => console.log('clicked')} variant="light">
+            <IconLetterT size="1.25rem" />
+          </ActionIcon>
+        </Tooltip>
+      </Group>
+      <Divider orientation="vertical" />
+      <Group spacing="xs">
+        <Tooltip label="Undo" position="bottom" withArrow>
+          <ActionIcon onClick={() => console.log('clicked')} variant="light">
+            <IconArrowBackUp size="1.25rem" />
+          </ActionIcon>
+        </Tooltip>
+        <Tooltip label="Redo" position="bottom" withArrow>
+          <ActionIcon onClick={() => console.log('clicked')} variant="light">
+            <IconArrowForwardUp size="1.25rem" />
           </ActionIcon>
         </Tooltip>
       </Group>

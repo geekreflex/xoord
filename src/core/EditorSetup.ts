@@ -41,8 +41,8 @@ export class EditorSetup {
 
   private addTest() {
     const rect = new fabric.Rect({
-      width: 200,
-      height: 200,
+      width: 100,
+      height: 100,
       fill: '#090909',
       stroke: '#555555',
       strokeWidth: 1,
