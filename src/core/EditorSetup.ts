@@ -5,4 +5,10 @@ export class EditorSetup {
   constructor(canvas: fabric.Canvas) {
     this.canvas = canvas;
   }
+
+  public dispose() {
+    if (this.canvas) {
+      this.canvas.dispose();
+    }
+  }
 }

@@ -1,7 +1,9 @@
+import Layout from './components/Layout';
+
 function App() {
   return (
     <>
-      <div>New Editor</div>
+      <Layout />
     </>
   );
 }
