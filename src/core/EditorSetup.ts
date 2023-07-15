@@ -12,7 +12,7 @@ declare type ExtCanvas = fabric.Canvas & {
 
 export class EditorSetup {
   public canvas: fabric.Canvas;
-  private workspaceEl: HTMLElement;
+  public workspaceEl: HTMLElement;
   private resizeObserver: ResizeObserver | null;
   public panMode: boolean;
 
@@ -25,8 +25,6 @@ export class EditorSetup {
     this.initControls();
     this.initEditor();
     this.initResizeObserver();
-    this.addTest();
-    this.addTest2();
 
     this.initZoom();
     this.initPan();
@@ -52,35 +50,6 @@ export class EditorSetup {
       }, 50)
     );
     this.resizeObserver.observe(this.workspaceEl);
-  }
-
-  private addTest() {
-    const rect = new fabric.Rect({
-      width: 100,
-      height: 100,
-      fill: '#090909',
-      stroke: '#555555',
-      strokeWidth: 1,
-      strokeUniform: true,
-    });
-    this.canvas.add(rect).centerObject(rect.setCoords());
-    this.canvas.setActiveObject(rect);
-    this.canvas.renderAll();
-  }
-
-  private addTest2() {
-    const rect = new fabric.Rect({
-      width: 100,
-      height: 100,
-      fill: '#e911e3',
-      stroke: '#555555',
-      strokeWidth: 1,
-      strokeUniform: true,
-    });
-
-    this.canvas.add(rect).centerObject(rect.setCoords());
-    this.canvas.setActiveObject(rect);
-    this.canvas.renderAll();
   }
 
   private initZoom() {

@@ -37,7 +37,7 @@ const useStyles = createStyles(() => ({
 }));
 
 export default function Toolbar() {
-  const { editor } = useEditorContext();
+  const { editor, tool } = useEditorContext();
   const [isPan, setPan] = useState(false);
 
   const { classes } = useStyles();
@@ -50,6 +50,19 @@ export default function Toolbar() {
   const handleMove = () => {
     setPan(false);
     editor?.endPan();
+  };
+
+  const handleAddShape = (shape: string) => {
+    if (tool) {
+      switch (shape) {
+        case 'circle':
+          tool.addCircle();
+          break;
+        case 'rectangle':
+          tool.addRectangle();
+          break;
+      }
+    }
   };
 
   return (
@@ -80,10 +93,20 @@ export default function Toolbar() {
             </ActionIcon>
           </Menu.Target>
           <Menu.Dropdown>
-            <Menu.Item fz="xs" p="5px" icon={<IconRectangle size="1.25rem" />}>
+            <Menu.Item
+              fz="xs"
+              p="5px"
+              icon={<IconRectangle size="1.25rem" />}
+              onClick={() => handleAddShape('rectangle')}
+            >
               Rectangle
             </Menu.Item>
-            <Menu.Item fz="xs" p="5px" icon={<IconCircle size="1.25rem" />}>
+            <Menu.Item
+              fz="xs"
+              p="5px"
+              icon={<IconCircle size="1.25rem" />}
+              onClick={() => handleAddShape('circle')}
+            >
               Circle
             </Menu.Item>
             <Menu.Item fz="xs" p="5px" icon={<IconTriangle size="1.25rem" />}>
