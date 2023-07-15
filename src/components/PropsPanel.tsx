@@ -1,5 +1,13 @@
 import { useEditorContext } from '@/context/EditorContext';
-import { Box, Center, Divider, Paper, Text, createStyles } from '@mantine/core';
+import {
+  Box,
+  Center,
+  Divider,
+  Group,
+  Paper,
+  Text,
+  createStyles,
+} from '@mantine/core';
 import { IconGripVertical } from '@tabler/icons-react';
 import Drag from 'react-draggable';
 import ShapeProps from './props/ShapeProps';
@@ -10,6 +18,9 @@ const useStyles = createStyles(() => ({
     top: 100,
     right: 50,
     width: 250,
+  },
+  handle: {
+    cursor: 'grab',
   },
 }));
 
@@ -36,9 +47,12 @@ export default function PropsPanel() {
         p="sm"
         radius="lg"
       >
-        <Box id="handle">
+        <Group id="handle" mb={5} className={classes.handle}>
           <IconGripVertical size="1.25rem" />
-        </Box>
+          <Text fw="bold" size="sm">
+            Edit Properties
+          </Text>
+        </Group>
         <Divider />
         <Box pt="sm">
           {!selectedObject && (

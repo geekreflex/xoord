@@ -1,56 +1,33 @@
 import { useEditorContext } from '@/context/EditorContext';
-import {
-  Box,
-  Button,
-  Flex,
-  Group,
-  Paper,
-  Text,
-  createStyles,
-} from '@mantine/core';
-
-const useStyle = createStyles(() => ({
-  wrap: {},
-  box: {
-    padding: 0,
-    display: 'block',
-  },
-  flex: {
-    width: '100%',
-  },
-}));
+import { Box, ColorInput, Group, Text } from '@mantine/core';
+import { useEffect, useState } from 'react';
 
 export default function Fill() {
+  const { editor } = useEditorContext();
+  const [color, setColor] = useState('');
   const { selectedObject } = useEditorContext();
-  const { classes } = useStyle();
+
+  useEffect(() => {
+    if (editor) {
+      const activeObject = editor.canvas.getActiveObject();
+      if (activeObject) {
+        activeObject.set({ fill: color || selectedObject?.fill });
+      }
+      editor.canvas.renderAll();
+    }
+  }, [editor, color]);
+
   return (
     <Box>
       <Group noWrap>
-        <Text size="sm" fw="bold">
+        <Text size="xs" fw="bold">
           Color
         </Text>
-        <Button
-          variant="default"
-          fullWidth
-          className={classes.box}
-          px={6}
-          styles={{
-            inner: {
-              alignItems: 'center',
-              justifyContent: 'flex-start',
-            },
-          }}
-        >
-          <Paper
-            c="green"
-            p="sm"
-            style={{ backgroundColor: selectedObject?.fill as string }}
-            withBorder
-          ></Paper>
-          <Text size="xs" ml={10}>
-            #344090
-          </Text>
-        </Button>
+        <ColorInput
+          format="hexa"
+          defaultValue={selectedObject?.fill as string}
+          onChange={setColor}
+        />
       </Group>
     </Box>
   );
