@@ -14,8 +14,12 @@ import {
   IconCircleSquare,
   IconHandStop,
   IconLetterT,
+  IconPhoto,
+  IconPointer,
   IconRectangle,
   IconTriangle,
+  IconZoomIn,
+  IconZoomOut,
 } from '@tabler/icons-react';
 
 const useStyles = createStyles(() => ({
@@ -40,8 +44,13 @@ export default function Toolbar() {
       withBorder
     >
       <Group spacing="xs">
-        <Tooltip label="Pan tool" position="bottom" withArrow>
+        <Tooltip label="Move tool" position="bottom" withArrow>
           <ActionIcon onClick={() => console.log('clicked')} variant="filled">
+            <IconPointer size="1.25rem" />
+          </ActionIcon>
+        </Tooltip>
+        <Tooltip label="Pan tool" position="bottom" withArrow>
+          <ActionIcon onClick={() => console.log('clicked')} variant="light">
             <IconHandStop size="1.25rem" />
           </ActionIcon>
         </Tooltip>
@@ -68,6 +77,11 @@ export default function Toolbar() {
             <IconLetterT size="1.25rem" />
           </ActionIcon>
         </Tooltip>
+        <Tooltip label="Upload photo" position="bottom" withArrow>
+          <ActionIcon onClick={() => console.log('clicked')} variant="light">
+            <IconPhoto size="1.25rem" />
+          </ActionIcon>
+        </Tooltip>
       </Group>
       <Divider orientation="vertical" />
       <Group spacing="xs">
@@ -79,6 +93,19 @@ export default function Toolbar() {
         <Tooltip label="Redo" position="bottom" withArrow>
           <ActionIcon onClick={() => console.log('clicked')} variant="light">
             <IconArrowForwardUp size="1.25rem" />
+          </ActionIcon>
+        </Tooltip>
+      </Group>
+      <Divider orientation="vertical" />
+      <Group spacing="xs">
+        <Tooltip label="Zoom In" position="bottom" withArrow>
+          <ActionIcon onClick={() => console.log('clicked')} variant="light">
+            <IconZoomIn size="1.25rem" />
+          </ActionIcon>
+        </Tooltip>
+        <Tooltip label="Zoom Out" position="bottom" withArrow>
+          <ActionIcon onClick={() => console.log('clicked')} variant="light">
+            <IconZoomOut size="1.25rem" />
           </ActionIcon>
         </Tooltip>
       </Group>
