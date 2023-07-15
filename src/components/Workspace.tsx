@@ -18,7 +18,12 @@ export default function Workspace() {
   const { setEditor } = useEditorContext();
 
   useEffect(() => {
-    const fabricCanvas = new fabric.Canvas('canvas', {});
+    const fabricCanvas = new fabric.Canvas('canvas', {
+      fireRightClick: true,
+      stopContextMenu: true,
+      preserveObjectStacking: true,
+      controlsAboveOverlay: true,
+    });
     const workspaceEl = document.getElementById('workspace') as HTMLElement;
     const editor = new EditorSetup(fabricCanvas, workspaceEl);
     setEditor(editor);
