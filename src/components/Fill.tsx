@@ -4,8 +4,13 @@ import { useEffect, useState } from 'react';
 
 export default function Fill() {
   const { editor } = useEditorContext();
+  const [currentColor, setCurrentColor] = useState('');
   const [color, setColor] = useState('');
   const { selectedObject } = useEditorContext();
+
+  useEffect(() => {
+    setCurrentColor(selectedObject?.fill as string);
+  }, []);
 
   useEffect(() => {
     if (editor) {
@@ -15,7 +20,7 @@ export default function Fill() {
       }
       editor.canvas.renderAll();
     }
-  }, [editor, color]);
+  }, [editor, color, selectedObject]);
 
   return (
     <Box>
@@ -25,8 +30,9 @@ export default function Fill() {
         </Text>
         <ColorInput
           format="hexa"
-          defaultValue={selectedObject?.fill as string}
+          defaultValue={currentColor as string}
           onChange={setColor}
+          placeholder="Add color..."
         />
       </Group>
     </Box>
