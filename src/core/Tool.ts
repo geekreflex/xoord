@@ -101,7 +101,6 @@ export class Tool {
 
   public order(action: string) {
     const object = this.canvas.getActiveObject();
-    const objectIndex = this.canvas.getObjects().indexOf(object!);
 
     switch (action) {
       case 'front':
