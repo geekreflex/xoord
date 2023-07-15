@@ -1,6 +1,9 @@
 import { fabric } from 'fabric';
 import { throttle } from 'lodash-es';
 import { Controls } from './Controls';
+import { Zoom } from './Zoom';
+import './lib/history.js';
+import { AlignGuidelines } from './AlignGuidelines.js';
 
 export class EditorSetup {
   public canvas: fabric.Canvas;
@@ -16,6 +19,7 @@ export class EditorSetup {
     this.initEditor();
     this.initResizeObserver();
     this.addTest();
+    this.addTest2();
   }
 
   private initEditor() {
@@ -28,6 +32,8 @@ export class EditorSetup {
 
   private initControls() {
     new Controls(this.canvas);
+    new Zoom(this.canvas);
+    new AlignGuidelines({ canvas: this.canvas }).init();
   }
 
   private initResizeObserver() {
@@ -44,6 +50,20 @@ export class EditorSetup {
       width: 100,
       height: 100,
       fill: '#090909',
+      stroke: '#555555',
+      strokeWidth: 1,
+      strokeUniform: true,
+    });
+    this.canvas.add(rect).centerObject(rect);
+    this.canvas.setActiveObject(rect);
+    this.canvas.renderAll();
+  }
+
+  private addTest2() {
+    const rect = new fabric.Rect({
+      width: 100,
+      height: 100,
+      fill: '#e911e3',
       stroke: '#555555',
       strokeWidth: 1,
       strokeUniform: true,
