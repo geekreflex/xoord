@@ -27,3 +27,13 @@ export const RECTANGLE = {
   ...defaultSize,
   width: defaultSize.width + 100,
 };
+
+export const TRIANGLE = {
+  ...defaultProps,
+  ...defaultSize,
+};
+
+export const POLYGON = {
+  ...defaultProps,
+  ...defaultSize,
+};

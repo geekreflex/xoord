@@ -32,6 +32,9 @@ export default function PropsPanel() {
     switch (selectedType) {
       case 'circle':
       case 'rect':
+      case 'triangle':
+      case 'line':
+      case 'polygon':
         return <ShapeProps />;
       default:
         return 'null';

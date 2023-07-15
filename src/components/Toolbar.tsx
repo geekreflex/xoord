@@ -61,6 +61,20 @@ export default function Toolbar() {
         case 'rectangle':
           tool.addRectangle();
           break;
+        case 'triangle':
+          tool.addTriangle();
+          break;
+        case 'line':
+          tool.addLine();
+          break;
+        case 'star':
+          tool.addStar();
+          break;
+        case 'polygon':
+          tool.addPolygon();
+          break;
+        default:
+          break;
       }
     }
   };
@@ -109,16 +123,36 @@ export default function Toolbar() {
             >
               Circle
             </Menu.Item>
-            <Menu.Item fz="xs" p="5px" icon={<IconTriangle size="1.25rem" />}>
+            <Menu.Item
+              fz="xs"
+              p="5px"
+              icon={<IconTriangle size="1.25rem" />}
+              onClick={() => handleAddShape('triangle')}
+            >
               Triangle
             </Menu.Item>
-            <Menu.Item fz="xs" p="5px" icon={<IconSlash size="1.25rem" />}>
+            <Menu.Item
+              fz="xs"
+              p="5px"
+              icon={<IconSlash size="1.25rem" />}
+              onClick={() => handleAddShape('line')}
+            >
               Line
             </Menu.Item>
-            <Menu.Item fz="xs" p="5px" icon={<IconStar size="1.25rem" />}>
+            <Menu.Item
+              fz="xs"
+              p="5px"
+              icon={<IconStar size="1.25rem" />}
+              onClick={() => handleAddShape('star')}
+            >
               Star
             </Menu.Item>
-            <Menu.Item fz="xs" p="5px" icon={<IconPolygon size="1.25rem" />}>
+            <Menu.Item
+              fz="xs"
+              p="5px"
+              icon={<IconPolygon size="1.25rem" />}
+              onClick={() => handleAddShape('polygon')}
+            >
               Polygon
             </Menu.Item>
           </Menu.Dropdown>

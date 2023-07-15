@@ -71,7 +71,11 @@ export default function Stroke() {
                   Width
                 </Text>
                 <Group>
-                  <NumberInput min={0} max={100} />
+                  <NumberInput
+                    min={0}
+                    max={100}
+                    defaultValue={selectedObject?.strokeWidth}
+                  />
                 </Group>
               </Flex>
               <Flex align="center" gap={10}>
