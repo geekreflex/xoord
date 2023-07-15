@@ -11,6 +11,8 @@ import {
 import { IconGripVertical } from '@tabler/icons-react';
 import Drag from 'react-draggable';
 import ShapeProps from './props/ShapeProps';
+import ImageProps from './props/ImageProps';
+import SelectionProps from './props/SelectionProps';
 
 const useStyles = createStyles(() => ({
   wrapper: {
@@ -36,6 +38,10 @@ export default function PropsPanel() {
       case 'line':
       case 'polygon':
         return <ShapeProps />;
+      case 'image':
+        return <ImageProps />;
+      case 'activeSelection':
+        return <SelectionProps />;
       default:
         return 'null';
     }

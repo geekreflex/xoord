@@ -74,6 +74,71 @@ export class Tool {
     this.addObject(star);
   }
 
+  public delete() {
+    const objects = this.canvas.getActiveObjects();
+    objects.map((obj) => {
+      this.canvas.remove(obj);
+      this.canvas.getActiveObject();
+    });
+    this.canvas.discardActiveObject().renderAll();
+    this.canvas.renderAll();
+  }
+
+  public duplicate() {
+    const activeObject = this.canvas.getActiveObject();
+    if (activeObject) {
+      activeObject.clone((clone: fabric.Object) => {
+        this.canvas.add(
+          clone.set({
+            name: activeObject.name,
+            left: activeObject.left! + 10,
+            top: activeObject.top! + 10,
+          })
+        );
+      });
+    }
+  }
+
+  public order(action: string) {
+    const object = this.canvas.getActiveObject();
+    const objectIndex = this.canvas.getObjects().indexOf(object!);
+
+    switch (action) {
+      case 'front':
+        object?.bringToFront();
+        break;
+      case 'back':
+        object?.sendToBack();
+        break;
+      case 'forward':
+        object?.bringForward();
+        break;
+      case 'backward':
+        object?.sendBackwards();
+        break;
+      default:
+        break;
+    }
+
+    this.editor.canvas.renderAll();
+  }
+
+  public flipX() {
+    const activeObject = this.editor.canvas.getActiveObject();
+    if (activeObject) {
+      activeObject.toggle('flipX');
+    }
+    this.editor.canvas.renderAll();
+  }
+
+  public flipY() {
+    const activeObject = this.editor.canvas.getActiveObject();
+    if (activeObject) {
+      activeObject.toggle('flipY');
+    }
+    this.editor.canvas.renderAll();
+  }
+
   private addObject(obj: fabric.Object | fabric.Textbox) {
     if (this.pos) {
       obj.set({

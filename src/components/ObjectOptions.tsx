@@ -1,8 +1,10 @@
+import { useEditorContext } from '@/context/EditorContext';
 import {
   ActionIcon,
   Button,
   Group,
   Popover,
+  Stack,
   Text,
   Tooltip,
 } from '@mantine/core';
@@ -13,19 +15,29 @@ import {
   IconChevronsDown,
   IconChevronsUp,
   IconCopy,
+  IconFlipHorizontal,
+  IconFlipVertical,
   IconTrash,
 } from '@tabler/icons-react';
 
 export default function ObjectOptions() {
+  const { tool } = useEditorContext();
+
+  const handleLayer = (action: string) => {
+    if (tool) {
+      tool.order(action);
+    }
+  };
+
   return (
     <Group>
       <Tooltip label="Delete" position="bottom" withArrow>
-        <ActionIcon variant={'light'}>
+        <ActionIcon variant={'light'} onClick={() => tool?.delete()}>
           <IconTrash size="1.25rem" />
         </ActionIcon>
       </Tooltip>
       <Tooltip label="Duplicate" position="bottom" withArrow>
-        <ActionIcon variant={'light'}>
+        <ActionIcon variant={'light'} onClick={() => tool?.duplicate()}>
           <IconCopy size="1.25rem" />
         </ActionIcon>
       </Tooltip>
@@ -51,28 +63,54 @@ export default function ObjectOptions() {
         </Popover.Target>
 
         <Popover.Dropdown>
-          <Group>
-            <Tooltip label="Brign forward" position="bottom" withArrow>
-              <ActionIcon variant={'light'}>
-                <IconChevronsUp size="1.25rem" />
-              </ActionIcon>
-            </Tooltip>
-            <Tooltip label="Send backwards" position="bottom" withArrow>
-              <ActionIcon variant={'light'}>
-                <IconChevronsDown size="1.25rem" />
-              </ActionIcon>
-            </Tooltip>
-            <Tooltip label="Bring to front" position="bottom" withArrow>
-              <ActionIcon variant={'light'}>
-                <IconChevronUp size="1.25rem" />
-              </ActionIcon>
-            </Tooltip>
-            <Tooltip label="Send to back" position="bottom" withArrow>
-              <ActionIcon variant={'light'}>
-                <IconChevronDown size="1.25rem" />
-              </ActionIcon>
-            </Tooltip>
-          </Group>
+          <Stack>
+            <Group>
+              <Tooltip label="Brign forward" position="bottom" withArrow>
+                <ActionIcon
+                  variant={'light'}
+                  onClick={() => handleLayer('front')}
+                >
+                  <IconChevronsUp size="1.25rem" />
+                </ActionIcon>
+              </Tooltip>
+              <Tooltip label="Send backwards" position="bottom" withArrow>
+                <ActionIcon
+                  variant={'light'}
+                  onClick={() => handleLayer('back')}
+                >
+                  <IconChevronsDown size="1.25rem" />
+                </ActionIcon>
+              </Tooltip>
+              <Tooltip label="Bring to front" position="bottom" withArrow>
+                <ActionIcon
+                  variant={'light'}
+                  onClick={() => handleLayer('forward')}
+                >
+                  <IconChevronUp size="1.25rem" />
+                </ActionIcon>
+              </Tooltip>
+              <Tooltip label="Send to back" position="bottom" withArrow>
+                <ActionIcon
+                  variant={'light'}
+                  onClick={() => handleLayer('backward')}
+                >
+                  <IconChevronDown size="1.25rem" />
+                </ActionIcon>
+              </Tooltip>
+            </Group>
+            <Group>
+              <Tooltip label="Flip horizontal" position="bottom" withArrow>
+                <ActionIcon variant={'light'} onClick={() => tool?.flipX()}>
+                  <IconFlipHorizontal size="1.25rem" />
+                </ActionIcon>
+              </Tooltip>
+              <Tooltip label="Flip vertical" position="bottom" withArrow>
+                <ActionIcon variant={'light'} onClick={() => tool?.flipY()}>
+                  <IconFlipVertical size="1.25rem" />
+                </ActionIcon>
+              </Tooltip>
+            </Group>
+          </Stack>
         </Popover.Dropdown>
       </Popover>
     </Group>

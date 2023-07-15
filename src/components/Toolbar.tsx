@@ -22,7 +22,7 @@ import {
 } from '@tabler/icons-react';
 import History from './History';
 import Zoom from './Zoom';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useEditorContext } from '@/context/EditorContext';
 
 const useStyles = createStyles(() => ({
@@ -37,6 +37,7 @@ const useStyles = createStyles(() => ({
 }));
 
 export default function Toolbar() {
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const { editor, tool } = useEditorContext();
   const [isPan, setPan] = useState(false);
 
@@ -50,6 +51,33 @@ export default function Toolbar() {
   const handleMove = () => {
     setPan(false);
     editor?.endPan();
+  };
+
+  const handleAddImage = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event?.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const imgElement = document.createElement('img');
+        imgElement.onload = () => {
+          const fabricImage = new fabric.Image(imgElement);
+          fabricImage.scaleToWidth(editor?.workspaceEl?.offsetWidth! / 5);
+          if (editor) {
+            editor.canvas.add(fabricImage);
+            editor.canvas.centerObject(fabricImage);
+            editor.canvas.setActiveObject(fabricImage);
+          }
+        };
+        imgElement.src = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleAddShape = (shape: string) => {
@@ -87,6 +115,13 @@ export default function Toolbar() {
       radius="lg"
       withBorder
     >
+      <input
+        type="file"
+        accept="image/*"
+        ref={fileInputRef}
+        onChange={handleImageUpload}
+        style={{ display: 'none' }}
+      />
       <Group spacing="xs">
         <Tooltip label="Move tool" position="bottom" withArrow>
           <ActionIcon onClick={handleMove} variant={isPan ? 'light' : 'filled'}>
@@ -163,7 +198,7 @@ export default function Toolbar() {
           </ActionIcon>
         </Tooltip>
         <Tooltip label="Upload photo" position="bottom" withArrow>
-          <ActionIcon onClick={() => console.log('clicked')} variant="light">
+          <ActionIcon onClick={handleAddImage} variant="light">
             <IconPhoto size="1.25rem" />
           </ActionIcon>
         </Tooltip>
