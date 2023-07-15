@@ -2,6 +2,7 @@ import { Box, createStyles } from '@mantine/core';
 import { useEffect } from 'react';
 import { fabric } from 'fabric';
 import { EditorSetup } from '../core/EditorSetup';
+import { useEditorContext } from '@/context/EditorContext';
 
 const useStyles = createStyles(() => ({
   box: {
@@ -14,11 +15,13 @@ const useStyles = createStyles(() => ({
 
 export default function Workspace() {
   const { classes } = useStyles();
+  const { setEditor } = useEditorContext();
 
   useEffect(() => {
     const fabricCanvas = new fabric.Canvas('canvas', {});
     const workspaceEl = document.getElementById('workspace') as HTMLElement;
     const editor = new EditorSetup(fabricCanvas, workspaceEl);
+    setEditor(editor);
 
     return () => {
       editor.dispose();

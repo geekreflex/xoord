@@ -34,4 +34,22 @@ export class Zoom {
       opt.e.stopPropagation();
     });
   }
+
+  public setZoom(scale: number) {
+    const center = this.canvas.getCenter();
+    this.canvas.setViewportTransform(fabric.iMatrix.concat());
+    this.canvas.zoomToPoint(new fabric.Point(center.left, center.top), scale);
+  }
+
+  public zoomIn() {
+    const zoomFactor = 1.1;
+    const zoom = this.canvas.getZoom() * zoomFactor;
+    this.setZoom(Math.min(zoom, 6));
+  }
+
+  public zoomOut() {
+    const zoomFactor = 0.9;
+    const zoom = this.canvas.getZoom() * zoomFactor;
+    this.setZoom(Math.max(zoom, 0.1));
+  }
 }

@@ -1,9 +1,12 @@
 import Layout from './components/Layout';
+import { EditorProvider } from './context/EditorContext';
 
 function App() {
   return (
     <>
-      <Layout />
+      <EditorProvider>
+        <Layout />
+      </EditorProvider>
     </>
   );
 }

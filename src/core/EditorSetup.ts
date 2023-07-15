@@ -54,7 +54,7 @@ export class EditorSetup {
       strokeWidth: 1,
       strokeUniform: true,
     });
-    this.canvas.add(rect).centerObject(rect);
+    this.canvas.add(rect).centerObject(rect.setCoords());
     this.canvas.setActiveObject(rect);
     this.canvas.renderAll();
   }
@@ -68,7 +68,8 @@ export class EditorSetup {
       strokeWidth: 1,
       strokeUniform: true,
     });
-    this.canvas.add(rect).centerObject(rect);
+
+    this.canvas.add(rect).centerObject(rect.setCoords());
     this.canvas.setActiveObject(rect);
     this.canvas.renderAll();
   }

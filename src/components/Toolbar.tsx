@@ -8,8 +8,6 @@ import {
   createStyles,
 } from '@mantine/core';
 import {
-  IconArrowBackUp,
-  IconArrowForwardUp,
   IconCircle,
   IconCircleSquare,
   IconHandStop,
@@ -21,6 +19,7 @@ import {
   IconZoomIn,
   IconZoomOut,
 } from '@tabler/icons-react';
+import History from './History';
 
 const useStyles = createStyles(() => ({
   wrapper: {
@@ -35,6 +34,7 @@ const useStyles = createStyles(() => ({
 
 export default function Toolbar() {
   const { classes } = useStyles();
+
   return (
     <Paper
       className={classes.wrapper}
@@ -84,18 +84,7 @@ export default function Toolbar() {
         </Tooltip>
       </Group>
       <Divider orientation="vertical" />
-      <Group spacing="xs">
-        <Tooltip label="Undo" position="bottom" withArrow>
-          <ActionIcon onClick={() => console.log('clicked')} variant="light">
-            <IconArrowBackUp size="1.25rem" />
-          </ActionIcon>
-        </Tooltip>
-        <Tooltip label="Redo" position="bottom" withArrow>
-          <ActionIcon onClick={() => console.log('clicked')} variant="light">
-            <IconArrowForwardUp size="1.25rem" />
-          </ActionIcon>
-        </Tooltip>
-      </Group>
+      <History />
       <Divider orientation="vertical" />
       <Group spacing="xs">
         <Tooltip label="Zoom In" position="bottom" withArrow>
