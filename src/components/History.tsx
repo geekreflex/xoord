@@ -48,8 +48,8 @@ export default function History() {
           <IconArrowBackUp size="1.25rem" />
         </ActionIcon>
       </Tooltip>
-      <Tooltip label="Redo" position="bottom" withArrow disabled={!canRedo}>
-        <ActionIcon onClick={handleRedo} variant="light">
+      <Tooltip label="Redo" position="bottom" withArrow>
+        <ActionIcon onClick={handleRedo} variant="light" disabled={!canRedo}>
           <IconArrowForwardUp size="1.25rem" />
         </ActionIcon>
       </Tooltip>
