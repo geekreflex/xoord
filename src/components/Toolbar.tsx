@@ -19,6 +19,8 @@ import {
 } from '@tabler/icons-react';
 import History from './History';
 import Zoom from './Zoom';
+import { useState } from 'react';
+import { useEditorContext } from '@/context/EditorContext';
 
 const useStyles = createStyles(() => ({
   wrapper: {
@@ -32,7 +34,20 @@ const useStyles = createStyles(() => ({
 }));
 
 export default function Toolbar() {
+  const { editor } = useEditorContext();
+  const [isPan, setPan] = useState(false);
+
   const { classes } = useStyles();
+
+  const handlePan = () => {
+    setPan(true);
+    editor?.startPan();
+  };
+
+  const handleMove = () => {
+    setPan(false);
+    editor?.endPan();
+  };
 
   return (
     <Paper
@@ -44,12 +59,12 @@ export default function Toolbar() {
     >
       <Group spacing="xs">
         <Tooltip label="Move tool" position="bottom" withArrow>
-          <ActionIcon onClick={() => console.log('clicked')} variant="filled">
+          <ActionIcon onClick={handleMove} variant={isPan ? 'light' : 'filled'}>
             <IconPointer size="1.25rem" />
           </ActionIcon>
         </Tooltip>
         <Tooltip label="Pan tool" position="bottom" withArrow>
-          <ActionIcon onClick={() => console.log('clicked')} variant="light">
+          <ActionIcon onClick={handlePan} variant={isPan ? 'filled' : 'light'}>
             <IconHandStop size="1.25rem" />
           </ActionIcon>
         </Tooltip>
