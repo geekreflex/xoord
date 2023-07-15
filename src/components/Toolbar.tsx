@@ -16,10 +16,9 @@ import {
   IconPointer,
   IconRectangle,
   IconTriangle,
-  IconZoomIn,
-  IconZoomOut,
 } from '@tabler/icons-react';
 import History from './History';
+import Zoom from './Zoom';
 
 const useStyles = createStyles(() => ({
   wrapper: {
@@ -86,18 +85,7 @@ export default function Toolbar() {
       <Divider orientation="vertical" />
       <History />
       <Divider orientation="vertical" />
-      <Group spacing="xs">
-        <Tooltip label="Zoom In" position="bottom" withArrow>
-          <ActionIcon onClick={() => console.log('clicked')} variant="light">
-            <IconZoomIn size="1.25rem" />
-          </ActionIcon>
-        </Tooltip>
-        <Tooltip label="Zoom Out" position="bottom" withArrow>
-          <ActionIcon onClick={() => console.log('clicked')} variant="light">
-            <IconZoomOut size="1.25rem" />
-          </ActionIcon>
-        </Tooltip>
-      </Group>
+      <Zoom />
     </Paper>
   );
 }
