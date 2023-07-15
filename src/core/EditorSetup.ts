@@ -4,15 +4,23 @@ import { Controls } from './Controls';
 import './lib/history.js';
 import { AlignGuidelines } from './AlignGuidelines.js';
 
+declare type ExtCanvas = fabric.Canvas & {
+  isDragging: boolean;
+  lastPosX: number;
+  lastPosY: number;
+};
+
 export class EditorSetup {
   public canvas: fabric.Canvas;
   private workspaceEl: HTMLElement;
   private resizeObserver: ResizeObserver | null;
+  public panMode: boolean;
 
   constructor(canvas: fabric.Canvas, workspaceEl: HTMLElement) {
     this.canvas = canvas;
     this.workspaceEl = workspaceEl;
     this.resizeObserver = null;
+    this.panMode = false;
 
     this.initControls();
     this.initEditor();
@@ -21,6 +29,7 @@ export class EditorSetup {
     this.addTest2();
 
     this.initZoom();
+    this.initPan();
   }
 
   private initEditor() {
@@ -116,6 +125,72 @@ export class EditorSetup {
     const zoomFactor = 0.9;
     const zoom = this.canvas.getZoom() * zoomFactor;
     this.setZoom(Math.max(zoom, 0.1));
+  }
+
+  public startPan() {
+    this.panMode = true;
+    this.canvas.defaultCursor = 'grab';
+  }
+
+  public endPan() {
+    this.panMode = false;
+    this.canvas.defaultCursor = 'default';
+  }
+
+  private initPan() {
+    const This = this;
+    this.canvas.on('mouse:down', function (this: ExtCanvas, opt) {
+      const evt = opt.e;
+      if (evt.altKey || This.panMode) {
+        This.canvas.defaultCursor = 'grabbing';
+        This.canvas.discardActiveObject();
+        This.setPan();
+        this.selection = false;
+        this.isDragging = true;
+        this.lastPosX = evt.clientX;
+        this.lastPosY = evt.clientY;
+        this.requestRenderAll();
+      }
+    });
+
+    this.canvas.on('mouse:move', function (this: ExtCanvas, opt) {
+      if (this.isDragging) {
+        This.canvas.discardActiveObject();
+        This.canvas.defaultCursor = 'grabbing';
+        const { e } = opt;
+        if (!this.viewportTransform) return;
+        const vpt = this.viewportTransform;
+        vpt[4] += e.clientX - this.lastPosX;
+        vpt[5] += e.clientY - this.lastPosY;
+        this.lastPosX = e.clientX;
+        this.lastPosY = e.clientY;
+        this.requestRenderAll();
+      }
+    });
+
+    this.canvas.on('mouse:up', function (this: ExtCanvas) {
+      if (!this.viewportTransform) return;
+      this.setViewportTransform(this.viewportTransform);
+      this.isDragging = false;
+      this.selection = true;
+      this.getObjects().forEach((obj) => {
+        if (obj.hasControls) {
+          obj.selectable = true;
+        }
+      });
+      this.requestRenderAll();
+      This.canvas.defaultCursor = 'default';
+    });
+  }
+
+  private setPan() {
+    this.canvas.selection = false;
+    this.canvas.defaultCursor = 'grab';
+    this.canvas.getObjects().forEach((obj) => {
+      obj.selectable = false;
+    });
+    this.canvas.renderAll();
+    this.canvas.requestRenderAll();
   }
 
   public dispose() {
