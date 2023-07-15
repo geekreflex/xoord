@@ -14,7 +14,10 @@ import {
   IconLetterT,
   IconPhoto,
   IconPointer,
+  IconPolygon,
   IconRectangle,
+  IconSlash,
+  IconStar,
   IconTriangle,
 } from '@tabler/icons-react';
 import History from './History';
@@ -77,12 +80,23 @@ export default function Toolbar() {
             </ActionIcon>
           </Menu.Target>
           <Menu.Dropdown>
-            <Menu.Item icon={<IconRectangle size="1.25rem" />}>
+            <Menu.Item fz="xs" p="5px" icon={<IconRectangle size="1.25rem" />}>
               Rectangle
             </Menu.Item>
-            <Menu.Item icon={<IconCircle size="1.25rem" />}>Circle</Menu.Item>
-            <Menu.Item icon={<IconTriangle size="1.25rem" />}>
+            <Menu.Item fz="xs" p="5px" icon={<IconCircle size="1.25rem" />}>
+              Circle
+            </Menu.Item>
+            <Menu.Item fz="xs" p="5px" icon={<IconTriangle size="1.25rem" />}>
               Triangle
+            </Menu.Item>
+            <Menu.Item fz="xs" p="5px" icon={<IconSlash size="1.25rem" />}>
+              Line
+            </Menu.Item>
+            <Menu.Item fz="xs" p="5px" icon={<IconStar size="1.25rem" />}>
+              Star
+            </Menu.Item>
+            <Menu.Item fz="xs" p="5px" icon={<IconPolygon size="1.25rem" />}>
+              Polygon
             </Menu.Item>
           </Menu.Dropdown>
         </Menu>
