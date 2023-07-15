@@ -83,7 +83,10 @@ export default function Stroke() {
                   Style
                 </Text>
                 <Group>
-                  <Select data={['Solid', 'Dashed']} />
+                  <Select
+                    data={[{ label: 'Solid', value: 'solid' }]}
+                    defaultValue={'solid'}
+                  />
                 </Group>
               </Flex>
             </Stack>

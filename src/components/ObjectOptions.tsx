@@ -1,5 +1,20 @@
-import { ActionIcon, Flex, Group, Paper, Text, Tooltip } from '@mantine/core';
-import { IconChevronRight, IconCopy, IconTrash } from '@tabler/icons-react';
+import {
+  ActionIcon,
+  Button,
+  Group,
+  Popover,
+  Text,
+  Tooltip,
+} from '@mantine/core';
+import {
+  IconChevronDown,
+  IconChevronRight,
+  IconChevronUp,
+  IconChevronsDown,
+  IconChevronsUp,
+  IconCopy,
+  IconTrash,
+} from '@tabler/icons-react';
 
 export default function ObjectOptions() {
   return (
@@ -14,12 +29,52 @@ export default function ObjectOptions() {
           <IconCopy size="1.25rem" />
         </ActionIcon>
       </Tooltip>
-      <Paper withBorder py={8} style={{ cursor: 'pointer' }} px={10} w={136}>
-        <Flex justify="space-between" align="center">
-          <Text size="sm">Options</Text>
-          <IconChevronRight size="1rem" />
-        </Flex>
-      </Paper>
+      <Popover>
+        <Popover.Target>
+          <Button
+            styles={{
+              inner: {
+                width: '100%',
+                justifyContent: 'space-between',
+              },
+            }}
+            py={8}
+            style={{ cursor: 'pointer' }}
+            px={10}
+            w={136}
+            c="#999"
+            variant="default"
+            rightIcon={<IconChevronRight size="1rem" />}
+          >
+            <Text size="sm">Options</Text>
+          </Button>
+        </Popover.Target>
+
+        <Popover.Dropdown>
+          <Group>
+            <Tooltip label="Brign forward" position="bottom" withArrow>
+              <ActionIcon variant={'light'}>
+                <IconChevronsUp size="1.25rem" />
+              </ActionIcon>
+            </Tooltip>
+            <Tooltip label="Send backwards" position="bottom" withArrow>
+              <ActionIcon variant={'light'}>
+                <IconChevronsDown size="1.25rem" />
+              </ActionIcon>
+            </Tooltip>
+            <Tooltip label="Bring to front" position="bottom" withArrow>
+              <ActionIcon variant={'light'}>
+                <IconChevronUp size="1.25rem" />
+              </ActionIcon>
+            </Tooltip>
+            <Tooltip label="Send to back" position="bottom" withArrow>
+              <ActionIcon variant={'light'}>
+                <IconChevronDown size="1.25rem" />
+              </ActionIcon>
+            </Tooltip>
+          </Group>
+        </Popover.Dropdown>
+      </Popover>
     </Group>
   );
 }
