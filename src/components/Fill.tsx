@@ -15,6 +15,7 @@ export default function Fill() {
     if (editor) {
       const activeObject = editor.canvas.getActiveObject();
       if (activeObject) {
+        setCurrentColor(color);
         activeObject.set({ fill: color || selectedObject?.fill });
       }
       editor.canvas.renderAll();

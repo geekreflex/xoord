@@ -78,7 +78,7 @@ export class Tool {
     const text = new fabric.Textbox('Click to edit', {
       width: 600,
       textAlign: 'center',
-      fontFamily: 'Roboto',
+      fontFamily: 'Lugrasimo',
       fontSize: 72,
       fill: '#f1f1f1',
       name: 'text',
@@ -158,6 +158,33 @@ export class Tool {
       activeObject.toggle('flipY');
     }
     this.editor.canvas.renderAll();
+  }
+
+  public fontWeight() {
+    const activeObject = this.canvas.getActiveObject();
+    if (activeObject instanceof fabric.Textbox) {
+      const isBold = activeObject.fontWeight === 'bold';
+      activeObject.set('fontWeight', isBold ? 'normal' : 'bold');
+    }
+    this.canvas.renderAll();
+  }
+
+  public fontStyle() {
+    const activeObject = this.canvas.getActiveObject();
+    if (activeObject instanceof fabric.Textbox) {
+      const isItalic = activeObject.fontStyle === 'italic';
+      activeObject.set('fontStyle', isItalic ? 'normal' : 'italic');
+    }
+    this.canvas.renderAll();
+  }
+
+  public underline() {
+    const activeObject = this.canvas.getActiveObject();
+    if (activeObject instanceof fabric.Textbox) {
+      const isUnderlined = activeObject.underline;
+      activeObject.set('underline', !isUnderlined);
+    }
+    this.canvas.renderAll();
   }
 
   private addObject(obj: fabric.Object | fabric.Textbox) {

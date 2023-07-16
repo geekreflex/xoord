@@ -7,7 +7,7 @@ import { useEditorContext } from '@/context/EditorContext';
 export default function ShapeProps() {
   const { selectedType } = useEditorContext();
   return (
-    <Stack>
+    <Stack spacing={10}>
       <ObjectOptions />
       {selectedType !== 'line' && <Fill />}
       <Stroke />

@@ -6,7 +6,7 @@ import TextOptions from '../TextOptions';
 
 export default function TextProps() {
   return (
-    <Stack>
+    <Stack spacing={10}>
       <Fill />
       <Stroke />
       <TextOptions />

@@ -1,0 +1,17 @@
+export const fonts = [
+  { label: 'Lato', value: 'Lato' },
+  { label: 'Droid Sans', value: 'Droid Sans' },
+  { label: 'Roboto', value: 'Roboto' },
+  { label: 'Montserrat', value: 'Montserrat' },
+  { label: 'Droid Serif', value: 'Droid Serif' },
+  { label: 'Lugrasimo', value: 'Lugrasimo' },
+  { label: 'Open Sans', value: 'Open Sans' },
+  { label: 'Poppins', value: 'Poppins' },
+  { label: 'Tektur', value: 'Tektur' },
+  { label: 'Raleway', value: 'Raleway' },
+  { label: 'Playfair Display', value: 'Playfair Display' },
+  { label: 'Rubic', value: 'Rubic' },
+  { label: 'Ubuntu', value: 'Ubuntu' },
+  { label: 'Merriweather', value: 'Merriweather' },
+  { label: 'VT323', value: 'VT323' },
+];

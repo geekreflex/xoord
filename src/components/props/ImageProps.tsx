@@ -3,7 +3,7 @@ import ObjectOptions from '../ObjectOptions';
 
 export default function ImageProps() {
   return (
-    <Stack>
+    <Stack spacing={10}>
       <ObjectOptions />
     </Stack>
   );
