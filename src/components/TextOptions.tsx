@@ -2,12 +2,10 @@ import { useEditorContext } from '@/context/EditorContext';
 import { fonts } from '@/data/fonts';
 import {
   ActionIcon,
-  Button,
   Group,
-  Popover,
+  Select,
   Space,
   Stack,
-  Text,
   Tooltip,
 } from '@mantine/core';
 import {
@@ -16,7 +14,6 @@ import {
   IconAlignLeft,
   IconAlignRight,
   IconBold,
-  IconChevronRight,
   IconItalic,
   IconUnderline,
 } from '@tabler/icons-react';
@@ -28,6 +25,7 @@ export default function TextOptions() {
   const [isItalic, setIsItalic] = useState(false);
   const [isUnderlined, setIsUnderlined] = useState(false);
   const [align, setAlign] = useState('');
+  const [family, setFamily] = useState('');
 
   useEffect(() => {
     setIsBold((selectedObject?.fontWeight as string) === 'bold' ? true : false);
@@ -36,6 +34,7 @@ export default function TextOptions() {
     );
     setIsUnderlined(selectedObject?.underline === true ? true : false);
     setAlign(selectedObject?.textAlign as string);
+    setFamily(selectedObject?.fontFamily as string);
   }, [selectedObject]);
 
   useEffect(() => {
@@ -85,37 +84,23 @@ export default function TextOptions() {
     }
   };
 
+  const handleFontFamily = (family: string) => {
+    if (tool) {
+      tool.fontFamily(family);
+      setFamily(family);
+    }
+  };
+
   return (
     <Stack spacing={10}>
-      <Popover width={230} withArrow>
-        <Popover.Target>
-          <Button
-            fullWidth
-            variant="default"
-            px={8}
-            py={10}
-            c="#999"
-            styles={{
-              inner: {
-                width: '100%',
-                justifyContent: 'space-between',
-              },
-            }}
-            rightIcon={<IconChevronRight size="1rem" />}
-          >
-            <Text ff="Lugrasimo" size="sm">
-              Lugrasimo
-            </Text>
-          </Button>
-        </Popover.Target>
-        <Popover.Dropdown>
-          {fonts.map((font) => (
-            <Text key={font.value} ff={font.value}>
-              {font.label}
-            </Text>
-          ))}
-        </Popover.Dropdown>
-      </Popover>
+      <Select
+        styles={{ input: { fontFamily: family } }}
+        data={fonts}
+        value={family}
+        defaultValue={family}
+        onChange={handleFontFamily}
+        searchable
+      />
 
       <Group spacing={3}>
         <Tooltip label="Bold" position="bottom" withArrow>

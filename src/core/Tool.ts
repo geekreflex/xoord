@@ -2,6 +2,7 @@ import { fabric } from 'fabric';
 import { CIRCLE, POLYGON, RECTANGLE, TRIANGLE } from './lib/shapes';
 import { EditorSetup } from './EditorSetup';
 import { regularPolygonPoints, starPolygonPoints } from './lib/polygonPoints';
+import FontFaceObserver from 'fontfaceobserver';
 
 export class Tool {
   private editor: EditorSetup;
@@ -193,6 +194,31 @@ export class Tool {
       activeObject.set({ textAlign: alignment });
     }
     this.canvas.renderAll();
+  }
+
+  public fontFamily(name: string) {
+    const activeObject = this.editor.canvas.getActiveObject();
+    const font = new FontFaceObserver(name);
+    const ed = this.editor.canvas;
+
+    if (activeObject instanceof fabric.Textbox) {
+      // Update code to check if font is system font
+      // else load custom fonts with FonFaceObserver
+      if (name === 'ubuntu') {
+        activeObject.set({ fontFamily: name });
+      } else {
+        font
+          .load()
+          .then(function () {
+            activeObject.set({ fontFamily: name });
+            ed.renderAll();
+          })
+          .catch((err: any) => {
+            console.error('Font failed', err);
+          });
+      }
+    }
+    this.editor.canvas.renderAll();
   }
 
   private addObject(obj: fabric.Object | fabric.Textbox) {
