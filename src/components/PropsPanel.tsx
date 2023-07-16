@@ -66,7 +66,7 @@ export default function PropsPanel() {
         <Box pt="sm">
           {!selectedObject && (
             <Center>
-              <Text c="dimmed" size="14px">
+              <Text c="dimmed" size="14px" fw="bold">
                 Object Properties
               </Text>
             </Center>

@@ -2,12 +2,14 @@ import { Stack } from '@mantine/core';
 import Fill from '../Fill';
 import Stroke from '../Stroke';
 import ObjectOptions from '../ObjectOptions';
+import { useEditorContext } from '@/context/EditorContext';
 
 export default function ShapeProps() {
+  const { selectedType } = useEditorContext();
   return (
     <Stack>
       <ObjectOptions />
-      <Fill />
+      {selectedType !== 'line' && <Fill />}
       <Stroke />
     </Stack>
   );

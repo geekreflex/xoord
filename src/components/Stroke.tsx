@@ -15,7 +15,7 @@ import { IconBorderStyle2 } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 
 const strokeStyles = [
-  { label: 'Solid', value: 'solid' },
+  { label: 'Solid', value: '' },
   { label: 'Dashed', value: '30 10' },
   { label: 'Dotted', value: '5 5' },
 ];
@@ -32,6 +32,7 @@ export default function Stroke() {
     setColor(selectedObject?.stroke as string);
     setWidth(selectedObject?.strokeWidth as number);
     setStyle(selectedObject?.strokeDashArray);
+    console.log(selectedObject?.strokeDashArray);
   }, [selectedObject]);
 
   const handleColor = (color: string) => {
@@ -107,7 +108,11 @@ export default function Stroke() {
                 <Text size="xs" fw="bold">
                   Color
                 </Text>
-                <ColorInput defaultValue={color} onChange={handleColor} />
+                <ColorInput
+                  defaultValue={color}
+                  format="hexa"
+                  onChange={handleColor}
+                />
               </Flex>
               <Flex align="center" gap={10}>
                 <Text size="xs" fw="bold">
@@ -129,10 +134,7 @@ export default function Stroke() {
                 <Group>
                   <Select
                     data={strokeStyles}
-                    value={
-                      (selectedObject?.strokeDashArray?.join(' ') as string) ||
-                      'solid'
-                    }
+                    value={(style?.join(' ') as string) || ''}
                     onChange={handleStyle}
                   />
                 </Group>
