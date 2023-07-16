@@ -8,8 +8,10 @@ import {
   createStyles,
 } from '@mantine/core';
 import {
+  IconBrandGithub,
   IconCircle,
   IconCircleSquare,
+  IconDownload,
   IconHandStop,
   IconLetterT,
   IconPhoto,
@@ -207,6 +209,17 @@ export default function Toolbar() {
       <History />
       <Divider orientation="vertical" />
       <Zoom />
+      <Divider orientation="vertical" />
+      <Tooltip label="Download" position="bottom" withArrow>
+        <ActionIcon variant="light">
+          <IconDownload size="1.25rem" />
+        </ActionIcon>
+      </Tooltip>
+      <a href="https://github.com/geekreflex/xoord">
+        <ActionIcon variant="light" component="a">
+          <IconBrandGithub size="1.25rem" />
+        </ActionIcon>
+      </a>
     </Paper>
   );
 }
