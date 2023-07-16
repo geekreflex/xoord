@@ -74,6 +74,28 @@ export class Tool {
     this.addObject(star);
   }
 
+  public addText() {
+    const text = new fabric.Textbox('Click to edit', {
+      width: 600,
+      textAlign: 'center',
+      fontFamily: 'Roboto',
+      fontSize: 72,
+      fill: '#f1f1f1',
+      name: 'text',
+    });
+
+    text.setControlsVisibility({
+      mt: false,
+      mb: false,
+      ml: false,
+      tr: false,
+      bl: false,
+      br: false,
+    });
+
+    this.addObject(text);
+  }
+
   public delete() {
     const objects = this.canvas.getActiveObjects();
     objects.map((obj) => {

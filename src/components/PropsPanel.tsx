@@ -13,6 +13,7 @@ import Drag from 'react-draggable';
 import ShapeProps from './props/ShapeProps';
 import ImageProps from './props/ImageProps';
 import SelectionProps from './props/SelectionProps';
+import TextProps from './props/TextProps';
 
 const useStyles = createStyles(() => ({
   wrapper: {
@@ -40,6 +41,8 @@ export default function PropsPanel() {
         return <ShapeProps />;
       case 'image':
         return <ImageProps />;
+      case 'textbox':
+        return <TextProps />;
       case 'activeSelection':
         return <SelectionProps />;
       default:

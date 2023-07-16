@@ -193,7 +193,7 @@ export default function Toolbar() {
           </Menu.Dropdown>
         </Menu>
         <Tooltip label="Text tool" position="bottom" withArrow>
-          <ActionIcon onClick={() => console.log('clicked')} variant="light">
+          <ActionIcon onClick={() => tool?.addText()} variant="light">
             <IconLetterT size="1.25rem" />
           </ActionIcon>
         </Tooltip>
