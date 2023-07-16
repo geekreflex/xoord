@@ -23,7 +23,7 @@ const strokeStyles = [
 export default function Stroke() {
   const { editor } = useEditorContext();
   const [opened, setOpened] = useState(false);
-  const [color, setColor] = useState('');
+  const [color, setColor] = useState('#000000');
   const [width, setWidth] = useState<number | ''>(0);
   const [style, setStyle] = useState<number[]>();
   const { selectedObject } = useEditorContext();

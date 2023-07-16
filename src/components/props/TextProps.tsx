@@ -8,7 +8,7 @@ export default function TextProps() {
   return (
     <Stack spacing={10}>
       <Fill />
-      <Stroke />
+      {/* <Stroke /> */}
       <TextOptions />
       <ObjectOptions />
     </Stack>
