@@ -41,7 +41,7 @@ export default function ObjectOptions() {
           <IconCopy size="1.25rem" />
         </ActionIcon>
       </Tooltip>
-      <Popover>
+      <Popover withArrow>
         <Popover.Target>
           <Button
             styles={{
