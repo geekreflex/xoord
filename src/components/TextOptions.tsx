@@ -27,6 +27,7 @@ export default function TextOptions() {
   const [isBold, setIsBold] = useState(false);
   const [isItalic, setIsItalic] = useState(false);
   const [isUnderlined, setIsUnderlined] = useState(false);
+  const [align, setAlign] = useState('');
 
   useEffect(() => {
     setIsBold((selectedObject?.fontWeight as string) === 'bold' ? true : false);
@@ -34,6 +35,7 @@ export default function TextOptions() {
       (selectedObject?.fontStyle as string) === 'italic' ? true : false
     );
     setIsUnderlined(selectedObject?.underline === true ? true : false);
+    setAlign(selectedObject?.textAlign as string);
   }, [selectedObject]);
 
   useEffect(() => {
@@ -73,6 +75,13 @@ export default function TextOptions() {
     if (tool) {
       tool.fontStyle();
       setIsItalic((i) => !i);
+    }
+  };
+
+  const handleAlign = (align: string) => {
+    if (tool) {
+      tool.textAlign(align);
+      setAlign(align);
     }
   };
 
@@ -135,22 +144,34 @@ export default function TextOptions() {
         </Tooltip>
         <Space w="5px" />
         <Tooltip label="Align left" position="bottom" withArrow>
-          <ActionIcon variant={'light'}>
+          <ActionIcon
+            variant={align === 'left' ? 'filled' : 'light'}
+            onClick={() => handleAlign('left')}
+          >
             <IconAlignLeft size="1.25rem" />
           </ActionIcon>
         </Tooltip>
         <Tooltip label="Align center" position="bottom" withArrow>
-          <ActionIcon variant={'light'}>
+          <ActionIcon
+            variant={align === 'center' ? 'filled' : 'light'}
+            onClick={() => handleAlign('center')}
+          >
             <IconAlignCenter size="1.25rem" />
           </ActionIcon>
         </Tooltip>
         <Tooltip label="Justified" position="bottom" withArrow>
-          <ActionIcon variant={'light'}>
+          <ActionIcon
+            variant={align === 'justified' ? 'filled' : 'light'}
+            onClick={() => handleAlign('justified')}
+          >
             <IconAlignJustified size="1.25rem" />
           </ActionIcon>
         </Tooltip>
         <Tooltip label="Align right" position="bottom" withArrow>
-          <ActionIcon variant={'light'}>
+          <ActionIcon
+            variant={align === 'right' ? 'filled' : 'light'}
+            onClick={() => handleAlign('right')}
+          >
             <IconAlignRight size="1.25rem" />
           </ActionIcon>
         </Tooltip>

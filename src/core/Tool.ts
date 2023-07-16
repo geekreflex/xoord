@@ -187,6 +187,14 @@ export class Tool {
     this.canvas.renderAll();
   }
 
+  public textAlign(alignment: string) {
+    const activeObject = this.canvas.getActiveObject();
+    if (activeObject instanceof fabric.Textbox) {
+      activeObject.set({ textAlign: alignment });
+    }
+    this.canvas.renderAll();
+  }
+
   private addObject(obj: fabric.Object | fabric.Textbox) {
     if (this.pos) {
       obj.set({
