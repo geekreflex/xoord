@@ -11,7 +11,6 @@ import {
   IconBrandGithub,
   IconCircle,
   IconCircleSquare,
-  IconDownload,
   IconHandStop,
   IconLetterT,
   IconPhoto,
@@ -26,6 +25,7 @@ import History from './History';
 import Zoom from './Zoom';
 import { useRef, useState } from 'react';
 import { useEditorContext } from '@/context/EditorContext';
+import Download from './Download';
 
 const useStyles = createStyles(() => ({
   wrapper: {
@@ -135,7 +135,12 @@ export default function Toolbar() {
             <IconHandStop size="1.25rem" />
           </ActionIcon>
         </Tooltip>
-        <Menu width={200} offset={14} withArrow>
+        <Menu
+          width={200}
+          offset={14}
+          withArrow
+          transitionProps={{ transition: 'pop' }}
+        >
           <Menu.Target>
             <ActionIcon onClick={() => console.log('clicked')} variant="light">
               <Tooltip label="Shapes tool" position="bottom" withArrow>
@@ -210,13 +215,9 @@ export default function Toolbar() {
       <Divider orientation="vertical" />
       <Zoom />
       <Divider orientation="vertical" />
-      <Tooltip label="Download" position="bottom" withArrow>
-        <ActionIcon variant="light">
-          <IconDownload size="1.25rem" />
-        </ActionIcon>
-      </Tooltip>
+      <Download />
       <a href="https://github.com/geekreflex/xoord">
-        <ActionIcon variant="light" component="a">
+        <ActionIcon variant="light">
           <IconBrandGithub size="1.25rem" />
         </ActionIcon>
       </a>
