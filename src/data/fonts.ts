@@ -14,4 +14,11 @@ export const fonts = [
   { label: 'Ubuntu', value: 'Ubuntu' },
   { label: 'Merriweather', value: 'Merriweather' },
   { label: 'VT323', value: 'VT323' },
+  { label: 'Lobster', value: 'Lobster' },
+  { label: 'Pacifico', value: 'Pacifico' },
+  { label: 'Abril Fatface', value: 'Abril Fatface' },
+  { label: 'Shadows Into Light', value: 'Shadows Into Light' },
+  { label: 'Satisfy', value: 'Satisfy' },
+  { label: 'Chela One', value: 'ChelaOne' },
+  { label: 'Indie Flower', value: 'Indie Flower' },
 ];
