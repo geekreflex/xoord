@@ -28,7 +28,7 @@ export default function Stroke() {
   const [width, setWidth] = useState<number | ''>(0);
   const [style, setStyle] = useState<number[]>();
   const [corner, setCorner] = useState<number>(0);
-  const { selectedObject } = useEditorContext();
+  const { selectedObject, selectedType } = useEditorContext();
 
   useEffect(() => {
     setColor(selectedObject?.stroke as string);
@@ -76,6 +76,7 @@ export default function Stroke() {
         const arr = style ? style.split(' ').map(Number) : [];
         activeObject.set({ strokeDashArray: arr });
         editor.canvas.renderAll();
+        setStyle(arr);
       }
     }
   };
@@ -138,15 +139,17 @@ export default function Stroke() {
               value={(style?.join(' ') as string) || ''}
               onChange={handleStyle}
             />
-            <Tooltip label="Corners">
-              <NumberInput
-                min={0}
-                max={100}
-                value={corner}
-                onChange={handleCorner}
-                w={100}
-              />
-            </Tooltip>
+            {selectedType === 'rect' && (
+              <Tooltip label="Corners">
+                <NumberInput
+                  min={0}
+                  max={100}
+                  value={corner}
+                  onChange={handleCorner}
+                  w={100}
+                />
+              </Tooltip>
+            )}
           </Flex>
         </Stack>
       </Collapse>
