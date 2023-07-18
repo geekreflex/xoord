@@ -4,18 +4,18 @@ import { useEffect, useState } from 'react';
 
 export default function Fill() {
   const { editor } = useEditorContext();
-  const [currentColor, setCurrentColor] = useState('');
+  const [color, setColor] = useState('');
   const { selectedObject } = useEditorContext();
 
   useEffect(() => {
-    setCurrentColor(selectedObject?.fill as string);
+    setColor(selectedObject?.fill as string);
   }, [selectedObject]);
 
   const handleChange = (color: string) => {
     if (editor) {
       const activeObject = editor.canvas.getActiveObject();
+      setColor(color);
       if (activeObject) {
-        setCurrentColor(color);
         activeObject.set({ fill: color || selectedObject?.fill });
       }
       editor.canvas.renderAll();
@@ -30,7 +30,7 @@ export default function Fill() {
         </Text>
         <ColorInput
           format="hexa"
-          value={currentColor}
+          value={color}
           onChange={handleChange}
           placeholder="Add color..."
         />

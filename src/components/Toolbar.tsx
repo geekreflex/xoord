@@ -113,10 +113,13 @@ export default function Toolbar() {
   return (
     <Paper
       className={classes.wrapper}
-      shadow="md"
+      shadow="lg"
       p="sm"
       radius="lg"
       withBorder
+      style={{
+        boxShadow: `rgba(0, 0, 0, 0.5) 0px 3px 6px 1px`,
+      }}
     >
       <input
         type="file"

@@ -55,7 +55,15 @@ export default function PropsPanel() {
 
   return (
     <Drag handle="#handle">
-      <Paper shadow="lg" className={classes.wrapper} withBorder radius="lg">
+      <Paper
+        shadow="lg"
+        className={classes.wrapper}
+        withBorder
+        radius="lg"
+        style={{
+          boxShadow: `rgba(0, 0, 0, 0.5) 0px 3px 6px 1px`,
+        }}
+      >
         <Group id="handle" px="sm" className={classes.handle}>
           <IconGripVertical size="1.25rem" />
           <Text fw="bold" size="sm">

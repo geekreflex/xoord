@@ -18,6 +18,7 @@ export default function DropArea() {
           imgElement.onload = () => {
             const fabricImage = new fabric.Image(imgElement);
             fabricImage.scaleToWidth(editor?.workspaceEl?.offsetWidth! / 5);
+            fabricImage.set({ name: 'image' });
             if (editor) {
               editor.canvas.add(fabricImage);
               editor.canvas.centerObject(fabricImage);
