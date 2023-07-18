@@ -120,11 +120,7 @@ export default function Stroke() {
       >
         <Stack spacing={10}>
           <Flex gap={10}>
-            <ColorInput
-              defaultValue={color}
-              format="hexa"
-              onChange={handleColor}
-            />
+            <ColorInput value={color} format="hexa" onChange={handleColor} />
             <NumberInput
               min={0}
               max={100}
