@@ -54,11 +54,10 @@ export default function ObjectOptions() {
             style={{ cursor: 'pointer' }}
             px={10}
             w={136}
-            c="#999"
             variant="default"
             rightIcon={<IconChevronRight size="1rem" />}
           >
-            <Text size="sm">Options</Text>
+            <Text size="xs">Options</Text>
           </Button>
         </Popover.Target>
 

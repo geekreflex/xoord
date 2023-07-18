@@ -63,7 +63,7 @@ export default function Download() {
           />
 
           <Radio.Group
-            name="exportType"
+            name="exportTypeCanvas"
             label="Format"
             description="Export canvas as:"
             value={format}

@@ -98,18 +98,16 @@ export default function Stroke() {
         <Button
           rightIcon={<IconChevronRight size="1rem" />}
           onClick={toggle}
-          c="#999"
           variant="default"
           fullWidth
           px={10}
           styles={{
             inner: {
               justifyContent: 'space-between',
-              fontSize: '14px',
             },
           }}
         >
-          <Text size="sm">Edit Border</Text>
+          <Text size="xs">Edit Border</Text>
         </Button>
       </Flex>
 

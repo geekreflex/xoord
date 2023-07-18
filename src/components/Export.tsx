@@ -1,22 +1,29 @@
 import { useEditorContext } from '@/context/EditorContext';
 import {
-  ActionIcon,
   Box,
   Button,
   Collapse,
-  Flex,
-  Select,
+  Radio,
+  Stack,
   Text,
-  Tooltip,
+  TextInput,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconChevronRight, IconEye } from '@tabler/icons-react';
-import { useState } from 'react';
+import { IconChevronRight } from '@tabler/icons-react';
+import { useEffect, useState } from 'react';
 
 export default function Export() {
   const [opened, { toggle }] = useDisclosure(false);
-  const [format, setFormat] = useState<string | null>('png');
+  const [name, setName] = useState('');
+  const [format, setFormat] = useState<string>('png');
   const { editor } = useEditorContext();
+
+  useEffect(() => {
+    if (editor) {
+      const obj = editor.canvas.getActiveObject();
+      setName(obj?.name as string);
+    }
+  }, []);
 
   const handleExport = () => {
     if (editor) {
@@ -30,7 +37,7 @@ export default function Export() {
       // Create a temporary link element to download the PNG
       let link = document.createElement('a');
       link.href = dataUrl as string;
-      link.download = activeObject?.name!; // Set the desired file name
+      link.download = name || activeObject?.name!; // Set the desired file name
       link.click();
     }
   };
@@ -41,17 +48,15 @@ export default function Export() {
         rightIcon={<IconChevronRight size="1rem" />}
         onClick={toggle}
         variant="default"
-        c="#999"
         px={10}
         styles={{
           inner: {
             justifyContent: 'space-between',
-            fontSize: '14px',
           },
         }}
         fullWidth
       >
-        <Text size="sm">Export Selection</Text>
+        <Text size="xs">Export Selection</Text>
       </Button>
 
       <Collapse
@@ -60,24 +65,29 @@ export default function Export() {
         transitionDuration={200}
         transitionTimingFunction="linear"
       >
-        <Flex gap={10} align="center">
-          <Select
-            data={[
-              { value: 'png', label: 'PNG' },
-              { value: 'png', label: 'PNG' },
-            ]}
+        <Stack spacing={10}>
+          <TextInput
+            placeholder="Enter name.."
+            label=""
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <Radio.Group
+            name="exportTypeSelection"
+            label="Format"
             value={format}
             onChange={setFormat}
-          />
-          <Tooltip label="Preview" position="bottom" withArrow>
-            <ActionIcon onClick={() => console.log('clicked')} variant="light">
-              <IconEye size="1.25rem" />
-            </ActionIcon>
-          </Tooltip>
-          <Button onClick={handleExport} variant="default" fullWidth>
+          >
+            <Stack mt="xs" dir="column">
+              <Radio value="png" size="xs" fw="bold" label="PNG" />
+              <Radio value="svg" size="xs" fw="bold" label="SVG" />
+              <Radio value="jpeg" size="xs" fw="bold" label="JPEG" />
+            </Stack>
+          </Radio.Group>
+          <Button onClick={handleExport} size="xs" fullWidth>
             Export
           </Button>
-        </Flex>
+        </Stack>
       </Collapse>
     </Box>
   );
