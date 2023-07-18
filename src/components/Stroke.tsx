@@ -34,7 +34,8 @@ export default function Stroke() {
     setColor(selectedObject?.stroke as string);
     setWidth(selectedObject?.strokeWidth as number);
     setStyle(selectedObject?.strokeDashArray);
-    setColor(selectedObject?.rx! as number);
+    // @ts-expect-error
+    setCorner(selectedObject?.rx! as number);
     console.log(selectedObject?.strokeDashArray);
   }, [selectedObject]);
 
@@ -54,9 +55,15 @@ export default function Stroke() {
     if (editor) {
       const activeObject = editor.canvas.getActiveObject();
       if (activeObject) {
+        if (width === 0) {
+          activeObject.set({
+            strokeWidth: 0,
+          });
+        }
         activeObject.set({
           strokeWidth: width || selectedObject?.strokeWidth,
         });
+        setWidth(width);
       }
       editor.canvas.renderAll();
     }
@@ -77,6 +84,7 @@ export default function Stroke() {
     if (editor) {
       const activeObject = editor.canvas.getActiveObject();
       if (activeObject) {
+        // @ts-expect-error
         activeObject.set({ rx: corner, ry: corner });
         editor.canvas.renderAll();
       }
