@@ -130,6 +130,7 @@ export default function Stroke() {
           </Flex>
           <Flex gap={10}>
             <Select
+              w="100%"
               data={strokeStyles}
               value={(style?.join(' ') as string) || ''}
               onChange={handleStyle}

@@ -5,6 +5,7 @@ import {
   Divider,
   Group,
   Paper,
+  ScrollArea,
   Text,
   createStyles,
 } from '@mantine/core';
@@ -20,10 +21,12 @@ const useStyles = createStyles(() => ({
     position: 'fixed',
     top: 100,
     right: 50,
-    width: 250,
+    width: 270,
+    overflow: 'auto',
   },
   handle: {
     cursor: 'grab',
+    height: 45,
   },
 }));
 
@@ -52,30 +55,26 @@ export default function PropsPanel() {
 
   return (
     <Drag handle="#handle">
-      <Paper
-        shadow="lg"
-        className={classes.wrapper}
-        withBorder
-        p="sm"
-        radius="lg"
-      >
-        <Group id="handle" mb={5} className={classes.handle}>
+      <Paper shadow="lg" className={classes.wrapper} withBorder radius="lg">
+        <Group id="handle" px="sm" className={classes.handle}>
           <IconGripVertical size="1.25rem" />
           <Text fw="bold" size="sm">
             Edit Properties
           </Text>
         </Group>
         <Divider />
-        <Box pt="sm">
-          {!selectedObject && (
-            <Center>
-              <Text c="dimmed" size="14px" fw="bold">
-                Object Properties
-              </Text>
-            </Center>
-          )}
-          {selectedObject && renderProp()}
-        </Box>
+        <ScrollArea.Autosize mah={500} mih={200} mx="auto">
+          <Box p="md">
+            {!selectedObject && (
+              <Center>
+                <Text c="dimmed" size="14px" fw="bold">
+                  Object Properties
+                </Text>
+              </Center>
+            )}
+            {selectedObject && renderProp()}
+          </Box>
+        </ScrollArea.Autosize>
       </Paper>
     </Drag>
   );

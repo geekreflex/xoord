@@ -2,6 +2,7 @@ import { useEditorContext } from '@/context/EditorContext';
 import {
   ActionIcon,
   Button,
+  Flex,
   Group,
   Popover,
   Stack,
@@ -30,7 +31,8 @@ export default function ObjectOptions() {
   };
 
   return (
-    <Group>
+    // <Group>
+    <Flex align="center" gap={10}>
       <Tooltip label="Delete" position="bottom" withArrow>
         <ActionIcon variant={'light'} onClick={() => tool?.delete()}>
           <IconTrash size="1.25rem" />
@@ -46,14 +48,12 @@ export default function ObjectOptions() {
           <Button
             styles={{
               inner: {
-                width: '100%',
                 justifyContent: 'space-between',
               },
             }}
             py={8}
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: 'pointer', width: '100%' }}
             px={10}
-            w={136}
             variant="default"
             rightIcon={<IconChevronRight size="1rem" />}
           >
@@ -112,6 +112,7 @@ export default function ObjectOptions() {
           </Stack>
         </Popover.Dropdown>
       </Popover>
-    </Group>
+    </Flex>
+    // </Group>
   );
 }
