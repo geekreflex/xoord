@@ -4,6 +4,7 @@ import {
   Button,
   Divider,
   Popover,
+  Radio,
   Slider,
   Stack,
   Text,
@@ -18,18 +19,18 @@ export default function Download() {
   const { editor } = useEditorContext();
   const [filename, setFilename] = useState('Design');
   const [quality, setQuality] = useState(80);
-  const [type, setType] = useState('png');
+  const [format, setFormat] = useState('png');
 
   const handleSave = () => {
     if (editor) {
       const { canvas } = editor;
       const image = canvas.toDataURL({
-        format: type,
+        format: format,
         quality: quality / 100,
       });
       const downloadLink = document.createElement('a');
       downloadLink.href = image;
-      downloadLink.download = `${filename}.${type.toLowerCase()}`;
+      downloadLink.download = `${filename}.${format.toLowerCase()}`;
       downloadLink.click();
     }
   };
@@ -61,25 +62,21 @@ export default function Download() {
             onChange={(e) => setFilename(e.target.value)}
           />
 
-          <Button.Group>
-            <Button
-              fz="xs"
-              variant={type == 'jpeg' ? 'filled' : 'default'}
-              fullWidth
-              onClick={() => setType('jpeg')}
-            >
-              JPEG
-            </Button>
-            <Button
-              fz="xs"
-              variant={type === 'png' ? 'filled' : 'default'}
-              fullWidth
-              onClick={() => setType('png')}
-            >
-              PNG
-            </Button>
-          </Button.Group>
-          {type === 'jpeg' && (
+          <Radio.Group
+            name="exportType"
+            label="Format"
+            description="Export canvas as:"
+            value={format}
+            onChange={setFormat}
+          >
+            <Stack mt="xs" dir="column">
+              <Radio value="png" size="xs" fw="bold" label="PNG" />
+              <Radio value="svg" size="xs" fw="bold" label="SVG" />
+              <Radio value="jpeg" size="xs" fw="bold" label="JPEG" />
+              <Radio value="pdf" size="xs" fw="bold" label="PDF" />
+            </Stack>
+          </Radio.Group>
+          {format === 'jpeg' && (
             <>
               <Text size="sm">Quality</Text>
               <Slider
