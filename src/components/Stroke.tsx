@@ -2,16 +2,17 @@ import { useEditorContext } from '@/context/EditorContext';
 import {
   Box,
   Button,
+  Collapse,
   ColorInput,
   Flex,
-  Group,
   NumberInput,
-  Popover,
   Select,
   Stack,
   Text,
+  Tooltip,
 } from '@mantine/core';
-import { IconBorderStyle2 } from '@tabler/icons-react';
+import { useDisclosure } from '@mantine/hooks';
+import { IconChevronRight } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 
 const strokeStyles = [
@@ -21,22 +22,23 @@ const strokeStyles = [
 ];
 
 export default function Stroke() {
+  const [opened, { toggle }] = useDisclosure(false);
   const { editor } = useEditorContext();
-  const [opened, setOpened] = useState(false);
   const [color, setColor] = useState('#000000');
   const [width, setWidth] = useState<number | ''>(0);
   const [style, setStyle] = useState<number[]>();
+  const [corner, setCorner] = useState<number>(0);
   const { selectedObject } = useEditorContext();
 
   useEffect(() => {
     setColor(selectedObject?.stroke as string);
     setWidth(selectedObject?.strokeWidth as number);
     setStyle(selectedObject?.strokeDashArray);
+    setColor(selectedObject?.rx! as number);
     console.log(selectedObject?.strokeDashArray);
   }, [selectedObject]);
 
   const handleColor = (color: string) => {
-    setOpened(true);
     if (editor) {
       const activeObject = editor.canvas.getActiveObject();
       if (activeObject) {
@@ -71,78 +73,75 @@ export default function Stroke() {
     }
   };
 
+  const handleCorner = (corner: number) => {
+    if (editor) {
+      const activeObject = editor.canvas.getActiveObject();
+      if (activeObject) {
+        activeObject.set({ rx: corner, ry: corner });
+        editor.canvas.renderAll();
+      }
+    }
+  };
+
   return (
     <Box>
-      <Group noWrap>
-        <Text size="xs" fw="bold">
-          Border
-        </Text>
-        <Popover width={230} withArrow opened={opened}>
-          <Popover.Target>
-            <Button
-              onClick={() => setOpened((o) => !o)}
-              leftIcon={<IconBorderStyle2 />}
-              c="#999"
-              variant="default"
-              fullWidth
-              styles={{
-                inner: {
-                  justifyContent: 'flex-start',
-                  fontSize: '14px',
-                  fontWeight: 'normal',
-                },
-              }}
-            >
-              {!style
-                ? 'Solid'
-                : strokeStyles.map((stroke) => {
-                    return stroke.value === style?.join(' ').toString()
-                      ? stroke.label
-                      : '';
-                  })}
-            </Button>
-          </Popover.Target>
-          <Popover.Dropdown>
-            <Stack>
-              <Flex align="center" gap={10}>
-                <Text size="xs" fw="bold">
-                  Color
-                </Text>
-                <ColorInput
-                  defaultValue={color}
-                  format="hexa"
-                  onChange={handleColor}
-                />
-              </Flex>
-              <Flex align="center" gap={10}>
-                <Text size="xs" fw="bold">
-                  Width
-                </Text>
-                <Group>
-                  <NumberInput
-                    min={0}
-                    max={100}
-                    value={width}
-                    onChange={handleWidth}
-                  />
-                </Group>
-              </Flex>
-              <Flex align="center" gap={10}>
-                <Text size="xs" fw="bold">
-                  Style
-                </Text>
-                <Group>
-                  <Select
-                    data={strokeStyles}
-                    value={(style?.join(' ') as string) || ''}
-                    onChange={handleStyle}
-                  />
-                </Group>
-              </Flex>
-            </Stack>
-          </Popover.Dropdown>
-        </Popover>
-      </Group>
+      <Flex align="center" gap={10}>
+        <Button
+          rightIcon={<IconChevronRight size="1rem" />}
+          onClick={toggle}
+          c="#999"
+          variant="default"
+          fullWidth
+          styles={{
+            inner: {
+              justifyContent: 'space-between',
+              fontSize: '14px',
+            },
+          }}
+        >
+          <Text size="sm">Edit Border</Text>
+        </Button>
+      </Flex>
+
+      <Collapse
+        mt={10}
+        in={opened}
+        transitionDuration={200}
+        transitionTimingFunction="linear"
+      >
+        <Stack spacing={10}>
+          <Flex gap={10}>
+            <ColorInput
+              defaultValue={color}
+              format="hexa"
+              onChange={handleColor}
+            />
+            <NumberInput
+              min={0}
+              max={100}
+              value={width}
+              onChange={handleWidth}
+              w={110}
+            />
+          </Flex>
+          <Flex gap={10}>
+            <Select
+              data={strokeStyles}
+              value={(style?.join(' ') as string) || ''}
+              onChange={handleStyle}
+            />
+            <Tooltip label="Corners">
+              <NumberInput
+                min={0}
+                max={100}
+                value={corner}
+                onChange={handleCorner}
+                w={100}
+              />
+            </Tooltip>
+          </Flex>
+        </Stack>
+      </Collapse>
     </Box>
   );
 }
