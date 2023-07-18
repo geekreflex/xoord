@@ -63,7 +63,7 @@ export default function PropsPanel() {
           </Text>
         </Group>
         <Divider />
-        <ScrollArea.Autosize mah={500} mih={200} mx="auto">
+        <ScrollArea.Autosize mah={500} mih={50} mx="auto">
           <Box p="md">
             {!selectedObject && (
               <Center>
