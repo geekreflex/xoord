@@ -31,18 +31,18 @@ export default function Stroke() {
   const { selectedObject, selectedType } = useEditorContext();
 
   useEffect(() => {
-    setColor(selectedObject?.stroke as string);
-    setWidth(selectedObject?.strokeWidth as number);
+    setColor((selectedObject?.stroke as string) || '#000000');
+    setWidth((selectedObject?.strokeWidth as number) || 0);
     setStyle(selectedObject?.strokeDashArray);
     // @ts-expect-error
     setCorner(selectedObject?.rx! as number);
-    console.log(selectedObject?.strokeDashArray);
   }, [selectedObject]);
 
   const handleColor = (color: string) => {
     if (editor) {
       const activeObject = editor.canvas.getActiveObject();
       if (activeObject) {
+        setColor(color);
         activeObject.set({
           stroke: color || selectedObject?.stroke,
         });
@@ -101,6 +101,7 @@ export default function Stroke() {
           c="#999"
           variant="default"
           fullWidth
+          px={10}
           styles={{
             inner: {
               justifyContent: 'space-between',
