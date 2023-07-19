@@ -69,18 +69,18 @@ export default function PropsPanel() {
           </Text>
         </Group>
         <Divider />
-        <ScrollArea.Autosize mah={500} mih={50} mx="auto" pos="relative">
-          <Box p="md">
-            {!selectedObject && (
-              <Center>
-                <Text c="dimmed" size="14px" fw="bold">
-                  Object Properties
-                </Text>
-              </Center>
-            )}
-            {selectedObject && <Stack spacing={10}>{renderProp()}</Stack>}
-          </Box>
-        </ScrollArea.Autosize>
+        {/* <ScrollArea.Autosize mah={500} mih={50} mx="auto" pos="relative"> */}
+        <Box p="md">
+          {!selectedObject && (
+            <Center>
+              <Text c="dimmed" size="14px" fw="bold">
+                Object Properties
+              </Text>
+            </Center>
+          )}
+          {selectedObject && <Stack spacing={10}>{renderProp()}</Stack>}
+        </Box>
+        {/* </ScrollArea.Autosize> */}
       </Paper>
     </Drag>
   );
