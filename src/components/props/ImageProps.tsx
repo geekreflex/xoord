@@ -1,12 +1,13 @@
-import { Stack } from '@mantine/core';
 import ObjectOptions from '../ObjectOptions';
 import Export from '../Export';
+import Stroke from '../Stroke';
 
 export default function ImageProps() {
   return (
-    <Stack spacing={10}>
+    <>
       <ObjectOptions />
+      <Stroke />
       <Export />
-    </Stack>
+    </>
   );
 }

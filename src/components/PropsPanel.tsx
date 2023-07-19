@@ -6,6 +6,7 @@ import {
   Group,
   Paper,
   ScrollArea,
+  Stack,
   Text,
   createStyles,
 } from '@mantine/core';
@@ -17,13 +18,7 @@ import SelectionProps from './props/SelectionProps';
 import TextProps from './props/TextProps';
 
 const useStyles = createStyles(() => ({
-  wrapper: {
-    position: 'fixed',
-    top: 100,
-    right: 50,
-    width: 270,
-    overflow: 'auto',
-  },
+  wrapper: {},
   handle: {
     cursor: 'grab',
     height: 45,
@@ -56,8 +51,11 @@ export default function PropsPanel() {
   return (
     <Drag handle="#handle">
       <Paper
+        pos="fixed"
+        top={100}
+        right={50}
+        w={270}
         shadow="lg"
-        className={classes.wrapper}
         withBorder
         radius="lg"
         style={{
@@ -71,7 +69,7 @@ export default function PropsPanel() {
           </Text>
         </Group>
         <Divider />
-        <ScrollArea.Autosize mah={500} mih={50} mx="auto">
+        <ScrollArea.Autosize mah={500} mih={50} mx="auto" pos="relative">
           <Box p="md">
             {!selectedObject && (
               <Center>
@@ -80,7 +78,7 @@ export default function PropsPanel() {
                 </Text>
               </Center>
             )}
-            {selectedObject && renderProp()}
+            {selectedObject && <Stack spacing={10}>{renderProp()}</Stack>}
           </Box>
         </ScrollArea.Autosize>
       </Paper>

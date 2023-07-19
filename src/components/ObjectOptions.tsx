@@ -31,7 +31,6 @@ export default function ObjectOptions() {
   };
 
   return (
-    // <Group>
     <Flex align="center" gap={10}>
       <Tooltip label="Delete" position="bottom" withArrow>
         <ActionIcon variant={'light'} onClick={() => tool?.delete()}>
@@ -113,6 +112,5 @@ export default function ObjectOptions() {
         </Popover.Dropdown>
       </Popover>
     </Flex>
-    // </Group>
   );
 }
