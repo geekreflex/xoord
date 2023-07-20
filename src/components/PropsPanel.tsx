@@ -15,6 +15,8 @@ import ShapeProps from './props/ShapeProps';
 import ImageProps from './props/ImageProps';
 import SelectionProps from './props/SelectionProps';
 import TextProps from './props/TextProps';
+import { useState } from 'react';
+import { useHotkeys } from '@mantine/hooks';
 
 const useStyles = createStyles(() => ({
   wrapper: {},
@@ -26,7 +28,10 @@ const useStyles = createStyles(() => ({
 
 export default function PropsPanel() {
   const { selectedObject, selectedType } = useEditorContext();
+  const [visible, setVisible] = useState(true);
   const { classes } = useStyles();
+
+  useHotkeys([['ctrl+b', () => setVisible(!visible)]]);
 
   const renderProp = () => {
     switch (selectedType) {
@@ -59,6 +64,8 @@ export default function PropsPanel() {
         radius="lg"
         style={{
           boxShadow: `rgba(0, 0, 0, 0.5) 0px 3px 6px 1px`,
+          visibility: visible ? 'visible' : 'hidden',
+          opacity: visible ? 1 : 0,
         }}
       >
         <Group id="handle" px="sm" className={classes.handle}>
