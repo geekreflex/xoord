@@ -31,7 +31,7 @@ export default function PropsPanel() {
   const [visible, setVisible] = useState(true);
   const { classes } = useStyles();
 
-  useHotkeys([['ctrl+b', () => setVisible(!visible)]]);
+  useHotkeys([['ctrl+k', () => setVisible(!visible)]]);
 
   const renderProp = () => {
     switch (selectedType) {

@@ -1,5 +1,6 @@
 import { useEditorContext } from '@/context/EditorContext';
 import { ActionIcon, Group, Tooltip } from '@mantine/core';
+import { useHotkeys } from '@mantine/hooks';
 import { IconArrowBackUp, IconArrowForwardUp } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 
@@ -7,6 +8,11 @@ export default function History() {
   const { editor } = useEditorContext();
   const [canUndo, setCanUndo] = useState(false);
   const [canRedo, setCanRedo] = useState(false);
+
+  useHotkeys([
+    ['ctrl+z', () => handleUndo()],
+    ['ctrl+y', () => handleRedo()],
+  ]);
 
   useEffect(() => {
     if (editor) {
