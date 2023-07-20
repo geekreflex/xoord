@@ -1,3 +1,4 @@
+import ContextMenu from './ContextMenu';
 import DropArea from './DropArea';
 import PropsPanel from './PropsPanel';
 import Toolbar from './Toolbar';
@@ -10,6 +11,7 @@ export default function Layout() {
       <Workspace />
       <PropsPanel />
       <DropArea />
+      <ContextMenu />
     </>
   );
 }
