@@ -175,6 +175,7 @@ export class EditorSetup {
   }
 
   public initEvent() {
+    // Select object using right click
     this.canvas.on('mouse:down', (event) => {
       if (event.e.button === 2) {
         const object = event.target;
