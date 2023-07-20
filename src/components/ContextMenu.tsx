@@ -95,6 +95,9 @@ export default function ContextMenu() {
           withBorder
           p={10}
           w={200}
+          style={{
+            boxShadow: `rgba(0, 0, 0, 0.5) 0px 3px 6px 1px`,
+          }}
         >
           <Stack spacing={8}>
             {contextMenuActions.map((action) => (
