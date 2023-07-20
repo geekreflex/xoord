@@ -5,7 +5,6 @@ import {
   Divider,
   Group,
   Paper,
-  ScrollArea,
   Stack,
   Text,
   createStyles,

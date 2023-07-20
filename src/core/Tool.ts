@@ -8,7 +8,7 @@ export class Tool {
   private editor: EditorSetup;
   private canvas: fabric.Canvas;
   private pos: { x: number; y: number } | null;
-  private clipboard: fabric.Object | null;
+  public clipboard: fabric.Object | null;
 
   constructor(editor: EditorSetup) {
     this.editor = editor;
