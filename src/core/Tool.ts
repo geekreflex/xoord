@@ -8,11 +8,13 @@ export class Tool {
   private editor: EditorSetup;
   private canvas: fabric.Canvas;
   private pos: { x: number; y: number } | null;
+  private clipboard: fabric.Object | null;
 
   constructor(editor: EditorSetup) {
     this.editor = editor;
     this.canvas = editor.canvas;
     this.pos = null;
+    this.clipboard = null;
   }
 
   public addCircle() {
@@ -134,6 +136,16 @@ export class Tool {
         this.canvas.requestRenderAll();
       });
     }
+  }
+
+  public copy() {
+    this.canvas.getActiveObject()?.clone((cloned: fabric.Object) => {
+      this.clipboard = cloned;
+    });
+  }
+
+  public paste() {
+    // Implement paste
   }
 
   public order(action: string) {
