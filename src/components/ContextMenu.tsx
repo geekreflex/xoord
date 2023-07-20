@@ -1,6 +1,5 @@
 import { useEditorContext } from '@/context/EditorContext';
 import { Paper, Stack, Text } from '@mantine/core';
-import { useClickOutside } from '@mantine/hooks';
 import { useEffect, useState } from 'react';
 
 interface ContextMenuAction {
@@ -30,6 +29,16 @@ export default function ContextMenu() {
       label: 'Duplicate',
       action: () => tool?.duplicate(),
     },
+    {
+      id: 'copy',
+      label: 'Copy',
+      action: () => tool?.duplicate(),
+    },
+    {
+      id: 'paste',
+      label: 'Paste',
+      action: () => tool?.duplicate(),
+    },
   ];
 
   useEffect(() => {
@@ -44,6 +53,7 @@ export default function ContextMenu() {
   }, [editor]);
 
   const onCanvasMouseDown = (event: fabric.IEvent) => {
+    setContextMenuVisible(false);
     if (event.e) {
       const mouseEvent = event.e as MouseEvent;
       if (mouseEvent.button === 2) {
@@ -71,33 +81,30 @@ export default function ContextMenu() {
   };
 
   const hideContextMenu = () => {
-    setContextMenuVisible(false);
+    setContextMenuVisible(!contextMenuVisible);
   };
-
-  const ref = useClickOutside(hideContextMenu);
 
   return (
     <>
       {contextMenuVisible && (
         <Paper
-          ref={ref}
           pos="absolute"
           left={contextMenuPosition.x}
           top={contextMenuPosition.y}
           shadow="lg"
           withBorder
           p={10}
-          w={250}
-          onClick={hideContextMenu}
+          w={200}
         >
-          <Stack>
+          <Stack spacing={8}>
             {contextMenuActions.map((action) => (
               <Text
                 key={action.id}
-                size="xs"
-                fw="bold"
-                style={{ cursor: 'pointer' }}
+                size="sm"
+                fw="normal"
+                style={{ cursor: selectedObject ? 'pointer' : 'default' }}
                 onClick={() => handleContextMenuAction(action)}
+                c={`${selectedObject ? '' : 'dimmed'}`}
               >
                 {action.label}
               </Text>

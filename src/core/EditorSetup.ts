@@ -28,6 +28,7 @@ export class EditorSetup {
 
     this.initZoom();
     this.initPan();
+    this.initEvent();
   }
 
   private initEditor() {
@@ -171,5 +172,16 @@ export class EditorSetup {
       this.resizeObserver.disconnect();
       this.resizeObserver = null;
     }
+  }
+
+  public initEvent() {
+    this.canvas.on('mouse:down', (event) => {
+      if (event.e.button === 2) {
+        const object = event.target;
+        if (object) {
+          this.canvas.setActiveObject(object);
+        }
+      }
+    });
   }
 }
