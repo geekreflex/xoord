@@ -109,15 +109,29 @@ export class Tool {
 
   public duplicate() {
     const activeObject = this.canvas.getActiveObject();
+
     if (activeObject) {
       activeObject.clone((clone: fabric.Object) => {
-        this.canvas.add(
-          clone.set({
-            name: activeObject.name,
-            left: activeObject.left! + 10,
-            top: activeObject.top! + 10,
-          })
-        );
+        this.canvas.discardActiveObject();
+        clone.set({
+          name: activeObject.name,
+          left: activeObject.left! + 10,
+          top: activeObject.top! + 10,
+        });
+        if (clone.type === 'activeSelection') {
+          // active selection needs a reference to the canvas.
+          const activeSelection = clone as fabric.ActiveSelection;
+          activeSelection.canvas = this.canvas;
+          activeSelection.forEachObject((obj) => {
+            this.canvas.add(obj);
+          });
+          activeSelection.setCoords();
+        } else {
+          this.canvas.add(clone);
+        }
+
+        this.canvas.setActiveObject(clone);
+        this.canvas.requestRenderAll();
       });
     }
   }
