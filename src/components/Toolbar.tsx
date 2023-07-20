@@ -9,23 +9,18 @@ import {
 } from '@mantine/core';
 import {
   IconBrandGithub,
-  IconCircle,
   IconCircleSquare,
   IconHandStop,
   IconLetterT,
   IconPhoto,
   IconPointer,
-  IconPolygon,
-  IconRectangle,
-  IconSlash,
-  IconStar,
-  IconTriangle,
 } from '@tabler/icons-react';
 import History from './History';
 import Zoom from './Zoom';
 import { useRef, useState } from 'react';
 import { useEditorContext } from '@/context/EditorContext';
 import Download from './Download';
+import ShapeList from './ShapeLists';
 
 const useStyles = createStyles(() => ({
   wrapper: {
@@ -83,33 +78,6 @@ export default function Toolbar() {
     }
   };
 
-  const handleAddShape = (shape: string) => {
-    if (tool) {
-      switch (shape) {
-        case 'circle':
-          tool.addCircle();
-          break;
-        case 'rectangle':
-          tool.addRectangle();
-          break;
-        case 'triangle':
-          tool.addTriangle();
-          break;
-        case 'line':
-          tool.addLine();
-          break;
-        case 'star':
-          tool.addStar();
-          break;
-        case 'polygon':
-          tool.addPolygon();
-          break;
-        default:
-          break;
-      }
-    }
-  };
-
   return (
     <Paper
       className={classes.wrapper}
@@ -152,56 +120,7 @@ export default function Toolbar() {
               </Tooltip>
             </ActionIcon>
           </Menu.Target>
-          <Menu.Dropdown>
-            <Menu.Item
-              fz="xs"
-              p="5px"
-              icon={<IconRectangle size="1.25rem" />}
-              onClick={() => handleAddShape('rectangle')}
-            >
-              Rectangle
-            </Menu.Item>
-            <Menu.Item
-              fz="xs"
-              p="5px"
-              icon={<IconCircle size="1.25rem" />}
-              onClick={() => handleAddShape('circle')}
-            >
-              Circle
-            </Menu.Item>
-            <Menu.Item
-              fz="xs"
-              p="5px"
-              icon={<IconTriangle size="1.25rem" />}
-              onClick={() => handleAddShape('triangle')}
-            >
-              Triangle
-            </Menu.Item>
-            <Menu.Item
-              fz="xs"
-              p="5px"
-              icon={<IconSlash size="1.25rem" />}
-              onClick={() => handleAddShape('line')}
-            >
-              Line
-            </Menu.Item>
-            <Menu.Item
-              fz="xs"
-              p="5px"
-              icon={<IconStar size="1.25rem" />}
-              onClick={() => handleAddShape('star')}
-            >
-              Star
-            </Menu.Item>
-            <Menu.Item
-              fz="xs"
-              p="5px"
-              icon={<IconPolygon size="1.25rem" />}
-              onClick={() => handleAddShape('polygon')}
-            >
-              Polygon
-            </Menu.Item>
-          </Menu.Dropdown>
+          <ShapeList />
         </Menu>
         <Tooltip label="Text tool" position="bottom" withArrow>
           <ActionIcon onClick={() => tool?.addText()} variant="light">
