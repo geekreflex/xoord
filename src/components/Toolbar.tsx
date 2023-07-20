@@ -21,6 +21,7 @@ import { useRef, useState } from 'react';
 import { useEditorContext } from '@/context/EditorContext';
 import Download from './Download';
 import ShapeList from './ShapeLists';
+import { useHotkeys } from '@mantine/hooks';
 
 const useStyles = createStyles(() => ({
   wrapper: {
@@ -39,6 +40,12 @@ export default function Toolbar() {
   const [isPan, setPan] = useState(false);
 
   const { classes } = useStyles();
+
+  useHotkeys([
+    ['ctrl+p', () => handlePan()],
+    ['ctrl+m', () => handleMove()],
+    ['ctrl+u', () => handleAddImage()],
+  ]);
 
   const handlePan = () => {
     setPan(true);
@@ -97,12 +104,22 @@ export default function Toolbar() {
         style={{ display: 'none' }}
       />
       <Group spacing="xs">
-        <Tooltip label="Move tool" position="bottom" withArrow>
+        <Tooltip
+          label="Move tool (Ctrl + M)"
+          fz="xs"
+          position="bottom"
+          withArrow
+        >
           <ActionIcon onClick={handleMove} variant={isPan ? 'light' : 'filled'}>
             <IconPointer size="1.25rem" />
           </ActionIcon>
         </Tooltip>
-        <Tooltip label="Pan tool" position="bottom" withArrow>
+        <Tooltip
+          label="Pan tool (Ctrl + P)"
+          fz="xs"
+          position="bottom"
+          withArrow
+        >
           <ActionIcon onClick={handlePan} variant={isPan ? 'filled' : 'light'}>
             <IconHandStop size="1.25rem" />
           </ActionIcon>
@@ -114,20 +131,25 @@ export default function Toolbar() {
           transitionProps={{ transition: 'pop' }}
         >
           <Menu.Target>
-            <ActionIcon onClick={() => console.log('clicked')} variant="light">
-              <Tooltip label="Shapes tool" position="bottom" withArrow>
+            <ActionIcon variant="light">
+              <Tooltip label="Shapes tool" fz="xs" position="bottom" withArrow>
                 <IconCircleSquare size="1.25rem" />
               </Tooltip>
             </ActionIcon>
           </Menu.Target>
           <ShapeList />
         </Menu>
-        <Tooltip label="Text tool" position="bottom" withArrow>
+        <Tooltip label="Text tool" fz="xs" position="bottom" withArrow>
           <ActionIcon onClick={() => tool?.addText()} variant="light">
             <IconLetterT size="1.25rem" />
           </ActionIcon>
         </Tooltip>
-        <Tooltip label="Upload photo" position="bottom" withArrow>
+        <Tooltip
+          label="Upload photo (Ctrl + U)"
+          fz="xs"
+          position="bottom"
+          withArrow
+        >
           <ActionIcon onClick={handleAddImage} variant="light">
             <IconPhoto size="1.25rem" />
           </ActionIcon>

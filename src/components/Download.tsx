@@ -43,7 +43,7 @@ export default function Download() {
       transitionProps={{ transition: 'pop' }}
     >
       <Popover.Target>
-        <Tooltip label="Download" position="bottom" withArrow>
+        <Tooltip label="Download" fz="xs" position="bottom" withArrow>
           <ActionIcon variant="light">
             <IconDownload size="1.25rem" />
           </ActionIcon>

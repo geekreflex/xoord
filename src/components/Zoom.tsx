@@ -1,11 +1,17 @@
 import { useEditorContext } from '@/context/EditorContext';
 import { ActionIcon, Group, Paper, Text, Tooltip } from '@mantine/core';
+import { useHotkeys } from '@mantine/hooks';
 import { IconZoomIn, IconZoomOut } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 
 export default function Zoom() {
   const [currentZoom, setCurrentZoom] = useState(100);
   const { editor } = useEditorContext();
+
+  useHotkeys([
+    ['ctrl+=', () => handleZoomIn()],
+    ['ctrl+-', () => handleZoomOut()],
+  ]);
 
   useEffect(() => {
     const canvas = editor?.canvas;
@@ -36,7 +42,7 @@ export default function Zoom() {
 
   return (
     <Group spacing="xs">
-      <Tooltip label="Zoom Out" position="bottom" withArrow>
+      <Tooltip label="Zoom Out (Ctrl + =)" fz="xs" position="bottom" withArrow>
         <ActionIcon onClick={handleZoomOut} variant="light">
           <IconZoomOut size="1.25rem" />
         </ActionIcon>
@@ -46,7 +52,7 @@ export default function Zoom() {
           {currentZoom.toFixed()}%
         </Text>
       </Paper>
-      <Tooltip label="Zoom In" position="bottom" withArrow>
+      <Tooltip label="Zoom In (Ctrl + -)" fz="xs" position="bottom" withArrow>
         <ActionIcon onClick={handleZoomIn} variant="light">
           <IconZoomIn size="1.25rem" />
         </ActionIcon>

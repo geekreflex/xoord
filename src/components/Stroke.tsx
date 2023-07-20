@@ -136,7 +136,7 @@ export default function Stroke() {
               onChange={handleStyle}
             />
             {selectedType === 'rect' && (
-              <Tooltip label="Corners">
+              <Tooltip label="Corners" fz="xs">
                 <NumberInput
                   min={0}
                   max={100}

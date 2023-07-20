@@ -9,6 +9,7 @@ import {
   Text,
   Tooltip,
 } from '@mantine/core';
+import { useHotkeys } from '@mantine/hooks';
 import {
   IconChevronDown,
   IconChevronRight,
@@ -24,6 +25,11 @@ import {
 export default function ObjectOptions() {
   const { tool } = useEditorContext();
 
+  useHotkeys([
+    ['ctrl+d', () => tool?.duplicate()],
+    ['delete', () => tool?.delete()],
+  ]);
+
   const handleLayer = (action: string) => {
     if (tool) {
       tool.order(action);
@@ -32,12 +38,12 @@ export default function ObjectOptions() {
 
   return (
     <Flex align="center" gap={10}>
-      <Tooltip label="Delete" position="bottom" withArrow>
+      <Tooltip label="Delete" fz="xs" position="bottom" withArrow>
         <ActionIcon variant={'light'} onClick={() => tool?.delete()}>
           <IconTrash size="1.25rem" />
         </ActionIcon>
       </Tooltip>
-      <Tooltip label="Duplicate" position="bottom" withArrow>
+      <Tooltip label="Duplicate (Ctrl +D)" fz="xs" position="bottom" withArrow>
         <ActionIcon variant={'light'} onClick={() => tool?.duplicate()}>
           <IconCopy size="1.25rem" />
         </ActionIcon>
@@ -63,7 +69,12 @@ export default function ObjectOptions() {
         <Popover.Dropdown>
           <Stack>
             <Group>
-              <Tooltip label="Brign forward" position="bottom" withArrow>
+              <Tooltip
+                label="Brign forward"
+                fz="xs"
+                position="bottom"
+                withArrow
+              >
                 <ActionIcon
                   variant={'light'}
                   onClick={() => handleLayer('front')}
@@ -71,7 +82,12 @@ export default function ObjectOptions() {
                   <IconChevronsUp size="1.25rem" />
                 </ActionIcon>
               </Tooltip>
-              <Tooltip label="Send backwards" position="bottom" withArrow>
+              <Tooltip
+                label="Send backwards"
+                fz="xs"
+                position="bottom"
+                withArrow
+              >
                 <ActionIcon
                   variant={'light'}
                   onClick={() => handleLayer('back')}
@@ -79,7 +95,12 @@ export default function ObjectOptions() {
                   <IconChevronsDown size="1.25rem" />
                 </ActionIcon>
               </Tooltip>
-              <Tooltip label="Bring to front" position="bottom" withArrow>
+              <Tooltip
+                label="Bring to front"
+                fz="xs"
+                position="bottom"
+                withArrow
+              >
                 <ActionIcon
                   variant={'light'}
                   onClick={() => handleLayer('forward')}
@@ -87,7 +108,7 @@ export default function ObjectOptions() {
                   <IconChevronUp size="1.25rem" />
                 </ActionIcon>
               </Tooltip>
-              <Tooltip label="Send to back" position="bottom" withArrow>
+              <Tooltip label="Send to back" fz="xs" position="bottom" withArrow>
                 <ActionIcon
                   variant={'light'}
                   onClick={() => handleLayer('backward')}
@@ -97,12 +118,22 @@ export default function ObjectOptions() {
               </Tooltip>
             </Group>
             <Group>
-              <Tooltip label="Flip horizontal" position="bottom" withArrow>
+              <Tooltip
+                label="Flip horizontal"
+                fz="xs"
+                position="bottom"
+                withArrow
+              >
                 <ActionIcon variant={'light'} onClick={() => tool?.flipX()}>
                   <IconFlipHorizontal size="1.25rem" />
                 </ActionIcon>
               </Tooltip>
-              <Tooltip label="Flip vertical" position="bottom" withArrow>
+              <Tooltip
+                label="Flip vertical"
+                fz="xs"
+                position="bottom"
+                withArrow
+              >
                 <ActionIcon variant={'light'} onClick={() => tool?.flipY()}>
                   <IconFlipVertical size="1.25rem" />
                 </ActionIcon>
