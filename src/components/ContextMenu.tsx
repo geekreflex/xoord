@@ -1,5 +1,5 @@
 import { useEditorContext } from '@/context/EditorContext';
-import { Paper, Stack, Text } from '@mantine/core';
+import { Menu, Paper, Text } from '@mantine/core';
 import { useEffect, useState } from 'react';
 
 interface ContextMenuAction {
@@ -91,28 +91,29 @@ export default function ContextMenu() {
           pos="absolute"
           left={contextMenuPosition.x}
           top={contextMenuPosition.y}
-          shadow="lg"
-          withBorder
-          p={10}
-          w={200}
-          style={{
-            boxShadow: `rgba(0, 0, 0, 0.5) 0px 3px 6px 1px`,
-          }}
         >
-          <Stack spacing={8}>
-            {contextMenuActions.map((action) => (
-              <Text
-                key={action.id}
-                size="sm"
-                fw="normal"
-                style={{ cursor: selectedObject ? 'pointer' : 'default' }}
-                onClick={() => handleContextMenuAction(action)}
-                c={`${selectedObject ? '' : 'dimmed'}`}
-              >
-                {action.label}
-              </Text>
-            ))}
-          </Stack>
+          <Menu opened={true} width={200}>
+            <Menu.Dropdown
+              style={{
+                boxShadow: `rgba(0, 0, 0, 0.5) 0px 3px 6px 1px`,
+              }}
+            >
+              {contextMenuActions.map((action) => (
+                <Menu.Item disabled={selectedObject ? false : true}>
+                  <Text
+                    key={action.id}
+                    size="sm"
+                    fw="normal"
+                    style={{ cursor: selectedObject ? 'pointer' : 'default' }}
+                    onClick={() => handleContextMenuAction(action)}
+                    c={`${selectedObject ? '' : 'dimmed'}`}
+                  >
+                    {action.label}
+                  </Text>
+                </Menu.Item>
+              ))}
+            </Menu.Dropdown>
+          </Menu>
         </Paper>
       )}
     </>
