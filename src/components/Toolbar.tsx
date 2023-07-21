@@ -1,5 +1,6 @@
 import {
   ActionIcon,
+  Center,
   Divider,
   Group,
   Menu,
@@ -27,8 +28,8 @@ const useStyles = createStyles(() => ({
   wrapper: {
     position: 'absolute',
     zIndex: 9999,
+    top: 0,
     margin: 30,
-    marginLeft: 100,
     display: 'flex',
     gap: 20,
   },
@@ -86,86 +87,99 @@ export default function Toolbar() {
   };
 
   return (
-    <Paper
-      className={classes.wrapper}
-      shadow="lg"
-      p="sm"
-      radius="lg"
-      withBorder
-      style={{
-        boxShadow: `rgba(0, 0, 0, 0.5) 0px 3px 6px 1px`,
-      }}
-    >
-      <input
-        type="file"
-        accept="image/*"
-        ref={fileInputRef}
-        onChange={handleImageUpload}
-        style={{ display: 'none' }}
-      />
-      <Group spacing="xs">
-        <Tooltip
-          label="Move tool (Ctrl + M)"
-          fz="xs"
-          position="bottom"
-          withArrow
-        >
-          <ActionIcon onClick={handleMove} variant={isPan ? 'light' : 'filled'}>
-            <IconPointer size="1.25rem" />
-          </ActionIcon>
-        </Tooltip>
-        <Tooltip
-          label="Pan tool (Ctrl + P)"
-          fz="xs"
-          position="bottom"
-          withArrow
-        >
-          <ActionIcon onClick={handlePan} variant={isPan ? 'filled' : 'light'}>
-            <IconHandStop size="1.25rem" />
-          </ActionIcon>
-        </Tooltip>
-        <Menu
-          width={200}
-          offset={14}
-          withArrow
-          transitionProps={{ transition: 'pop' }}
-        >
-          <Menu.Target>
-            <ActionIcon variant="light">
-              <Tooltip label="Shapes tool" fz="xs" position="bottom" withArrow>
-                <IconCircleSquare size="1.25rem" />
-              </Tooltip>
+    <Center>
+      <Paper
+        className={classes.wrapper}
+        shadow="lg"
+        p="sm"
+        radius="lg"
+        withBorder
+        style={{
+          boxShadow: `rgba(0, 0, 0, 0.5) 0px 3px 6px 1px`,
+        }}
+      >
+        <input
+          type="file"
+          accept="image/*"
+          ref={fileInputRef}
+          onChange={handleImageUpload}
+          style={{ display: 'none' }}
+        />
+        <Group spacing="xs">
+          <Tooltip
+            label="Move tool (Ctrl + M)"
+            fz="xs"
+            position="bottom"
+            withArrow
+          >
+            <ActionIcon
+              onClick={handleMove}
+              variant={isPan ? 'light' : 'filled'}
+            >
+              <IconPointer size="1.25rem" />
             </ActionIcon>
-          </Menu.Target>
-          <ShapeList />
-        </Menu>
-        <Tooltip label="Text tool" fz="xs" position="bottom" withArrow>
-          <ActionIcon onClick={() => tool?.addText()} variant="light">
-            <IconLetterT size="1.25rem" />
+          </Tooltip>
+          <Tooltip
+            label="Pan tool (Ctrl + P)"
+            fz="xs"
+            position="bottom"
+            withArrow
+          >
+            <ActionIcon
+              onClick={handlePan}
+              variant={isPan ? 'filled' : 'light'}
+            >
+              <IconHandStop size="1.25rem" />
+            </ActionIcon>
+          </Tooltip>
+          <Menu
+            width={200}
+            offset={14}
+            withArrow
+            transitionProps={{ transition: 'pop' }}
+          >
+            <Menu.Target>
+              <ActionIcon variant="light">
+                <Tooltip
+                  label="Shapes tool"
+                  fz="xs"
+                  position="bottom"
+                  withArrow
+                >
+                  <IconCircleSquare size="1.25rem" />
+                </Tooltip>
+              </ActionIcon>
+            </Menu.Target>
+            <ShapeList />
+          </Menu>
+          <Tooltip label="Text tool" fz="xs" position="bottom" withArrow>
+            <ActionIcon onClick={() => tool?.addText()} variant="light">
+              <IconLetterT size="1.25rem" />
+            </ActionIcon>
+          </Tooltip>
+          <Tooltip
+            label="Upload photo (Ctrl + U)"
+            fz="xs"
+            position="bottom"
+            withArrow
+          >
+            <ActionIcon onClick={handleAddImage} variant="light">
+              <IconPhoto size="1.25rem" />
+            </ActionIcon>
+          </Tooltip>
+        </Group>
+        <Divider orientation="vertical" />
+        <History />
+        <Divider orientation="vertical" />
+        <Zoom />
+        <Divider orientation="vertical" />
+        <Download />
+        <a href="https://github.com/geekreflex/xoord">
+          <ActionIcon variant="light">
+            <IconBrandGithub size="1.25rem" />
           </ActionIcon>
-        </Tooltip>
-        <Tooltip
-          label="Upload photo (Ctrl + U)"
-          fz="xs"
-          position="bottom"
-          withArrow
-        >
-          <ActionIcon onClick={handleAddImage} variant="light">
-            <IconPhoto size="1.25rem" />
-          </ActionIcon>
-        </Tooltip>
-      </Group>
-      <Divider orientation="vertical" />
-      <History />
-      <Divider orientation="vertical" />
-      <Zoom />
-      <Divider orientation="vertical" />
-      <Download />
-      <a href="https://github.com/geekreflex/xoord">
-        <ActionIcon variant="light">
-          <IconBrandGithub size="1.25rem" />
-        </ActionIcon>
-      </a>
-    </Paper>
+        </a>
+      </Paper>
+    </Center>
   );
 }
