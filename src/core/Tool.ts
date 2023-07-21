@@ -153,17 +153,15 @@ export class Tool {
       const copiedObjectWidth = this.clipboard.getScaledWidth();
       const copiedObjectHeight = this.clipboard.getScaledHeight();
 
-      const newX =
-        x - canvasPosition.left - copiedObjectWidth / 2 + canvasCenterX;
-      const newY =
-        y - canvasPosition.top - copiedObjectHeight / 2 + canvasCenterY;
+      const newX = x;
+      const newY = y;
 
       this.clipboard.clone((clone: fabric.Object) => {
         this.canvas.discardActiveObject();
         clone.set({
           name: this.clipboard?.name || 'unnamed',
-          left: x + 10,
-          top: y + 10,
+          left: newX,
+          top: newY,
         });
 
         if (clone.type === 'activeSelection') {
