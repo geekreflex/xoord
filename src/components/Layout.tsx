@@ -1,3 +1,4 @@
+import Bottom from './Bottom';
 import ContextMenu from './ContextMenu';
 import DropArea from './DropArea';
 import PropsPanel from './PropsPanel';
@@ -12,6 +13,7 @@ export default function Layout() {
       <PropsPanel />
       <DropArea />
       <ContextMenu />
+      <Bottom />
     </>
   );
 }
