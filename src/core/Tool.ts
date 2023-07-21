@@ -144,13 +144,26 @@ export class Tool {
     });
   }
 
-  public paste() {
+  public paste(x: number, y: number) {
     if (this.clipboard) {
+      const canvasPosition = this.canvas.getElement().getBoundingClientRect();
+      const canvasCenterX = canvasPosition.width / 2;
+      const canvasCenterY = canvasPosition.height / 2;
+      // Get the dimensions of the copied object
+      const copiedObjectWidth = this.clipboard.getScaledWidth();
+      const copiedObjectHeight = this.clipboard.getScaledHeight();
+
+      const newX =
+        x - canvasPosition.left - copiedObjectWidth / 2 + canvasCenterX;
+      const newY =
+        y - canvasPosition.top - copiedObjectHeight / 2 + canvasCenterY;
+
       this.clipboard.clone((clone: fabric.Object) => {
         this.canvas.discardActiveObject();
         clone.set({
-          left: clone.left! + 10,
-          top: clone.top! + 10,
+          name: this.clipboard?.name || 'unnamed',
+          left: x + 10,
+          top: y + 10,
         });
 
         if (clone.type === 'activeSelection') {

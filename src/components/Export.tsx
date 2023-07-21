@@ -21,9 +21,9 @@ export default function Export() {
   useEffect(() => {
     if (editor) {
       const obj = editor.canvas.getActiveObject();
-      setName(obj?.name as string);
+      setName((obj?.name as string) || 'element');
     }
-  }, []);
+  }, [editor]);
 
   const handleExport = () => {
     if (editor) {

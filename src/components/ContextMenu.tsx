@@ -6,6 +6,7 @@ interface ContextMenuAction {
   id: string;
   label: string;
   action: () => void;
+  disabled: boolean;
 }
 
 export default function ContextMenu() {
@@ -23,21 +24,25 @@ export default function ContextMenu() {
       id: 'delete',
       label: 'Delete',
       action: () => tool?.delete(),
+      disabled: selectedObject ? false : true,
     },
     {
       id: 'duplicate',
       label: 'Duplicate',
       action: () => tool?.duplicate(),
+      disabled: selectedObject ? false : true,
     },
     {
       id: 'copy',
       label: 'Copy',
-      action: () => tool?.duplicate(),
+      action: () => tool?.copy(),
+      disabled: selectedObject ? false : true,
     },
     {
       id: 'paste',
       label: 'Paste',
-      action: () => tool?.duplicate(),
+      action: () => tool?.paste(contextMenuPosition.x, contextMenuPosition.y),
+      disabled: false,
     },
   ];
 
@@ -74,9 +79,7 @@ export default function ContextMenu() {
   };
 
   const handleContextMenuAction = (action: ContextMenuAction) => {
-    if (editor && selectedObject) {
-      action.action();
-    }
+    action.action();
     hideContextMenu();
   };
 
@@ -99,14 +102,12 @@ export default function ContextMenu() {
               }}
             >
               {contextMenuActions.map((action) => (
-                <Menu.Item disabled={selectedObject ? false : true}>
+                <Menu.Item disabled={action.disabled} key={action.id}>
                   <Text
                     key={action.id}
                     size="sm"
                     fw="normal"
-                    style={{ cursor: selectedObject ? 'pointer' : 'default' }}
                     onClick={() => handleContextMenuAction(action)}
-                    c={`${selectedObject ? '' : 'dimmed'}`}
                   >
                     {action.label}
                   </Text>
