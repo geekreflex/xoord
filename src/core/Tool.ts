@@ -146,12 +146,12 @@ export class Tool {
 
   public paste(x: number, y: number) {
     if (this.clipboard) {
-      const canvasPosition = this.canvas.getElement().getBoundingClientRect();
-      const canvasCenterX = canvasPosition.width / 2;
-      const canvasCenterY = canvasPosition.height / 2;
+      // const canvasPosition = this.canvas.getElement().getBoundingClientRect();
+      // const canvasCenterX = canvasPosition.width / 2;
+      // const canvasCenterY = canvasPosition.height / 2;
       // Get the dimensions of the copied object
-      const copiedObjectWidth = this.clipboard.getScaledWidth();
-      const copiedObjectHeight = this.clipboard.getScaledHeight();
+      // const copiedObjectWidth = this.clipboard.getScaledWidth();
+      // const copiedObjectHeight = this.clipboard.getScaledHeight();
 
       const newX = x;
       const newY = y;
