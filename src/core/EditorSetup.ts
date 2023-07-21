@@ -178,7 +178,6 @@ export class EditorSetup {
     // Select object using right click
     this.canvas.discardActiveObject();
     this.canvas.on('mouse:down', (event) => {
-      event.e.preventDefault();
       if (event.e.button === 2) {
         const object = event.target;
         if (object) {

@@ -102,7 +102,7 @@ export default function ContextMenu() {
               }}
             >
               {contextMenuActions.map((action) => (
-                <Menu.Item disabled={action.disabled} key={action.id}>
+                <Menu.Item py={5} disabled={action.disabled} key={action.id}>
                   <Text
                     key={action.id}
                     size="sm"
