@@ -144,8 +144,42 @@ export class Tool {
     });
   }
 
-  public paste() {
-    // Implement paste
+  public paste(x: number, y: number) {
+    if (this.clipboard) {
+      // const canvasPosition = this.canvas.getElement().getBoundingClientRect();
+      // const canvasCenterX = canvasPosition.width / 2;
+      // const canvasCenterY = canvasPosition.height / 2;
+      // Get the dimensions of the copied object
+      // const copiedObjectWidth = this.clipboard.getScaledWidth();
+      // const copiedObjectHeight = this.clipboard.getScaledHeight();
+
+      const newX = x;
+      const newY = y;
+
+      this.clipboard.clone((clone: fabric.Object) => {
+        this.canvas.discardActiveObject();
+        clone.set({
+          name: this.clipboard?.name || 'unnamed',
+          left: newX,
+          top: newY,
+        });
+
+        if (clone.type === 'activeSelection') {
+          // active selection needs a reference to the canvas.
+          const activeSelection = clone as fabric.ActiveSelection;
+          activeSelection.canvas = this.canvas;
+          activeSelection.forEachObject((obj) => {
+            this.canvas.add(obj);
+          });
+          activeSelection.setCoords();
+        } else {
+          this.canvas.add(clone);
+        }
+
+        this.canvas.setActiveObject(clone);
+        this.canvas.requestRenderAll();
+      });
+    }
   }
 
   public order(action: string) {

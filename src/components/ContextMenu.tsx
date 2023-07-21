@@ -1,11 +1,12 @@
 import { useEditorContext } from '@/context/EditorContext';
-import { Paper, Stack, Text } from '@mantine/core';
+import { Menu, Paper, Text } from '@mantine/core';
 import { useEffect, useState } from 'react';
 
 interface ContextMenuAction {
   id: string;
   label: string;
   action: () => void;
+  disabled: boolean;
 }
 
 export default function ContextMenu() {
@@ -23,21 +24,25 @@ export default function ContextMenu() {
       id: 'delete',
       label: 'Delete',
       action: () => tool?.delete(),
+      disabled: selectedObject ? false : true,
     },
     {
       id: 'duplicate',
       label: 'Duplicate',
       action: () => tool?.duplicate(),
+      disabled: selectedObject ? false : true,
     },
     {
       id: 'copy',
       label: 'Copy',
-      action: () => tool?.duplicate(),
+      action: () => tool?.copy(),
+      disabled: selectedObject ? false : true,
     },
     {
       id: 'paste',
       label: 'Paste',
-      action: () => tool?.duplicate(),
+      action: () => tool?.paste(contextMenuPosition.x, contextMenuPosition.y),
+      disabled: false,
     },
   ];
 
@@ -74,9 +79,7 @@ export default function ContextMenu() {
   };
 
   const handleContextMenuAction = (action: ContextMenuAction) => {
-    if (editor && selectedObject) {
-      action.action();
-    }
+    action.action();
     hideContextMenu();
   };
 
@@ -91,28 +94,27 @@ export default function ContextMenu() {
           pos="absolute"
           left={contextMenuPosition.x}
           top={contextMenuPosition.y}
-          shadow="lg"
-          withBorder
-          p={10}
-          w={200}
-          style={{
-            boxShadow: `rgba(0, 0, 0, 0.5) 0px 3px 6px 1px`,
-          }}
         >
-          <Stack spacing={8}>
-            {contextMenuActions.map((action) => (
-              <Text
-                key={action.id}
-                size="sm"
-                fw="normal"
-                style={{ cursor: selectedObject ? 'pointer' : 'default' }}
-                onClick={() => handleContextMenuAction(action)}
-                c={`${selectedObject ? '' : 'dimmed'}`}
-              >
-                {action.label}
-              </Text>
-            ))}
-          </Stack>
+          <Menu opened={true} width={200}>
+            <Menu.Dropdown
+              style={{
+                boxShadow: `rgba(0, 0, 0, 0.5) 0px 3px 6px 1px`,
+              }}
+            >
+              {contextMenuActions.map((action) => (
+                <Menu.Item py={5} disabled={action.disabled} key={action.id}>
+                  <Text
+                    key={action.id}
+                    size="sm"
+                    fw="normal"
+                    onClick={() => handleContextMenuAction(action)}
+                  >
+                    {action.label}
+                  </Text>
+                </Menu.Item>
+              ))}
+            </Menu.Dropdown>
+          </Menu>
         </Paper>
       )}
     </>
