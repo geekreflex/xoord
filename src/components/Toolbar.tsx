@@ -46,6 +46,7 @@ export default function Toolbar() {
     ['ctrl+p', () => handlePan()],
     ['ctrl+m', () => handleMove()],
     ['ctrl+u', () => handleAddImage()],
+    ['T', () => tool?.addText()],
   ]);
 
   const handlePan = () => {
