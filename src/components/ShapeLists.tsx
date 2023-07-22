@@ -21,21 +21,21 @@ const shapes = [
     id: 'circle',
     label: 'Circle',
     icon: <IconCircle size="1.25rem" />,
-    key: 'C',
+    key: 'O',
   },
   {
     id: 'triangle',
     label: 'Triangle',
     icon: <IconTriangle size="1.25rem" />,
-    key: 'T',
+    key: 'Shift + T',
   },
   { id: 'line', label: 'Line', icon: <IconSlash size="1.25rem" />, key: 'L' },
-  { id: 'star', label: 'Star', icon: <IconStar size="1.25rem" />, key: 'S' },
+  { id: 'star', label: 'Star', icon: <IconStar size="1.25rem" />, key: '' },
   {
     id: 'polygon',
     label: 'Polygon',
     icon: <IconPolygon size="1.25rem" />,
-    key: 'P',
+    key: '',
   },
 ];
 
@@ -43,12 +43,12 @@ export default function ShapeList() {
   const { tool } = useEditorContext();
 
   useHotkeys([
-    ['C', () => handleAddShape('circle')],
+    ['O', () => handleAddShape('circle')],
     ['R', () => handleAddShape('rectangle')],
-    ['T', () => handleAddShape('triangle')],
+    ['Shift + T', () => handleAddShape('triangle')],
     ['L', () => handleAddShape('line')],
-    ['S', () => handleAddShape('star')],
-    ['P', () => handleAddShape('polygon')],
+    // ['S', () => handleAddShape('star')],
+    // ['P', () => handleAddShape('polygon')],
   ]);
 
   const handleAddShape = (shape: string) => {
@@ -89,11 +89,13 @@ export default function ShapeList() {
         >
           <Flex justify="space-between" align="center">
             <Text>{shape.label}</Text>
-            <Paper px="sm" py={1}>
-              <Text fz="10px" fw="bold">
-                {shape.key}
-              </Text>
-            </Paper>
+            {shape.key && (
+              <Paper px="sm" py={1}>
+                <Text fz="10px" fw="bold">
+                  {shape.key}
+                </Text>
+              </Paper>
+            )}
           </Flex>
         </Menu.Item>
       ))}

@@ -7,7 +7,7 @@ import {
   Text,
   useMantineTheme,
 } from '@mantine/core';
-import { useDisclosure, useSetState } from '@mantine/hooks';
+import { useDisclosure } from '@mantine/hooks';
 import { useEffect } from 'react';
 
 export default function Unfinished() {
