@@ -3,6 +3,7 @@ import ContextMenu from './ContextMenu';
 import DropArea from './DropArea';
 import PropsPanel from './PropsPanel';
 import Toolbar from './Toolbar';
+import Unfinished from './Unfinished';
 import Workspace from './Workspace';
 
 export default function Layout() {
@@ -14,6 +15,7 @@ export default function Layout() {
       <DropArea />
       <ContextMenu />
       <Bottom />
+      <Unfinished />
     </>
   );
 }

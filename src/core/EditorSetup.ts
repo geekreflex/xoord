@@ -3,7 +3,6 @@ import { throttle } from 'lodash-es';
 import { Controls } from './Controls';
 import './lib/history.js';
 import { AlignGuidelines } from './AlignGuidelines.js';
-import { EditorStorage } from './EditorStorage.js';
 
 declare type ExtCanvas = fabric.Canvas & {
   isDragging: boolean;
@@ -30,8 +29,6 @@ export class EditorSetup {
     this.initZoom();
     this.initPan();
     this.initEvent();
-
-    new EditorStorage(canvas);
   }
 
   private initEditor() {

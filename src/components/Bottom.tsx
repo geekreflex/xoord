@@ -1,5 +1,12 @@
 import { ActionIcon, Paper, Tooltip, createStyles } from '@mantine/core';
-import { IconHistory, IconKeyboard, IconSettings } from '@tabler/icons-react';
+import {
+  IconHelp,
+  IconHistory,
+  IconKeyboard,
+  IconScanEye,
+  IconSettings,
+  IconTexture,
+} from '@tabler/icons-react';
 
 const useStyles = createStyles(() => ({
   wrapper: {
@@ -30,7 +37,12 @@ export default function Bottom() {
           <IconSettings size="1.25rem" />
         </ActionIcon>
       </Tooltip>
-      <Tooltip label="Clear history" fz="xs" position="bottom" withArrow>
+      <Tooltip
+        label="Clear history (Shift + X)"
+        fz="xs"
+        position="bottom"
+        withArrow
+      >
         <ActionIcon variant={true ? 'light' : 'filled'}>
           <IconHistory size="1.25rem" />
         </ActionIcon>
@@ -38,6 +50,21 @@ export default function Bottom() {
       <Tooltip label="Hot keys" fz="xs" position="bottom" withArrow>
         <ActionIcon variant={true ? 'light' : 'filled'}>
           <IconKeyboard size="1.25rem" />
+        </ActionIcon>
+      </Tooltip>
+      <Tooltip label="Preview (Shift + P)" fz="xs" position="bottom" withArrow>
+        <ActionIcon variant={true ? 'light' : 'filled'}>
+          <IconScanEye size="1.25rem" />
+        </ActionIcon>
+      </Tooltip>
+      <Tooltip label="Help" fz="xs" position="bottom" withArrow>
+        <ActionIcon variant={true ? 'light' : 'filled'}>
+          <IconTexture size="1.25rem" />
+        </ActionIcon>
+      </Tooltip>
+      <Tooltip label="Help" fz="xs" position="bottom" withArrow>
+        <ActionIcon variant={true ? 'light' : 'filled'}>
+          <IconHelp size="1.25rem" />
         </ActionIcon>
       </Tooltip>
     </Paper>
