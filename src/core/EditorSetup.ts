@@ -97,6 +97,22 @@ export class EditorSetup {
     this.setZoom(Math.max(zoom, 0.1));
   }
 
+  public zoomToFit() {
+    const boudingBox = this.canvas.getObjects().reduce(
+      function (acc, obj) {
+        return fabric.util.object.extend(acc, obj.getBoundingRect());
+      },
+      { left: Infinity, top: Infinity, width: 0, height: 0 }
+    );
+
+    const scaleX = this.canvas.getWidth() / boudingBox.width;
+    const scaleY = this.canvas.getHeight() / boudingBox.height;
+    const scale = Math.min(scaleX, scaleY);
+
+    this.canvas.setZoom(scale);
+    this.canvas.setViewportTransform([scale, 0, 0, scale, 0, 0]);
+  }
+
   public startPan() {
     this.panMode = true;
     this.canvas.defaultCursor = 'grab';
