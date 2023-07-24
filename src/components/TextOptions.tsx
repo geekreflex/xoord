@@ -2,6 +2,7 @@ import { useEditorContext } from '@/context/EditorContext';
 import { fonts } from '@/data/fonts';
 import {
   ActionIcon,
+  Flex,
   Group,
   Select,
   Space,
@@ -18,6 +19,7 @@ import {
   IconUnderline,
 } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
+import FontSize from './FontSize';
 
 export default function TextOptions() {
   const { editor, selectedObject, tool } = useEditorContext();
@@ -93,14 +95,17 @@ export default function TextOptions() {
 
   return (
     <Stack spacing={10}>
-      <Select
-        styles={{ input: { fontFamily: family } }}
-        data={fonts}
-        value={family}
-        defaultValue={family}
-        onChange={handleFontFamily}
-        searchable
-      />
+      <Flex gap={10}>
+        <Select
+          styles={{ input: { fontFamily: family } }}
+          data={fonts}
+          value={family}
+          defaultValue={family}
+          onChange={handleFontFamily}
+          searchable
+        />
+        <FontSize />
+      </Flex>
 
       <Group spacing={3}>
         <Tooltip label="Bold" position="bottom" withArrow>
