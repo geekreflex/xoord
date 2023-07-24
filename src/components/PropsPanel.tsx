@@ -63,7 +63,7 @@ export default function PropsPanel() {
         withBorder
         radius="lg"
         style={{
-          boxShadow: `rgba(0, 0, 0, 0.5) 0px 3px 6px 1px`,
+          boxShadow: `rgba(0, 0, 0, 0.3) 0px 3px 4px 1px`,
           visibility: visible ? 'visible' : 'hidden',
           opacity: visible ? 1 : 0,
         }}

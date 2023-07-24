@@ -1,12 +1,5 @@
 import { ActionIcon, Paper, Tooltip, createStyles } from '@mantine/core';
-import {
-  IconHelp,
-  IconHistory,
-  IconKeyboard,
-  IconScanEye,
-  IconSettings,
-  IconTexture,
-} from '@tabler/icons-react';
+import { IconHelp, IconHistory, IconSettings } from '@tabler/icons-react';
 import KeyboardShotcuts from './KeyboardShortcuts';
 
 const useStyles = createStyles(() => ({
@@ -17,6 +10,7 @@ const useStyles = createStyles(() => ({
     margin: 30,
     display: 'flex',
     gap: 20,
+    right: 30,
   },
 }));
 
@@ -30,7 +24,7 @@ export default function Bottom() {
       radius="lg"
       withBorder
       style={{
-        boxShadow: `rgba(0, 0, 0, 0.5) 0px 3px 6px 1px`,
+        boxShadow: `rgba(0, 0, 0, 0.3) 0px 3px 4px 1px`,
       }}
     >
       <Tooltip label="Settings" fz="xs" position="bottom" withArrow>
