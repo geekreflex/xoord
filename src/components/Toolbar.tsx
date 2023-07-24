@@ -11,6 +11,7 @@ import {
 import {
   IconBrandGithub,
   IconCircleSquare,
+  IconFile,
   IconHandStop,
   IconLetterT,
   IconPhoto,
@@ -180,6 +181,11 @@ export default function Toolbar() {
             <IconBrandGithub size="1.25rem" />
           </ActionIcon>
         </a>
+        <Tooltip label="Text tool" fz="xs" position="bottom" withArrow>
+          <ActionIcon onClick={() => tool?.addText()} variant="light">
+            <IconFile size="1.25rem" />
+          </ActionIcon>
+        </Tooltip>
       </Paper>
     </Center>
   );
