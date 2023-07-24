@@ -28,6 +28,7 @@ export default function ObjectOptions() {
   useHotkeys([
     ['ctrl+d', () => tool?.duplicate()],
     ['delete', () => tool?.delete()],
+    ['backspace', () => tool?.delete()],
   ]);
 
   const handleLayer = (action: string) => {

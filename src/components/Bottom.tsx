@@ -7,6 +7,7 @@ import {
   IconSettings,
   IconTexture,
 } from '@tabler/icons-react';
+import KeyboardShotcuts from './KeyboardShortcuts';
 
 const useStyles = createStyles(() => ({
   wrapper: {
@@ -47,21 +48,7 @@ export default function Bottom() {
           <IconHistory size="1.25rem" />
         </ActionIcon>
       </Tooltip>
-      <Tooltip label="Hot keys" fz="xs" position="bottom" withArrow>
-        <ActionIcon variant={true ? 'light' : 'filled'}>
-          <IconKeyboard size="1.25rem" />
-        </ActionIcon>
-      </Tooltip>
-      <Tooltip label="Preview (Shift + P)" fz="xs" position="bottom" withArrow>
-        <ActionIcon variant={true ? 'light' : 'filled'}>
-          <IconScanEye size="1.25rem" />
-        </ActionIcon>
-      </Tooltip>
-      <Tooltip label="Help" fz="xs" position="bottom" withArrow>
-        <ActionIcon variant={true ? 'light' : 'filled'}>
-          <IconTexture size="1.25rem" />
-        </ActionIcon>
-      </Tooltip>
+      <KeyboardShotcuts />
       <Tooltip label="Help" fz="xs" position="bottom" withArrow>
         <ActionIcon variant={true ? 'light' : 'filled'}>
           <IconHelp size="1.25rem" />
