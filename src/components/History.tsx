@@ -50,14 +50,18 @@ export default function History() {
   return (
     <Group spacing="xs">
       <Tooltip label="Undo (Ctrl + Z)" fz="xs" position="bottom" withArrow>
-        <ActionIcon onClick={handleUndo} variant="light" disabled={!canUndo}>
-          <IconArrowBackUp size="1.25rem" />
-        </ActionIcon>
+        <span>
+          <ActionIcon onClick={handleUndo} variant="light" disabled={!canUndo}>
+            <IconArrowBackUp size="1.25rem" />
+          </ActionIcon>
+        </span>
       </Tooltip>
       <Tooltip label="Redo (Ctrl + Y)" fz="xs" position="bottom" withArrow>
-        <ActionIcon onClick={handleRedo} variant="light" disabled={!canRedo}>
-          <IconArrowForwardUp size="1.25rem" />
-        </ActionIcon>
+        <span>
+          <ActionIcon onClick={handleRedo} variant="light" disabled={!canRedo}>
+            <IconArrowForwardUp size="1.25rem" />
+          </ActionIcon>
+        </span>
       </Tooltip>
     </Group>
   );

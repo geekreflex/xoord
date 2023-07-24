@@ -71,7 +71,7 @@ export default function ObjectOptions() {
           <Stack>
             <Group>
               <Tooltip
-                label="Brign forward"
+                label="Bring to front"
                 fz="xs"
                 position="bottom"
                 withArrow
@@ -83,12 +83,7 @@ export default function ObjectOptions() {
                   <IconChevronsUp size="1.25rem" />
                 </ActionIcon>
               </Tooltip>
-              <Tooltip
-                label="Send backwards"
-                fz="xs"
-                position="bottom"
-                withArrow
-              >
+              <Tooltip label="Send to back" fz="xs" position="bottom" withArrow>
                 <ActionIcon
                   variant={'light'}
                   onClick={() => handleLayer('back')}
@@ -97,7 +92,7 @@ export default function ObjectOptions() {
                 </ActionIcon>
               </Tooltip>
               <Tooltip
-                label="Bring to front"
+                label="Bring forward"
                 fz="xs"
                 position="bottom"
                 withArrow
@@ -109,7 +104,12 @@ export default function ObjectOptions() {
                   <IconChevronUp size="1.25rem" />
                 </ActionIcon>
               </Tooltip>
-              <Tooltip label="Send to back" fz="xs" position="bottom" withArrow>
+              <Tooltip
+                label="Send backward"
+                fz="xs"
+                position="bottom"
+                withArrow
+              >
                 <ActionIcon
                   variant={'light'}
                   onClick={() => handleLayer('backward')}
