@@ -3,6 +3,7 @@ import {
   Box,
   Center,
   Drawer,
+  Flex,
   SegmentedControl,
   Tooltip,
 } from '@mantine/core';
@@ -11,7 +12,7 @@ import { IconKeyboard } from '@tabler/icons-react';
 import { useState } from 'react';
 
 export default function KeyboardShotcuts() {
-  const [opened, { open, close }] = useDisclosure(true);
+  const [opened, { open, close }] = useDisclosure(false);
   const [section, setSection] = useState('tool');
 
   const groupList = [
@@ -52,13 +53,16 @@ export default function KeyboardShotcuts() {
           body: {
             padding: 10,
             height: '100%',
-            background: theme.colors.dark[6],
+            background: theme.colors.dark[7],
             borderTop: `1px solid ${theme.colors.gray[8]}`,
           },
         })}
       >
         <Center>
-          <SegmentedControl data={groupList} w={600} onChange={setSection} />
+          <Flex align="center">
+            <SegmentedControl data={groupList} w={600} onChange={setSection} />
+            <Drawer.CloseButton pos="absolute" right={20} />
+          </Flex>
         </Center>
         <Box mx="auto" w={900}>
           <section>{section}</section>

@@ -1,6 +1,7 @@
 import { ActionIcon, Paper, Tooltip, createStyles } from '@mantine/core';
-import { IconHelp, IconHistory, IconSettings } from '@tabler/icons-react';
+import { IconHelp, IconHistory } from '@tabler/icons-react';
 import KeyboardShotcuts from './KeyboardShortcuts';
+import Settings from './Settings';
 
 const useStyles = createStyles(() => ({
   wrapper: {
@@ -27,11 +28,7 @@ export default function Bottom() {
         boxShadow: `rgba(0, 0, 0, 0.3) 0px 3px 4px 1px`,
       }}
     >
-      <Tooltip label="Settings" fz="xs" position="bottom" withArrow>
-        <ActionIcon variant={true ? 'light' : 'filled'}>
-          <IconSettings size="1.25rem" />
-        </ActionIcon>
-      </Tooltip>
+      <Settings />
       <Tooltip
         label="Clear history (Shift + X)"
         fz="xs"
