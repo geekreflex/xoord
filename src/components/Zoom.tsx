@@ -50,7 +50,19 @@ export default function Zoom() {
   };
 
   const handleZoom = (value: string) => {
-    console.log(value);
+    switch (value) {
+      case 'zoom-in':
+        return handleZoomIn();
+      case 'zoom-out':
+        return handleZoomOut();
+    }
+  };
+
+  const handleZoomInput = (value: number) => {
+    if (editor) {
+      editor.setZoom(value / 100);
+      handleUpdateZoom();
+    }
   };
 
   const zoomList = [
@@ -102,7 +114,12 @@ export default function Zoom() {
           </Paper>
         </Menu.Target>
         <Menu.Dropdown>
-          <NumberInput hideControls mb={10} value={currentZoom} />
+          <NumberInput
+            hideControls
+            mb={10}
+            value={currentZoom}
+            onChange={handleZoomInput}
+          />
           {zoomList.map((item) => (
             <Menu.Item
               key={item.id}
