@@ -46,7 +46,7 @@ export default function Toolbar() {
   useHotkeys([
     ['ctrl+p', () => handlePan()],
     ['ctrl+m', () => handleMove()],
-    ['ctrl+u', () => handleAddImage()],
+    ['U', () => handleAddImage()],
     ['T', () => tool?.addText()],
   ]);
 
@@ -159,12 +159,7 @@ export default function Toolbar() {
               <IconLetterT size="1.25rem" />
             </ActionIcon>
           </Tooltip>
-          <Tooltip
-            label="Upload photo (Ctrl + U)"
-            fz="xs"
-            position="bottom"
-            withArrow
-          >
+          <Tooltip label="Upload photo (U)" fz="xs" position="bottom" withArrow>
             <ActionIcon onClick={handleAddImage} variant="light">
               <IconPhoto size="1.25rem" />
             </ActionIcon>

@@ -63,7 +63,7 @@ export class EditorSetup {
 
       // Set minimum and maximum zoom values
       const minZoom = 0.1;
-      const maxZoom = 6;
+      const maxZoom = 20;
       zoom = Math.max(minZoom, Math.min(maxZoom, zoom));
 
       if (isControlKeyHeld) {
@@ -88,7 +88,7 @@ export class EditorSetup {
   public zoomIn() {
     const zoomFactor = 1.1;
     const zoom = this.canvas.getZoom() * zoomFactor;
-    this.setZoom(Math.min(zoom, 6));
+    this.setZoom(Math.min(zoom, 12));
   }
 
   public zoomOut() {
