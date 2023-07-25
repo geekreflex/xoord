@@ -171,16 +171,16 @@ export default function Toolbar() {
         <Zoom />
         <Divider orientation="vertical" />
         <Download />
+        <Tooltip label="File" fz="xs" position="bottom" withArrow>
+          <ActionIcon onClick={() => console.log('file')} variant="light">
+            <IconFile size="1.25rem" />
+          </ActionIcon>
+        </Tooltip>
         <a href="https://github.com/geekreflex/xoord">
           <ActionIcon variant="light">
             <IconBrandGithub size="1.25rem" />
           </ActionIcon>
         </a>
-        <Tooltip label="Text tool" fz="xs" position="bottom" withArrow>
-          <ActionIcon onClick={() => tool?.addText()} variant="light">
-            <IconFile size="1.25rem" />
-          </ActionIcon>
-        </Tooltip>
       </Paper>
     </Center>
   );

@@ -28,6 +28,12 @@ export default function Unfinished() {
       editor.canvas.on('before:render', () => {
         saveDesignToLocalStorage();
       });
+
+      return () => {
+        editor.canvas.off('before:render', () => {
+          saveDesignToLocalStorage();
+        });
+      };
     }
   }, [editor]);
 
