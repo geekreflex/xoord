@@ -39,7 +39,7 @@ export default function Unfinished() {
 
   const saveDesignToLocalStorage = () => {
     if (editor) {
-      const jsonDesign = JSON.stringify(editor.canvas.toDatalessJSON());
+      const jsonDesign = JSON.stringify(editor.canvas.toJSON());
       localStorage.setItem('editor-state', jsonDesign);
     }
   };
