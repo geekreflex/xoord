@@ -1,4 +1,4 @@
-import { Box, createStyles } from '@mantine/core';
+import { Box, createStyles, useMantineTheme } from '@mantine/core';
 import { useEffect } from 'react';
 import { fabric } from 'fabric';
 import { EditorSetup } from '../core/EditorSetup';
@@ -18,6 +18,7 @@ const useStyles = createStyles(() => ({
 export default function Workspace() {
   const { classes } = useStyles();
   const { setEditor, tool } = useEditorContext();
+  const theme = useMantineTheme();
 
   useHotkeys([
     ['shift+v', () => tool?.flipY()],
@@ -34,6 +35,7 @@ export default function Workspace() {
       stopContextMenu: true,
       preserveObjectStacking: true,
       controlsAboveOverlay: true,
+      backgroundColor: theme.colors.dark[9],
     });
     const workspaceEl = document.getElementById('workspace') as HTMLElement;
     const editor = new EditorSetup(fabricCanvas, workspaceEl);

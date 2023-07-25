@@ -48,11 +48,13 @@ export default function Zoom() {
         </ActionIcon>
       </Tooltip>
 
-      <Paper withBorder p="4px" w="60px" style={{ cursor: 'pointer' }}>
-        <Text size="xs" weight="bold" align="center">
-          {currentZoom.toFixed()}%
-        </Text>
-      </Paper>
+      <Tooltip label="Reset" fz="xs" position="bottom" withArrow>
+        <Paper withBorder p="4px" w="60px" style={{ cursor: 'pointer' }}>
+          <Text size="xs" weight="bold" align="center">
+            {currentZoom.toFixed()}%
+          </Text>
+        </Paper>
+      </Tooltip>
 
       <Tooltip label="Zoom In (Ctrl + -)" fz="xs" position="bottom" withArrow>
         <ActionIcon onClick={handleZoomIn} variant="light">

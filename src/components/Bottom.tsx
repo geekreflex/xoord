@@ -1,5 +1,5 @@
 import { ActionIcon, Paper, Tooltip, createStyles } from '@mantine/core';
-import { IconHelp } from '@tabler/icons-react';
+import { IconHelp, IconTexture } from '@tabler/icons-react';
 import KeyboardShotcuts from './KeyboardShortcuts';
 import Settings from './Settings';
 import ResetCanvas from './ResetCanvas';
@@ -32,6 +32,11 @@ export default function Bottom() {
       <Settings />
       <ResetCanvas />
       <KeyboardShotcuts />
+      <Tooltip label="Canvas Color" fz="xs" position="bottom" withArrow>
+        <ActionIcon variant={true ? 'light' : 'filled'}>
+          <IconTexture size="1.25rem" />
+        </ActionIcon>
+      </Tooltip>
       <Tooltip label="Help" fz="xs" position="bottom" withArrow>
         <ActionIcon variant={true ? 'light' : 'filled'}>
           <IconHelp size="1.25rem" />

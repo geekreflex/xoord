@@ -1,8 +1,9 @@
 import { useEditorContext } from '@/context/EditorContext';
-import { Flex, Menu, Paper, Text } from '@mantine/core';
+import { ActionIcon, Flex, Menu, Paper, Text, Tooltip } from '@mantine/core';
 import { useHotkeys } from '@mantine/hooks';
 import {
   IconCircle,
+  IconCircleSquare,
   IconPolygon,
   IconRectangle,
   IconSlash,
@@ -78,27 +79,36 @@ export default function ShapeList() {
     }
   };
   return (
-    <Menu.Dropdown>
-      {shapes.map((shape) => (
-        <Menu.Item
-          key={shape.id}
-          fz="xs"
-          p="5px"
-          icon={shape.icon as any}
-          onClick={() => handleAddShape(shape.id)}
-        >
-          <Flex justify="space-between" align="center">
-            <Text>{shape.label}</Text>
-            {shape.key && (
-              <Paper px="sm" py={1}>
-                <Text fz="10px" fw="bold">
-                  {shape.key}
-                </Text>
-              </Paper>
-            )}
-          </Flex>
-        </Menu.Item>
-      ))}
-    </Menu.Dropdown>
+    <Menu width={200} offset={20} transitionProps={{ transition: 'pop' }}>
+      <Menu.Target>
+        <ActionIcon variant="light">
+          <Tooltip label="Shapes tool" fz="xs" position="bottom" withArrow>
+            <IconCircleSquare size="1.25rem" />
+          </Tooltip>
+        </ActionIcon>
+      </Menu.Target>
+      <Menu.Dropdown>
+        {shapes.map((shape) => (
+          <Menu.Item
+            key={shape.id}
+            fz="xs"
+            p={8}
+            icon={shape.icon as any}
+            onClick={() => handleAddShape(shape.id)}
+          >
+            <Flex justify="space-between" align="center">
+              <Text>{shape.label}</Text>
+              {shape.key && (
+                <Paper px="sm" py={1}>
+                  <Text fz="10px" fw="bold">
+                    {shape.key}
+                  </Text>
+                </Paper>
+              )}
+            </Flex>
+          </Menu.Item>
+        ))}
+      </Menu.Dropdown>
+    </Menu>
   );
 }

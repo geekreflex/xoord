@@ -3,17 +3,15 @@ import {
   Center,
   Divider,
   Group,
-  Menu,
   Paper,
   Tooltip,
   createStyles,
 } from '@mantine/core';
 import {
-  IconBrandGithub,
-  IconCircleSquare,
-  IconFile,
+  IconEraser,
   IconHandStop,
   IconLetterT,
+  IconPencil,
   IconPhoto,
   IconPointer,
 } from '@tabler/icons-react';
@@ -21,9 +19,9 @@ import History from './History';
 import Zoom from './Zoom';
 import { useRef, useState } from 'react';
 import { useEditorContext } from '@/context/EditorContext';
-import Download from './Download';
 import ShapeList from './ShapeLists';
 import { useHotkeys } from '@mantine/hooks';
+import MenuOption from './MenuOption';
 
 const useStyles = createStyles(() => ({
   wrapper: {
@@ -107,7 +105,10 @@ export default function Toolbar() {
           onChange={handleImageUpload}
           style={{ display: 'none' }}
         />
-        <Group spacing="xs">
+
+        <MenuOption />
+        <Divider orientation="vertical" />
+        <Group spacing="sm">
           <Tooltip
             label="Move tool (Ctrl + M)"
             fz="xs"
@@ -134,26 +135,8 @@ export default function Toolbar() {
               <IconHandStop size="1.25rem" />
             </ActionIcon>
           </Tooltip>
-          <Menu
-            width={200}
-            offset={14}
-            withArrow
-            transitionProps={{ transition: 'pop' }}
-          >
-            <Menu.Target>
-              <ActionIcon variant="light">
-                <Tooltip
-                  label="Shapes tool"
-                  fz="xs"
-                  position="bottom"
-                  withArrow
-                >
-                  <IconCircleSquare size="1.25rem" />
-                </Tooltip>
-              </ActionIcon>
-            </Menu.Target>
-            <ShapeList />
-          </Menu>
+
+          <ShapeList />
           <Tooltip label="Text tool" fz="xs" position="bottom" withArrow>
             <ActionIcon onClick={() => tool?.addText()} variant="light">
               <IconLetterT size="1.25rem" />
@@ -164,23 +147,21 @@ export default function Toolbar() {
               <IconPhoto size="1.25rem" />
             </ActionIcon>
           </Tooltip>
+          <Tooltip label="Text tool" fz="xs" position="bottom" withArrow>
+            <ActionIcon onClick={() => tool?.addText()} variant="light">
+              <IconPencil size="1.25rem" />
+            </ActionIcon>
+          </Tooltip>
+          <Tooltip label="Text tool" fz="xs" position="bottom" withArrow>
+            <ActionIcon onClick={() => tool?.addText()} variant="light">
+              <IconEraser size="1.25rem" />
+            </ActionIcon>
+          </Tooltip>
         </Group>
         <Divider orientation="vertical" />
         <History />
         <Divider orientation="vertical" />
         <Zoom />
-        <Divider orientation="vertical" />
-        <Download />
-        <Tooltip label="File" fz="xs" position="bottom" withArrow>
-          <ActionIcon onClick={() => console.log('file')} variant="light">
-            <IconFile size="1.25rem" />
-          </ActionIcon>
-        </Tooltip>
-        <a href="https://github.com/geekreflex/xoord">
-          <ActionIcon variant="light">
-            <IconBrandGithub size="1.25rem" />
-          </ActionIcon>
-        </a>
       </Paper>
     </Center>
   );
