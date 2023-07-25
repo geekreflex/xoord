@@ -77,6 +77,8 @@ export default function Unfinished() {
         opacity: 0.55,
         blur: 3,
       }}
+      centered
+      size={500}
     >
       <Modal.Body>
         <Text>

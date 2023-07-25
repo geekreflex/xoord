@@ -1,7 +1,8 @@
 import { ActionIcon, Paper, Tooltip, createStyles } from '@mantine/core';
-import { IconHelp, IconHistory } from '@tabler/icons-react';
+import { IconHelp } from '@tabler/icons-react';
 import KeyboardShotcuts from './KeyboardShortcuts';
 import Settings from './Settings';
+import ResetCanvas from './ResetCanvas';
 
 const useStyles = createStyles(() => ({
   wrapper: {
@@ -29,16 +30,7 @@ export default function Bottom() {
       }}
     >
       <Settings />
-      <Tooltip
-        label="Clear history (Shift + X)"
-        fz="xs"
-        position="bottom"
-        withArrow
-      >
-        <ActionIcon variant={true ? 'light' : 'filled'}>
-          <IconHistory size="1.25rem" />
-        </ActionIcon>
-      </Tooltip>
+      <ResetCanvas />
       <KeyboardShotcuts />
       <Tooltip label="Help" fz="xs" position="bottom" withArrow>
         <ActionIcon variant={true ? 'light' : 'filled'}>
