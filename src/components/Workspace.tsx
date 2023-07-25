@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { fabric } from 'fabric';
 import { EditorSetup } from '../core/EditorSetup';
 import { useEditorContext } from '@/context/EditorContext';
+import { useHotkeys } from '@mantine/hooks';
 
 const useStyles = createStyles(() => ({
   box: {
@@ -16,7 +17,16 @@ const useStyles = createStyles(() => ({
 
 export default function Workspace() {
   const { classes } = useStyles();
-  const { setEditor } = useEditorContext();
+  const { setEditor, tool } = useEditorContext();
+
+  useHotkeys([
+    ['shift+v', () => tool?.flipY()],
+    ['shift+h', () => tool?.flipX()],
+    ['ctrl+]', () => tool?.order('forward')],
+    ['ctrl+[', () => tool?.order('backward')],
+    [']', () => tool?.order('front')],
+    ['[', () => tool?.order('back')],
+  ]);
 
   useEffect(() => {
     const fabricCanvas = new fabric.Canvas('canvas', {
