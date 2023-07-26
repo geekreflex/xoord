@@ -42,8 +42,8 @@ export default function Toolbar() {
   const { classes } = useStyles();
 
   useHotkeys([
-    ['ctrl+p', () => handlePan()],
-    ['ctrl+m', () => handleMove()],
+    ['H', () => handlePan()],
+    ['V', () => handleMove()],
     ['U', () => handleAddImage()],
     ['T', () => tool?.addText()],
   ]);
@@ -109,12 +109,7 @@ export default function Toolbar() {
         <MenuOption />
         <Divider orientation="vertical" />
         <Group spacing="sm">
-          <Tooltip
-            label="Move tool (Ctrl + M)"
-            fz="xs"
-            position="bottom"
-            withArrow
-          >
+          <Tooltip label="Move tool (V)" fz="xs" position="bottom" withArrow>
             <ActionIcon
               onClick={handleMove}
               variant={isPan ? 'light' : 'filled'}
@@ -122,12 +117,7 @@ export default function Toolbar() {
               <IconPointer size="1.25rem" />
             </ActionIcon>
           </Tooltip>
-          <Tooltip
-            label="Pan tool (Ctrl + P)"
-            fz="xs"
-            position="bottom"
-            withArrow
-          >
+          <Tooltip label="Pan tool (H)" fz="xs" position="bottom" withArrow>
             <ActionIcon
               onClick={handlePan}
               variant={isPan ? 'filled' : 'light'}
