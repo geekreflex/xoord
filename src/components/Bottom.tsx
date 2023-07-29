@@ -1,8 +1,8 @@
-import { ActionIcon, Paper, Tooltip, createStyles } from '@mantine/core';
-import { IconTexture } from '@tabler/icons-react';
+import { Paper, createStyles } from '@mantine/core';
 import Settings from './Settings';
 import ResetCanvas from './ResetCanvas';
 import Help from './Help';
+import CanvasBgList from './CanvasBgList';
 
 const useStyles = createStyles(() => ({
   wrapper: {
@@ -31,11 +31,7 @@ export default function Bottom() {
     >
       <Settings />
       <ResetCanvas />
-      <Tooltip label="Canvas Color" fz="xs" position="bottom" withArrow>
-        <ActionIcon variant={true ? 'light' : 'filled'}>
-          <IconTexture size="1.25rem" />
-        </ActionIcon>
-      </Tooltip>
+      <CanvasBgList />
       <Help />
     </Paper>
   );
