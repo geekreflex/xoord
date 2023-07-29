@@ -6,6 +6,7 @@ import {
   IconFolder,
   IconHelp,
   IconMenu2,
+  IconPhotoDown,
 } from '@tabler/icons-react';
 
 export default function MenuOption() {
@@ -19,9 +20,17 @@ export default function MenuOption() {
       disabled: false,
     },
     {
-      label: 'Download',
-      id: 'download',
+      label: 'Save to...',
+      id: 'save',
       icon: <IconDownload size="1.25rem" />,
+      key: '',
+      action: () => {},
+      disabled: false,
+    },
+    {
+      label: 'Export Design...',
+      id: 'export',
+      icon: <IconPhotoDown size="1.25rem" />,
       key: '',
       action: () => {},
       disabled: false,
