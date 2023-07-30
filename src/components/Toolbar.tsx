@@ -95,7 +95,7 @@ export default function Toolbar() {
         radius="lg"
         withBorder
         style={{
-          boxShadow: `rgba(0, 0, 0, 0.3) 0px 3px 4px 1px`,
+          boxShadow: `rgba(0, 0, 0, 0.2) 0px 3px 4px 1px`,
         }}
       >
         <input
