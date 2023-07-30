@@ -1,6 +1,7 @@
 import Bottom from './Bottom';
 import ContextMenu from './ContextMenu';
 import DropArea from './DropArea';
+import ExportDesign from './ExportDesign';
 import PropsPanel from './PropsPanel';
 import Toolbar from './Toolbar';
 import Unfinished from './Unfinished';
@@ -16,6 +17,7 @@ export default function Layout() {
       <ContextMenu />
       <Bottom />
       <Unfinished />
+      <ExportDesign />
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { ActionIcon, Divider, Menu, Text } from '@mantine/core';
+import { ActionIcon, Anchor, Divider, Menu, Text } from '@mantine/core';
 import {
   IconBrandGithub,
   IconBrandTwitter,
@@ -25,7 +25,7 @@ export default function MenuOption() {
       icon: <IconDownload size="1.25rem" />,
       key: '',
       action: () => {},
-      disabled: false,
+      disabled: true,
     },
     {
       label: 'Export Design...',
@@ -78,8 +78,36 @@ export default function MenuOption() {
             if (menu.type && menu.type === 'line') {
               return <Divider my={5} />;
             } else {
+              if (menu.link) {
+                return (
+                  <Anchor
+                    key={menu.id}
+                    c="inherit"
+                    href={menu.link}
+                    underline={false}
+                    target="_blank"
+                  >
+                    <Menu.Item
+                      icon={menu.icon}
+                      fz="xs"
+                      py={6}
+                      px={10}
+                      disabled={menu.disabled}
+                    >
+                      {menu.label}
+                    </Menu.Item>
+                  </Anchor>
+                );
+              }
               return (
-                <Menu.Item icon={menu.icon} key={menu.id} fz="xs" p={8}>
+                <Menu.Item
+                  icon={menu.icon}
+                  key={menu.id}
+                  fz="xs"
+                  py={6}
+                  px={10}
+                  disabled={menu.disabled}
+                >
                   <Text>{menu.label}</Text>
                 </Menu.Item>
               );

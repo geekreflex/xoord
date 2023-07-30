@@ -138,12 +138,20 @@ export default function Toolbar() {
             </ActionIcon>
           </Tooltip>
           <Tooltip label="Draw tool" fz="xs" position="bottom" withArrow>
-            <ActionIcon onClick={() => tool?.addText()} variant="light">
+            <ActionIcon
+              onClick={() => tool?.addText()}
+              variant="light"
+              disabled
+            >
               <IconPencil size="1.25rem" />
             </ActionIcon>
           </Tooltip>
           <Tooltip label="Erase tool" fz="xs" position="bottom" withArrow>
-            <ActionIcon onClick={() => tool?.addText()} variant="light">
+            <ActionIcon
+              onClick={() => tool?.addText()}
+              variant="light"
+              disabled
+            >
               <IconEraser size="1.25rem" />
             </ActionIcon>
           </Tooltip>
