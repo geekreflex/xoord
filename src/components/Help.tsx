@@ -6,6 +6,7 @@ import {
   Kbd,
   Modal,
   Paper,
+  ScrollArea,
   Stack,
   Text,
   Title,
@@ -57,13 +58,13 @@ export default function Help() {
         </ActionIcon>
       </Tooltip>
       <Modal
+        withCloseButton={false}
         radius="lg"
-        padding={30}
+        padding={0}
         opened={opened}
         onClose={close}
         size={900}
         zIndex={9999}
-        title="Help Center"
         overlayProps={{
           color:
             theme.colorScheme === 'dark'
@@ -73,12 +74,20 @@ export default function Help() {
           blur: 3,
         }}
       >
-        <Divider mb={40} />
-        <Grid>
-          <KeyItem data={tools} title="Tools" />
-          <KeyItem data={editor} title="Editor" />
-          <KeyItem data={views} title="Views" />
-        </Grid>
+        <ScrollArea>
+          <Modal.Header p={20}>
+            <Text>Help Center</Text>
+            <Modal.CloseButton />
+          </Modal.Header>
+          <Divider mb={20} />
+          <Modal.Body p={20}>
+            <Grid>
+              <KeyItem data={tools} title="Tools" />
+              <KeyItem data={editor} title="Editor" />
+              <KeyItem data={views} title="Views" />
+            </Grid>
+          </Modal.Body>
+        </ScrollArea>
       </Modal>
     </>
   );
