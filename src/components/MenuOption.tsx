@@ -1,3 +1,4 @@
+import { useAppStore } from '@/store/appStore';
 import { ActionIcon, Anchor, Divider, Menu, Text } from '@mantine/core';
 import {
   IconBrandGithub,
@@ -10,6 +11,8 @@ import {
 } from '@tabler/icons-react';
 
 export default function MenuOption() {
+  const { openExportModal, openHelpModal } = useAppStore((state) => state);
+
   const menuList = [
     {
       label: 'Open',
@@ -20,7 +23,7 @@ export default function MenuOption() {
       disabled: false,
     },
     {
-      label: 'Save to...',
+      label: 'Save to',
       id: 'save',
       icon: <IconDownload size="1.25rem" />,
       key: '',
@@ -28,11 +31,11 @@ export default function MenuOption() {
       disabled: true,
     },
     {
-      label: 'Export Design...',
+      label: 'Export Design',
       id: 'export',
       icon: <IconPhotoDown size="1.25rem" />,
       key: '',
-      action: () => {},
+      action: openExportModal,
       disabled: false,
     },
     {
@@ -40,7 +43,7 @@ export default function MenuOption() {
       id: 'help',
       icon: <IconHelp size="1.25rem" />,
       key: '',
-      action: () => {},
+      action: openHelpModal,
       disabled: false,
     },
     { type: 'line' },
@@ -66,7 +69,12 @@ export default function MenuOption() {
 
   return (
     <>
-      <Menu width={220} offset={20} transitionProps={{ transition: 'pop' }}>
+      <Menu
+        width={220}
+        offset={20}
+        transitionProps={{ transition: 'pop' }}
+        withArrow
+      >
         <Menu.Target>
           <ActionIcon variant={'light'}>
             <IconMenu2 size="1.25rem" />
@@ -74,9 +82,9 @@ export default function MenuOption() {
         </Menu.Target>
 
         <Menu.Dropdown py={10}>
-          {menuList.map((menu) => {
+          {menuList.map((menu, index) => {
             if (menu.type && menu.type === 'line') {
-              return <Divider my={5} />;
+              return <Divider key={index} my={5} />;
             } else {
               if (menu.link) {
                 return (
@@ -107,6 +115,7 @@ export default function MenuOption() {
                   py={6}
                   px={10}
                   disabled={menu.disabled}
+                  onClick={menu.action}
                 >
                   <Text>{menu.label}</Text>
                 </Menu.Item>

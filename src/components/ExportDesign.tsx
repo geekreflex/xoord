@@ -1,3 +1,4 @@
+import { useAppStore } from '@/store/appStore';
 import {
   Divider,
   Modal,
@@ -5,18 +6,17 @@ import {
   Text,
   useMantineTheme,
 } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
 
 export default function ExportDesign() {
-  const [opened, { close }] = useDisclosure(true);
+  const { exportModal, closeExportModal } = useAppStore((state) => state);
   const theme = useMantineTheme();
   return (
     <>
       <Modal
         withCloseButton={false}
         zIndex={9999}
-        opened={opened}
-        onClose={close}
+        opened={exportModal}
+        onClose={closeExportModal}
         padding={0}
         size={600}
         overlayProps={{

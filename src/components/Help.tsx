@@ -1,5 +1,5 @@
+import { useAppStore } from '@/store/appStore';
 import {
-  ActionIcon,
   Divider,
   Flex,
   Grid,
@@ -10,11 +10,8 @@ import {
   Stack,
   Text,
   Title,
-  Tooltip,
   useMantineTheme,
 } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import { IconHelp } from '@tabler/icons-react';
 import React from 'react';
 
 interface ItemI {
@@ -23,7 +20,8 @@ interface ItemI {
 }
 
 export default function Help() {
-  const [opened, { open, close }] = useDisclosure(false);
+  const { helpModal, closeHelpModal } = useAppStore((state) => state);
+
   const theme = useMantineTheme();
 
   const tools: ItemI[] = [
@@ -51,45 +49,39 @@ export default function Help() {
   ];
 
   return (
-    <>
-      <Tooltip label="Help" fz="xs" onClick={open} position="bottom" withArrow>
-        <ActionIcon variant={true ? 'light' : 'filled'}>
-          <IconHelp size="1.25rem" />
-        </ActionIcon>
-      </Tooltip>
-      <Modal
-        withCloseButton={false}
-        radius="lg"
-        padding={0}
-        opened={opened}
-        onClose={close}
-        size={900}
-        zIndex={9999}
-        overlayProps={{
-          color:
-            theme.colorScheme === 'dark'
-              ? theme.colors.dark[9]
-              : theme.colors.gray[2],
-          opacity: 0.55,
-          blur: 3,
-        }}
-      >
-        <ScrollArea>
-          <Modal.Header p={20}>
-            <Text>Help Center</Text>
-            <Modal.CloseButton />
-          </Modal.Header>
-          <Divider mb={20} />
-          <Modal.Body p={20}>
-            <Grid>
-              <KeyItem data={tools} title="Tools" />
-              <KeyItem data={editor} title="Editor" />
-              <KeyItem data={views} title="Views" />
-            </Grid>
-          </Modal.Body>
-        </ScrollArea>
-      </Modal>
-    </>
+    <Modal
+      withCloseButton={false}
+      radius="lg"
+      padding={0}
+      opened={helpModal}
+      onClose={closeHelpModal}
+      size={900}
+      zIndex={9999}
+      overlayProps={{
+        color:
+          theme.colorScheme === 'dark'
+            ? theme.colors.dark[9]
+            : theme.colors.gray[2],
+        opacity: 0.55,
+        blur: 3,
+      }}
+      centered
+    >
+      <ScrollArea>
+        <Modal.Header p={20}>
+          <Text>Help Center</Text>
+          <Modal.CloseButton />
+        </Modal.Header>
+        <Divider mb={20} />
+        <Modal.Body p={20}>
+          <Grid>
+            <KeyItem data={tools} title="Tools" />
+            <KeyItem data={editor} title="Editor" />
+            <KeyItem data={views} title="Views" />
+          </Grid>
+        </Modal.Body>
+      </ScrollArea>
+    </Modal>
   );
 }
 

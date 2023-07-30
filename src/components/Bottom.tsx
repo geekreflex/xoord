@@ -1,8 +1,8 @@
-import { Paper, createStyles } from '@mantine/core';
-import Settings from './Settings';
+import { ActionIcon, Paper, Tooltip, createStyles } from '@mantine/core';
 import ResetCanvas from './ResetCanvas';
-import Help from './Help';
 import CanvasBgList from './CanvasBgList';
+import { IconHelp, IconSettings } from '@tabler/icons-react';
+import { useAppStore } from '@/store/appStore';
 
 const useStyles = createStyles(() => ({
   wrapper: {
@@ -17,6 +17,7 @@ const useStyles = createStyles(() => ({
 }));
 
 export default function Bottom() {
+  const { openHelpModal, openSettingsModal } = useAppStore((state) => state);
   const { classes } = useStyles();
   return (
     <Paper
@@ -29,10 +30,27 @@ export default function Bottom() {
         boxShadow: `rgba(0, 0, 0, 0.3) 0px 3px 4px 1px`,
       }}
     >
-      <Settings />
+      <Tooltip label="Settings" fz="xs" position="bottom" withArrow>
+        <ActionIcon
+          variant={true ? 'light' : 'filled'}
+          onClick={openSettingsModal}
+        >
+          <IconSettings size="1.25rem" />
+        </ActionIcon>
+      </Tooltip>
       <ResetCanvas />
       <CanvasBgList />
-      <Help />
+      <Tooltip
+        label="Help"
+        fz="xs"
+        onClick={openHelpModal}
+        position="bottom"
+        withArrow
+      >
+        <ActionIcon variant={true ? 'light' : 'filled'}>
+          <IconHelp size="1.25rem" />
+        </ActionIcon>
+      </Tooltip>
     </Paper>
   );
 }
