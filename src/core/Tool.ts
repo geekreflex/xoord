@@ -239,6 +239,15 @@ export class Tool {
     this.canvas.renderAll();
   }
 
+  public fontSize(size: number) {
+    const activeObject = this.editor.canvas.getActiveObject();
+
+    if (activeObject instanceof fabric.Textbox) {
+      activeObject.set({ fontSize: size });
+    }
+    this.editor.canvas.renderAll();
+  }
+
   public underline() {
     const activeObject = this.canvas.getActiveObject();
     if (activeObject instanceof fabric.Textbox) {

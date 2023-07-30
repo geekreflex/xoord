@@ -1,7 +1,9 @@
 import { useEditorContext } from '@/context/EditorContext';
-import { Menu } from '@mantine/core';
+import { ActionIcon, Flex, Menu, Paper, Text, Tooltip } from '@mantine/core';
+import { useHotkeys } from '@mantine/hooks';
 import {
   IconCircle,
+  IconCircleSquare,
   IconPolygon,
   IconRectangle,
   IconSlash,
@@ -14,16 +16,41 @@ const shapes = [
     id: 'rectangle',
     label: 'Rectangle',
     icon: <IconRectangle size="1.25rem" />,
+    key: 'R',
   },
-  { id: 'circle', label: 'Circle', icon: <IconCircle size="1.25rem" /> },
-  { id: 'triangle', label: 'Triangle', icon: <IconTriangle size="1.25rem" /> },
-  { id: 'line', label: 'Line', icon: <IconSlash size="1.25rem" /> },
-  { id: 'star', label: 'Star', icon: <IconStar size="1.25rem" /> },
-  { id: 'polygon', label: 'Polygon', icon: <IconPolygon size="1.25rem" /> },
+  {
+    id: 'circle',
+    label: 'Circle',
+    icon: <IconCircle size="1.25rem" />,
+    key: 'O',
+  },
+  {
+    id: 'triangle',
+    label: 'Triangle',
+    icon: <IconTriangle size="1.25rem" />,
+    key: 'Shift + T',
+  },
+  { id: 'line', label: 'Line', icon: <IconSlash size="1.25rem" />, key: 'L' },
+  { id: 'star', label: 'Star', icon: <IconStar size="1.25rem" />, key: '' },
+  {
+    id: 'polygon',
+    label: 'Polygon',
+    icon: <IconPolygon size="1.25rem" />,
+    key: '',
+  },
 ];
 
 export default function ShapeList() {
   const { tool } = useEditorContext();
+
+  useHotkeys([
+    ['O', () => handleAddShape('circle')],
+    ['R', () => handleAddShape('rectangle')],
+    ['Shift + T', () => handleAddShape('triangle')],
+    ['L', () => handleAddShape('line')],
+    // ['S', () => handleAddShape('star')],
+    // ['P', () => handleAddShape('polygon')],
+  ]);
 
   const handleAddShape = (shape: string) => {
     if (tool) {
@@ -52,18 +79,36 @@ export default function ShapeList() {
     }
   };
   return (
-    <Menu.Dropdown>
-      {shapes.map((shape) => (
-        <Menu.Item
-          key={shape.id}
-          fz="xs"
-          p="5px"
-          icon={shape.icon as any}
-          onClick={() => handleAddShape(shape.id)}
-        >
-          {shape.label}
-        </Menu.Item>
-      ))}
-    </Menu.Dropdown>
+    <Menu width={200} offset={20} transitionProps={{ transition: 'pop' }}>
+      <Menu.Target>
+        <ActionIcon variant="light">
+          <Tooltip label="Shapes tool" fz="xs" position="bottom" withArrow>
+            <IconCircleSquare size="1.25rem" />
+          </Tooltip>
+        </ActionIcon>
+      </Menu.Target>
+      <Menu.Dropdown>
+        {shapes.map((shape) => (
+          <Menu.Item
+            key={shape.id}
+            fz="xs"
+            p={8}
+            icon={shape.icon as any}
+            onClick={() => handleAddShape(shape.id)}
+          >
+            <Flex justify="space-between" align="center">
+              <Text>{shape.label}</Text>
+              {shape.key && (
+                <Paper px="sm" py={1}>
+                  <Text fz="10px" fw="bold">
+                    {shape.key}
+                  </Text>
+                </Paper>
+              )}
+            </Flex>
+          </Menu.Item>
+        ))}
+      </Menu.Dropdown>
+    </Menu>
   );
 }

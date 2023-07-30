@@ -1,8 +1,9 @@
-import { Box, createStyles } from '@mantine/core';
+import { Box, createStyles, useMantineTheme } from '@mantine/core';
 import { useEffect } from 'react';
 import { fabric } from 'fabric';
 import { EditorSetup } from '../core/EditorSetup';
 import { useEditorContext } from '@/context/EditorContext';
+import { useHotkeys } from '@mantine/hooks';
 
 const useStyles = createStyles(() => ({
   box: {
@@ -16,7 +17,17 @@ const useStyles = createStyles(() => ({
 
 export default function Workspace() {
   const { classes } = useStyles();
-  const { setEditor } = useEditorContext();
+  const { setEditor, tool } = useEditorContext();
+  const theme = useMantineTheme();
+
+  useHotkeys([
+    ['shift+v', () => tool?.flipY()],
+    ['shift+h', () => tool?.flipX()],
+    ['ctrl+]', () => tool?.order('forward')],
+    ['ctrl+[', () => tool?.order('backward')],
+    [']', () => tool?.order('front')],
+    ['[', () => tool?.order('back')],
+  ]);
 
   useEffect(() => {
     const fabricCanvas = new fabric.Canvas('canvas', {
@@ -24,6 +35,7 @@ export default function Workspace() {
       stopContextMenu: true,
       preserveObjectStacking: true,
       controlsAboveOverlay: true,
+      backgroundColor: theme.colors.dark[9],
     });
     const workspaceEl = document.getElementById('workspace') as HTMLElement;
     const editor = new EditorSetup(fabricCanvas, workspaceEl);

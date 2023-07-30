@@ -63,7 +63,7 @@ export class EditorSetup {
 
       // Set minimum and maximum zoom values
       const minZoom = 0.1;
-      const maxZoom = 6;
+      const maxZoom = 20;
       zoom = Math.max(minZoom, Math.min(maxZoom, zoom));
 
       if (isControlKeyHeld) {
@@ -88,13 +88,29 @@ export class EditorSetup {
   public zoomIn() {
     const zoomFactor = 1.1;
     const zoom = this.canvas.getZoom() * zoomFactor;
-    this.setZoom(Math.min(zoom, 6));
+    this.setZoom(Math.min(zoom, 12));
   }
 
   public zoomOut() {
     const zoomFactor = 0.9;
     const zoom = this.canvas.getZoom() * zoomFactor;
     this.setZoom(Math.max(zoom, 0.1));
+  }
+
+  public zoomToFit() {
+    const boudingBox = this.canvas.getObjects().reduce(
+      function (acc, obj) {
+        return fabric.util.object.extend(acc, obj.getBoundingRect());
+      },
+      { left: Infinity, top: Infinity, width: 0, height: 0 }
+    );
+
+    const scaleX = this.canvas.getWidth() / boudingBox.width;
+    const scaleY = this.canvas.getHeight() / boudingBox.height;
+    const scale = Math.min(scaleX, scaleY);
+
+    this.canvas.setZoom(scale);
+    this.canvas.setViewportTransform([scale, 0, 0, scale, 0, 0]);
   }
 
   public startPan() {
