@@ -41,6 +41,8 @@ export default function Workspace() {
     const editor = new EditorSetup(fabricCanvas, workspaceEl);
     setEditor(editor);
 
+    console.log(theme.colors.dark[9]);
+
     return () => {
       editor.dispose();
     };
