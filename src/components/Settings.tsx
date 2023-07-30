@@ -30,6 +30,7 @@ export default function Settings() {
         opacity: 0.55,
         blur: 3,
       }}
+      centered
     >
       <ScrollArea>
         <Modal.Header p={20}>

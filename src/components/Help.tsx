@@ -67,11 +67,11 @@ export default function Help() {
       }}
       centered
     >
-      <ScrollArea>
-        <Modal.Header p={20}>
-          <Text>Help Center</Text>
-          <Modal.CloseButton />
-        </Modal.Header>
+      <Modal.Header p={20}>
+        <Text>Help Center</Text>
+        <Modal.CloseButton />
+      </Modal.Header>
+      <ScrollArea mah="90vh" h={600}>
         <Divider mb={20} />
         <Modal.Body p={20}>
           <Grid>
