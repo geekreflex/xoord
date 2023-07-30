@@ -132,7 +132,9 @@ export default function ExportDesign() {
                     )}
                   </Stack>
                   <Group mt={20} position="right">
-                    <Button variant="default">Canvas</Button>
+                    <Button variant="default" onClick={closeExportModal}>
+                      Cancel
+                    </Button>
                     <Button onClick={handleExport}>Export</Button>
                   </Group>
                 </Box>

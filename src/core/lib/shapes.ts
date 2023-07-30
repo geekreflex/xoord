@@ -1,5 +1,5 @@
 export const STROKE = '#444444';
-export const FILL = '#090909';
+export const FILL = '';
 export const WIDTH = 300;
 export const HEIGHT = 300;
 export const STROKE_WIDTH = 1;

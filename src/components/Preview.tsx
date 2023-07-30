@@ -18,7 +18,7 @@ export default function Preview() {
 
   return (
     <Paper withBorder radius="lg">
-      <Center h={300}>
+      <Center h={400}>
         <img
           ref={imgRef}
           style={{
