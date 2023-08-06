@@ -28,7 +28,7 @@ const useStyles = createStyles(() => ({
     position: 'absolute',
     zIndex: 9999,
     top: 0,
-    margin: 30,
+    margin: 15,
     display: 'flex',
     gap: 20,
   },
@@ -93,9 +93,8 @@ export default function Toolbar() {
         shadow="lg"
         p="sm"
         radius="lg"
-        withBorder
         style={{
-          boxShadow: `rgba(0, 0, 0, 0.2) 0px 3px 4px 1px`,
+          boxShadow: `rgba(0, 0, 0, 0.1) 0px 3px 4px 1px`,
         }}
       >
         <input
