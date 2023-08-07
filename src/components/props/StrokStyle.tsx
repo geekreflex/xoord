@@ -1,6 +1,11 @@
 import { Box, Flex, Paper, Text, createStyles } from '@mantine/core';
 import { useState } from 'react';
 import { useEditorContext } from '@/context/EditorContext';
+import {
+  IconCircle,
+  IconCircleDashed,
+  IconCircleDotted,
+} from '@tabler/icons-react';
 
 const useStyle = createStyles(() => ({
   block: {
@@ -12,12 +17,16 @@ const useStyle = createStyles(() => ({
     cursor: 'pointer',
     borderRadius: 8,
   },
+  active: {
+    outline: '2px solid #33ed90',
+    outlineOffset: 2,
+  },
 }));
 
 const styles = [
-  { value: '', label: 'Solid' },
-  { value: '40 20', label: 'Dashed' },
-  { value: '10 20', label: 'Dotted' },
+  { value: '', label: 'Solid', icon: IconCircle },
+  { value: '40 20', label: 'Dashed', icon: IconCircleDashed },
+  { value: '10 20', label: 'Dotted', icon: IconCircleDotted },
 ];
 
 export default function StrokeStyle() {
@@ -31,19 +40,12 @@ export default function StrokeStyle() {
     if (editor) {
       const activeObject = editor.canvas.getActiveObject();
       if (activeObject) {
-        if (style === 'Dashed') {
-          activeObject.set('strokeDashArray', [
-            activeObject.strokeWidth! * 2,
-            activeObject.strokeWidth!,
-          ]);
-        }
-
-        if (style === 'Dotted') {
-          activeObject.set('strokeDashArray', [
-            activeObject.strokeWidth!,
-            activeObject.strokeWidth!,
-          ]);
-        }
+        const arr = style ? style.split(' ').map(Number) : [];
+        setCurrentStyle(arr);
+        activeObject.set({
+          strokeDashArray: arr,
+          strokeLineCap: 'round',
+        });
         editor.canvas.renderAll();
       }
     }
@@ -57,12 +59,15 @@ export default function StrokeStyle() {
       <Flex gap={8}>
         {styles.map((style) => (
           <Paper
-            className={classes.block}
+            className={`${classes.block} ${currentStyle}`}
             withBorder
             w={35}
             h={35}
-            onClick={() => handleStrokeWidth(style.label)}
-          ></Paper>
+            onClick={() => handleStrokeWidth(style.value)}
+            component="button"
+          >
+            <style.icon />
+          </Paper>
         ))}
       </Flex>
     </Box>

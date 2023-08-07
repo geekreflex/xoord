@@ -10,6 +10,10 @@ const useStyles = createStyles(() => ({
     cursor: 'pointer',
     borderRadius: 4,
   },
+  active: {
+    outline: '2px solid #33ed90',
+    outlineOffset: 2,
+  },
 }));
 
 interface IColor {
@@ -26,9 +30,11 @@ export default function Color({ currentColor, colors, onColor }: IColor) {
         {colors.map((color) => (
           <Paper
             bg={color.color}
-            className={classes.block}
             key={color.color}
             onClick={() => onColor(color.color)}
+            className={`${classes.block} ${
+              currentColor === color.color ? classes.active : ''
+            }`}
           />
         ))}
       </Flex>

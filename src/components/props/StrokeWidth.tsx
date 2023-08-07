@@ -1,6 +1,12 @@
 import { Box, Flex, Paper, Text, createStyles } from '@mantine/core';
 import { useState } from 'react';
 import { useEditorContext } from '@/context/EditorContext';
+import {
+  IconH2,
+  IconLetterL,
+  IconLetterM,
+  IconLetterS,
+} from '@tabler/icons-react';
 
 const useStyle = createStyles(() => ({
   block: {
@@ -15,10 +21,10 @@ const useStyle = createStyles(() => ({
 }));
 
 const widths = [
-  { width: 1, label: '' },
-  { width: 3, label: '' },
-  { width: 6, label: '' },
-  { width: 10, label: '' },
+  { width: 1, label: '', icon: IconLetterS },
+  { width: 3, label: '', icon: IconLetterM },
+  { width: 6, label: '', icon: IconLetterL },
+  { width: 10, label: '', icon: IconH2 },
 ];
 
 export default function StrokeWidth() {
@@ -52,7 +58,9 @@ export default function StrokeWidth() {
             w={35}
             h={35}
             onClick={() => handleStrokeWidth(width.width)}
-          ></Paper>
+          >
+            <width.icon strokeWidth={3} size="1rem" />
+          </Paper>
         ))}
       </Flex>
     </Box>
