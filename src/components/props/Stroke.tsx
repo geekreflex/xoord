@@ -43,9 +43,7 @@ export default function Stroke() {
 
   return (
     <Box>
-      <Text fz="xs" fw="bold" mb="sm">
-        Stroke
-      </Text>
+      <Text fz="xs">Stroke</Text>
       <Color
         currentColor={currentColor}
         colors={colors}

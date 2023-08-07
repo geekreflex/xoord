@@ -48,9 +48,7 @@ export default function StrokeStyle() {
 
   return (
     <Box>
-      <Text fz="xs" fw="bold" mb="sm">
-        Stroke style
-      </Text>
+      <Text fz="xs">Stroke style</Text>
       <Block
         items={styles}
         currentItem={currentStyle}

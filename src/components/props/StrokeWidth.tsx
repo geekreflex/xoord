@@ -35,9 +35,7 @@ export default function StrokeWidth() {
 
   return (
     <Box>
-      <Text fz="xs" fw="bold" mb="sm">
-        Stroke width
-      </Text>
+      <Text fz="xs">Stroke width</Text>
       <Block
         currentItem={currentWidth}
         items={widths}

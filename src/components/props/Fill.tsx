@@ -30,9 +30,7 @@ export default function Fill() {
 
   return (
     <Box>
-      <Text fz="xs" fw="bold" mb="sm">
-        Bakcground
-      </Text>
+      <Text fz="xs">Background</Text>
       <Color
         currentColor={currentColor}
         colors={colors}

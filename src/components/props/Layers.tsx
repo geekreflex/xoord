@@ -26,9 +26,7 @@ export default function Layers() {
 
   return (
     <Box>
-      <Text fz="xs" fw="bold" mb="sm">
-        Layer
-      </Text>
+      <Text fz="xs">Layer</Text>
       <Block items={layers} onChange={handleLayer} />
     </Box>
   );

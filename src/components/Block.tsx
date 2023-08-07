@@ -24,7 +24,7 @@ export default function Block({ items, currentItem, onChange }: IBlock) {
   const { classes } = useStyle();
 
   return (
-    <Flex gap={15}>
+    <Flex gap={10}>
       {items.map((item) => (
         <Tooltip label={item.label} fz="xs" position="bottom" withArrow>
           <ActionIcon

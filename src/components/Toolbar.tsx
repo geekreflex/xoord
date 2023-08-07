@@ -46,6 +46,9 @@ export default function Toolbar() {
     ['V', () => handleMove()],
     ['U', () => handleAddImage()],
     ['T', () => tool?.addText()],
+    ['ctrl+d', () => tool?.duplicate()],
+    ['delete', () => tool?.delete()],
+    ['backspace', () => tool?.delete()],
   ]);
 
   const handlePan = () => {
