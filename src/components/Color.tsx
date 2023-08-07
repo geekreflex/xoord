@@ -8,10 +8,9 @@ const useStyles = createStyles(() => ({
     justifyContent: 'center',
     alignItems: 'center',
     cursor: 'pointer',
-    borderRadius: 4,
   },
   active: {
-    outline: '2px solid #33ed90',
+    outline: '2px solid #72837b',
     outlineOffset: 2,
   },
 }));
@@ -29,6 +28,7 @@ export default function Color({ currentColor, colors, onColor }: IColor) {
       <Flex justify="space-between" gap={5} style={{ flex: 1 }}>
         {colors.map((color) => (
           <Paper
+            radius="lg"
             bg={color.color}
             key={color.color}
             onClick={() => onColor(color.color)}
@@ -39,7 +39,12 @@ export default function Color({ currentColor, colors, onColor }: IColor) {
         ))}
       </Flex>
       <Divider orientation="vertical" mx={10} />
-      <Paper className={classes.block} bg={currentColor} withBorder />
+      <Paper
+        radius="lg"
+        className={classes.block}
+        bg={currentColor}
+        withBorder
+      />
     </Flex>
   );
 }

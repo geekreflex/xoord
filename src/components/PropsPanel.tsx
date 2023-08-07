@@ -5,6 +5,8 @@ import Stroke from './props/Stroke';
 import Fill from './props/Fill';
 import StrokeWidth from './props/StrokeWidth';
 import StrokeStyle from './props/StrokStyle';
+import Layers from './props/Layers';
+import Actions from './props/Actions';
 
 export default function PropsPanel() {
   const [visible, setVisible] = useState(true);
@@ -31,6 +33,8 @@ export default function PropsPanel() {
           <Fill />
           <StrokeWidth />
           <StrokeStyle />
+          <Layers />
+          <Actions />
         </Stack>
       </Box>
     </Paper>

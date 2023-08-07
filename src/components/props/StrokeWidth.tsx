@@ -1,4 +1,4 @@
-import { Box, Flex, Paper, Text, createStyles } from '@mantine/core';
+import { Box, Text } from '@mantine/core';
 import { useState } from 'react';
 import { useEditorContext } from '@/context/EditorContext';
 import {
@@ -7,38 +7,26 @@ import {
   IconLetterM,
   IconLetterS,
 } from '@tabler/icons-react';
-
-const useStyle = createStyles(() => ({
-  block: {
-    width: '28px',
-    height: '28px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    cursor: 'pointer',
-    borderRadius: 8,
-  },
-}));
+import Block from '../Block';
 
 const widths = [
-  { width: 1, label: '', icon: IconLetterS },
-  { width: 3, label: '', icon: IconLetterM },
-  { width: 6, label: '', icon: IconLetterL },
-  { width: 10, label: '', icon: IconH2 },
+  { value: '1', label: 'Small', icon: IconLetterS },
+  { value: '3', label: 'Medium', icon: IconLetterM },
+  { value: '6', label: 'Large', icon: IconLetterL },
+  { value: '10', label: 'Xtra large', icon: IconH2 },
 ];
 
 export default function StrokeWidth() {
   const { editor } = useEditorContext();
-  const [currentWidth, setCurrentWidth] = useState(widths[2].width);
-  const { classes } = useStyle();
+  const [currentWidth, setCurrentWidth] = useState(widths[2].value);
 
-  const handleStrokeWidth = (width: number) => {
+  const handleStrokeWidth = (value: string) => {
     if (editor) {
       const activeObject = editor.canvas.getActiveObject();
       if (activeObject) {
-        setCurrentWidth(width);
+        setCurrentWidth(value);
         activeObject.set({
-          strokeWidth: width,
+          strokeWidth: parseInt(value),
         });
         editor.canvas.renderAll();
       }
@@ -50,19 +38,11 @@ export default function StrokeWidth() {
       <Text fz="xs" fw="bold" mb="sm">
         Stroke width
       </Text>
-      <Flex gap={8}>
-        {widths.map((width) => (
-          <Paper
-            className={classes.block}
-            withBorder
-            w={35}
-            h={35}
-            onClick={() => handleStrokeWidth(width.width)}
-          >
-            <width.icon strokeWidth={3} size="1rem" />
-          </Paper>
-        ))}
-      </Flex>
+      <Block
+        currentItem={currentWidth}
+        items={widths}
+        onChange={handleStrokeWidth}
+      />
     </Box>
   );
 }
