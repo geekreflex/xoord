@@ -1,13 +1,5 @@
 import { useEditorContext } from '@/context/EditorContext';
-import {
-  ActionIcon,
-  Divider,
-  Flex,
-  Paper,
-  Popover,
-  Tooltip,
-  createStyles,
-} from '@mantine/core';
+import { ActionIcon, Popover, Tooltip } from '@mantine/core';
 import { IconTexture } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 import Color from './Color';
@@ -20,21 +12,8 @@ const colors = [
   { color: '#111618', label: '' },
 ];
 
-const useStyles = createStyles(() => ({
-  block: {
-    width: '28px',
-    height: '28px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    cursor: 'pointer',
-    borderRadius: 8,
-  },
-}));
-
 export default function CanvasBgList() {
   const [currentColor, setCurrentColor] = useState('');
-  const { classes } = useStyles();
   const { editor } = useEditorContext();
 
   useEffect(() => {
