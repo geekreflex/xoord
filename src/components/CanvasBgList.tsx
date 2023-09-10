@@ -1,15 +1,8 @@
 import { useEditorContext } from '@/context/EditorContext';
-import {
-  ActionIcon,
-  Divider,
-  Flex,
-  Paper,
-  Popover,
-  Tooltip,
-  createStyles,
-} from '@mantine/core';
+import { ActionIcon, Popover, Tooltip } from '@mantine/core';
 import { IconTexture } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
+import Color from './Color';
 
 const colors = [
   { color: '#101113', label: '' },
@@ -19,21 +12,8 @@ const colors = [
   { color: '#111618', label: '' },
 ];
 
-const useStyles = createStyles(() => ({
-  block: {
-    width: '28px',
-    height: '28px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    cursor: 'pointer',
-    borderRadius: 8,
-  },
-}));
-
 export default function CanvasBgList() {
   const [currentColor, setCurrentColor] = useState('');
-  const { classes } = useStyles();
   const { editor } = useEditorContext();
 
   useEffect(() => {
@@ -56,28 +36,23 @@ export default function CanvasBgList() {
     <>
       <Popover offset={15} withArrow transitionProps={{ transition: 'pop' }}>
         <Popover.Target>
-          <Tooltip label="Canvas Color" fz="xs" position="bottom" withArrow>
+          <Tooltip
+            label="Canvas background"
+            fz="xs"
+            position="bottom"
+            withArrow
+          >
             <ActionIcon variant={true ? 'light' : 'filled'}>
               <IconTexture size="1.25rem" />
             </ActionIcon>
           </Tooltip>
         </Popover.Target>
         <Popover.Dropdown p={10}>
-          <Flex justify="center">
-            <Flex gap={5}>
-              {colors.map((color) => (
-                <Paper
-                  bg={color.color}
-                  className={classes.block}
-                  key={color.color}
-                  withBorder
-                  onClick={() => handleCanvasBg(color.color)}
-                />
-              ))}
-            </Flex>
-            <Divider orientation="vertical" mx={10} />
-            <Paper className={classes.block} bg={currentColor} withBorder />
-          </Flex>
+          <Color
+            currentColor={currentColor}
+            colors={colors}
+            onColor={handleCanvasBg}
+          />
         </Popover.Dropdown>
       </Popover>
     </>

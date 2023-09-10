@@ -6,7 +6,6 @@ import {
   Kbd,
   Modal,
   Paper,
-  ScrollArea,
   Stack,
   Text,
   Title,
@@ -67,20 +66,20 @@ export default function Help() {
       }}
       centered
     >
-      <Modal.Header p={20}>
-        <Text>Help Center</Text>
+      <Modal.Header p={15}>
+        <Text fw="500" fz="md">
+          Help Center
+        </Text>
         <Modal.CloseButton />
       </Modal.Header>
-      <ScrollArea mah="90vh" h={600}>
-        <Divider mb={20} />
-        <Modal.Body p={20}>
-          <Grid>
-            <KeyItem data={tools} title="Tools" />
-            <KeyItem data={editor} title="Editor" />
-            <KeyItem data={views} title="Views" />
-          </Grid>
-        </Modal.Body>
-      </ScrollArea>
+      <Divider mb={15} />
+      <Modal.Body p={20}>
+        <Grid>
+          <KeyItem data={tools} title="Tools" />
+          <KeyItem data={editor} title="Editor" />
+          <KeyItem data={views} title="Views" />
+        </Grid>
+      </Modal.Body>
     </Modal>
   );
 }

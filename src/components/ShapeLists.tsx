@@ -1,5 +1,5 @@
 import { useEditorContext } from '@/context/EditorContext';
-import { ActionIcon, Flex, Menu, Paper, Text, Tooltip } from '@mantine/core';
+import { ActionIcon, Flex, Menu, Text, Tooltip } from '@mantine/core';
 import { useHotkeys } from '@mantine/hooks';
 import {
   IconCircle,
@@ -98,13 +98,6 @@ export default function ShapeList() {
           >
             <Flex justify="space-between" align="center">
               <Text>{shape.label}</Text>
-              {shape.key && (
-                <Paper px="sm" py={1}>
-                  <Text fz="10px" fw="bold">
-                    {shape.key}
-                  </Text>
-                </Paper>
-              )}
             </Flex>
           </Menu.Item>
         ))}
