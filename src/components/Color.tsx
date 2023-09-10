@@ -75,7 +75,7 @@ function ColorTool({ onColor, color }: ColorToolProps) {
     <Box w={200}>
       <ColorInput mb={10} value={color} onChange={onColor} />
       <ColorPicker
-        format="hex"
+        format="rgba"
         value={color}
         onChange={onColor}
         swatches={[
