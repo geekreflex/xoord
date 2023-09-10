@@ -35,7 +35,7 @@ export default function Export() {
       });
 
       // Create a temporary link element to download the PNG
-      let link = document.createElement('a');
+      const link = document.createElement('a');
       link.href = dataUrl as string;
       link.download = name || activeObject?.name!; // Set the desired file name
       link.click();

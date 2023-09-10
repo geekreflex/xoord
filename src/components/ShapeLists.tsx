@@ -1,5 +1,5 @@
 import { useEditorContext } from '@/context/EditorContext';
-import { ActionIcon, Flex, Menu, Paper, Text, Tooltip } from '@mantine/core';
+import { ActionIcon, Flex, Menu, Text, Tooltip } from '@mantine/core';
 import { useHotkeys } from '@mantine/hooks';
 import {
   IconCircle,
