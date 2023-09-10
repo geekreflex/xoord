@@ -31,7 +31,10 @@ export default function StrokeStyle() {
 
         if (style === 'dotted') {
           activeObject.set({
-            strokeDashArray: [10, 10],
+            strokeDashArray: [
+              activeObject.strokeWidth!,
+              activeObject.strokeWidth!,
+            ],
           });
         }
 

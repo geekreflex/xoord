@@ -28,6 +28,9 @@ export default function StrokeWidth() {
         activeObject.set({
           strokeWidth: parseInt(value),
         });
+        activeObject.set({
+          strokeDashArray: [parseInt(value), parseInt(value)],
+        });
         editor.canvas.renderAll();
       }
     }

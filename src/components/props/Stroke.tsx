@@ -1,19 +1,7 @@
-import { Box, Text, createStyles } from '@mantine/core';
+import { Box, Text } from '@mantine/core';
 import Color from '../Color';
 import { useState } from 'react';
 import { useEditorContext } from '@/context/EditorContext';
-
-const useStyle = createStyles(() => ({
-  block: {
-    width: '28px',
-    height: '28px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    cursor: 'pointer',
-    borderRadius: 8,
-  },
-}));
 
 const colors = [
   { color: '#587cc2', label: '' },
@@ -26,7 +14,6 @@ const colors = [
 export default function Stroke() {
   const { editor } = useEditorContext();
   const [currentColor, setCurrentColor] = useState(colors[2].color);
-  const { classes } = useStyle();
 
   const handleColor = (color: string) => {
     if (editor) {
